@@ -12,6 +12,7 @@ public class HelloWorld extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");
