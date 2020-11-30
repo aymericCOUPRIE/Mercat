@@ -3,7 +3,7 @@ package ui;
 import controller.LoginController;
 
 /**
- * 
+ *
  */
 public class LoginUI {
 
@@ -14,7 +14,7 @@ public class LoginUI {
     }
 
     /**
-     * 
+     *
      */
     private LoginController controller;
 

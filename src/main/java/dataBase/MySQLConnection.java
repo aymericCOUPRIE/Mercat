@@ -16,12 +16,10 @@ public class MySQLConnection {
                 System.out.println("MySQL driver couldn't be loaded!");
             }
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
-            /*
-            Pour le mac 
+           // Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","root");
 
-           */
             Statement st = cn.createStatement();
             ResultSet rs = cn.prepareStatement("show tables").executeQuery();
 
