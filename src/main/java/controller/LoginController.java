@@ -55,6 +55,7 @@ public class LoginController {
     /**
      * @return
      */
+    @FXML
     public void login() {
         // TODO implement here
     }
@@ -62,6 +63,7 @@ public class LoginController {
     /**
      * @return
      */
+    @FXML
     public void signUp() {
         // TODO implement here
     }
