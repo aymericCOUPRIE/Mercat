@@ -17,8 +17,18 @@ public class MySQLConnection {
             }
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+            /*
+            Pour le mac 
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","root");
+
+           */
             Statement st = cn.createStatement();
-            System.out.println(st.executeUpdate("INSERT INTO user VALUES ('b','a','a','a','a','a','a','1','a','a','a')"));
+            ResultSet rs = cn.prepareStatement("show tables").executeQuery();
+
+            while(rs.next()){
+                String s = rs.getString(1);
+                System.out.println(s);
+            }
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
