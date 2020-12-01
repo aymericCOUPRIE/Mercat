@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #0000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #0000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
     <children>
       <GridPane prefHeight="154.0" prefWidth="1000.0">
         <columnConstraints>

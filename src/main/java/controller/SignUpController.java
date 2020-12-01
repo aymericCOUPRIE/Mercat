@@ -1,6 +1,7 @@
 package controller;
 
 import facade.UserFacade;
+import javafx.event.ActionEvent;
 
 import java.util.*;
 
@@ -35,4 +36,9 @@ public class SignUpController {
         // TODO implement here
     }
 
+    public void signup(ActionEvent actionEvent) {
+    }
+
+    public void login(ActionEvent actionEvent) {
+    }
 }
