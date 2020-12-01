@@ -22,5 +22,5 @@ javafx {
 }
 
 application {
-    mainClassName = 'Main'
+    mainClassName = 'application.Main'
 }

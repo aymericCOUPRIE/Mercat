@@ -1,3 +1,5 @@
+package application;
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -5,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import router.Router;
 
 public class Main extends Application {
 
@@ -32,10 +35,10 @@ public class Main extends Application {
     }
 
     public void init() {
-        //Router r = Router.getInstance();
-        /*r.add("HomePage", "/HomePage.fxml");
+        Router r = Router.getInstance();
+        r.add("HomePage", "/HomePage.fxml");
         r.add("Login", "/LoginUI.fxml");
-        r.add("SignUp", "/SignUpUI.fxml");*/
+        r.add("SignUp", "/SignUpUI.fxml");
 
     }
 

@@ -1,5 +1,8 @@
 package router;
 
+import application.Main;
+import javafx.fxml.FXMLLoader;
+
 import java.util.*;
 
 /**
@@ -7,11 +10,6 @@ import java.util.*;
  */
 public class Router {
 
-    /**
-     * Default constructor
-     */
-    public Router() {
-    }
 
     /**
      * 
@@ -21,39 +19,69 @@ public class Router {
     /**
      * 
      */
-    public Object params;
+    public Object[] params;
 
     /**
      * 
      */
-    private HashMap<String, String> screenMap;
-
-
+    private HashMap<String, String> screenMap = new HashMap<>();
 
 
 
     /**
-     * @param String name
+     * Default constructor
+     * Respect the Singleton pattern
+     */
+    private Router() {
+    }
+
+
+
+    /**
+     * @param name
      */
     public void activate(String name) {
-        // TODO implement here
+        this.params = new String[0];
+        try {
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * @param String name 
-     * @param Object[] params 
-     * @return
+     * @param name
+     * @param params
      */
     public void activate(String name, Object[] params) {
-        // TODO implement here
+        this.params = params;
+        try {
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public HashMap<String, String> getScreenMap() {
+        return screenMap;
     }
 
     /**
-     * @return
+     * @return Router INSTANCE
      */
     public static Router getInstance() {
-        // TODO implement here
-        return null;
+        if (INSTANCE == null) {
+            INSTANCE = new Router();
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * @param name, path
+     */
+    public void add(String name, String path) {
+        screenMap.put(name, path);
     }
 
 }
