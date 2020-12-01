@@ -19,7 +19,7 @@ UserFaçade --> LoginController
 LoginController --> UserFaçade : isConnected()
 alt successful case
     UserFaçade -> LoginController : true
-    LoginController -> Router : getInstance().activate("HomePage")
+    LoginController -> router.Router : getInstance().activate("HomePage")
 else
     UserFaçade -> LoginController : false
     LoginController -> LoginController : display("Wrong combination of password and login")

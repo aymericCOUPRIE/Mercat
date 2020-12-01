@@ -915,7 +915,7 @@
 											"top": 455,
 											"width": 261.193359375,
 											"height": 13,
-											"text": "Router"
+											"text": "router.Router"
 										},
 										{
 											"_type": "LabelView",
@@ -986,7 +986,7 @@
 											"top": 478,
 											"width": 261.193359375,
 											"height": 13,
-											"text": "+\"static\" INSTANCE: Router",
+											"text": "+\"static\" INSTANCE: router.Router",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1087,7 +1087,7 @@
 											"top": 561,
 											"width": 261.193359375,
 											"height": 13,
-											"text": "+\"static\" getInstance(): Router",
+											"text": "+\"static\" getInstance(): router.Router",
 											"horizontalAlignment": 0
 										}
 									],
@@ -8348,7 +8348,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2D5lKLZJAOTA="
 							},
-							"name": "Router",
+							"name": "router.Router",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
