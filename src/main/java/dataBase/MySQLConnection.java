@@ -4,48 +4,34 @@ import java.sql.*;
 
 public class MySQLConnection {
 
-    Statement st = null;
+    //Objet Connection
+    private static Connection connect;
 
-   public static void main(String[] args) {
-        try {
+    //Méthode qui va nous retourner notre singleton de connection et le créer si il n'existe pas
 
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+        public static Connection getInstance() {
+            if (connect == null) {
+                try {
+
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                    } catch (Exception ex) {
+                       ex.printStackTrace();
+                    }
+                    //pour autres
+                    // Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+                    //pour mac
+                    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
+
+                } catch (SQLException ex) {
+                    // handle any errors
+                    ex.printStackTrace();
+                }
             }
-            catch(Exception ex) {
-                System.out.println("MySQL driver couldn't be loaded!");
-            }
-
-           // Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
-
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","root");
-
-            Statement st = cn.createStatement();
-            ResultSet rs = cn.prepareStatement("show tables").executeQuery();
-
-            while(rs.next()){
-                String s = rs.getString(1);
-                System.out.println(s);
-            }
-        } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
+            return connect;
         }
     }
 
 
 
-    /*
-    public static void main (String [] args ) throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
-        String connectionUrl = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&user=root&password=";
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
-        ResultSet rs = conn.prepareStatement("show tables").executeQuery();
 
-        while(rs.next()){
-            String s = rs.getString(1);
-            System.out.println(s);
-        }
-    }
-    */
-}
