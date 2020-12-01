@@ -65,7 +65,7 @@ public class UserFacade {
      * @return
      */
     public boolean login(String login, String password) {
-        // TODO implement here
+        af = new UserDAO();
         return false;
     }
 
