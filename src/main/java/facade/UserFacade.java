@@ -11,26 +11,19 @@ import java.util.*;
  */
 public class UserFacade {
 
+    private User user;
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private UserDAO userDAO = af.createUserDAO();
+
+
+
     /**
      * Default constructor
      */
     public UserFacade() {
     }
 
-    /**
-     * 
-     */
-    private User user;
 
-    /**
-     * 
-     */
-    private User userDAO;
-
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
 
 
 

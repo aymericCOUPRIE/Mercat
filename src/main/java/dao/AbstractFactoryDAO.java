@@ -5,26 +5,18 @@ package dao;
  */
 public abstract class AbstractFactoryDAO {
 
-    /**
-     * Default constructor
-     */
-    public AbstractFactoryDAO() {
-    }
 
     /**
-     * @return
+     * @return un objet classe interagissant avec la BDD
      */
-    public AbstractFactoryDAO getFactory() {
-        // TODO implement here
-        return null;
-    }
+    public abstract UserDAO createUserDAO();
 
     /**
-     * @return
+     * @return la factory
      */
-    public UserDAO createUserDAO() {
-        // TODO implement here
-        return null;
+    public static AbstractFactoryDAO getFactory() {
+
+        return new DAOFactoryMySQL();
     }
 
 }

@@ -7,8 +7,8 @@ public class MySQLConnection {
     //Objet Connection
     private static Connection connect;
 
-    //Méthode qui va nous retourner notre singleton de connection et le créer si il n'existe pas
-
+    /**Méthode qui va nous retourner notre singleton connection et le créer si il n'existe pas
+**/
     public static Connection getInstance() {
         if (connect == null) {
             try {

@@ -9,17 +9,20 @@ import java.util.*;
  * 
  */
 public class UserDAO {
+    /**
+     *
+     */
+    protected Connection connect = null;
 
     /**
      * Default constructor
+     * @param connect
      */
-    public UserDAO() {
+    public UserDAO(Connection connect) {
+        this.connect = connect;
     }
 
-    /**
-     * 
-     */
-    public Connection connect;
+
 
 
     /**

@@ -1,7 +1,7 @@
 package dao;
 
 import model.User;
-
+import java.sql.Connection;
 /**
  * 
  */
@@ -10,7 +10,8 @@ public class UserDAOSQL extends UserDAO {
     /**
      * Default constructor
      */
-    public UserDAOSQL() {
+    public UserDAOSQL(Connection connect) {
+        super(connect);
     }
 
     /**
