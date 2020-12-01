@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 
  */
-public class UserFacade<T> implements Facade<T> {
+public class UserFacade {
 
     /**
      * Default constructor
@@ -116,37 +116,5 @@ public class UserFacade<T> implements Facade<T> {
         return null;
     }
 
-    /**
-     * @return
-     */
-    public UserDAO getDAO() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param info 
-     * @return
-     */
-    public void update(ArrayList<String> info) {
-        // TODO implement here
-    }
-
-    /**
-     * @param info 
-     * @return
-     */
-    public void addInfo(ArrayList<String> info) {
-        // TODO implement here
-    }
-
-    /**
-     * @param id
-     * @return
-     */
-    public T find(int id) {
-        // TODO implement here
-        return null;
-    }
 
 }
