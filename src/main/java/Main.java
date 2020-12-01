@@ -33,9 +33,9 @@ public class Main extends Application {
 
     public void init() {
         //Router r = Router.getInstance();
-        /*r.add("HomePage", "../../resources/HomePage.fxml");
-        r.add("Login", "../../resources/LoginUI.fxml");
-        r.add("SignUp", "../../resources/SignUpUI.fxml");*/
+        /*r.add("HomePage", "/HomePage.fxml");
+        r.add("Login", "/LoginUI.fxml");
+        r.add("SignUp", "/SignUpUI.fxml");*/
 
     }
 
