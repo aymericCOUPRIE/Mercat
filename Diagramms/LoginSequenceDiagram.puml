@@ -1,13 +1,13 @@
 @startuml
 autonumber
 LoginUI -> LoginController : login()
-LoginController -> UserFaçade : login ( login:String, password : String)
+LoginController -> UserFaçade : login ( pseudo:String, password : String)
 UserFaçade --> DAOFactoryMySQL : new()
 DAOFactoryMySQL --> UserFaçade : AbstractFactoryDAO
 UserFaçade ->DAOFactoryMySQL : createUserDAO()
 DAOFactoryMySQL --> UserDAOMySQL : new()
 UserDAOMySQL -->UserFaçade : UserDA0
-UserFaçade -> UserDAOMySQL : login(login:String, password:String)
+UserFaçade -> UserDAOMySQL : login(pseudo:String, password:String)
 UserDAOMySQL -> SQLConnection : createStatement()
 SQLConnection --> UserDAOMySQL : true
 UserDAOMySQL --> User : new()
@@ -22,7 +22,7 @@ alt successful case
     LoginController -> router.Router : getInstance().activate("HomePage")
 else
     UserFaçade -> LoginController : false
-    LoginController -> LoginController : display("Wrong combination of password and login")
+    LoginController -> LoginController : display("Wrong combination of password and pseudo")
 end
 
 

@@ -13702,7 +13702,7 @@
 											"top": 556,
 											"width": 147.392578125,
 											"height": 13,
-											"text": "-loginConsumer: int",
+											"text": "-pseudoConsumer: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -13879,7 +13879,7 @@
 											"font": "Arial;13;1",
 											"left": 253,
 											"top": 503,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "Rate"
 										},
@@ -13914,7 +13914,7 @@
 									"font": "Arial;13;0",
 									"left": 248,
 									"top": 496,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF2A3p8OfRg/jQ="
@@ -13951,7 +13951,7 @@
 											"font": "Arial;13;0",
 											"left": 253,
 											"top": 526,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-rate: int",
 											"horizontalAlignment": 0
@@ -13986,9 +13986,9 @@
 											"font": "Arial;13;0",
 											"left": 253,
 											"top": 541,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
-											"text": "-loginConsumer: String",
+											"text": "-pseudoConsumer: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -14003,9 +14003,9 @@
 											"font": "Arial;13;0",
 											"left": 253,
 											"top": 556,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
-											"text": "-loginSeller: String",
+											"text": "-pseudoSeller: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -14020,7 +14020,7 @@
 											"font": "Arial;13;0",
 											"left": 253,
 											"top": 571,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-nameProduct: String",
 											"horizontalAlignment": 0
@@ -14029,7 +14029,7 @@
 									"font": "Arial;13;0",
 									"left": 248,
 									"top": 521,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 68
 								},
 								{
@@ -14064,7 +14064,7 @@
 									"font": "Arial;13;0",
 									"left": 248,
 									"top": 589,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 10
 								},
 								{
@@ -14104,7 +14104,7 @@
 							"containerChangeable": true,
 							"left": 248,
 							"top": 496,
-							"width": 142.9453125,
+							"width": 158.12890625,
 							"height": 103,
 							"nameCompartment": {
 								"$ref": "AAAAAAF2A3p8OfRfSEM="
@@ -14646,7 +14646,7 @@
 											"top": 573,
 											"width": 153.181640625,
 											"height": 13,
-											"text": "-loginSeller: String",
+											"text": "-pseudoSeller: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -14875,7 +14875,7 @@
 											"font": "Arial;13;1",
 											"left": 365,
 											"top": 255,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "Order"
 										},
@@ -14910,7 +14910,7 @@
 									"font": "Arial;13;0",
 									"left": 360,
 									"top": 248,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF2A4YJWvhBlpA="
@@ -14947,7 +14947,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 278,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-quantity: int",
 											"horizontalAlignment": 0
@@ -14964,7 +14964,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 293,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-dateOrder: Date",
 											"horizontalAlignment": 0
@@ -14981,7 +14981,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 308,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-deliveryDate: Date",
 											"horizontalAlignment": 0
@@ -14998,7 +14998,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 323,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-deliveryAdress: String",
 											"horizontalAlignment": 0
@@ -15015,7 +15015,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 338,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-stateOrder: String",
 											"horizontalAlignment": 0
@@ -15032,9 +15032,9 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 353,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
-											"text": "-loginSeller: String",
+											"text": "-pseudoSeller: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15049,9 +15049,9 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 368,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
-											"text": "-loginConsumer: String",
+											"text": "-pseudoConsumer: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15066,7 +15066,7 @@
 											"font": "Arial;13;0",
 											"left": 365,
 											"top": 383,
-											"width": 132.9453125,
+											"width": 148.12890625,
 											"height": 13,
 											"text": "-idProduct: int",
 											"horizontalAlignment": 0
@@ -15075,7 +15075,7 @@
 									"font": "Arial;13;0",
 									"left": 360,
 									"top": 273,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 128
 								},
 								{
@@ -15128,7 +15128,7 @@
 									"font": "Arial;13;0",
 									"left": 360,
 									"top": 401,
-									"width": 142.9453125,
+									"width": 158.12890625,
 									"height": 10
 								},
 								{
@@ -15168,7 +15168,7 @@
 							"containerChangeable": true,
 							"left": 360,
 							"top": 248,
-							"width": 142.9453125,
+							"width": 158.12890625,
 							"height": 163,
 							"nameCompartment": {
 								"$ref": "AAAAAAF2A4YJWvhAg3M="
@@ -15335,7 +15335,7 @@
 											"top": 308,
 											"width": 197.615234375,
 											"height": 13,
-											"text": "-loginConsumer: String",
+											"text": "-pseudoConsumer: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -15604,7 +15604,7 @@
 											"top": 278,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-Login: String",
+											"text": "-pseudo: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15621,7 +15621,7 @@
 											"top": 293,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-FirstName",
+											"text": "-firstName",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15638,7 +15638,7 @@
 											"top": 308,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-LastName: String",
+											"text": "-lastName: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15655,7 +15655,7 @@
 											"top": 323,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-Password: String",
+											"text": "-password: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15672,7 +15672,7 @@
 											"top": 338,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-EmailAddress: String",
+											"text": "-emailAddress: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15689,7 +15689,7 @@
 											"top": 353,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-StreetAddress: String",
+											"text": "-streetAddress: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15706,7 +15706,7 @@
 											"top": 368,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-City: String",
+											"text": "-city: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15723,7 +15723,7 @@
 											"top": 383,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-PostalCode: int",
+											"text": "-postalCode: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15740,7 +15740,7 @@
 											"top": 398,
 											"width": 274.9296875,
 											"height": 13,
-											"text": "-PictureUser: String",
+											"text": "-pictureUser: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -16034,7 +16034,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "Login",
+							"name": "pseudo",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16044,9 +16044,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "FirstName",
-							"visibility": "private",
-							"type": ""
+							"name": "firstName",
+							"visibility": "private"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -16054,7 +16053,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "LastName",
+							"name": "lastName",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16064,7 +16063,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "Password",
+							"name": "password",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16074,7 +16073,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "EmailAddress",
+							"name": "emailAddress",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16084,7 +16083,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "StreetAddress",
+							"name": "streetAddress",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16094,7 +16093,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "City",
+							"name": "city",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16104,7 +16103,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "PostalCode",
+							"name": "postalCode",
 							"visibility": "private",
 							"type": "int"
 						},
@@ -16114,7 +16113,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
-							"name": "PictureUser",
+							"name": "pictureUser",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16559,7 +16558,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A3kYX/QPedA="
 							},
-							"name": "loginConsumer",
+							"name": "pseudoConsumer",
 							"visibility": "private",
 							"type": "int"
 						}
@@ -16657,7 +16656,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A3p8OfRcA10="
 							},
-							"name": "loginConsumer",
+							"name": "pseudoConsumer",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -16667,7 +16666,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A3p8OfRcA10="
 							},
-							"name": "loginSeller",
+							"name": "pseudoSeller",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -17113,7 +17112,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A4Rxffdaz/c="
 							},
-							"name": "loginSeller",
+							"name": "pseudoSeller",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -17281,7 +17280,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A4Xmn/gHYB4="
 							},
-							"name": "loginSeller",
+							"name": "pseudoSeller",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -17291,7 +17290,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A4Xmn/gHYB4="
 							},
-							"name": "loginConsumer",
+							"name": "pseudoConsumer",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -17451,7 +17450,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A4YAV/gnjuw="
 							},
-							"name": "loginConsumer",
+							"name": "pseudoConsumer",
 							"visibility": "private",
 							"type": "String"
 						}
