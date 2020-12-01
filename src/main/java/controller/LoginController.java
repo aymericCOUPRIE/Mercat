@@ -33,7 +33,7 @@ public class LoginController {
     @FXML
     private Label errorText;
 
-    // Config
+    // Configuration
 
     private String login;
     private String passWord;
@@ -53,27 +53,51 @@ public class LoginController {
 
 
     /**
-     * @return
+     * Method used by btnLogin from Java FX
+     * It permite to log in the system
+     * @param login,password
+     * @throws IOException
      */
     @FXML
-    public void login() {
-        // TODO implement here
+    public void login(ActionEvent e) throws IOException {
+        login = txtLoginUser.getText();
+        passWord = txtPassWord.getText();
+
+        if(login.equals("") || passWord.equals("")){
+            display("You need to provide your email or your password.");
+        }else{ //les champs ont été remplis
+            userFacade.login(login,passWord);
+
+            if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
+                Router.getInstance().activate("HomePage");
+            }else{
+                display("You provide a wrong login or password! Try again.");
+            }
+        }
     }
 
     /**
-     * @return
+     *  Method used by btnLogin from Java FX
+     * It permite to go to the page to sign up
      */
     @FXML
-    public void signUp() {
-        // TODO implement here
+    public void signUp(ActionEvent e) throws IOException {
+        Router.getInstance().activate("SignUp");
     }
 
+    /**
+     * It permite to display an error message on the user interface
+     * @param msg
+     */
     @FXML
     public void display(String msg)
     {
         errorText.setText(msg);
     }
 
+    /**
+     * This methode permite to don't have error message at the begining
+     */
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
