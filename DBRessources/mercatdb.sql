@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pictureUser` varchar(100) NOT NULL,
   `role` varchar(100) NOT NULL,
   `companyName` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`login`)
+  PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
