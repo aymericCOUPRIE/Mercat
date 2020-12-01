@@ -9,28 +9,23 @@ public class MySQLConnection {
 
     //Méthode qui va nous retourner notre singleton de connection et le créer si il n'existe pas
 
-        public static Connection getInstance() {
-            if (connect == null) {
-                try {
+    public static Connection getInstance() {
+        if (connect == null) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                //pour autres
+                // Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+                //pour mac
+                Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
 
-                    try {
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                    } catch (Exception ex) {
-                       ex.printStackTrace();
-                    }
-                    //pour autres
-                    // Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
-                    //pour mac
-                    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
-
-                } catch (SQLException ex) {
-                    // handle any errors
-                    ex.printStackTrace();
-                }
+            } catch (SQLException | ClassNotFoundException ex) {
+                // handle any errors
+                ex.printStackTrace();
             }
-            return connect;
         }
+        return connect;
     }
+}
 
 
 
