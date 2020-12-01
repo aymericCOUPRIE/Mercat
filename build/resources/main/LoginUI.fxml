@@ -33,6 +33,11 @@
                           <Image url="@../../../assets/img/logoMercat.png" />
                       </image>
                   </ImageView>
+            <Label fx:id="errorText" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
         <GridPane prefHeight="540.0" prefWidth="1000.0">
@@ -50,12 +55,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Login :" textFill="#1a5276" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                <Label text="Pseudo :" textFill="#1a5276" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                     <font>
                         <Font name="Arial Black" size="30.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtLoginUser" alignment="CENTER" prefHeight="27.0" prefWidth="167.0" promptText="Your login" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="txtPseudoUser" alignment="CENTER" prefHeight="27.0" prefWidth="167.0" promptText="Your pseudo" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 </TextField>
                 <Label text="Password :" textFill="#1a5276" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                     <font>
@@ -86,7 +91,7 @@
                            </stops>
                         </RadialGradient>
                      </textFill></Button>
-                        <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signup" text="Sign up" textFill="#1a5276" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signUp" text="Sign up" textFill="#1a5276" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                             <font>
                                 <Font size="20.0" />
                             </font></Button>

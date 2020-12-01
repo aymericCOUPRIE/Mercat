@@ -24,7 +24,7 @@ public class LoginController {
     private Button btnSignUp;
 
     @FXML
-    private TextField txtLoginUser;
+    private TextField txtPseudoUser;
 
     @FXML
     private PasswordField txtPassWord;
@@ -34,7 +34,7 @@ public class LoginController {
 
     // Configuration
 
-    private String login;
+    private String pseudo;
     private String passWord;
 
 
@@ -54,23 +54,23 @@ public class LoginController {
     /**
      * Method used by btnLogin from Java FX
      * It permite to log in the system
-     * @param login,password
+     * @param pseudo,password
      * @throws IOException
      */
     @FXML
     public void login(ActionEvent e) throws IOException {
-        login = txtLoginUser.getText();
+       pseudo = txtPseudoUser.getText();
         passWord = txtPassWord.getText();
 
-        if(login.equals("") || passWord.equals("")){
+        if(pseudo.equals("") || passWord.equals("")){
             display("You need to provide your email or your password.");
         }else{ //les champs ont été remplis
-            userFacade.login(login,passWord);
+            userFacade.login(pseudo,passWord);
 
             if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
                 Router.getInstance().activate("HomePage");
             }else{
-                display("You provide a wrong login or password! Try again.");
+                display("You provide a wrong pseudo or password! Try again.");
             }
         }
     }
