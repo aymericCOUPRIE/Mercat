@@ -14,7 +14,7 @@ public class Router {
     /**
      * 
      */
-    public static Router INSTANCE;
+    public static Router instanceRouteur;
 
     /**
      * 
@@ -34,8 +34,29 @@ public class Router {
      */
     private Router() {
     }
+    public HashMap<String, String> getScreenMap() {
+
+        return screenMap;
+    }
+
+    /**
+     * @return Router INSTANCE qui est un singleton
+     */
+    public static Router getInstance() {
+        if (instanceRouteur == null) {
+            instanceRouteur = new Router();
+        }
+        return instanceRouteur;
+    }
 
 
+    /**
+     * @param name, path
+     */
+    public void add(String name, String path) {
+
+        screenMap.put(name, path);
+    }
 
     /**
      * @param name
@@ -43,7 +64,7 @@ public class Router {
     public void activate(String name) {
         this.params = new String[0];
         try {
-            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
         } catch ( Exception e) {
             e.printStackTrace();
         }
@@ -56,32 +77,14 @@ public class Router {
     public void activate(String name, Object[] params) {
         this.params = params;
         try {
-            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(INSTANCE.getScreenMap().get(name))));
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
         } catch ( Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public HashMap<String, String> getScreenMap() {
-        return screenMap;
-    }
 
-    /**
-     * @return Router INSTANCE
-     */
-    public static Router getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Router();
-        }
-        return INSTANCE;
-    }
 
-    /**
-     * @param name, path
-     */
-    public void add(String name, String path) {
-        screenMap.put(name, path);
-    }
 
 }

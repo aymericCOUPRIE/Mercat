@@ -7,56 +7,63 @@ import java.util.*;
  */
 public class User {
 
-    /**
-     * Default constructor
-     */
-    public User() {
+    public User(String login, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role) {
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.pictureUser = pictureUser;
+        this.role = role;
     }
 
     /**
      * 
      */
-    private String Login;
+    private String login;
 
     /**
      * 
      */
-    private String FirstName;
+    private String firstName;
 
     /**
      * 
      */
-    private String LastName;
+    private String lastName;
 
     /**
      * 
      */
-    private String Password;
+    private String password;
 
     /**
      * 
      */
-    private String EmailAddress;
+    private String emailAddress;
 
     /**
      * 
      */
-    private String StreetAddress;
+    private String streetAddress;
 
     /**
      * 
      */
-    private String City;
+    private String city;
 
     /**
      * 
      */
-    private String PostalCode;
+    private String postalCode;
 
     /**
      * 
      */
-    private String PictureUser;
+    private String pictureUser;
 
     /**
      * 
