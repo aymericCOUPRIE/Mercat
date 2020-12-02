@@ -53,7 +53,7 @@ public class LoginController {
 
     /**
      * Method used by btnLogin from Java FX
-     * It permite to log in the system
+     * It allows to log in the system
      * @param e
      * @throws IOException
      */
@@ -77,7 +77,7 @@ public class LoginController {
 
     /**
      *  Method used by btnLogin from Java FX
-     * It permite to go to the page to sign up
+     * It permits to go to the page to sign up
      */
     @FXML
     public void signUp(ActionEvent e) throws IOException {
@@ -85,7 +85,7 @@ public class LoginController {
     }
 
     /**
-     * It permite to display an error message on the user interface
+     * It allows to display an error message on the user interface
      * @param msg
      */
     @FXML
@@ -95,7 +95,7 @@ public class LoginController {
     }
 
     /**
-     * This methode permite to don't have error message at the begining
+     * This methode allows to don't have error message at the begining
      */
     public void initialize() {
         // TODO Auto-generated method stub

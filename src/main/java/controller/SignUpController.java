@@ -34,7 +34,7 @@ public class SignUpController {
 
     /**
      *  Method used by btnLogin from Java FX
-     * It permite to go to the page "login"
+     * It allows to go to the page "login"
      */
     @FXML
     public void backLogin(ActionEvent e) throws IOException {
@@ -43,7 +43,7 @@ public class SignUpController {
 
     /**
      *  Method used by btnConsummer from Java FX
-     * It permite to go to the page "SignUpConsummer"
+     * It allows to go to the page "SignUpConsummer"
      */
     @FXML
     public void consummerPage(ActionEvent e) throws IOException {
@@ -52,7 +52,7 @@ public class SignUpController {
 
     /**
      *  Method used by btnSeller from Java FX
-     * It permite to go to the page "SignUpSeller"
+     * It allows to go to the page "SignUpSeller"
      */
     @FXML
     public void sellerPage(ActionEvent e) throws IOException {
