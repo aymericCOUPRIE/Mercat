@@ -79,7 +79,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                        <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#login" prefHeight="89.0" prefWidth="88.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit">
+                        <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit">
                             <font>
                                 <Font size="20.0" />
                             </font>
