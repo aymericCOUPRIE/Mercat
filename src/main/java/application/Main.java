@@ -38,8 +38,8 @@ public class Main extends Application {
         Router r = Router.getInstance();
         r.add("HomePage", "/HomePage.fxml");
         r.add("Login", "/LoginUI.fxml");
-        r.add("SignUp", "/SignUpUI.fxml");
-
+        r.add("SignUpC", "/SignUpUIConsummer.fxml");
+        r.add("SignUpS", "/SignUpUISeller.fxml");
     }
 
 }

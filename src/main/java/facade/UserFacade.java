@@ -58,7 +58,7 @@ public class UserFacade {
      * @return
      */
     public boolean login(String login, String password) {
-        af = new UserDAO();
+        //af = new UserDAO();
         return false;
     }
 
@@ -94,7 +94,7 @@ public class UserFacade {
     }
 
     /**
-     * @param User newUser 
+     * param User newUser
      * @return
      */
     public void setConnectedUser(User newUser) {

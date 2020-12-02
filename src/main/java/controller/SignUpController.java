@@ -2,7 +2,10 @@ package controller;
 
 import facade.UserFacade;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import router.Router;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -30,15 +33,30 @@ public class SignUpController {
     }
 
     /**
-     * @return
+     *  Method used by btnLogin from Java FX
+     * It permite to go to the page "login"
      */
-    public void backLogin() {
-        // TODO implement here
+    @FXML
+    public void backLogin(ActionEvent e) throws IOException {
+        Router.getInstance().activate("Login");
     }
 
-    public void signup(ActionEvent actionEvent) {
+    /**
+     *  Method used by btnConsummer from Java FX
+     * It permite to go to the page "SignUpConsummer"
+     */
+    @FXML
+    public void consummerPage(ActionEvent e) throws IOException {
+        Router.getInstance().activate("SignUpC");
     }
 
-    public void login(ActionEvent actionEvent) {
+    /**
+     *  Method used by btnSeller from Java FX
+     * It permite to go to the page "SignUpSeller"
+     */
+    @FXML
+    public void sellerPage(ActionEvent e) throws IOException {
+        Router.getInstance().activate("SignUpS");
     }
+
 }

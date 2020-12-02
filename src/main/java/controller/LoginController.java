@@ -81,7 +81,7 @@ public class LoginController {
      */
     @FXML
     public void signUp(ActionEvent e) throws IOException {
-        Router.getInstance().activate("SignUp");
+        Router.getInstance().activate("SignUpC");
     }
 
     /**
