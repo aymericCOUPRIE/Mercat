@@ -17727,7 +17727,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFFxnI9/BN2hrc="
 					},
-					"name": "Consummer",
+					"name": "consumer",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",

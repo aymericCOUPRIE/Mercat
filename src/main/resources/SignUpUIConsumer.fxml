@@ -143,7 +143,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnConsummer" mnemonicParsing="false" opacity="0.3" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Consummer" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Button fx:id="btnconsumer" mnemonicParsing="false" opacity="0.3" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="consumer" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
