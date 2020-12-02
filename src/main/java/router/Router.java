@@ -12,17 +12,17 @@ public class Router {
 
 
     /**
-     * 
+     * singleton
      */
     public static Router instanceRouteur;
 
     /**
-     * 
+     * si on veut passer des paramètres en changent de page
      */
     public Object[] params;
 
     /**
-     * 
+     * associer un nom à des chemins
      */
     private HashMap<String, String> screenMap = new HashMap<>();
 
@@ -51,6 +51,7 @@ public class Router {
 
 
     /**
+     * ajouter un racourci nom pour un chemin
      * @param name, path
      */
     public void add(String name, String path) {
@@ -59,6 +60,7 @@ public class Router {
     }
 
     /**
+     * se rentre sur la page dont le nom est passé en paramètres
      * @param name
      */
     public void activate(String name) {
@@ -71,6 +73,7 @@ public class Router {
     }
 
     /**
+     * changer de page en prenant des paramètres avec nous (une instance de user par exemple)
      * @param name
      * @param params
      */

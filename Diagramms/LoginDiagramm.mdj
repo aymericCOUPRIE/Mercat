@@ -2458,7 +2458,7 @@
 											"top": 529,
 											"width": 1013.38427734375,
 											"height": 13,
-											"text": "+login(pseudo: String, password: String): boolean",
+											"text": "+login(pseudo: String, password: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4479,7 +4479,7 @@
 											"top": 797,
 											"width": 285.0859375,
 											"height": 13,
-											"text": "+find(id: int): User",
+											"text": "+find(pseudo: String): User",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4547,7 +4547,7 @@
 											"top": 857,
 											"width": 285.0859375,
 											"height": 13,
-											"text": "+login(pseudo: String, password: String): boolean",
+											"text": "+login(pseudo: String, password: String): User",
 											"horizontalAlignment": 0
 										}
 									],
@@ -7334,9 +7334,9 @@
 											"font": "Arial;13;1",
 											"left": 717,
 											"top": 1103,
-											"width": 182.4697265625,
+											"width": 199.798828125,
 											"height": 13,
-											"text": "SQLConnection"
+											"text": "MySQLConnection"
 										},
 										{
 											"_type": "LabelView",
@@ -7369,7 +7369,7 @@
 									"font": "Arial;13;0",
 									"left": 712,
 									"top": 1096,
-									"width": 192.4697265625,
+									"width": 209.798828125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF2EIyagJEVMlI="
@@ -7396,7 +7396,7 @@
 									"font": "Arial;13;0",
 									"left": 712,
 									"top": 1121,
-									"width": 192.4697265625,
+									"width": 209.798828125,
 									"height": 10
 								},
 								{
@@ -7421,16 +7421,16 @@
 											"font": "Arial;13;0",
 											"left": 717,
 											"top": 1136,
-											"width": 182.4697265625,
+											"width": 199.798828125,
 											"height": 13,
-											"text": "+getInstance(): SQLConnection",
+											"text": "+getInstance(): MySQLConnection",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 712,
 									"top": 1131,
-									"width": 192.4697265625,
+									"width": 209.798828125,
 									"height": 23
 								},
 								{
@@ -7470,7 +7470,7 @@
 							"containerChangeable": true,
 							"left": 712,
 							"top": 1096,
-							"width": 192.4697265625,
+							"width": 209.798828125,
 							"height": 58,
 							"nameCompartment": {
 								"$ref": "AAAAAAF2EIyagJEUOR0="
@@ -7531,7 +7531,7 @@
 											"top": 967,
 											"width": 285.0859375,
 											"height": 13,
-											"text": "UserDAOSQL"
+											"text": "UserDAOMySQL"
 										},
 										{
 											"_type": "LabelView",
@@ -7618,7 +7618,7 @@
 											"top": 1000,
 											"width": 285.0859375,
 											"height": 13,
-											"text": "+findUser(int id): User",
+											"text": "+findUser(pseudo: String): User",
 											"horizontalAlignment": 0
 										},
 										{
@@ -9095,7 +9095,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF2D2CaQK3a14U="
 											},
-											"type": "boolean",
+											"type": "void",
 											"direction": "return"
 										},
 										{
@@ -9960,8 +9960,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF2DwtUlxz8FIs="
 											},
-											"name": "id",
-											"type": "int"
+											"name": "pseudo",
+											"type": "String"
 										},
 										{
 											"_type": "UMLParameter",
@@ -10098,7 +10098,9 @@
 											"_parent": {
 												"$ref": "AAAAAAF2FJpjGOUmy5A="
 											},
-											"type": "boolean",
+											"type": {
+												"$ref": "AAAAAAF2A9wZdSdUowQ="
+											},
 											"direction": "return"
 										}
 									]
@@ -10246,7 +10248,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2D5lKLZJAOTA="
 							},
-							"name": "SQLConnection",
+							"name": "MySQLConnection",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -10277,7 +10279,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2D5lKLZJAOTA="
 							},
-							"name": "UserDAOSQL",
+							"name": "UserDAOMySQL",
 							"ownedElements": [
 								{
 									"_type": "UMLGeneralization",
@@ -10308,8 +10310,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF2FJDXob2yXhU="
 											},
-											"name": "int id",
-											"type": ""
+											"name": "pseudo",
+											"type": "String"
 										},
 										{
 											"_type": "UMLParameter",
