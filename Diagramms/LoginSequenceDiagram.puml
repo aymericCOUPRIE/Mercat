@@ -8,8 +8,8 @@ UserFaçade ->DAOFactoryMySQL : createUserDAO()
 DAOFactoryMySQL --> UserDAOMySQL : new()
 UserDAOMySQL -->UserFaçade : UserDA0
 UserFaçade -> UserDAOMySQL : login(pseudo:String, password:String)
-UserDAOMySQL -> SQLConnection : createStatement()
-SQLConnection --> UserDAOMySQL : true
+UserDAOMySQL -> MySQLConnection : createStatement()
+MySQLConnection --> UserDAOMySQL : true
 UserDAOMySQL --> User : new()
 User --> UserDAOMySQL : User
 activate User

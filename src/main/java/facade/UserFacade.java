@@ -7,7 +7,7 @@ import model.User;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class UserFacade {
 
@@ -16,36 +16,35 @@ public class UserFacade {
     private UserDAO userDAO = af.createUserDAO();
 
 
+    //notre façade est un singleton
+    private static UserFacade instanceUserFacade;
 
     /**
-     * Default constructor
+     * @return instanceUserFacade
+     **/
+
+    public static UserFacade getInstanceUserFacade() {
+        if (instanceUserFacade == null) {
+            instanceUserFacade = new UserFacade();
+        }
+        return instanceUserFacade;
+    }
+
+    /**
+     * Default constructor du singleton façade
      */
     public UserFacade() {
     }
 
 
-
-
-
-
-
-
     /**
-     * @return
-     */
-    public UserFacade getInstance() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param login 
-     * @param password 
-     * @param emailAddress 
-     * @param phoneNumber 
-     * @param streetAddress 
-     * @param city 
-     * @param postalCode 
+     * @param login
+     * @param password
+     * @param emailAddress
+     * @param phoneNumber
+     * @param streetAddress
+     * @param city
+     * @param postalCode
      * @return
      */
     public void signUpConsumer(String login, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
@@ -53,40 +52,39 @@ public class UserFacade {
     }
 
     /**
-     * @param login 
-     * @param password 
-     * @return
+     * @param pseudo
+     * @param password
+     * @return boolean true si connection réussie, false sinon
      */
-    public boolean login(String login, String password) {
-        //af = new UserDAO();
-        return false;
+    public void login(String pseudo, String password) {
+        user = userDAO.login(pseudo, password);
+        UserFacade.getInstanceUserFacade().setConnectedUser(user);
     }
 
     /**
-     * @return
+     * @return boolean, true si l'utilisateur est connecté
      */
     public boolean isConnected() {
-        // TODO implement here
-        return false;
+        return this.user != null;
     }
 
     /**
-     * @param login 
-     * @param password 
-     * @param emailAddress 
-     * @param phoneNumber 
-     * @param streetAddress 
-     * @param city 
-     * @param postalCode 
-     * @param companyName 
+     * @param pseudo
+     * @param password
+     * @param emailAddress
+     * @param phoneNumber
+     * @param streetAddress
+     * @param city
+     * @param postalCode
+     * @param companyName
      * @return
      */
-    public void signUpSeller(String login, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
+    public void signUpSeller(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
         // TODO implement here
     }
 
     /**
-     * @param user 
+     * @param user
      * @return
      */
     public void updateUser(User user) {
@@ -94,19 +92,17 @@ public class UserFacade {
     }
 
     /**
-     * param User newUser
-     * @return
+     * @param newUser attribue à la façade le user qui vient de se connecter
      */
     public void setConnectedUser(User newUser) {
-        // TODO implement here
+        this.user = newUser;
     }
 
     /**
-     * @return
+     * @return User qui est connecté en ce moment
      */
     public User getConnectedUser() {
-        // TODO implement here
-        return null;
+        return this.user;
     }
 
 

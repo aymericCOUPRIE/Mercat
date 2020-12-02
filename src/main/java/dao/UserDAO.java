@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * 
  */
-public class UserDAO {
+public abstract class UserDAO {
     /**
      *
      */
@@ -26,10 +26,10 @@ public class UserDAO {
 
 
     /**
-     * @param id 
+     * @param pseudo
      * @return
      */
-    public User find(int id) {
+    public User find(int pseudo) {
         // TODO implement here
         return null;
     }
@@ -62,13 +62,10 @@ public class UserDAO {
     }
 
     /**
-     * @param login 
+     * @param pseudo
      * @param password 
-     * @return
+     * @return User qui vient de se connecter ou null si connection non réussi cad mauvais pseudo ou mdp
      */
-    public boolean login(String login, String password) {
-        // TODO implement here
-        return false;
-    }
+    public abstract User login(String pseudo, String password);
 
 }

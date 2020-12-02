@@ -1,6 +1,5 @@
 package dao;
 
-import dao.AbstractFactoryDAO;
 import dataBase.MySQLConnection;
 
 import java.sql.Connection;
@@ -19,19 +18,16 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     public DAOFactoryMySQL() {
     }
 
-    /**
-     * 
-     */
 
 
 
 
     /**
-     * REtourne un objet classe interagissant avec la BDD
+     * Retourne un objet classe interagissant avec la BDD
      * @return UserDAO
      */
     public UserDAO createUserDAO() {
-       return new UserDAOSQL(connect);
+        return new UserDAOMySQL(connect);
     }
 
 }
