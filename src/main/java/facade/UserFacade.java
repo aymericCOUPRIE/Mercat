@@ -47,7 +47,7 @@ public class UserFacade {
      * @param postalCode
      * @return
      */
-    public void signUpConsumer(String login, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
+    public void signUpConsumer(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
         // TODO implement here
     }
 
@@ -80,7 +80,7 @@ public class UserFacade {
      * @return
      */
     public void signUpSeller(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
-        // TODO implement here
+        user = userDAO.sign(pseudo, password);
     }
 
     /**
