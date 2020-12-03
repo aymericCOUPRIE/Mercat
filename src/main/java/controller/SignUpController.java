@@ -119,7 +119,7 @@ public class SignUpController {
      */
     public void signUp(ActionEvent e) throws IOException {
 
-            if(isAConsumer){//TODO Comment on vérifie ça ?
+            if(isAConsumer){
                 userFacade.signUpConsumer(pseudo,
                         email,
                         password,

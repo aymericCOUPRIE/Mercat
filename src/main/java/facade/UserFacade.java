@@ -2,6 +2,7 @@ package facade;
 
 import dao.AbstractFactoryDAO;
 import dao.UserDAO;
+import model.Consumer;
 import model.User;
 
 import java.util.*;
@@ -48,8 +49,8 @@ public class UserFacade {
      * @return
      */
     public void signUpConsumer(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
-        user = userDAO.signUpConsumer(pseudo, password);
-        UserFacade.getInstanceUserFacade().setConnectedUser(user);
+        //user = new Consumer(pseudo, password, emailAddress, phoneNumber, streetAddress, city, postalCode);
+        userDAO.signUpConsumer();
     }
 
     /**
