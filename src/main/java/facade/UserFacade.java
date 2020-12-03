@@ -48,9 +48,11 @@ public class UserFacade {
      * @param postalCode
      * @return
      */
-    public void signUpConsumer(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
-        //user = new Consumer(pseudo, password, emailAddress, phoneNumber, streetAddress, city, postalCode);
-        userDAO.signUpConsumer();
+
+    //TODO C'est quoi ce rôle ?
+    public void signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String phoneNumber, String streetAddress, String city, String postalCode) {
+        Consumer user = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
+        user.signUpConsumer();
     }
 
     /**
@@ -81,7 +83,7 @@ public class UserFacade {
      * @param companyName
      * @return
      */
-    public void signUpSeller(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
+    public void signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
        /* user = userDAO.sign(pseudo, password);*/
     }
 

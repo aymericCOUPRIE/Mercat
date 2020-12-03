@@ -25,6 +25,10 @@ public class SignUpController {
     @FXML
     private TextField txtPseudo;
     @FXML
+    private TextField txtFistName;
+    @FXML
+    private TextField txtLastName;
+    @FXML
     private PasswordField txtEmailAdress;
     @FXML
     private PasswordField txtPhoneNumber;
@@ -122,6 +126,8 @@ public class SignUpController {
             if(isAConsumer){
                 userFacade.signUpConsumer(pseudo,
                         email,
+                        firstName,
+                        lastName,
                         password,
                         phoneNumber,
                         street,
@@ -129,6 +135,8 @@ public class SignUpController {
                         postal);
             }else{
                 userFacade.signUpSeller(pseudo,
+                        firstName,
+                        lastName,
                         email,
                         password,
                         phoneNumber,
