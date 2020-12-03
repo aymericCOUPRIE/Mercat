@@ -43,7 +43,9 @@ public class SignUpController {
     @FXML
     private Button btnSignIn;
     @FXML
-    private Button btnRegister;
+    private Button btnRegisterSeller;
+    @FXML
+    private Button btnRegisterConsumer;
     @FXML
     private Label errorText;
 
@@ -58,6 +60,10 @@ public class SignUpController {
     private String postal;
     private String city;
 
+    private String idSellerButton;
+    private String idConsumerButton;
+
+    private boolean isAConsumer =false;
     /**
      * Default constructor
      */
@@ -70,13 +76,24 @@ public class SignUpController {
     private UserFacade userFacade;
 
 
-    /**
-     * Method used by btnSignUp from Java FX
-     * It allows to register into the system
-     * @param e
-     * @return
-     */
-    public void signUp(ActionEvent e) throws IOException {
+    public void signUpConsumer(ActionEvent e) throws IOException{
+        pseudo = txtPseudo.getText();
+        password = txtPassword.getText();
+        email = txtEmailAdress.getText();
+        phoneNumber=txtPhoneNumber.getText();
+        street = txtStreetAdress.getText();
+        postal = txtPostal.getText();
+        city = txtCity.getText();
+
+        if(checkInfosConsumer()==false){
+            display("You need to provide all the information");
+        }else {
+            isAConsumer = true;
+            signUp(e);
+        }
+
+    }
+    public void signUpSeller(ActionEvent e) throws IOException{
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
         email = txtEmailAdress.getText();
@@ -86,9 +103,22 @@ public class SignUpController {
         city = txtCity.getText();
         companyName = txtCompanyName.getText();
 
-        if(checkInfos()==false){
+        if(checkInfosSeller()==false){
             display("You need to provide all the information");
-        }else{
+        }else {
+            signUp(e);
+        }
+    }
+
+
+    /**
+     * Method used by btnSignUp from Java FX
+     * It allows to register into the system
+     * @param e
+     * @return
+     */
+    public void signUp(ActionEvent e) throws IOException {
+
             if(isAConsumer){//TODO Comment on vérifie ça ?
                 userFacade.signUpConsumer(pseudo,
                         email,
@@ -108,7 +138,6 @@ public class SignUpController {
                         companyName);
             }
         }
-
     }
 
     /**
@@ -122,11 +151,18 @@ public class SignUpController {
     //TODO `how to check if it is a consumer or a seller`
 
 
-    private boolean checkInfos(){
+    private boolean checkInfosConsumer(){
         if(pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals("")){
             return false;
         }else return true;
     }
+
+    private boolean checkInfosSeller(){
+        if(pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals("")||companyName.equals("")){
+            return false;
+        }else return true;
+    }
+
     /**
      *  Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
@@ -155,4 +191,11 @@ public class SignUpController {
         errorText.setText(msg);
     }
 
+    /**
+     * This methode allows to don't have error message at the beginning
+     */
+    public void initialize() {
+        // TODO Auto-generated method stub
+        errorText.setText("");
+    }
 }

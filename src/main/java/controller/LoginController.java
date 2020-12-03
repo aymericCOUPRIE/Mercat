@@ -60,19 +60,18 @@ public class LoginController {
     @FXML
     public void login(ActionEvent e) throws IOException {
        pseudo = txtPseudoUser.getText();
-        passWord = txtPassWord.getText();
+       passWord = txtPassWord.getText();
 
-        if(pseudo.equals("") || passWord.equals("")){
-            display("You need to provide your email or your password.");
-        }else{ //les champs ont été remplis
-            userFacade.login(pseudo,passWord);
-
-            if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
-                Router.getInstance().activate("HomePage");
-            }else{
-                display("You provide a wrong pseudo or password! Try again.");
-            }
-        }
+       if(pseudo.equals("") || passWord.equals("")){
+           display("You need to provide your email or your password.");
+       }else{ //les champs ont été remplis
+           userFacade.login(pseudo,passWord);
+           if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
+               Router.getInstance().activate("HomePage");
+           }else{
+               display("You provide a wrong pseudo or password! Try again.");
+           }
+       }
     }
 
     /**

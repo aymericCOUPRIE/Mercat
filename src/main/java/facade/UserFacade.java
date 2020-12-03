@@ -48,7 +48,8 @@ public class UserFacade {
      * @return
      */
     public void signUpConsumer(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode) {
-        // TODO implement here
+        user = userDAO.signUpConsumer(pseudo, password);
+        UserFacade.getInstanceUserFacade().setConnectedUser(user);
     }
 
     /**
@@ -80,7 +81,7 @@ public class UserFacade {
      * @return
      */
     public void signUpSeller(String pseudo, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
-        user = userDAO.sign(pseudo, password);
+       /* user = userDAO.sign(pseudo, password);*/
     }
 
     /**

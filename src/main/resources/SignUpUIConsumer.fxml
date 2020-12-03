@@ -34,6 +34,7 @@
                           <Image url="@../../../assets/img/logoMercat.png" />
                       </image>
                   </ImageView>
+            <Label fx:id="errorText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
         <GridPane prefHeight="540.0" prefWidth="1000.0">
@@ -157,7 +158,7 @@
                </textFill>
             </Button>
                   <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#backLogin" prefHeight="24.0" prefWidth="95.0" text="Sign in" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-                  <Button fx:id="btnRegisterConsumer" mnemonicParsing="false" onAction="#signUp" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+                  <Button fx:id="btnRegisterConsumer" mnemonicParsing="false" onAction="#signUpConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
