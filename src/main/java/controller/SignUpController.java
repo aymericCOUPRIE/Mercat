@@ -25,9 +25,9 @@ public class SignUpController {
     @FXML
     private TextField txtPseudo;
     @FXML
-    private TextField txtFistName;
+    private TextField txtFirstname;
     @FXML
-    private TextField txtLastName;
+    private TextField txtLastname;
     @FXML
     private PasswordField txtEmailAdress;
     @FXML
@@ -57,6 +57,8 @@ public class SignUpController {
     //Configuration
     private String pseudo;
     private String password;
+    private String firstName;
+    private String lastName;
     private String companyName;
     private String email;
     private String phoneNumber;
@@ -77,7 +79,7 @@ public class SignUpController {
     /**
      * 
      */
-    private UserFacade userFacade;
+    private UserFacade userFacade = new UserFacade();
 
 
     public void signUpConsumer(ActionEvent e) throws IOException{
@@ -88,6 +90,8 @@ public class SignUpController {
         street = txtStreetAdress.getText();
         postal = txtPostal.getText();
         city = txtCity.getText();
+        firstName = txtFirstname.getText();
+        lastName = txtLastname.getText();
 
         if(checkInfosConsumer()==false){
             display("You need to provide all the information");
@@ -106,6 +110,8 @@ public class SignUpController {
         postal = txtPostal.getText();
         city = txtCity.getText();
         companyName = txtCompanyName.getText();
+        firstName = txtFirstname.getText();
+        lastName = txtLastname.getText();
 
         if(checkInfosSeller()==false){
             display("You need to provide all the information");
@@ -133,7 +139,7 @@ public class SignUpController {
                         street,
                         city,
                         postal);
-            }else{
+            }else {
                 userFacade.signUpSeller(pseudo,
                         firstName,
                         lastName,
@@ -145,7 +151,6 @@ public class SignUpController {
                         postal,
                         companyName);
             }
-        }
     }
 
     /**

@@ -68,4 +68,7 @@ public abstract class UserDAO {
      */
     public abstract User login(String pseudo, String password);
 
+
+    public abstract boolean createConsumer(User user);
+
 }

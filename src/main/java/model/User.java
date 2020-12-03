@@ -71,7 +71,6 @@ public class User {
     private String role;
 
 
-
     /**
      * @return
      */
@@ -100,148 +99,99 @@ public class User {
         // TODO implement here
     }
 
-    /**
-     * @return
-     */
     public String getLogin() {
-        // TODO implement here
-        return "";
+        return login;
     }
 
-    /**
-     * @param login 
-     * @return
-     */
     public void setLogin(String login) {
-        // TODO implement here
+        this.login = login;
     }
 
-    /**
-     * @return
-     */
     public String getFirstName() {
-        // TODO implement here
-        return "";
+        return firstName;
     }
 
-    /**
-     * @param firstName 
-     * @return
-     */
     public void setFirstName(String firstName) {
-        // TODO implement here
+        this.firstName = firstName;
     }
 
-    /**
-     * @return
-     */
     public String getLastName() {
-        // TODO implement here
-        return "";
+        return lastName;
     }
 
-    /**
-     * @param lastName 
-     * @return
-     */
     public void setLastName(String lastName) {
-        // TODO implement here
+        this.lastName = lastName;
     }
 
-    /**
-     * @return
-     */
     public String getPassword() {
-        // TODO implement here
-        return "";
+        return password;
     }
 
-    /**
-     * @param password 
-     * @return
-     */
     public void setPassword(String password) {
-        // TODO implement here
+        this.password = password;
     }
 
-    /**
-     * @return
-     */
     public String getEmailAddress() {
-        // TODO implement here
-        return "";
+        return emailAddress;
     }
 
-    /**
-     * @param emailAddress 
-     * @return
-     */
     public void setEmailAddress(String emailAddress) {
-        // TODO implement here
+        this.emailAddress = emailAddress;
     }
 
-    /**
-     * @return
-     */
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
     public String getCity() {
-        // TODO implement here
-        return "";
+        return city;
     }
 
-    /**
-     * @param city 
-     * @return
-     */
     public void setCity(String city) {
-        // TODO implement here
+        this.city = city;
     }
 
-    /**
-     * @return
-     */
     public String getPostalCode() {
-        // TODO implement here
-        return "";
+        return postalCode;
     }
 
-    /**
-     * @param postalCode 
-     * @return
-     */
     public void setPostalCode(String postalCode) {
-        // TODO implement here
+        this.postalCode = postalCode;
     }
 
-    /**
-     * @return
-     */
     public String getPictureUser() {
-        // TODO implement here
-        return "";
+        return pictureUser;
     }
 
-    /**
-     * @param pictureUser 
-     * @return
-     */
-    public void setPicureUser(String pictureUser) {
-        // TODO implement here
+    public void setPictureUser(String pictureUser) {
+        this.pictureUser = pictureUser;
     }
 
-    /**
-     * @return
-     */
     public String getRole() {
-        // TODO implement here
-        return "";
+        return role;
     }
 
-    /**
-     * @param role 
-     * @return
-     */
     public void setRole(String role) {
-        // TODO implement here
+        this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", pictureUser='" + pictureUser + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

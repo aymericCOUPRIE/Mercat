@@ -52,7 +52,8 @@ public class UserFacade {
     //TODO C'est quoi ce rôle ?
     public void signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String phoneNumber, String streetAddress, String city, String postalCode) {
         Consumer user = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
-        user.signUpConsumer();
+        System.out.println("OUI");
+        userDAO.createConsumer(user);
     }
 
     /**
