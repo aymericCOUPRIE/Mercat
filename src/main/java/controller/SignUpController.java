@@ -29,17 +29,17 @@ public class SignUpController {
     @FXML
     private TextField txtLastname;
     @FXML
-    private PasswordField txtEmailAdress;
+    private TextField txtEmailAdress;
     @FXML
-    private PasswordField txtPhoneNumber;
+    private TextField txtPhoneNumber;
     @FXML
-    private PasswordField txtStreetAdress;
+    private TextField txtStreetAdress;
     @FXML
     private PasswordField txtPassword;
     @FXML
-    private PasswordField txtPostal;
+    private TextField txtPostal;
     @FXML
-    private PasswordField txtCity;
+    private TextField txtCity;
     @FXML
     private Button btnSeller;
     @FXML
