@@ -15812,13 +15812,30 @@
 											"height": 13,
 											"text": "-companyName: String",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF2NIIzu1qUIkE=",
+											"_parent": {
+												"$ref": "AAAAAAF2D/HZoDB+wdk="
+											},
+											"model": {
+												"$ref": "AAAAAAF2NIIzqVqRRpc="
+											},
+											"font": "Arial;13;0",
+											"left": 53,
+											"top": 443,
+											"width": 274.9296875,
+											"height": 13,
+											"text": "-phoneNumber: String",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 48,
 									"top": 273,
 									"width": 284.9296875,
-									"height": 173
+									"height": 188
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -15959,7 +15976,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 48,
-									"top": 446,
+									"top": 461,
 									"width": 284.9296875,
 									"height": 10
 								},
@@ -16001,7 +16018,7 @@
 							"left": 48,
 							"top": 248,
 							"width": 284.9296875,
-							"height": 209,
+							"height": 223,
 							"nameCompartment": {
 								"$ref": "AAAAAAF2D/HZoDB5cSM="
 							},
@@ -16045,7 +16062,8 @@
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
 							"name": "firstName",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -16152,6 +16170,16 @@
 								"$ref": "AAAAAAF2A2y0b/KThlk="
 							},
 							"name": "companyName",
+							"visibility": "private",
+							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF2NIIzqVqRRpc=",
+							"_parent": {
+								"$ref": "AAAAAAF2A2y0b/KThlk="
+							},
+							"name": "phoneNumber",
 							"visibility": "private",
 							"type": "String"
 						}
