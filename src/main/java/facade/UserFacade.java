@@ -39,9 +39,9 @@ public class UserFacade {
 
 
     /**
-     * @param login
+     * @param pseudo
      * @param password
-     * @param emailAddress
+     * @param emailAdress
      * @param phoneNumber
      * @param streetAddress
      * @param city
@@ -51,9 +51,9 @@ public class UserFacade {
 
     //TODO C'est quoi ce rôle ?
     public void signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String phoneNumber, String streetAddress, String city, String postalCode) {
-        Consumer user = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
+        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
         System.out.println("OUI");
-        userDAO.createConsumer(user);
+        userDAO.createConsumer(userConsumer);
     }
 
     /**

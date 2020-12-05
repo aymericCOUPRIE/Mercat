@@ -1,0 +1,20 @@
+@startuml
+autonumber
+SignUpUI -> SignUpController : signup()
+SignUpController -> UserFaçade : signup(firstname,lastname......)
+UserFaçade -> DAOFactoryMySQL : new()
+DAOFactoryMySQL --> UserFaçade : AbstractFactoryDAO
+UserFaçade -> DAOFactoryMySQL : createUserDAO()
+DAOFactoryMySQLMySQL --> UserDAOMySQL : new()
+UserDAOMySQL --> UserFaçade : UserDAO
+UserFaçade ->UserDAOMySQL : signup(firstname, lastname ...)
+UserDAOMySQL -> MySQLConnection : createStatement()
+MySQLConnection --> UserDAOMySQL : true
+UserDAOMySQL --> User : new()
+User --> UserDAOMySQL : User
+activate User
+UserDAOMySQL --> UserFaçade : User
+
+
+
+@enduml

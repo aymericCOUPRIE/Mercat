@@ -111,6 +111,7 @@ public class UserDAOMySQL extends UserDAO {
 
 
     public boolean createConsumer(User user) {
+
         System.out.println(user.toString());
         String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName()+ "','" + user.getLastName()+ "','" + user.getPassword()+ "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','"+ user.getPictureUser() + "','" + user.getRole()+ "','" + "" + "')";
         System.out.println(requete);
