@@ -1,0 +1,27 @@
+@startuml
+autonumber
+
+activate BasketUI
+BasketUI -> BasketController : updateBasket(idProduct: int, quantity: int)
+deactivate BasketUI
+activate BasketController
+BasketController -> BasketFacade : updateBasket(idProduct: int, quantity: int)
+deactivate BasketController
+activate BasketFacade
+BasketFacade -> DAOFactoryMySQL : createBasketDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> BasketDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate BasketDAOMySQL
+BasketDAOMySQL --> BasketFacade: BasketDAO
+BasketFacade -> BasketDAOMySQL : updateBasket(in basket:Basket)
+deactivate BasketFacade
+BasketDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> BasketDAOMySQL: true
+deactivate MySQLConnection
+activate Basket
+BasketDAOMySQL -> Basket : setQuantity(quantity: int)
+deactivate Basket
+deactivate BasketFacade
+@enduml
