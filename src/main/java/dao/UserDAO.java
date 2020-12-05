@@ -1,5 +1,7 @@
 package dao;
 
+import model.Consumer;
+import model.Seller;
 import model.User;
 
 import java.sql.Connection;
@@ -68,7 +70,17 @@ public abstract class UserDAO {
      */
     public abstract User login(String pseudo, String password);
 
+    /**
+     * @param user
+     * @return True si register réussi ou false si erreur
+     */
+    public abstract boolean createConsumer(Consumer user);
 
-    public abstract boolean createConsumer(User user);
+
+    /**
+     * @param user
+     * @return True si register réussi ou false si erreur
+     */
+    public abstract boolean createSeller(Seller user);
 
 }

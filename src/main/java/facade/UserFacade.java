@@ -3,6 +3,7 @@ package facade;
 import dao.AbstractFactoryDAO;
 import dao.UserDAO;
 import model.Consumer;
+import model.Seller;
 import model.User;
 
 import java.util.*;
@@ -40,19 +41,17 @@ public class UserFacade {
 
     /**
      * @param pseudo
+     * @param firstName
+     * @param lastName
      * @param password
      * @param emailAdress
-     * @param phoneNumber
      * @param streetAddress
      * @param city
      * @param postalCode
      * @return
      */
-
-    //TODO C'est quoi ce rôle ?
-    public void signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String phoneNumber, String streetAddress, String city, String postalCode) {
+    public void signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode) {
         Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
-        System.out.println("OUI");
         userDAO.createConsumer(userConsumer);
     }
 
@@ -76,16 +75,16 @@ public class UserFacade {
     /**
      * @param pseudo
      * @param password
-     * @param emailAddress
-     * @param phoneNumber
+     * @param emailAdress
      * @param streetAddress
      * @param city
      * @param postalCode
      * @param companyName
      * @return
      */
-    public void signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAddress, String phoneNumber, String streetAddress, String city, String postalCode, String companyName) {
-       /* user = userDAO.sign(pseudo, password);*/
+    public void signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String companyName) {
+        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","",companyName);
+        userDAO.createSeller(userSeller);
     }
 
     /**

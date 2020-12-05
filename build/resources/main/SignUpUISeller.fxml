@@ -97,10 +97,6 @@
                   <Insets top="30.0" />
                </GridPane.margin>
             </Label>
-            <PasswordField fx:id="txtCompanyName" accessibleRole="TEXT_FIELD" alignment="CENTER" layoutX="344.0" layoutY="242.0" promptText="Your company name" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="8">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" top="30.0" />
-               </GridPane.margin></PasswordField>
             <Label layoutX="375.0" layoutY="288.0" text="Email adress" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Black" size="28.0" />
@@ -109,10 +105,6 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <PasswordField fx:id="txtEmailAdress" accessibleRole="TEXT_FIELD" alignment="CENTER" layoutX="344.0" layoutY="269.0" promptText="Your email adress" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
-               </GridPane.margin></PasswordField>
             <Label layoutX="395.0" layoutY="309.0" text="Phone Number" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                <font>
                   <Font name="Arial Black" size="28.0" />
@@ -121,11 +113,7 @@
                   <Insets top="40.0" />
                </GridPane.margin>
             </Label>
-            <PasswordField fx:id="txtPhoneNumber" accessibleRole="TEXT_FIELD" alignment="CENTER" layoutX="344.0" layoutY="368.0" promptText="Your phone number" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="10">
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" top="40.0" />
-               </GridPane.margin></PasswordField>
-            <Label layoutX="390.0" layoutY="315.0" text="Address" textFill="#1a5276" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Label layoutX="390.0" layoutY="315.0" text="Adress" textFill="#1a5276" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font name="Arial Black" size="30.0" />
                </font>
@@ -133,9 +121,6 @@
                   <Insets bottom="20.0" />
                </GridPane.margin>
             </Label>
-            <PasswordField fx:id="txtStreetAdress" accessibleRole="TEXT_FIELD" alignment="CENTER" prefHeight="26.0" prefWidth="391.0" promptText="Street address" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <PasswordField fx:id="txtPostal" accessibleRole="TEXT_FIELD" alignment="CENTER" prefHeight="26.0" prefWidth="220.0" promptText="Postal" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-            <PasswordField fx:id="txtCity" accessibleRole="TEXT_FIELD" alignment="CENTER" prefHeight="26.0" prefWidth="614.0" promptText="City" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="8" />
             <Label alignment="CENTER" prefHeight="44.0" prefWidth="358.0" text="REGISTRATION" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="Arial Black" size="30.0" />
@@ -194,8 +179,26 @@
                   <Font name="Arial Black" size="30.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtFirstname" alignment="CENTER" layoutX="135.0" layoutY="228.0" promptText="Your firstname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <PasswordField fx:id="txtLastname" alignment="CENTER" layoutX="135.0" layoutY="303.0" promptText="Your lastname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txtEmailAdress" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Your email adress" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtCompanyName" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Your company name" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtPostal" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Postal" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <TextField fx:id="txtStreetAdress" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Street Adress" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <TextField fx:id="txtCity" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="City" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <TextField fx:id="txtPhoneNumber" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Your phone number" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="2" GridPane.rowIndex="10">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" top="40.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtLastname" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Your lastname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txtFirstname" alignment="CENTER" layoutX="135.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Your firstname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             </children>
         </GridPane>
     </children>

@@ -21,7 +21,7 @@ public class SignUpController {
 
     //JavaFX implementation
     @FXML
-    private PasswordField txtCompanyName;
+    private TextField txtCompanyName;
     @FXML
     private TextField txtPseudo;
     @FXML
@@ -131,11 +131,10 @@ public class SignUpController {
 
             if(isAConsumer){
                 userFacade.signUpConsumer(pseudo,
-                        email,
                         firstName,
                         lastName,
                         password,
-                        phoneNumber,
+                        email,
                         street,
                         city,
                         postal);
@@ -143,14 +142,16 @@ public class SignUpController {
                 userFacade.signUpSeller(pseudo,
                         firstName,
                         lastName,
-                        email,
                         password,
-                        phoneNumber,
+                        email,
                         street,
                         city,
                         postal,
                         companyName);
             }
+
+        Router.getInstance().activate("Login");
+
     }
 
     /**

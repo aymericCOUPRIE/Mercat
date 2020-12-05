@@ -110,9 +110,8 @@ public class UserDAOMySQL extends UserDAO {
     }
 
 
-    public boolean createConsumer(User user) {
+    public boolean createConsumer(Consumer user) {
 
-        System.out.println(user.toString());
         String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName()+ "','" + user.getLastName()+ "','" + user.getPassword()+ "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','"+ user.getPictureUser() + "','" + user.getRole()+ "','" + "" + "')";
         System.out.println(requete);
         try {
@@ -122,8 +121,19 @@ public class UserDAOMySQL extends UserDAO {
             throwables.printStackTrace();
             return false;
         }
+    }
 
+    public boolean createSeller(Seller user) {
 
+        String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName()+ "','" + user.getLastName()+ "','" + user.getPassword()+ "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','"+ user.getPictureUser() + "','" + user.getRole()+ "','" + user.getCompanyName() + "')";
+        System.out.println(requete);
+        try {
+            this.connect.createStatement().executeUpdate(requete);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
 
 
