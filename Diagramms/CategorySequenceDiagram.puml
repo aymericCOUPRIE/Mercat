@@ -1,9 +1,8 @@
 @startuml
-activate BasketUI
+activate CategoryUI
 CategoryUI -> CategoryController : createCategory(boolean isAProduct)
-deactivate CategoryUIUI
 activate CategoryController
-BasketController -> CategoryFacade : updateCategory(idProduct: int, quantity: int)
+CategoryController -> CategoryFacade : updateCategory(idProduct: int, quantity: int)
 deactivate CategoryController
 activate CategoryFacade
 CategoryFacade -> DAOFactoryMySQL : createCategoryDAO()
