@@ -4,3 +4,6 @@
 # Pour le mac de marine
 *.DS_Store
 out/
+
+#Connexion database Anna
+src/main/java/dataBase/MySQLConnection.java
