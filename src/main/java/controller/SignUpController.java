@@ -69,6 +69,8 @@ public class SignUpController {
     private String idSellerButton;
     private String idConsumerButton;
 
+    private String messageAttention;
+
     private boolean isAConsumer =false;
     /**
      * Default constructor
@@ -93,14 +95,14 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        if(checkInfosConsumer()==false){
-            display("You need to provide all the information");
-        }else {
-            isAConsumer = true;
+        while(checkInfosConsumer()==false){
+            display(messageAttention);
+        }
+        isAConsumer = true;
             signUp(e);
         }
 
-    }
+
     public void signUpSeller(ActionEvent e) throws IOException{
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
@@ -115,6 +117,7 @@ public class SignUpController {
 
         if(checkInfosSeller()==false){
             display("You need to provide all the information");
+            initialize();
         }else {
             signUp(e);
         }
@@ -162,19 +165,40 @@ public class SignUpController {
     public void backLogin(ActionEvent e) throws IOException {
         Router.getInstance().activate("Login");
     }
-    //TODO `how to check if it is a consumer or a seller`
 
 
     private boolean checkInfosConsumer(){
-        if(pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals("")){
+        if((pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals(""))){
+            this.messageAttention = "You need to provide every information";
+            System.out.println("verif");
             return false;
-        }else return true;
+
+        }else
+            return internVerification();
+    }
+
+    private boolean internVerification() {
+        if(password.length()<8){
+            this.messageAttention = "Your password must have at least 8 characters";
+        }else{
+            String test = ""+Integer.parseInt(phoneNumber);
+            if((phoneNumber.length()==10||phoneNumber.length()==12)&&(test==phoneNumber)){
+                return true;
+            }else{
+                this.messageAttention = "Your phone number is incorrect";
+            }
+        }
+        return false;
     }
 
     private boolean checkInfosSeller(){
-        if(pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals("")||companyName.equals("")){
+        if((pseudo.equals("")&&password.equals("")||phoneNumber.equals("")&&street.equals("")&&postal.equals("")&&city.equals("")&&companyName.equals(""))){
+            this.messageAttention = "You need to provide every information";
+            System.out.println("verif");
             return false;
-        }else return true;
+
+        }else
+            return internVerification();
     }
 
     /**
