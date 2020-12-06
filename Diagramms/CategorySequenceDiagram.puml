@@ -1,0 +1,25 @@
+@startuml
+activate BasketUI
+CategoryUI -> CategoryController : createCategory(boolean isAProduct)
+deactivate CategoryUIUI
+activate CategoryController
+BasketController -> CategoryFacade : updateCategory(idProduct: int, quantity: int)
+deactivate CategoryController
+activate CategoryFacade
+CategoryFacade -> DAOFactoryMySQL : createCategoryDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> CategoryDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate CategoryDAOMySQL
+CategoryDAOMySQL --> CategoryFacade: CategoryDAO
+CategoryFacade -> CategoryDAOMySQL : updateCategory(in Category:Category)
+deactivate CategoryFacade
+CategoryDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> CategoryDAOMySQL: true
+deactivate MySQLConnection
+activate Category
+CategoryDAOMySQL -> Category : setQuantity(quantity: int)
+deactivate Category
+deactivate CategoryFacade
+@enduml

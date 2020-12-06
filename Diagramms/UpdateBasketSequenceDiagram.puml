@@ -1,6 +1,5 @@
 @startuml
 autonumber
-
 activate BasketUI
 BasketUI -> BasketController : updateBasket(idProduct: int, quantity: int)
 deactivate BasketUI
