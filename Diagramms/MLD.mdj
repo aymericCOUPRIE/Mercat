@@ -14022,7 +14022,7 @@
 											"top": 571,
 											"width": 148.12890625,
 											"height": 13,
-											"text": "-nameProduct: String",
+											"text": "-idProduct: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -16704,9 +16704,9 @@
 							"_parent": {
 								"$ref": "AAAAAAF2A3p8OfRcA10="
 							},
-							"name": "nameProduct",
+							"name": "idProduct",
 							"visibility": "private",
-							"type": "String"
+							"type": "int"
 						}
 					],
 					"operations": [
