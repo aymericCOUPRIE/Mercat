@@ -1,0 +1,32 @@
+@startuml
+autonumber
+
+activate HandleSellerUI
+HandleSellerUI -> HandleSellerController : updateSeller(pseudo:String)
+deactivate HandleSellerUI
+activate HandleSellerController
+HandleSellerController --> router.Router : getInstance.activate("Update Seller Prodile")
+deactivate HandleSellerController
+activate router.Router
+router.Router --> UpdateSellerProfileUI
+deactivate router.Router
+activate UpdateSellerProfileUI
+UpdateSellerProfileUI -> UpdateSellerProfileController : updateSeller(seller : Seller)
+deactivate UpdateSellerProfileUI
+activate UpdateSellerProfileController
+UpdateSellerProfileController -> UserFacade : updateSeller(seller : Seller)
+deactivate UpdateSellerProfileController
+activate UserFacade
+UserFacade -> UserDAOMySQL : updateSeller(seller : Seller)
+deactivate UserFacade
+activate UserDAOMySQL
+UserDAOMySQL -> MySQLConnection : createStatement()
+deactivate UserDAOMySQL
+activate  MySQLConnection
+ MySQLConnection --> UserDAOMySQL : true
+ deactivate  MySQLConnection
+ activate  UserDAOMySQL
+ UserDAOMySQL -> Seller : setInfoSeller(seller: Seller)
+ deactivate  UserDAOMySQL
+ activate Seller
+@enduml
