@@ -1,0 +1,27 @@
+@startuml
+autonumber
+activate CategoryUI
+CategoryUI -> CategoryController : updateCategory(String  newName, boolean isAProduct)
+deactivate CategoryUI
+activate CategoryController
+CategoryController -> CategoryFacade : updateCategory(String  newName, boolean isAProduct)
+
+activate CategoryFacade
+CategoryFacade -> DAOFactoryMySQL : createCategoryDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> CategoryDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate CategoryDAOMySQL
+CategoryDAOMySQL --> CategoryFacade: CategoryDAO
+CategoryFacade -> CategoryDAOMySQL : updateCategory(String  newName, boolean isAProduct)
+
+CategoryDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> CategoryDAOMySQL: true
+deactivate MySQLConnection
+CategoryDAOMySQL --> CategoryFacade : Category
+deactivate CategoryDAOMySQL
+CategoryFacade --> CategoryController : display("The category has been modified")
+deactivate CategoryController
+deactivate CategoryFacade
+@enduml
