@@ -1,23 +1,31 @@
 @startuml
 activate CategoryUI
 CategoryUI -> CategoryController : createCategory(boolean isAProduct)
+deactivate CategoryUI
 activate CategoryController
 CategoryController -> CategoryFacade : updateCategory(idProduct: int, quantity: int)
-deactivate CategoryController
 activate CategoryFacade
 CategoryFacade -> DAOFactoryMySQL : createCategoryDAO()
 activate DAOFactoryMySQL
 DAOFactoryMySQL --> CategoryDAOMySQL: new()
-deactivate DAOFactoryMySQL
 activate CategoryDAOMySQL
 CategoryDAOMySQL --> CategoryFacade: CategoryDAO
 CategoryFacade -> CategoryDAOMySQL : updateCategory(in Category:Category)
-deactivate CategoryFacade
 CategoryDAOMySQL -> MySQLConnection : createStatement()
 activate MySQLConnection
 MySQLConnection --> CategoryDAOMySQL: true
-deactivate MySQLConnection
 activate Category
+CategoryDAOMySQL -> Category : new()
+Category --> CategoryDAOMySQL : Category
+deactivate Category
+CategoryDAOMySQL --> CategoryFacade : Category
+deactivate DAOFactoryMySQL
+deactivate CategoryFacade
+deactivate CategoryDAOMySQL
+deactivate MySQLConnection
+CategoryFacade --> CategoryController
+CategoryController -> CategoryController : getInstance.display("New category")
+deactivate CategoryController
 deactivate Category
 deactivate CategoryFacade
 @enduml

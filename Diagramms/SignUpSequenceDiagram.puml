@@ -31,6 +31,7 @@ SignUpController -> Router : getInstance.activate("login"
 deactivate Router
 deactivate UserFaçade
 deactivate DAOFactoryMySQL
+deactivate SignUpController
 
 
 @enduml
