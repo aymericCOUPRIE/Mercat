@@ -34,7 +34,7 @@
                           <Image url="@../../../assets/img/logoMercat.png" />
                       </image>
                   </ImageView>
-            <Label fx:id="errorText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="errorText" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
         <GridPane prefHeight="540.0" prefWidth="1000.0">

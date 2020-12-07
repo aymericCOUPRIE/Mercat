@@ -84,23 +84,21 @@ public class SignUpController {
     private UserFacade userFacade = new UserFacade();
 
 
-    public void signUpConsumer(ActionEvent e) throws IOException{
+    public void signUpConsumer(ActionEvent e) throws IOException {
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
         email = txtEmailAdress.getText();
-        phoneNumber=txtPhoneNumber.getText();
+        phoneNumber = txtPhoneNumber.getText();
         street = txtStreetAdress.getText();
         postal = txtPostal.getText();
         city = txtCity.getText();
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        /*while(checkInfosConsumer()==false){
-            display(messageAttention);
-        }*/
-        isAConsumer = true;
+        if (checkInfosConsumer() != false) {
             signUp(e);
         }
+    }
 
 
     public void signUpSeller(ActionEvent e) throws IOException{
@@ -115,12 +113,9 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        /*if(checkInfosSeller()==false){
-            display("You need to provide all the information");
-            initialize();
-        }else {*/
+        if(checkInfosSeller()!=false){
             signUp(e);
-        //}
+        }
     }
 
 
@@ -173,22 +168,29 @@ public class SignUpController {
     private boolean checkInfosConsumer(){
         if((pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals(""))){
             this.messageAttention = "You need to provide every information";
-            System.out.println("verif");
+            display(messageAttention);
             return false;
 
         }else
             return internVerification();
     }
 
+
     private boolean internVerification() {
         if(password.length()<8){
             this.messageAttention = "Your password must have at least 8 characters";
+            display(messageAttention);
         }else{
             String test = ""+Integer.parseInt(phoneNumber);
             if((phoneNumber.length()==10||phoneNumber.length()==12)&&(test==phoneNumber)){
-                return true;
+                if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
+                    return true;
+                }else{
+                    this.messageAttention = "This email address is incorrect";
+                }
             }else{
                 this.messageAttention = "Your phone number is incorrect";
+                display(messageAttention);
             }
         }
         return false;
@@ -197,7 +199,7 @@ public class SignUpController {
     private boolean checkInfosSeller(){
         if((pseudo.equals("")&&password.equals("")||phoneNumber.equals("")&&street.equals("")&&postal.equals("")&&city.equals("")&&companyName.equals(""))){
             this.messageAttention = "You need to provide every information";
-            System.out.println("verif");
+            display(messageAttention);
             return false;
 
         }else
