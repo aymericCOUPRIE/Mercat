@@ -1,9 +1,9 @@
 @startuml
 activate CategoryUI
-CategoryUI -> CategoryController : createCategory(boolean isAProduct)
+CategoryUI -> CategoryController : createCategory(String name, boolean isAProduct)
 deactivate CategoryUI
 activate CategoryController
-CategoryController -> CategoryFacade : updateCategory(idProduct: int, quantity: int)
+CategoryController -> CategoryFacade : createCategory(String name, boolean isAProduct )
 activate CategoryFacade
 CategoryFacade -> DAOFactoryMySQL : createCategoryDAO()
 activate DAOFactoryMySQL
