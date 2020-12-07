@@ -95,9 +95,9 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        while(checkInfosConsumer()==false){
+        /*while(checkInfosConsumer()==false){
             display(messageAttention);
-        }
+        }*/
         isAConsumer = true;
             signUp(e);
         }
@@ -115,12 +115,12 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        if(checkInfosSeller()==false){
+        /*if(checkInfosSeller()==false){
             display("You need to provide all the information");
             initialize();
-        }else {
+        }else {*/
             signUp(e);
-        }
+        //}
     }
 
 
@@ -131,9 +131,9 @@ public class SignUpController {
      * @return
      */
     public void signUp(ActionEvent e) throws IOException {
-
+            boolean noError = true;
             if(isAConsumer){
-                userFacade.signUpConsumer(pseudo,
+                noError = userFacade.signUpConsumer(pseudo,
                         firstName,
                         lastName,
                         password,
@@ -142,7 +142,7 @@ public class SignUpController {
                         city,
                         postal);
             }else {
-                userFacade.signUpSeller(pseudo,
+                noError = userFacade.signUpSeller(pseudo,
                         firstName,
                         lastName,
                         password,
@@ -152,9 +152,12 @@ public class SignUpController {
                         postal,
                         companyName);
             }
-
-        Router.getInstance().activate("Login");
-
+        if(noError){
+            Router.getInstance().activate("Login");
+        }
+        else {
+            display("Your pseudo already exists");
+        }
     }
 
     /**
