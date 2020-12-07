@@ -1,0 +1,31 @@
+@startuml
+activate ProductUI
+ProductUI -> ProductController : createProduct(int idProduct, String nameProduct, float price,... )
+deactivate ProductUI
+activate ProductController
+ProductController -> ProductFacade : createProduct(int idProduct, String nameProduct, float price,... )
+activate ProductFacade
+ProductFacade -> DAOFactoryMySQL : createProductDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> ProductDAOMySQL: new()
+activate ProductDAOMySQL
+ProductDAOMySQL --> ProductFacade: ProductDAO
+ProductFacade -> ProductDAOMySQL : updateProduct(Product product)
+ProductDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> ProductDAOMySQL: true
+activate Product
+ProductDAOMySQL -> Product : new()
+Product --> ProductDAOMySQL : Product
+deactivate Product
+ProductDAOMySQL --> ProductFacade : Product
+deactivate DAOFactoryMySQL
+deactivate ProductFacade
+deactivate ProductDAOMySQL
+deactivate MySQLConnection
+ProductFacade --> ProductController
+ProductController -> ProductController : getInstance.display("New Product")
+deactivate ProductController
+deactivate Product
+deactivate ProductFacade
+@enduml

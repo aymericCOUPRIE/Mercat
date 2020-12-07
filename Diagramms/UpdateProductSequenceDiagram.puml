@@ -1,0 +1,24 @@
+@startuml
+activate ProductUI
+ProductUI -> ProductController : updateProduct(String  newName, boolean isAProduct)
+deactivate ProductUI
+activate ProductController
+ProductController -> ProductFacade : updateProduct(String  newName, boolean isAProduct)
+activate ProductFacade
+ProductFacade -> DAOFactoryMySQL : createProductDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> ProductDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate ProductDAOMySQL
+ProductDAOMySQL --> ProductFacade: ProductDAO
+ProductFacade -> ProductDAOMySQL : updateProduct(String  newName, boolean isAProduct)
+ProductDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> ProductDAOMySQL: true
+deactivate MySQLConnection
+ProductDAOMySQL --> ProductFacade : Product
+deactivate ProductDAOMySQL
+ProductFacade --> ProductController : display("The product has been modified")
+deactivate ProductController
+deactivate ProductFacade
+@enduml
