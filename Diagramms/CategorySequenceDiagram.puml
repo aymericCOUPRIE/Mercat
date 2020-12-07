@@ -18,7 +18,6 @@ activate MySQLConnection
 MySQLConnection --> CategoryDAOMySQL: true
 deactivate MySQLConnection
 activate Category
-CategoryDAOMySQL -> Category : setQuantity(quantity: int)
 deactivate Category
 deactivate CategoryFacade
 @enduml

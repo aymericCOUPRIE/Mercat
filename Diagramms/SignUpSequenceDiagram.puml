@@ -1,20 +1,36 @@
 @startuml
 autonumber
+activate SignUpUI
 SignUpUI -> SignUpController : signup()
+deactivate SignUpUI
+activate SignUpController
+activate UserFaçade
 SignUpController -> UserFaçade : signup(firstname,lastname......)
+activate DAOFactoryMySQL
 UserFaçade -> DAOFactoryMySQL : new()
 DAOFactoryMySQL --> UserFaçade : AbstractFactoryDAO
 UserFaçade -> DAOFactoryMySQL : createUserDAO()
-DAOFactoryMySQLMySQL --> UserDAOMySQL : new()
+activate UserDAOMySQL
+DAOFactoryMySQL --> UserDAOMySQL : new()
 UserDAOMySQL --> UserFaçade : UserDAO
 UserFaçade ->UserDAOMySQL : signup(firstname, lastname ...)
+activate MySQLConnection
 UserDAOMySQL -> MySQLConnection : createStatement()
 MySQLConnection --> UserDAOMySQL : true
+activate User
 UserDAOMySQL --> User : new()
 User --> UserDAOMySQL : User
-activate User
+deactivate User
+deactivate MySQLConnection
 UserDAOMySQL --> UserFaçade : User
-
+deactivate UserDAOMySQL
+deactivate DAOFactoryMySQL
+UserFaçade-->SignUpController
+activate Router
+SignUpController -> Router : getInstance.activate("login"
+deactivate Router
+deactivate UserFaçade
+deactivate DAOFactoryMySQL
 
 
 @enduml
