@@ -1,0 +1,26 @@
+@startuml
+autonumber
+activate ProductBuyConsumerUI
+ProductBuyConsumerUI -> RateController : addRate()
+deactivate ProductBuyConsumerUI
+activate RateController
+RateController -> ProductFacade : addRate(consummer: Consummer, rate: int)
+deactivate RateController
+activate ProductFacade
+ProductFacade -> DAOFactoryMySQL : createRateDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> RateDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate RateDAOMySQL
+RateDAOMySQL --> ProductFacade: RateDAO
+ProductFacade -> RateDAOMySQL : createRateProduct(product : Product, consummer: Consummer, rate: int)
+deactivate ProductFacade
+RateDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> RateDAOMySQL: true
+deactivate MySQLConnection
+activate Rate
+RateDAOMySQL -> Rate : setRate(Rate: int)
+deactivate Rate
+deactivate ProductFacade
+@enduml
