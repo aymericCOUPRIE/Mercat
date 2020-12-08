@@ -6,7 +6,7 @@
 out/
 
 #Connexion database Anna
-src/main/java/resources/database.properties
+src/main/resources/database.properties
 
 # Created by https://www.toptal.com/developers/gitignore/api/gradle,java,intellij,vscode,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=gradle,java,intellij,vscode,windows,linux,macos
