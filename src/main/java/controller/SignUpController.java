@@ -96,6 +96,7 @@ public class SignUpController {
         lastName = txtLastname.getText();
 
         if (checkInfosConsumer() != false) {
+            System.out.println("Ca marche");
             signUp(e);
         }
     }
@@ -181,17 +182,19 @@ public class SignUpController {
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
         }else{
-            /*String test = "0"+Integer.parseInt(phoneNumber);
+            String test = "0"+Integer.parseInt(phoneNumber);
             System.out.println(phoneNumber.length());
             System.out.println(test==phoneNumber);
-            System.out.println(phoneNumber);*/
+            System.out.println(phoneNumber);
             //TODO Ajouter une fonctionalité qui vérifie qu'il y a que des chiffres dans le phonenumber
             if((phoneNumber.length()==10||phoneNumber.length()==12)){
-                if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
+                System.out.println("REGEX DU MAIL "+email.matches("/^\\S+@\\S+\\.\\S+$/"));
+                //if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
+                    System.out.println("REGARDE CE VRAI");
                     return true;
-                }else{
-                    this.messageAttention = "This email address is incorrect";
-                }
+                //}else{
+                  //  this.messageAttention = "This email address is incorrect";
+                //}
             }else{
                 this.messageAttention = "Your phone number is incorrect";
                 display(messageAttention);
