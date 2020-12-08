@@ -1,0 +1,32 @@
+@startuml
+autonumber
+
+activate HandleConsumerUI
+HandleConsumerUI -> HandleConsumerController : updateConsumer(pseudo:String)
+deactivate HandleConsumerUI
+activate HandleConsumerController
+HandleConsumerController --> router.Router : getInstance.activate("Update Consumer Profile")
+deactivate HandleConsumerController
+activate router.Router
+router.Router --> UpdateConsumerProfileUI
+deactivate router.Router
+activate UpdateConsumerProfileUI
+UpdateConsumerProfileUI -> UpdateConsumerProfileController : updateConsumer(consumer : Consumer)
+deactivate UpdateConsumerProfileUI
+activate UpdateConsumerProfileController
+UpdateConsumerProfileController -> UserFacade : updateConsumer(consumer : Consumer)
+deactivate UpdateConsumerProfileController
+activate UserFacade
+UserFacade -> UserDAOMySQL : updateConsumer(consumer : Consumer)
+deactivate UserFacade
+activate UserDAOMySQL
+UserDAOMySQL -> MySQLConnection : createStatement()
+deactivate UserDAOMySQL
+activate  MySQLConnection
+ MySQLConnection --> UserDAOMySQL : true
+ deactivate  MySQLConnection
+ activate  UserDAOMySQL
+ UserDAOMySQL -> Consumer : setInfoConsumer(consumer : Consumer)
+ deactivate  UserDAOMySQL
+ activate Consumer
+@enduml
