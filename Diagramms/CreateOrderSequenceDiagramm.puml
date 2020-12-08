@@ -1,0 +1,41 @@
+@startuml
+
+activate BasketUI
+BasketUI --> BasketController : createOrder()
+deactivate BasketUI
+
+activate BasketController
+BasketController --> OrderFacade : createOrder(baskets : Basket[*])
+deactivate BasketController
+
+activate OrderFacade
+OrderFacade -> DAOFactoryMySQL : createOrder(order : Order)
+
+activate DAOFactoryMySQL
+DAOFactoryMySQL -> OrderDAOMySQL : new()
+
+
+activate OrderDAOMySQL
+OrderFacade <-- OrderDAOMySQL : OrderDAO
+
+OrderDAOMySQL -> MySQLConnection : createStatement()
+
+activate MySQLConnection
+OrderDAOMySQL <-- MySQLConnection : true
+deactivate MySQLConnection
+
+
+OrderDAOMySQL -> Order : new()
+activate Order
+OrderDAOMySQL <-- Order : Order
+deactivate Order
+
+
+OrderFacade <-- OrderDAOMySQL : Order
+deactivate OrderDAOMySQL
+BasketController <-- OrderFacade : Order
+deactivate OrderFacade
+
+BasketController -> BasketController : getInstance("Order created")
+
+@enduml
