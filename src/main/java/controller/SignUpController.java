@@ -181,8 +181,12 @@ public class SignUpController {
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
         }else{
-            String test = ""+Integer.parseInt(phoneNumber);
-            if((phoneNumber.length()==10||phoneNumber.length()==12)&&(test==phoneNumber)){
+            /*String test = "0"+Integer.parseInt(phoneNumber);
+            System.out.println(phoneNumber.length());
+            System.out.println(test==phoneNumber);
+            System.out.println(phoneNumber);*/
+            //TODO Ajouter une fonctionalité qui vérifie qu'il y a que des chiffres dans le phonenumber
+            if((phoneNumber.length()==10||phoneNumber.length()==12)){
                 if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
                     return true;
                 }else{

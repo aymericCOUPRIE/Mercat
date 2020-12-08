@@ -1,6 +1,7 @@
 package dao;
 
 import dataBase.MySQLConnection;
+import facade.PasswordSecured;
 import model.Consumer;
 import model.Seller;
 import model.User;
@@ -63,7 +64,9 @@ public class UserDAOMySQL extends UserDAO {
      */
     public User login(String pseudo, String password) {
         User user;
-        String requete = "SELECT * FROM User WHERE pseudo = '" + pseudo + "' AND password = '" + password + "'";
+        PasswordSecured.hash(password);
+        String newPassword = PasswordSecured.getPasswordSecured();
+        String requete = "SELECT * FROM User WHERE pseudo = '" + pseudo + "' AND password = '" + newPassword + "'";
         try {
 
             ResultSet res = this.connect.createStatement().executeQuery(requete);
