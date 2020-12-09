@@ -60,7 +60,7 @@ public class UserDAOMySQL extends UserDAO {
     public User login(String pseudo, String password) {
         User user;
         //String newPassword = PasswordSecured.hash(password);
-        String requete = "SELECT * FROM User WHERE pseudo = '" + pseudo + "'";
+        String requete = "SELECT * FROM user WHERE pseudo = '" + pseudo + "'";
 
         try {
 
@@ -68,7 +68,7 @@ public class UserDAOMySQL extends UserDAO {
 
             if (res.next()) {
 
-                if (PasswordSecured.isTheSamePassword(password, res.getString(password))) {
+                if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
                     if (res.getString("role").equals("seller")) {
                         user = new Seller(
                                 res.getString("pseudo"),
