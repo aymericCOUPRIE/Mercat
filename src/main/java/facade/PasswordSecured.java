@@ -10,30 +10,25 @@ import java.util.Random;
 public class PasswordSecured{
     private static byte[] salt = new byte[16];
     private static Random random = new SecureRandom();
-    private static String passwordSecured;
 
-    public PasswordSecured(){
+    private PasswordSecured(){
     }
 
-    public static String getPasswordSecured() {
-        return passwordSecured;
-    }
-
-
-    public static void hash(String passwordToHash) {
-         random.nextBytes(salt);
+    public static String hash(String passwordToHash) {
+        random.nextBytes(salt);
          try {
              MessageDigest md = MessageDigest.getInstance("SHA-512");
              byte[] hashedPassword = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
-             String password = Base64.getEncoder().encodeToString(hashedPassword);
-             passwordSecured = password;
+             return Base64.getEncoder().encodeToString(hashedPassword);
          } catch (NoSuchAlgorithmException e) {
              e.printStackTrace();
          }
+         return null;
     }
 
-    public boolean isTheSamePassword(String passwordToCheck, String realPassword) throws NoSuchAlgorithmException {
-        hash(passwordToCheck);
-        return passwordSecured==realPassword;
+
+    public static boolean isTheSamePassword(String passwordToCheck, String realPassword) throws NoSuchAlgorithmException {
+        return hash(passwordToCheck).equals(realPassword);
     }
+
 }
