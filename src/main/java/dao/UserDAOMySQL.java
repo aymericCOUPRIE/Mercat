@@ -30,14 +30,7 @@ public class UserDAOMySQL extends UserDAO {
         return null;
     }
 
-    /**
-     * @param user
-     * @return
-     */
-    public boolean createUser(User user) {
-        // TODO implement here
-        return false;
-    }
+   
 
     /**
      * @param user
