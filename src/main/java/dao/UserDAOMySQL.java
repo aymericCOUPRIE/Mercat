@@ -8,6 +8,7 @@ import model.User;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -60,11 +61,13 @@ public class UserDAOMySQL extends UserDAO {
     public User login(String pseudo, String password) {
         User user;
         //String newPassword = PasswordSecured.hash(password);
-        String requete = "SELECT * FROM user WHERE pseudo = '" + pseudo + "'";
+        String requete = "SELECT * FROM user WHERE pseudo = ? ";
 
         try {
 
-            ResultSet res = this.connect.createStatement().executeQuery(requete);
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery(requete);
 
             if (res.next()) {
 
