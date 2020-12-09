@@ -68,7 +68,7 @@ public class UserDAOMySQL extends UserDAO {
 
             if (res.next()) {
 
-                if (PasswordSecured.isTheSamePassword(password, res.getString(password))) {
+                if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
                     if (res.getString("role").equals("seller")) {
                         user = new Seller(
                                 res.getString("pseudo"),
