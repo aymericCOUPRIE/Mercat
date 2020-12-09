@@ -21,6 +21,9 @@ MySQLConnection --> RateDAOMySQL: true
 deactivate MySQLConnection
 activate Rate
 RateDAOMySQL -> Rate : setRate(Rate: int)
+RateDAOMySQL -> Rate :setPseudoConsumer(pseudo: Consumer)
+RateDAOMySQL -> Rate :setIdProduct(id: int)
+RateDAOMySQL -> Rate : setPseudoSeller(pseudo: Seller)
 deactivate Rate
 deactivate ProductFacade
 @enduml

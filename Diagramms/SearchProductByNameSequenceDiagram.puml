@@ -1,0 +1,23 @@
+@startuml
+autonumber
+activate HomePageUI
+HomePageUI -> HomePageController : search()
+deactivate HomePageUI
+activate HomePageController
+HomePageController -> SearchFacade : getProductsByName(name : String)
+deactivate HomePageController
+activate SearchFacade
+SearchFacade -> DAOFactoryMySQL : createProductDAO()
+activate DAOFactoryMySQL
+DAOFactoryMySQL --> ProductDAOMySQL: new()
+deactivate DAOFactoryMySQL
+activate ProductDAOMySQL
+ProductDAOMySQL --> SearchFacade: ProductDAO
+SearchFacade -> ProductDAOMySQL : getProductsByName(name: String)
+deactivate SearchFacade
+ProductDAOMySQL -> MySQLConnection : createStatement()
+activate MySQLConnection
+MySQLConnection --> ProductDAOMySQL: true
+deactivate MySQLConnection
+deactivate SearchFacade
+@enduml
