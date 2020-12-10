@@ -15,7 +15,6 @@ public abstract class AbstractFactoryDAO {
      * @return la factory
      */
     public static AbstractFactoryDAO getFactory() {
-
         return new DAOFactoryMySQL();
     }
 
