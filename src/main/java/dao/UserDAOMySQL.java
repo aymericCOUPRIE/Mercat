@@ -61,16 +61,18 @@ public class UserDAOMySQL extends UserDAO {
     public User login(String pseudo, String password) {
         User user;
         //String newPassword = PasswordSecured.hash(password);
-        String requete = "SELECT * FROM user WHERE pseudo = ? ";
+        String requete = "SELECT * FROM user WHERE pseudo = ?";
+        //String requete = "SELECT * FROM user WHERE pseudo = '" + pseudo + "'";
 
         try {
 
+            //ResultSet res = this.connect.createStatement().executeQuery(requete);
+
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, pseudo);
-            ResultSet res = preparedStatement.executeQuery(requete);
+            ResultSet res = preparedStatement.executeQuery();
 
             if (res.next()) {
-
                 if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
                     if (res.getString("role").equals("seller")) {
                         user = new Seller(
@@ -140,7 +142,5 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
-
-
 }
 
