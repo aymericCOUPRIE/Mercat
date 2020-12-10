@@ -3,11 +3,80 @@ package model;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class User {
 
-    public User(String login, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role) {
+    /**
+     *
+     */
+    private String login;
+
+    /**
+     *
+     */
+    private String firstName;
+
+    /**
+     *
+     */
+    private String lastName;
+
+    /**
+     *
+     */
+    private String password;
+
+    /**
+     *
+     */
+    private String emailAddress;
+
+    /**
+     *
+     */
+    private String streetAddress;
+
+    /**
+     *
+     */
+    private String city;
+
+    /**
+     *
+     */
+    private String postalCode;
+
+    /**
+     *
+     */
+    private String pictureUser;
+
+    /**
+     *
+     */
+    private String role;
+
+
+    /**
+     *
+     */
+    private String phoneNumber;
+
+    /**
+     * @param login
+     * @param firstName
+     * @param lastName
+     * @param password
+     * @param emailAddress
+     * @param streetAddress
+     * @param city
+     * @param postalCode
+     * @param pictureUser
+     * @param role
+     * @param phoneNumber
+     */
+    public User(String login, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role, String phoneNumber) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,57 +87,8 @@ public class User {
         this.postalCode = postalCode;
         this.pictureUser = pictureUser;
         this.role = role;
+        this.phoneNumber = phoneNumber;
     }
-
-    /**
-     * 
-     */
-    private String login;
-
-    /**
-     * 
-     */
-    private String firstName;
-
-    /**
-     * 
-     */
-    private String lastName;
-
-    /**
-     * 
-     */
-    private String password;
-
-    /**
-     * 
-     */
-    private String emailAddress;
-
-    /**
-     * 
-     */
-    private String streetAddress;
-
-    /**
-     * 
-     */
-    private String city;
-
-    /**
-     * 
-     */
-    private String postalCode;
-
-    /**
-     * 
-     */
-    private String pictureUser;
-
-    /**
-     * 
-     */
-    private String role;
 
 
     /**
@@ -177,6 +197,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

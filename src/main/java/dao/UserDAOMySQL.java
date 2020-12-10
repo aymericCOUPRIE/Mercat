@@ -86,6 +86,7 @@ public class UserDAOMySQL extends UserDAO {
                                 res.getString("postalCode"),
                                 res.getString("pictureUser"),
                                 res.getString("role"),
+                                res.getString("phoneNumber"),
                                 res.getString("companyName")
                         );
                     } else { // admin or consumer -> same
@@ -99,7 +100,8 @@ public class UserDAOMySQL extends UserDAO {
                                 res.getString("city"),
                                 res.getString("postalCode"),
                                 res.getString("pictureUser"),
-                                res.getString("role")
+                                res.getString("role"),
+                                res.getString("phoneNumber")
                         );
                     }
                     return user;
@@ -120,8 +122,8 @@ public class UserDAOMySQL extends UserDAO {
 
         String hashPassword = PasswordSecured.hash(user.getPassword());
         //String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + "" + "')";
-        String requete = "INSERT INTO user (pseudo,firstName,lastName, password,emailAddress, streetAddress,city,postalCode, pictureUser,role) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        System.out.println(requete);
+        String requete = "INSERT INTO user (pseudo,firstName,lastName, password,emailAddress, streetAddress,city,postalCode, pictureUser, role, phoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        //System.out.println(requete);
 
 
         try {
@@ -136,13 +138,9 @@ public class UserDAOMySQL extends UserDAO {
             preparedStatement.setString(8,user.getPostalCode());
             preparedStatement.setString(9,user.getPictureUser());
             preparedStatement.setString(10,user.getRole());
-            int res = preparedStatement.executeUpdate();
+            preparedStatement.setString(11, user.getPhoneNumber());
 
-            if(res!=0){
-                return true;
-            }else return false;
-            //this.connect.createStatement().executeUpdate(requete);
-
+            return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
@@ -151,11 +149,26 @@ public class UserDAOMySQL extends UserDAO {
 
     public boolean createSeller(Seller user) {
         String hashPassword = PasswordSecured.hash(user.getPassword());
-        String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + user.getCompanyName() + "')";
-        System.out.println(requete);
+        String requete = "INSERT INTO user (pseudo, firstName, lastName, password, emailAddress, streetAddress, city, postalCode, pictureUser, role, phoneNumber, companyName) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        //String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + user.getCompanyName() + "')";
+        //System.out.println(requete);
         try {
-            this.connect.createStatement().executeUpdate(requete);
-            return true;
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,user.getLogin());
+            preparedStatement.setString(2,user.getFirstName());
+            preparedStatement.setString(3,user.getLastName());
+            preparedStatement.setString(4,hashPassword);
+            preparedStatement.setString(5,user.getEmailAddress());
+            preparedStatement.setString(6,user.getStreetAddress());
+            preparedStatement.setString(7,user.getCity());
+            preparedStatement.setString(8,user.getPostalCode());
+            preparedStatement.setString(9,user.getPictureUser());
+            preparedStatement.setString(10,user.getRole());
+            preparedStatement.setString(11, user.getPhoneNumber());
+            preparedStatement.setString(12, user.getCompanyName());
+
+            return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;

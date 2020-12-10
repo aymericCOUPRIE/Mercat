@@ -50,8 +50,8 @@ public class UserFacade {
      * @param postalCode
      * @return
      */
-    public boolean signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode) {
-        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","");
+    public boolean signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
+        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","", phoneNumber);
         return userDAO.createConsumer(userConsumer);
     }
 
@@ -79,11 +79,12 @@ public class UserFacade {
      * @param streetAddress
      * @param city
      * @param postalCode
+     * @param phoneNumber
      * @param companyName
      * @return
      */
-    public boolean signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String companyName) {
-        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","",companyName);
+    public boolean signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String companyName) {
+        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","", phoneNumber, companyName);
         return userDAO.createSeller(userSeller);
     }
 

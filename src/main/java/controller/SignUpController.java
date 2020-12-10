@@ -136,7 +136,8 @@ public class SignUpController {
                         email,
                         street,
                         city,
-                        postal);
+                        postal,
+                        phoneNumber);
             }else {
                 noError = userFacade.signUpSeller(pseudo,
                         firstName,
@@ -146,6 +147,7 @@ public class SignUpController {
                         street,
                         city,
                         postal,
+                        phoneNumber,
                         companyName);
             }
         if(noError){

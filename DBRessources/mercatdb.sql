@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `postalCode` varchar(100) NOT NULL,
   `pictureUser` varchar(100) NOT NULL,
   `role` varchar(100) NOT NULL,
-  `companyName` varchar(100) DEFAULT NULL,
   `phoneNumber` varchar(20) NOT NULL,
+  `companyName` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
