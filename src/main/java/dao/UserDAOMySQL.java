@@ -67,7 +67,7 @@ public class UserDAOMySQL extends UserDAO {
 
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, pseudo);
-            ResultSet res = preparedStatement.executeQuery(requete);
+            ResultSet res = preparedStatement.executeQuery();
 
             if (res.next()) {
 
@@ -134,14 +134,13 @@ public class UserDAOMySQL extends UserDAO {
             preparedStatement.setString(8,user.getPostalCode());
             preparedStatement.setString(9,user.getPictureUser());
             preparedStatement.setString(10,user.getRole());
-            ResultSet res = preparedStatement.executeQuery(requete);
+            int res = preparedStatement.executeUpdate();
 
-            if(res.next()){
-
-            }
-
+            if(res!=0){
+                return true;
+            }else return false;
             //this.connect.createStatement().executeUpdate(requete);
-            return true;
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
