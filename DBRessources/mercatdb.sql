@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 29, 2020 at 12:34 PM
+-- Generation Time: Dec 10, 2020 at 09:50 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -41,9 +41,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pictureUser` varchar(100) NOT NULL,
   `role` varchar(100) NOT NULL,
   `companyName` varchar(100) DEFAULT NULL,
+  `phoneNumber` varchar(20) NOT NULL,
   PRIMARY KEY (`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-COMMIT;
+
+--
+-- Dumping data for table `user`
+--
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

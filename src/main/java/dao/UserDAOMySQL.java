@@ -119,11 +119,30 @@ public class UserDAOMySQL extends UserDAO {
     public boolean createConsumer(Consumer user) {
 
         String hashPassword = PasswordSecured.hash(user.getPassword());
-        String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + "" + "')";
+        //String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + "" + "')";
+        String requete = "INSERT INTO user (pseudo,firstName,lastName, password,emailAddress, streetAddress,city,postalCode, pictureUser,role) VALUES (?,?,?,?,?,?,?,?,?,?)";
         System.out.println(requete);
+
+
         try {
-            this.connect.createStatement().executeUpdate(requete);
-            return true;
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,user.getLogin());
+            preparedStatement.setString(2,user.getFirstName());
+            preparedStatement.setString(3,user.getLastName());
+            preparedStatement.setString(4,hashPassword);
+            preparedStatement.setString(5,user.getEmailAddress());
+            preparedStatement.setString(6,user.getStreetAddress());
+            preparedStatement.setString(7,user.getCity());
+            preparedStatement.setString(8,user.getPostalCode());
+            preparedStatement.setString(9,user.getPictureUser());
+            preparedStatement.setString(10,user.getRole());
+            int res = preparedStatement.executeUpdate();
+
+            if(res!=0){
+                return true;
+            }else return false;
+            //this.connect.createStatement().executeUpdate(requete);
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
