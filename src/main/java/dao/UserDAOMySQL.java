@@ -30,7 +30,25 @@ public class UserDAOMySQL extends UserDAO {
      * @return
      */
     public User findUser(String pseudo) {
+        User user;
+        String requete = "SELECT * FROM user WHERE pseudo = ?";
         // TODO implement here
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery();
+
+            if(res!= null){
+                return instantiateUser(res);
+
+            }else {//il n'y a pas de résultat dans ma requête
+                return null;
+            }
+
+        } catch (SQLException throwables) {
+        throwables.printStackTrace();
+        }
+        //je n'ai pas pu executer la requête
         return null;
     }
 
@@ -75,37 +93,7 @@ public class UserDAOMySQL extends UserDAO {
 
             if (res.next()) {
                 if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
-                    if (res.getString("role").equals("seller")) {
-                        user = new Seller(
-                                res.getString("pseudo"),
-                                res.getString("firstName"),
-                                res.getString("lastName"),
-                                res.getString("password"),
-                                res.getString("emailAddress"),
-                                res.getString("streetAddress"),
-                                res.getString("city"),
-                                res.getString("postalCode"),
-                                res.getString("pictureUser"),
-                                res.getString("role"),
-                                res.getString("phoneNumber"),
-                                res.getString("companyName")
-                        );
-                    } else { // admin or consumer -> same
-                        user = new Consumer(
-                                res.getString("pseudo"),
-                                res.getString("firstName"),
-                                res.getString("lastName"),
-                                res.getString("password"),
-                                res.getString("emailAddress"),
-                                res.getString("streetAddress"),
-                                res.getString("city"),
-                                res.getString("postalCode"),
-                                res.getString("pictureUser"),
-                                res.getString("role"),
-                                res.getString("phoneNumber")
-                        );
-                    }
-                    return user;
+                    return instantiateUser(res);
                 }
             } else {//il n'y a pas de résultat dans ma requête
                 return null;
@@ -116,6 +104,41 @@ public class UserDAOMySQL extends UserDAO {
         //je n'ai pas pu executer la requête
         //ou mon mot des passe est faux
         return null;
+    }
+
+    private User instantiateUser(ResultSet res) throws SQLException {
+        User user;
+        if (res.getString("role").equals("seller")) {
+            user = new Seller(
+                    res.getString("pseudo"),
+                    res.getString("firstName"),
+                    res.getString("lastName"),
+                    res.getString("password"),
+                    res.getString("emailAddress"),
+                    res.getString("streetAddress"),
+                    res.getString("city"),
+                    res.getString("postalCode"),
+                    res.getString("pictureUser"),
+                    res.getString("role"),
+                    res.getString("phoneNumber"),
+                    res.getString("companyName")
+            );
+        } else { // admin or consumer -> same
+            user = new Consumer(
+                    res.getString("pseudo"),
+                    res.getString("firstName"),
+                    res.getString("lastName"),
+                    res.getString("password"),
+                    res.getString("emailAddress"),
+                    res.getString("streetAddress"),
+                    res.getString("city"),
+                    res.getString("postalCode"),
+                    res.getString("pictureUser"),
+                    res.getString("role"),
+                    res.getString("phoneNumber")
+            );
+        }
+        return user;
     }
 
 

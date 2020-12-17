@@ -5,6 +5,7 @@ import dao.UserDAO;
 import model.Consumer;
 import model.Seller;
 import model.User;
+import router.Router;
 
 import java.util.*;
 
@@ -38,6 +39,13 @@ public class UserFacade {
     public UserFacade() {
     }
 
+    /**
+     * Get user loged
+     * @return user
+     */
+    public User getUser(){
+        return this.user;
+    }
 
     /**
      * @param pseudo
@@ -111,11 +119,10 @@ public class UserFacade {
     }
 
     /**
-     * @return
+     * @return boolean true if the current user is an admin, else false
      */
     public boolean isAdmin() {
-        // TODO implement here
-        return false;
+       return getUser().getRole().equals("admin");
     }
 
     /**
@@ -145,11 +152,15 @@ public class UserFacade {
 
     /**
      * @param pseudo
-     * @return
+     * @return User
      */
-    public Consumer getConsumerDetails(Consumer pseudo ) {
-        // TODO implement here
-        return null;
+    public User getConsumerDetails() {
+        if(isAdmin()){
+            return userDAO.findUser((String) Router.params[0]);
+        } else {
+            return  getUser();
+        }
+
     }
 
     /**

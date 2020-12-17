@@ -26,23 +26,6 @@ public abstract class UserDAO {
     }
 
 
-    /**
-     * @param pseudo
-     * @return
-     */
-    public User find(int pseudo) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param user
-     * @return
-     */
-    public boolean createUser(User user) {
-        // TODO implement here
-        return false;
-    }
 
     /**
      * @param user
@@ -84,12 +67,9 @@ public abstract class UserDAO {
 
     /**
      * @param pseudo
-     * @return
+     * @return User dont le pseudo est passé en paramètres
      */
-    public User find(String pseudo) {
-        // TODO implement here
-        return null;
-    }
+    public abstract User findUser(String pseudo);
 
     /**
      * @return

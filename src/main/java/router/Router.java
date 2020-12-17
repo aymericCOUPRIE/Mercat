@@ -19,7 +19,7 @@ public class Router {
     /**
      * si on veut passer des paramètres en changent de page
      */
-    public Object[] params;
+    public static Object[] params;
 
     /**
      * associer un nom à des chemins
