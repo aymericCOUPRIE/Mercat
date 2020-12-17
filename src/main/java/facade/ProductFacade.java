@@ -1,5 +1,14 @@
 package facade;
 
+import dao.AbstractFactoryDAO;
+import dao.CommentDAO;
+import dao.ProductDAO;
+import dao.RateDAO;
+import model.Comment;
+import model.Consumer;
+import model.Product;
+import model.Rate;
+
 import java.util.*;
 
 /**
@@ -51,7 +60,7 @@ public class ProductFacade {
      * @param rate 
      * @return
      */
-    public boolean addRate(consumer Consumer, int rate) {
+    public boolean addRate(Consumer Consumer, int rate) {
         // TODO implement here
         return false;
     }
@@ -61,7 +70,7 @@ public class ProductFacade {
      * @param comment 
      * @return
      */
-    public boolean addComment(consumer consumer, string comment) {
+    public boolean addComment(Consumer consumer, String comment) {
         // TODO implement here
         return false;
     }
@@ -71,7 +80,7 @@ public class ProductFacade {
      * @param comment 
      * @return
      */
-    public boolean updateComment(consumer consumer, string comment) {
+    public boolean updateComment(Consumer consumer, String comment) {
         // TODO implement here
         return false;
     }
@@ -80,7 +89,7 @@ public class ProductFacade {
      * @param consumer 
      * @return
      */
-    public boolean deleteComment(consumer consumer) {
+    public boolean deleteComment(Consumer consumer) {
         // TODO implement here
         return false;
     }
@@ -109,9 +118,8 @@ public class ProductFacade {
      * @param idCategory 
      * @return
      */
-    public void createProduct(string nameProduct, String description, float price, String picture, int idCategory) {
+    public void createProduct(String nameProduct, String description, float price, String picture, int idCategory) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -122,9 +130,8 @@ public class ProductFacade {
      * @param idCategory 
      * @return
      */
-    public void updateProduct(string nameProduct, String description, float price, String picture, int idCategory) {
+    public void updateProduct(String nameProduct, String description, float price, String picture, int idCategory) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -133,7 +140,6 @@ public class ProductFacade {
      */
     public void deleteProduct(int idProduct) {
         // TODO implement here
-        return null;
     }
 
     /**

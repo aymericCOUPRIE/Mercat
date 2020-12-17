@@ -1,5 +1,7 @@
 package controller;
 
+import facade.UserFacade;
+
 import java.util.*;
 
 /**
@@ -33,7 +35,6 @@ public class HandleSellersController {
      */
     public void updateSeller(String pseudo) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -42,7 +43,6 @@ public class HandleSellersController {
      */
     public void deleteSeller(String pseudo) {
         // TODO implement here
-        return null;
     }
 
 }

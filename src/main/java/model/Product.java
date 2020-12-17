@@ -69,7 +69,6 @@ public class Product {
      */
     public void setNameProduct(String name) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -86,7 +85,6 @@ public class Product {
      */
     public void setPriceProduct(float price) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -103,7 +101,6 @@ public class Product {
      */
     public void setPictureProduct(String url) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -120,7 +117,6 @@ public class Product {
      */
     public void setIdCategorie(int categ) {
         // TODO implement here
-        return null;
     }
 
     /**

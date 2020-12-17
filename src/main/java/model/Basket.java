@@ -46,7 +46,6 @@ public class Basket {
      */
     public void setQuantity(int qte) {
         // TODO implement here
-        return null;
     }
 
     /**

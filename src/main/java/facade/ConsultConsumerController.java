@@ -16,7 +16,7 @@ public class ConsultConsumerController {
     /**
      * 
      */
-    private void userFacade;
+    private UserFacade userFacade;
 
 
     /**
@@ -24,7 +24,6 @@ public class ConsultConsumerController {
      */
     public void displayInformation() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -32,7 +31,6 @@ public class ConsultConsumerController {
      */
     public void deleteAccount() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -40,7 +38,6 @@ public class ConsultConsumerController {
      */
     public void updateInformation() {
         // TODO implement here
-        return null;
     }
 
 }

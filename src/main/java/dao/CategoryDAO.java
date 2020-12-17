@@ -1,5 +1,8 @@
 package dao;
 
+import model.Category;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -24,13 +27,12 @@ public class CategoryDAO {
      */
     public void getCategory(int id) {
         // TODO implement here
-        return null;
     }
 
     /**
      * @return
      */
-    public Set<void> getAllCategory() {
+    public Set<Category> getAllCategory() {
         // TODO implement here
         return null;
     }

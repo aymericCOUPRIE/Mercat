@@ -1,11 +1,14 @@
 package dao;
 
+import model.Product;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
  * 
  */
-public class ProductDAO extends ProductDAOMySQL {
+public class ProductDAO {
 
     /**
      * Default constructor

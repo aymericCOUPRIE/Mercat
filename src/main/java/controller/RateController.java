@@ -1,5 +1,7 @@
 package controller;
 
+import facade.ProductFacade;
+
 import java.util.*;
 
 /**
@@ -16,7 +18,7 @@ public class RateController {
     /**
      * 
      */
-    public ProductFacade facade;
+    private ProductFacade facade;
 
 
 
@@ -25,7 +27,6 @@ public class RateController {
      */
     public void addRate() {
         // TODO implement here
-        return null;
     }
 
     /**

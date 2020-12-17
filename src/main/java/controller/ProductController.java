@@ -1,5 +1,7 @@
 package controller;
 
+import facade.BasketFacade;
+
 import java.util.*;
 
 /**
@@ -18,10 +20,6 @@ public class ProductController {
      */
     private BasketFacade basketFacade;
 
-    /**
-     * 
-     */
-    public void Attribute1;
 
 
 
@@ -30,7 +28,6 @@ public class ProductController {
      */
     public void addToBasket() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -38,7 +35,6 @@ public class ProductController {
      */
     public void addProduct() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -46,7 +42,6 @@ public class ProductController {
      */
     public void deleteProduct() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -54,7 +49,6 @@ public class ProductController {
      */
     public void updateProduct() {
         // TODO implement here
-        return null;
     }
 
 }

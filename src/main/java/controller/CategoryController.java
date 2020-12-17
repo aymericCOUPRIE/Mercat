@@ -1,5 +1,7 @@
 package controller;
 
+import facade.UserFacade;
+
 import java.util.*;
 
 /**
@@ -24,7 +26,6 @@ public class CategoryController {
      */
     public void createCategory() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -32,7 +33,6 @@ public class CategoryController {
      */
     public void deleteCategory() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -40,7 +40,6 @@ public class CategoryController {
      */
     public void updateCategory() {
         // TODO implement here
-        return null;
     }
 
 }

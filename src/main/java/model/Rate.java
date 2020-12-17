@@ -49,7 +49,6 @@ public class Rate {
      */
     public void setRate(int rate) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -66,7 +65,6 @@ public class Rate {
      */
     public void setPseudoConsumer(Consumer pseudo) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -83,15 +81,14 @@ public class Rate {
      */
     public void setPseudoSeller(Seller pseudo) {
         // TODO implement here
-        return null;
     }
 
     /**
      * @return
      */
-    public Int getIdProduct() {
+    public int getIdProduct() {
         // TODO implement here
-        return null;
+        return 0;
     }
 
     /**
@@ -100,7 +97,6 @@ public class Rate {
      */
     public void setIdProduct(int id) {
         // TODO implement here
-        return null;
     }
 
 }
