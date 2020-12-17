@@ -1,5 +1,8 @@
 package dao;
 
+import model.Order;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -43,7 +46,7 @@ public class OrderDAO {
      * @param order 
      * @return
      */
-    public boolean createOrder(void order) {
+    public boolean createOrder(Order order) {
         // TODO implement here
         return false;
     }

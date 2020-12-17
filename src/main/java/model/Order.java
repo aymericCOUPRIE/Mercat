@@ -64,7 +64,6 @@ public class Order {
      */
     public void setQuantity(int quantity) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -81,7 +80,6 @@ public class Order {
      */
     public void setDateOrder(Date dateOrder) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -98,7 +96,6 @@ public class Order {
      */
     public void setDeliveryDate(Date deliveryDate) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -115,7 +112,6 @@ public class Order {
      */
     public void setStateOrder(Date stateDate) {
         // TODO implement here
-        return null;
     }
 
     /**

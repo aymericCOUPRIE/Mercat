@@ -1,5 +1,8 @@
 package facade;
 
+import dao.AbstractFactoryDAO;
+import model.Category;
+
 import java.util.*;
 
 /**
@@ -16,7 +19,7 @@ public class CategoryFacade {
     /**
      * 
      */
-    private Categgory categoryDAO;
+    private Category categoryDAO;
 
     /**
      * 
@@ -45,7 +48,6 @@ public class CategoryFacade {
      */
     public void createCategory(String nameCategory) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -55,7 +57,6 @@ public class CategoryFacade {
      */
     public void updateCategory(String newNameCategory, String nameCategory) {
         // TODO implement here
-        return null;
     }
 
 }

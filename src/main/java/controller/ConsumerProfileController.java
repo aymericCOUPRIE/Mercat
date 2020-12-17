@@ -1,5 +1,8 @@
 package controller;
 
+import facade.UserFacade;
+import model.Consumer;
+
 import java.util.*;
 
 /**

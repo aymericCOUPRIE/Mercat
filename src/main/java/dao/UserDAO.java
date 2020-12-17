@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public abstract class UserDAO {
     /**
@@ -18,13 +18,12 @@ public abstract class UserDAO {
 
     /**
      * Default constructor
+     *
      * @param connect
      */
     public UserDAO(Connection connect) {
         this.connect = connect;
     }
-
-
 
 
     /**
@@ -37,7 +36,7 @@ public abstract class UserDAO {
     }
 
     /**
-     * @param user 
+     * @param user
      * @return
      */
     public boolean createUser(User user) {
@@ -46,7 +45,7 @@ public abstract class UserDAO {
     }
 
     /**
-     * @param user 
+     * @param user
      * @return
      */
     public boolean deleteUser(User user) {
@@ -55,7 +54,7 @@ public abstract class UserDAO {
     }
 
     /**
-     * @param user 
+     * @param user
      * @return
      */
     public boolean updateUser(User user) {
@@ -65,7 +64,7 @@ public abstract class UserDAO {
 
     /**
      * @param pseudo
-     * @param password 
+     * @param password
      * @return User qui vient de se connecter ou null si connection non réussi cad mauvais pseudo ou mdp
      */
     public abstract User login(String pseudo, String password);
@@ -82,5 +81,30 @@ public abstract class UserDAO {
      * @return True si register réussi ou false si erreur
      */
     public abstract boolean createSeller(Seller user);
+
+    /**
+     * @param pseudo
+     * @return
+     */
+    public User find(String pseudo) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllSellersPseudo() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllConsumer() {
+        // TODO implement here
+        return null;
+    }
 
 }

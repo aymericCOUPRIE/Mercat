@@ -1,5 +1,10 @@
 package controller;
 
+import facade.BasketFacade;
+import facade.OrderFacade;
+import model.Basket;
+import model.Product;
+
 import java.util.*;
 
 /**
@@ -42,7 +47,6 @@ public class BasketController {
      */
     public void updateBasket(int idProduct, int quantity) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -51,7 +55,6 @@ public class BasketController {
      */
     public void deleteBasket(int idProduct) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -77,7 +80,6 @@ public class BasketController {
      */
     public void createOrder(Set<Basket> baskets) {
         // TODO implement here
-        return null;
     }
 
 }

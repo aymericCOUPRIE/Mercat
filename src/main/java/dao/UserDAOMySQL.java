@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 
 /**
  *
@@ -174,5 +175,23 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
+
+
+    /**
+     * @return
+     */
+    public Set<String> getAllSellersPseudo() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllConsumer() {
+        // TODO implement here
+        return null;
+    }
+
 }
 

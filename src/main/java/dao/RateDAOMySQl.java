@@ -1,5 +1,9 @@
 package dao;
 
+import model.Consumer;
+import model.Product;
+import model.Rate;
+
 import java.util.*;
 
 /**
@@ -19,7 +23,7 @@ public class RateDAOMySQl extends RateDAO {
      * @param rate 
      * @return
      */
-    public boolean createRateProduct(product product, consummer consumer, int rate) {
+    public boolean createRateProduct(Product product, Consumer consumer, int rate) {
         // TODO implement here
         return false;
     }
@@ -28,7 +32,7 @@ public class RateDAOMySQl extends RateDAO {
      * @param product 
      * @return
      */
-    public Set<Rate> getAllRatesProduct(product product) {
+    public Set<Rate> getAllRatesProduct(Product product) {
         // TODO implement here
         return null;
     }

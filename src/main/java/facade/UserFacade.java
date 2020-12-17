@@ -110,5 +110,63 @@ public class UserFacade {
         return this.user;
     }
 
+    /**
+     * @return
+     */
+    public boolean isAdmin() {
+        // TODO implement here
+        return false;
+    }
+
+    /**
+     * @param pseudo
+     * @return
+     */
+    public Seller getSellerDetails(String pseudo) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllSellersPseudo() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param pseudo
+     * @return
+     */
+    public void deleteSeller(String pseudo) {
+        // TODO implement here
+    }
+
+    /**
+     * @param pseudo
+     * @return
+     */
+    public Consumer getConsumerDetails(Consumer pseudo ) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllConsumerPseudo() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @param consumer
+     * @return
+     */
+    public void deleteConsumer(Consumer consumer) {
+        // TODO implement here
+    }
+
 
 }

@@ -16,9 +16,25 @@ public class HomePageController {
     }
 
     /**
-     * 
+     *
      */
     private UserFacade userFacade;
+
+    /**
+     *
+     */
+    //private SearchFacade searchFacade;
+
+
+
+
+
+    /**
+     * @return
+     */
+    public void search() {
+        // TODO implement here
+    }
 
 
 }

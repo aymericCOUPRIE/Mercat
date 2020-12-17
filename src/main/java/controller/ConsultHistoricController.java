@@ -1,5 +1,8 @@
 package controller;
 
+import facade.OrderFacade;
+import model.Order;
+
 import java.util.*;
 
 /**
@@ -25,7 +28,6 @@ public class ConsultHistoricController {
      */
     public void getOrderDetails(Order order ) {
         // TODO implement here
-        return null;
     }
 
     /**

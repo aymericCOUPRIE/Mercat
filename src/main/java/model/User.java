@@ -52,16 +52,18 @@ public class User {
      */
     private String pictureUser;
 
+
+    /**
+     *
+     */
+    private String phoneNumber;
+
     /**
      *
      */
     private String role;
 
 
-    /**
-     *
-     */
-    private String phoneNumber;
 
     /**
      * @param login
@@ -219,6 +221,7 @@ public class User {
                 ", city='" + city + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", pictureUser='" + pictureUser + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

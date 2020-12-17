@@ -5,7 +5,7 @@ import dataBase.MySQLConnection;
 import java.sql.Connection;
 
 /**
- * 
+ *
  */
 public class DAOFactoryMySQL extends AbstractFactoryDAO {
 
@@ -19,15 +19,62 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     }
 
 
-
-
-
     /**
      * Retourne un objet classe interagissant avec la BDD
+     *
      * @return UserDAO
      */
     public UserDAO createUserDAO() {
         return new UserDAOMySQL(connect);
+    }
+
+    /**
+     * @return
+     */
+    public BasketDAO createBasketDAO() {
+        // TODO implement here
+        return null;
+    }
+
+
+    /**
+     * @return
+     */
+    public RateDAO createRateDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public CommentDAO createCommentDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public OrderDAO createOrderDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public ProductDAO createProductDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public CategoryDAO createCategoryDAO() {
+        // TODO implement here
+        return null;
     }
 
 }

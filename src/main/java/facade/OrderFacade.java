@@ -1,5 +1,10 @@
 package facade;
 
+import dao.AbstractFactoryDAO;
+import dao.OrderDAO;
+import model.Basket;
+import model.Order;
+
 import java.util.*;
 
 /**
@@ -16,12 +21,12 @@ public class OrderFacade {
     /**
      * 
      */
-    private void orderDAO;
+    private OrderDAO orderDAO;
 
     /**
      * 
      */
-    private AbstractFacotryDAO af;
+    private AbstractFactoryDAO af;
 
 
 
@@ -38,9 +43,8 @@ public class OrderFacade {
      * @param order 
      * @return
      */
-    public void getOrderDetails(void order) {
+    public void getOrderDetails(Order order) {
         // TODO implement here
-        return null;
     }
 
     /**

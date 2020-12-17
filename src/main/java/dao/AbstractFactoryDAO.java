@@ -23,6 +23,54 @@ public abstract class AbstractFactoryDAO {
      */
     public abstract UserDAO createUserDAO();
 
-   
+    /**
+     * @return
+     */
+    public BasketDAO createBasketDAO() {
+        // TODO implement here
+        return null;
+    }
+
+
+    /**
+     * @return
+     */
+    public RateDAO createRateDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public CommentDAO createCommentDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public OrderDAO createOrderDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public ProductDAO createProductDAO() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * @return
+     */
+    public CategoryDAO createCategoryDAO() {
+        // TODO implement here
+        return null;
+    }
+
 
 }

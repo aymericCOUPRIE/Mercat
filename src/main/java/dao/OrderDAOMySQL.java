@@ -1,5 +1,7 @@
 package dao;
 
+import model.Order;
+
 import java.util.*;
 
 /**
@@ -26,7 +28,7 @@ public class OrderDAOMySQL extends OrderDAO {
      * @param order 
      * @return
      */
-    public boolean createOrder(void order) {
+    public boolean createOrder(Order order) {
         // TODO implement here
         return false;
     }

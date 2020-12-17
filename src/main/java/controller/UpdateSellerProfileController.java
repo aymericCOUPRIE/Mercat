@@ -1,5 +1,8 @@
 package controller;
 
+import facade.UserFacade;
+import model.Seller;
+
 import java.util.*;
 
 /**
@@ -33,7 +36,6 @@ public class UpdateSellerProfileController {
      */
     public void updateSeller(Seller seller) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -41,7 +43,6 @@ public class UpdateSellerProfileController {
      */
     public void deleteAccount() {
         // TODO implement here
-        return null;
     }
 
 }
