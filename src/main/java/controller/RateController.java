@@ -1,13 +1,30 @@
 package controller;
 
 import facade.ProductFacade;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import router.Router;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
  * 
  */
 public class RateController {
+
+    @FXML
+    private Button btnSubmitRate;
+
+    @FXML
+    private TextField txtRate;
+
+
+
+
+
 
     /**
      * Default constructor
@@ -23,10 +40,12 @@ public class RateController {
 
 
     /**
-     * @return
+     *  Method used by btnLogin from Java FX
+     * It permits to go to the page to sign up
      */
-    public void addRate() {
-        // TODO implement here
+    @FXML
+    public void addRate(ActionEvent e) throws IOException {
+        Router.getInstance().activate("Rate_Seller");
     }
 
     /**

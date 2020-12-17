@@ -73,7 +73,7 @@
                   <Font name="Arial Black" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btnSubmitRate" layoutX="677.0" layoutY="336.0" mnemonicParsing="false" onAction="#setRate" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="btnSubmitRate" layoutX="677.0" layoutY="336.0" mnemonicParsing="false" onAction="#addRate" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
