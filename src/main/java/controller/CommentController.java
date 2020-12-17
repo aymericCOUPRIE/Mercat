@@ -1,5 +1,7 @@
 package controller;
 
+import facade.ProductFacade;
+
 import java.util.*;
 
 /**
@@ -24,7 +26,6 @@ public class CommentController {
      */
     public void addComment() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -32,7 +33,6 @@ public class CommentController {
      */
     public void updateComment() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -40,7 +40,6 @@ public class CommentController {
      */
     public void deleteComment() {
         // TODO implement here
-        return null;
     }
 
 }

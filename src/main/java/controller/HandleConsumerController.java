@@ -1,5 +1,8 @@
 package controller;
 
+import facade.UserFacade;
+import model.Consumer;
+
 import java.util.*;
 
 /**
@@ -16,7 +19,7 @@ public class HandleConsumerController {
     /**
      * 
      */
-    public UserFacade userFacade;
+    private UserFacade userFacade;
 
 
     /**
@@ -33,7 +36,6 @@ public class HandleConsumerController {
      */
     public void updateConsumer(Consumer pseudo) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -42,7 +44,6 @@ public class HandleConsumerController {
      */
     public void daleteConsumer(String pseudo) {
         // TODO implement here
-        return null;
     }
 
 }

@@ -1,5 +1,7 @@
 package dao;
 
+import model.Basket;
+
 import java.util.*;
 
 /**

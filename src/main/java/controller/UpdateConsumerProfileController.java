@@ -1,5 +1,7 @@
 package controller;
 
+import facade.UserFacade;
+
 import java.util.*;
 
 /**
@@ -16,7 +18,7 @@ public class UpdateConsumerProfileController {
     /**
      * 
      */
-    private void userFacade;
+    private UserFacade userFacade;
 
 
     /**
@@ -24,7 +26,6 @@ public class UpdateConsumerProfileController {
      */
     public void displayInformation() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -32,7 +33,6 @@ public class UpdateConsumerProfileController {
      */
     public void deleteAccount() {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -40,7 +40,6 @@ public class UpdateConsumerProfileController {
      */
     public void updateInformation() {
         // TODO implement here
-        return null;
     }
 
 }

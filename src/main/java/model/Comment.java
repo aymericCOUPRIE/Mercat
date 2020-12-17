@@ -16,7 +16,7 @@ public class Comment {
     /**
      * 
      */
-    private string comment;
+    private String comment;
 
     /**
      * 
@@ -44,7 +44,6 @@ public class Comment {
      */
     public void setRate(String comment) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -53,24 +52,6 @@ public class Comment {
     public int getIdProduct() {
         // TODO implement here
         return 0;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public void setIdProduct(int id) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public void setIdProduct(int id) {
-        // TODO implement here
-        return null;
     }
 
     /**
@@ -87,7 +68,6 @@ public class Comment {
      */
     public void setPseudoConsumer(Consumer pseudo) {
         // TODO implement here
-        return null;
     }
 
 }

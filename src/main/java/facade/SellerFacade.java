@@ -1,5 +1,10 @@
 package facade;
 
+import dao.AbstractFactoryDAO;
+import dao.RateDAO;
+import model.Consumer;
+import model.Seller;
+
 import java.util.*;
 
 /**
@@ -16,7 +21,7 @@ public class SellerFacade {
     /**
      * 
      */
-    private rateDAO rateDAO;
+    private RateDAO rateDAO;
 
     /**
      * 
@@ -39,7 +44,7 @@ public class SellerFacade {
      * @param rate 
      * @return
      */
-    public boolean AddRate(consummer Consumer, int rate) {
+    public boolean AddRate(Consumer Consumer, int rate) {
         // TODO implement here
         return false;
     }

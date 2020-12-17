@@ -1,5 +1,11 @@
 package dao;
 
+import model.Consumer;
+import model.Product;
+import model.Rate;
+import model.Seller;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -25,7 +31,7 @@ public class RateDAO {
      * @param rate 
      * @return
      */
-    public boolean createRateProduct(product product, consummer consumer, int rate) {
+    public boolean createRateProduct(Product product, Consumer consumer, int rate) {
         // TODO implement here
         return false;
     }
@@ -36,7 +42,7 @@ public class RateDAO {
      * @param rate 
      * @return
      */
-    public boolean updateRate(product product, consummer consumer, int rate) {
+    public boolean updateRate(Product product, Consumer consumer, int rate) {
         // TODO implement here
         return false;
     }
@@ -46,7 +52,7 @@ public class RateDAO {
      * @param consumer 
      * @return
      */
-    public boolean deleteRate(product product, consummer consumer) {
+    public boolean deleteRate(Product product, Consumer consumer) {
         // TODO implement here
         return false;
     }
@@ -55,7 +61,7 @@ public class RateDAO {
      * @param product 
      * @return
      */
-    public Set<Rate> getAllRatesProduct(product product) {
+    public Set<Rate> getAllRatesProduct(Product product) {
         // TODO implement here
         return null;
     }
@@ -66,7 +72,7 @@ public class RateDAO {
      * @param rate 
      * @return
      */
-    public boolean createRateSeller(seller seller, consummer consumer, int rate) {
+    public boolean createRateSeller(Seller seller, Consumer consumer, int rate) {
         // TODO implement here
         return false;
     }
@@ -75,7 +81,7 @@ public class RateDAO {
      * @param seller 
      * @return
      */
-    public Set<Rate> getAllRatesSeller(seller seller) {
+    public Set<Rate> getAllRatesSeller(Seller seller) {
         // TODO implement here
         return null;
     }

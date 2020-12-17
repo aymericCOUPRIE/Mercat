@@ -1,5 +1,9 @@
 package facade;
 
+import dao.AbstractFactoryDAO;
+import dao.BasketDAO;
+import model.Basket;
+
 import java.util.*;
 
 /**
@@ -48,7 +52,6 @@ public class BasketFacade {
      */
     public void updateBasket(int idProduct, int quantity) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -57,7 +60,6 @@ public class BasketFacade {
      */
     public void deleteBasket(int idProduct) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -66,7 +68,6 @@ public class BasketFacade {
      */
     public void addToBasket(int idProduct) {
         // TODO implement here
-        return null;
     }
 
 }

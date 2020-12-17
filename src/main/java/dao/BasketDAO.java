@@ -1,5 +1,8 @@
 package dao;
 
+import model.Basket;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**

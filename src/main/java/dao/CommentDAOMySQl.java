@@ -1,5 +1,9 @@
 package dao;
 
+import model.Comment;
+import model.Consumer;
+import model.Product;
+
 import java.util.*;
 
 /**
@@ -19,7 +23,7 @@ public class CommentDAOMySQl extends CommentDAO {
      * @param comment 
      * @return
      */
-    public boolean createComment(product product, consumer consumer, string comment) {
+    public boolean createComment(Product product, Consumer consumer, String comment) {
         // TODO implement here
         return false;
     }
@@ -30,7 +34,7 @@ public class CommentDAOMySQl extends CommentDAO {
      * @param comment 
      * @return
      */
-    public boolean updateComment(product product, consumer consumer, string comment) {
+    public boolean updateComment(Product product, Consumer consumer, String comment) {
         // TODO implement here
         return false;
     }
@@ -40,7 +44,7 @@ public class CommentDAOMySQl extends CommentDAO {
      * @param consumer 
      * @return
      */
-    public boolean deleteComment(product product, consumer consumer) {
+    public boolean deleteComment(Product product, Consumer consumer) {
         // TODO implement here
         return false;
     }
@@ -49,7 +53,7 @@ public class CommentDAOMySQl extends CommentDAO {
      * @param product 
      * @return
      */
-    public Set<Comment> getAllComments(product product) {
+    public Set<Comment> getAllComments(Product product) {
         // TODO implement here
         return null;
     }

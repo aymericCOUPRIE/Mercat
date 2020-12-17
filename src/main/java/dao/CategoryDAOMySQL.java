@@ -1,5 +1,7 @@
 package dao;
 
+import model.Category;
+
 import java.util.*;
 
 /**
@@ -19,13 +21,12 @@ public class CategoryDAOMySQL extends CategoryDAO {
      */
     public void getCategory(int id) {
         // TODO implement here
-        return null;
     }
 
     /**
      * @return
      */
-    public Set<void> getAllCategory() {
+    public Set<Category> getAllCategory() {
         // TODO implement here
         return null;
     }
