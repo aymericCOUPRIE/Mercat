@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class UserFacade {
 
-    private User user;
+    private static User user;
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private UserDAO userDAO = af.createUserDAO();
 
@@ -43,8 +43,8 @@ public class UserFacade {
      * Get user loged
      * @return user
      */
-    public User getUser(){
-        return this.user;
+    public static User getUser(){
+        return user;
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserFacade {
      * @return boolean, true si l'utilisateur est connecté
      */
     public boolean isConnected() {
-        return this.user != null;
+        return user != null;
     }
 
     /**
@@ -108,22 +108,27 @@ public class UserFacade {
      * @param newUser attribue à la façade le user qui vient de se connecter
      */
     public void setConnectedUser(User newUser) {
-        this.user = newUser;
+        user = newUser;
     }
 
     /**
      * @return User qui est connecté en ce moment
      */
     public User getConnectedUser() {
-        return this.user;
+        return user;
     }
 
     /**
      * @return boolean true if the current user is an admin, else false
      */
-    public boolean isAdmin() {
+    public static boolean isAdmin() {
        return getUser().getRole().equals("admin");
     }
+
+    /**
+     * @return boolean true if the current user is a seller, else false
+     */
+    public static boolean isSeller(){ return getUser().getRole().equals("seller");}
 
     /**
      * @param pseudo
@@ -151,7 +156,7 @@ public class UserFacade {
     }
 
     /**
-     * @param pseudo
+     * this method is used to get all the informations about a consumer
      * @return User
      */
     public User getConsumerDetails() {

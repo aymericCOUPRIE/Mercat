@@ -3,6 +3,7 @@ package controller;
 import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Consumer;
@@ -14,7 +15,7 @@ import java.util.*;
  */
 public class UpdateConsumerProfileController {
     @FXML
-    private TextField txtPseudo;
+    private Label txtPseudo;
     @FXML
     private TextField txtFirstname;
     @FXML
@@ -95,7 +96,7 @@ public class UpdateConsumerProfileController {
         txtFirstname.setText(c.getFirstName());
         txtLastname.setText(c.getLastName());
         txtEmailAdress.setText(c.getEmailAddress());
-        //on affiche pas le mdp du moment
+        txtPassword.setText("*****");
         txtPhoneNumber.setText(c.getPhoneNumber());
         txtStreetAdress.setText(c.getStreetAddress());
         txtCity.setText(c.getCity());
