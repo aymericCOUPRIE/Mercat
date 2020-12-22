@@ -45,6 +45,7 @@
                   <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
+            <Label fx:id="errorText" textFill="#f80303" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <GridPane prefHeight="638.0" prefWidth="999.0">
@@ -137,7 +138,19 @@
                         <Insets left="20.0" right="20.0" top="20.0" />
                     </GridPane.margin>
                 </TextField>
-
+                <Button fx:id="btnUpdateConsumer" mnemonicParsing="false" onAction="#updateConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                    <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                            <stops>
+                                <Stop color="WHITE" />
+                                <Stop color="WHITE" offset="1.0" />
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
             </children>
         </GridPane>
     </children>

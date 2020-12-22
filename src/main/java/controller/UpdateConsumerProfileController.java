@@ -36,6 +36,8 @@ public class UpdateConsumerProfileController {
     private Button btnUpdateConsumer;
     @FXML
     private Button btnDeleteConsumer;
+    @FXML
+    private Label errorText;
 
     //Configuration
     private String pseudo;
@@ -47,6 +49,7 @@ public class UpdateConsumerProfileController {
     private String street;
     private String postal;
     private String city;
+    private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
     /**
      * Default constructor
      */
@@ -81,8 +84,21 @@ public class UpdateConsumerProfileController {
      *  It permit to update some information about the consumer in the dataBase
      * @param
      */
-    public void updateInformation() {
-        // TODO implement here
+    public void updateConsumer() {
+
+        pseudo = txtPseudo.getText();
+        password = txtPassword.getText();
+        firstName = txtFirstname.getText();
+        lastName = txtLastname.getText();
+        email = txtEmailAdress.getText();
+        phoneNumber = txtPhoneNumber.getText();
+        street = txtStreetAdress.getText();
+        postal = txtPostal.getText();
+        city = txtCity.getText();
+        //pas besoin de vérifier si champs vides car remplis par défaut
+       if(userFacade.updateUser(pseudo,firstName,lastName,password,OldPassword,email,street,city,postal,phoneNumber)){
+           display("Your profil has been updated !");
+        }
     }
 
     /**
@@ -96,12 +112,24 @@ public class UpdateConsumerProfileController {
         txtFirstname.setText(c.getFirstName());
         txtLastname.setText(c.getLastName());
         txtEmailAdress.setText(c.getEmailAddress());
-        txtPassword.setText("*****");
+        txtPassword.setText(c.getPassword());
+        OldPassword = c.getPassword();
         txtPhoneNumber.setText(c.getPhoneNumber());
         txtStreetAdress.setText(c.getStreetAddress());
         txtCity.setText(c.getCity());
         txtPostal.setText(c.getPostalCode());
+        errorText.setText("");
 
+    }
+
+    /**
+     * It allows to display an error message on the user interface
+     * @param msg
+     */
+    @FXML
+    public void display(String msg)
+    {
+        errorText.setText(msg);
     }
 
 }

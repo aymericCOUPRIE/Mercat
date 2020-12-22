@@ -36,14 +36,7 @@ public abstract class UserDAO {
         return false;
     }
 
-    /**
-     * @param user
-     * @return
-     */
-    public boolean updateUser(User user) {
-        // TODO implement here
-        return false;
-    }
+
 
     /**
      * @param pseudo
@@ -70,6 +63,11 @@ public abstract class UserDAO {
      * @return User dont le pseudo est passé en paramètres
      */
     public abstract User findUser(String pseudo);
+
+    /**
+     *
+     */
+   public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
 
     /**
      * @return

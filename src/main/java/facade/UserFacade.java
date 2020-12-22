@@ -39,13 +39,7 @@ public class UserFacade {
     public UserFacade() {
     }
 
-    /**
-     * Get user loged
-     * @return user
-     */
-    public static User getUser(){
-        return user;
-    }
+
 
     /**
      * @param pseudo
@@ -59,7 +53,7 @@ public class UserFacade {
      * @return
      */
     public boolean signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
-        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","", phoneNumber);
+        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","consumer", phoneNumber);
         return userDAO.createConsumer(userConsumer);
     }
 
@@ -92,16 +86,23 @@ public class UserFacade {
      * @return
      */
     public boolean signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String companyName) {
-        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","", phoneNumber, companyName);
+        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","seller", phoneNumber, companyName);
         return userDAO.createSeller(userSeller);
     }
 
     /**
-     * @param user
+     * @param
      * @return
      */
-    public void updateUser(User user) {
-        // TODO implement here
+    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
+        if(isSeller()){
+            //flo ton code pour modifier un seller
+            return false; //a enlever
+        }else{//je suis un consumer ou un admin
+
+            return userDAO.updateConsumer( pseudo,firstName, lastName, password,OldPassword, emailAdress, streetAddress, city, postalCode,phoneNumber);
+        }
+
     }
 
     /**
@@ -114,7 +115,7 @@ public class UserFacade {
     /**
      * @return User qui est connecté en ce moment
      */
-    public User getConnectedUser() {
+    public static User getConnectedUser() {
         return user;
     }
 
@@ -122,13 +123,13 @@ public class UserFacade {
      * @return boolean true if the current user is an admin, else false
      */
     public static boolean isAdmin() {
-       return getUser().getRole().equals("admin");
+       return getConnectedUser().getRole().equals("admin");
     }
 
     /**
      * @return boolean true if the current user is a seller, else false
      */
-    public static boolean isSeller(){ return getUser().getRole().equals("seller");}
+    public static boolean isSeller(){ return getConnectedUser().getRole().equals("seller");}
 
     /**
      * @param pseudo
@@ -163,7 +164,7 @@ public class UserFacade {
         if(isAdmin()){
             return userDAO.findUser((String) Router.params[0]);
         } else {
-            return  getUser();
+            return  getConnectedUser();
         }
 
     }

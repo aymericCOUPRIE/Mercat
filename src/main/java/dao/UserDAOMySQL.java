@@ -1,6 +1,5 @@
 package dao;
 
-import dataBase.MySQLConnection;
 import facade.PasswordSecured;
 import model.Consumer;
 import model.Seller;
@@ -63,14 +62,7 @@ public class UserDAOMySQL extends UserDAO {
         return false;
     }
 
-    /**
-     * @param user
-     * @return
-     */
-    public boolean updateUser(User user) {
-        // TODO implement here
-        return false;
-    }
+
 
     /**
      * @param pseudo
@@ -198,7 +190,36 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
+    /**
+     * Update information in the database about a consumer
+     * @param pseudo,firstName,lastName,password,OldPassword,emailAdress,streetAddress,city,postalCode,phoneNumber
+     * @return
+     */
+    public boolean updateConsumer(String pseudo,String firstName, String lastName, String password,String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber){
 
+        if(!OldPassword.equals(password)) { //j'ai changé de mdp
+            password = PasswordSecured.hash(password);
+        }
+
+        String requete =" UPDATE User SET firstName = ?,lastName = ? ,password = ?,emailAddress = ?,streetAddress = ?,city = ?,postalCode = ? ,phoneNumber = ?  WHERE pseudo = ?";
+         try{
+             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+             preparedStatement.setString(1,firstName);
+             preparedStatement.setString(2,lastName);
+             preparedStatement.setString(3,password);
+             preparedStatement.setString(4,emailAdress);
+             preparedStatement.setString(5,streetAddress);
+             preparedStatement.setString(6,city);
+             preparedStatement.setString(7,postalCode);
+             preparedStatement.setString(8,phoneNumber);
+             preparedStatement.setString(9,pseudo);
+
+             return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
+         }catch (SQLException throwables) {
+             throwables.printStackTrace();
+             return false;
+         }
+    }
 
     /**
      * @return
