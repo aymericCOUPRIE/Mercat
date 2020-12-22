@@ -10,7 +10,7 @@ public class Product {
     /**
      * Default constructor
      */
-    public Product() {
+    public Product(String nameProduct,float priceProduct,String category) {
     }
 
     /**

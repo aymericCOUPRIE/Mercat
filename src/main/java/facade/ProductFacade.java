@@ -119,7 +119,7 @@ public class ProductFacade {
      * @return
      */
     public void createProduct(String nameProduct, String description, float price, String picture, String nameCategory) {
-        // TODO implement here
+        //Product product = new Product(nameProduct,)
     }
 
     /**
