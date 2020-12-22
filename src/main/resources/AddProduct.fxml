@@ -14,6 +14,7 @@
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #0000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateConsumerProfileController">
     <children>
@@ -40,6 +41,7 @@
                         <Font name="Arial Black" size="35.0" />
                     </font>
                 </Label>
+            <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <GridPane prefHeight="638.0" prefWidth="999.0">
@@ -47,8 +49,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.79998779296875" minWidth="0.0" prefWidth="59.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="328.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0000122070313" minWidth="10.0" prefWidth="177.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0" minWidth="10.0" prefWidth="391.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.4000244140625" minWidth="10.0" prefWidth="55.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0" minWidth="10.0" prefWidth="356.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.4000244140625" minWidth="10.0" prefWidth="86.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="55.60001220703125" minHeight="10.0" prefHeight="53.20000305175781" vgrow="SOMETIMES" />
@@ -76,8 +78,8 @@
                     </font>
                 </Label>
 
-                <TextField fx:id="txtFirstname" alignment="CENTER" layoutX="135.0" layoutY="149.0" prefHeight="27.0" prefWidth="183.0" promptText="Your firstname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" />
-                <Button fx:id="btnUpdateConsumer" mnemonicParsing="false" onAction="#updateConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Add a product" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                <TextField fx:id="txtName" alignment="CENTER" layoutX="135.0" layoutY="149.0" prefHeight="27.0" prefWidth="183.0" promptText="Your firstname" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="3" />
+                <Button fx:id="btnAddProduct" mnemonicParsing="false" onAction="#addProduct" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Add a product" GridPane.columnIndex="2" GridPane.rowIndex="9">
                     <textFill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                             <stops>
@@ -90,8 +92,8 @@
                         <Font size="14.0" />
                     </font>
                 </Button>
-            <ChoiceBox prefHeight="26.0" prefWidth="230.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextArea prefHeight="184.0" prefWidth="278.0" promptText="Describe your product" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="txtCategory" prefHeight="26.0" prefWidth="230.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextArea fx:id="txtDescription" prefHeight="184.0" prefWidth="278.0" promptText="Describe your product" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="307.0" text="Description" textAlignment="JUSTIFY" textFill="#1a5276" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="Arial Black" size="25.0" />
@@ -107,9 +109,12 @@
                   <Font name="Arial Black" size="25.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <TextField fx:id="txtPrice" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Label text="€" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <TextField fx:id="txtPrice2" prefHeight="26.0" prefWidth="90.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="centimes" GridPane.columnIndex="4" GridPane.rowIndex="7" />
             </children>
         </GridPane>
+      <TextField fx:id="txtPrice1" prefHeight="26.0" prefWidth="90.0" />
     </children>
 </VBox>

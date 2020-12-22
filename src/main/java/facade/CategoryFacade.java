@@ -3,6 +3,7 @@ package facade;
 import dao.AbstractFactoryDAO;
 import model.Category;
 
+import javax.sound.sampled.BooleanControl;
 import java.util.*;
 
 /**
@@ -10,6 +11,7 @@ import java.util.*;
  */
 public class CategoryFacade {
 
+    private Boolean check;
     /**
      * Default constructor
      */
@@ -59,4 +61,7 @@ public class CategoryFacade {
         // TODO implement here
     }
 
+    public Boolean isGood(){
+        return true;
+    }
 }

@@ -115,10 +115,10 @@ public class ProductFacade {
      * @param description 
      * @param price 
      * @param picture 
-     * @param idCategory 
+     * @param nameCategory
      * @return
      */
-    public void createProduct(String nameProduct, String description, float price, String picture, int idCategory) {
+    public void createProduct(String nameProduct, String description, float price, String picture, String nameCategory) {
         // TODO implement here
     }
 

@@ -1,13 +1,21 @@
 package controller;
 
 import facade.UserFacade;
+import javafx.fxml.FXML;
 
+import java.awt.*;
 import java.util.*;
+
+
+
+
+
 
 /**
  * 
  */
 public class CategoryController {
+
 
     /**
      * Default constructor
@@ -25,7 +33,8 @@ public class CategoryController {
      * @return
      */
     public void createCategory() {
-        // TODO implement here
+
+
     }
 
     /**
