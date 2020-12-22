@@ -54,17 +54,6 @@ public class UserDAOMySQL extends UserDAO {
 
 
     /**
-     * @param user
-     * @return
-     */
-    public boolean deleteUser(User user) {
-        // TODO implement here
-        return false;
-    }
-
-
-
-    /**
      * @param pseudo
      * @param password
      * @return
@@ -219,6 +208,23 @@ public class UserDAOMySQL extends UserDAO {
              throwables.printStackTrace();
              return false;
          }
+    }
+
+    /**
+     * @param pseudo
+     * @return true if the user has been deleted successfully
+     */
+    public boolean deleteUser(String pseudo) {
+        String requete = "DELETE FROM User WHERE pseudo = ?";
+
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,pseudo);
+            return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
 
     /**

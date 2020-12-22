@@ -28,13 +28,11 @@ public abstract class UserDAO {
 
 
     /**
-     * @param user
-     * @return
+     * this methode permite to delete an user from the database
+     * @param pseudo
+     * @return true if the user has been deleted from the database
      */
-    public boolean deleteUser(User user) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteUser(String pseudo);
 
 
 

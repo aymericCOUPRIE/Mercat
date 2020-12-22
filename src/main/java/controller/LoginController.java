@@ -97,7 +97,8 @@ public class LoginController {
      * This methode allows to don't have error message at the begining
      */
     public void initialize() {
-        // TODO Auto-generated method stub
-        errorText.setText("");
+
+            errorText.setText("");
+
     }
 }

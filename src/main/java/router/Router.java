@@ -19,7 +19,7 @@ public class Router {
     /**
      * si on veut passer des paramètres en changent de page
      */
-    public static Object[] params;
+    public  Object[] params;
 
     /**
      * associer un nom à des chemins
@@ -32,8 +32,9 @@ public class Router {
      * Default constructor
      * Respect the Singleton pattern
      */
-    private Router() {
-    }
+    private Router() {}
+
+
     public HashMap<String, String> getScreenMap() {
 
         return screenMap;
@@ -49,10 +50,17 @@ public class Router {
         return instanceRouteur;
     }
 
+    /**
+     *
+     * @return Object[]  the params of the new loaded view
+     */
+    public Object[] getParams() {
+        return this.params;
+    }
 
     /**
      * ajouter un racourci nom pour un chemin
-     * @param name, path
+     * @param name,path
      */
     public void add(String name, String path) {
 
@@ -85,6 +93,8 @@ public class Router {
             e.printStackTrace();
         }
     }
+
+
 
 
 

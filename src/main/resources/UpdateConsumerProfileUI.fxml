@@ -138,7 +138,20 @@
                         <Insets left="20.0" right="20.0" top="20.0" />
                     </GridPane.margin>
                 </TextField>
-                <Button fx:id="btnUpdateConsumer" mnemonicParsing="false" onAction="#updateConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#deleteConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #FF6961; -fx-text-fill: white;" text="Delete account" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="15">
+                    <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                            <stops>
+                                <Stop color="WHITE" />
+                                <Stop color="WHITE" offset="1.0" />
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#updateConsumer" prefHeight="12.0" prefWidth="170.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="15">
                     <textFill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                             <stops>

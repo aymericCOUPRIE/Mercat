@@ -7,8 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Consumer;
+import router.Router;
 
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 
@@ -32,10 +38,6 @@ public class UpdateConsumerProfileController {
     private TextField txtPostal;
     @FXML
     private TextField txtCity;
-    @FXML
-    private Button btnUpdateConsumer;
-    @FXML
-    private Button btnDeleteConsumer;
     @FXML
     private Label errorText;
 
@@ -73,10 +75,23 @@ public class UpdateConsumerProfileController {
     /**
      *  Method used by btnDeleteConsumer from Java FX
      *  It permit to delete the consumer account from the dataBase
-     * @param
+     *
      */
-    public void deleteAccount() {
-        // TODO implement here
+    public void deleteConsumer() {
+        if(userFacade.deleteUser(txtPseudo.getText())){
+
+            display("Your account has been deleted");
+
+            CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(() -> {
+                // Your code here executes after 5 seconds!
+                Router.getInstance().activate("Login");
+            });
+
+        }
+
+        //afficher message bien supprimé
+        //redirection vers quelle page ? acceuil ou connection ?
+        // redirection différente si admin et message
     }
 
     /**
@@ -84,21 +99,14 @@ public class UpdateConsumerProfileController {
      *  It permit to update some information about the consumer in the dataBase
      * @param
      */
+    @FXML
     public void updateConsumer() {
-
-        pseudo = txtPseudo.getText();
-        password = txtPassword.getText();
-        firstName = txtFirstname.getText();
-        lastName = txtLastname.getText();
-        email = txtEmailAdress.getText();
-        phoneNumber = txtPhoneNumber.getText();
-        street = txtStreetAdress.getText();
-        postal = txtPostal.getText();
-        city = txtCity.getText();
         //pas besoin de vérifier si champs vides car remplis par défaut
-       if(userFacade.updateUser(pseudo,firstName,lastName,password,OldPassword,email,street,city,postal,phoneNumber)){
+       if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
            display("Your profil has been updated !");
-        }
+       } else {
+           display("Error !");
+       }
     }
 
     /**

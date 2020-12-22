@@ -129,7 +129,42 @@ public class UserFacade {
     /**
      * @return boolean true if the current user is a seller, else false
      */
-    public static boolean isSeller(){ return getConnectedUser().getRole().equals("seller");}
+    public static boolean isSeller(){
+        return getConnectedUser().getRole().equals("seller");
+    }
+
+    /**
+     * This methode permit to delete an user from the dataBase
+     * It is the same methode for all the kind of user
+     * @param pseudo
+     */
+
+    public boolean deleteUser(String pseudo){
+        return userDAO.deleteUser(pseudo);
+    }
+
+
+
+    /**
+     * this method is used to get all the informations about a consumer
+     * @return User
+     */
+    public User getConsumerDetails() {
+        if(isAdmin()){
+            return userDAO.findUser((String) Router.getInstance().getParams()[0]);
+        } else {
+            return  getConnectedUser();
+        }
+
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAllConsumerPseudo() {
+        // TODO implement here
+        return null;
+    }
 
     /**
      * @param pseudo
@@ -146,43 +181,6 @@ public class UserFacade {
     public Set<String> getAllSellersPseudo() {
         // TODO implement here
         return null;
-    }
-
-    /**
-     * @param pseudo
-     * @return
-     */
-    public void deleteSeller(String pseudo) {
-        // TODO implement here
-    }
-
-    /**
-     * this method is used to get all the informations about a consumer
-     * @return User
-     */
-    public User getConsumerDetails() {
-        if(isAdmin()){
-            return userDAO.findUser((String) Router.params[0]);
-        } else {
-            return  getConnectedUser();
-        }
-
-    }
-
-    /**
-     * @return
-     */
-    public Set<String> getAllConsumerPseudo() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param consumer
-     * @return
-     */
-    public void deleteConsumer(Consumer consumer) {
-        // TODO implement here
     }
 
 
