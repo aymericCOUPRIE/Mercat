@@ -41,16 +41,7 @@ public class UpdateConsumerProfileController {
     @FXML
     private Label errorText;
 
-    //Configuration
-    private String pseudo;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private String street;
-    private String postal;
-    private String city;
+
     private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
     /**
      * Default constructor
@@ -88,10 +79,7 @@ public class UpdateConsumerProfileController {
             });
 
         }
-
-        //afficher message bien supprimé
-        //redirection vers quelle page ? acceuil ou connection ?
-        // redirection différente si admin et message
+        // redirection différente si admin et message diff
     }
 
     /**
@@ -128,6 +116,14 @@ public class UpdateConsumerProfileController {
         txtPostal.setText(c.getPostalCode());
         errorText.setText("");
 
+    }
+
+    /**
+     * Method used by btnBack from Java FX
+    *  It permit to return to the home page
+     */
+    public void back(){
+        Router.getInstance().activate("HomePage");
     }
 
     /**

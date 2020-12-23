@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -226,22 +227,35 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
-
     /**
-     * @return
+     * This methode permite to have the pseudo of user according to their past role in parameters
+     * @param role
+     * @return ArrayList<String>
      */
-    public Set<String> getAllSellersPseudo() {
-        // TODO implement here
-        return null;
+    public ArrayList<String> getAllPseudo(String role) {
+
+        ArrayList <String> listRes = new ArrayList<String>();
+        String requete = "SELECT pseudo FROM User WHERE role = ? ";
+
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,role);
+            ResultSet res = preparedStatement.executeQuery();
+
+           while (res.next()) {
+               listRes.add(res.getString("pseudo"));
+           }
+           return listRes;
+        } catch (SQLException throwables) {
+        throwables.printStackTrace();
+            //je n'ai pas pu executer la requête
+            return null;
+    }
     }
 
-    /**
-     * @return
-     */
-    public Set<String> getAllConsumer() {
-        // TODO implement here
-        return null;
-    }
+
+
+
 
 }
 

@@ -179,7 +179,7 @@ public class SignUpController {
     }
 
 
-    private boolean internVerification() {
+    public boolean internVerification() {
         if(password.length()<8){
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);

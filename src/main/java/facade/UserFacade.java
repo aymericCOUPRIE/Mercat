@@ -161,9 +161,9 @@ public class UserFacade {
     /**
      * @return
      */
-    public Set<String> getAllConsumerPseudo() {
+    public ArrayList<String> getAllConsumerPseudo() {
         // TODO implement here
-        return null;
+        return userDAO.getAllPseudo("consumer");
     }
 
     /**

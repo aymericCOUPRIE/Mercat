@@ -67,20 +67,12 @@ public abstract class UserDAO {
      */
    public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
 
-    /**
-     * @return
-     */
-    public Set<String> getAllSellersPseudo() {
-        // TODO implement here
-        return null;
-    }
 
     /**
-     * @return
+     * This methode permite to have the pseudo of user according to their past role in parameters
+     * @param role
+     * @return ArrayList<String>
      */
-    public Set<String> getAllConsumer() {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<String> getAllPseudo(String role);
 
 }
