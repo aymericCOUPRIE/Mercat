@@ -16,21 +16,30 @@ import java.util.*;
  */
 public class ProductFacade {
 
+    private Product product;
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private ProductDAO productDAO = af.createProductDAO();
+
+    private static ProductFacade instanceProductFacade;
+
+    /**
+     * @return instanceUserFacade
+     **/
+
+    public static ProductFacade getInstanceUserFacade() {
+        if (instanceProductFacade == null) {
+            instanceProductFacade= new ProductFacade();
+        }
+        return instanceProductFacade;
+    }
+
     /**
      * Default constructor
      */
     public ProductFacade() {
     }
 
-    /**
-     * 
-     */
-    private ProductDAO productDAO;
 
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
 
     /**
      * 
@@ -119,7 +128,7 @@ public class ProductFacade {
      * @return
      */
     public void createProduct(String nameProduct, String description, float price, String picture, String nameCategory) {
-        //Product product = new Product(nameProduct,)
+        product = productDAO.createProduct(nameProduct,description,price,nameCategory,picture);
     }
 
     /**

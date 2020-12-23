@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * 
  */
-public class ProductDAO {
+public abstract class ProductDAO {
 
     /**
      * Default constructor
@@ -78,10 +78,7 @@ public class ProductDAO {
      * @param price 
      * @return
      */
-    public boolean createProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract Product createProduct(String nameProduct, String description, float price, String nameCategory,String picture);
 
     /**
      * @param nameProduct 
@@ -89,10 +86,7 @@ public class ProductDAO {
      * @param price 
      * @return
      */
-    public boolean updateProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean updateProduct(String nameProduct, String description, float price);
 
     /**
      * @param nameProduct 
@@ -100,10 +94,7 @@ public class ProductDAO {
      * @param price 
      * @return
      */
-    public boolean deleteProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteProduct(String nameProduct, String description, float price);
 
     /**
      * @return
