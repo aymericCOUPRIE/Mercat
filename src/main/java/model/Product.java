@@ -10,7 +10,7 @@ public class Product {
     /**
      * Default constructor
      */
-    public Product(String nameProduct,float priceProduct,String category) {
+    public Product(String nameProduct,String description,String priceProduct,String seller,String category) {
     }
 
     /**
@@ -44,8 +44,15 @@ public class Product {
     private int idCategorie;
 
 
+    private String description;
 
+    public String getDescription(){
+        return this.description;
+    }
 
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
 
     /**
      * @return

@@ -3,6 +3,7 @@ package controller;
 import facade.BasketFacade;
 import facade.ProductFacade;
 import javafx.fxml.FXML;
+import model.Product;
 
 import java.awt.*;
 import java.text.NumberFormat;
@@ -84,7 +85,8 @@ public class ProductController {
                     int c = Integer.parseInt(priceCents);
                     String price = e+"."+c;
                     Float f = Float.parseFloat(price);
-                    productFacade.createProduct(productName,description,f,"",categoryName);
+                    Product p = new Product(productName,price,categoryName,""+1,categoryName);
+                    productFacade.createProduct(p);
                 }catch (NumberFormatException n){
                     display("The cent field must be an integer");
                 }

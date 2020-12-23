@@ -73,12 +73,11 @@ public abstract class ProductDAO {
     }
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p le produit
+     * @return boolean
+     * Permet de renvoyer true ou false selon si l'on a réussie à insérer le produit dans la base de données
      */
-    public abstract Product createProduct(String nameProduct, String description, float price, String nameCategory,String picture);
+    public abstract boolean createProduct(Product p);
 
     /**
      * @param nameProduct 

@@ -67,15 +67,25 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
-    public Product createProduct(String nameProduct, String description, float price, String nameCategory, String picture) {
-        Product product;
-
+    public boolean createProduct(Product product) {
+        //TODO Demander si cela marche
         String requete = "INSERT INTO product (name,description,price,seller,category,idProduct) VALUES (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,product.getNameProduct());
+            preparedStatement.setString(2,product.getDescription());
+            preparedStatement.setString(3,""+product.getPriceProduct());
+            preparedStatement.setString(4,product.getPseudoSeller());
+            //TODO voir si on ne change pas l'id pour le nom de la catégorie
+            preparedStatement.setString(5,""+product.getIdCategorie());
+
+            return preparedStatement.executeUpdate()!=0;
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
+
         }
     }
 

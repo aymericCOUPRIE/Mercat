@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class ProductFacade {
 
-    private Product product;
+    private boolean product;
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private ProductDAO productDAO = af.createProductDAO();
 
@@ -120,15 +120,11 @@ public class ProductFacade {
     }
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @param picture 
-     * @param nameCategory
+     * @param p le Produit
      * @return
      */
-    public void createProduct(String nameProduct, String description, float price, String picture, String nameCategory) {
-        product = productDAO.createProduct(nameProduct,description,price,nameCategory,picture);
+    public void createProduct(Product p) {
+        product = productDAO.createProduct(p);
     }
 
     /**
