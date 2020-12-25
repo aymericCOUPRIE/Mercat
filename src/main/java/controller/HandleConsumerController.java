@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.management.UnixOperatingSystemMXBean;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -26,14 +27,13 @@ public class HandleConsumerController {
     private UserFacade userFacade;
 
 
-    @FXML
-    public ListView<String> ListViewConsumers;
     /**
      * @return
      */
-    public Set<String> getAllConsumerPseudo() {
-        // TODO implement here
-        return null;
+    public ArrayList<String> getAllConsumerPseudo() {
+        return UserFacade.getInstanceUserFacade().getAllConsumerPseudo();
+
+        //afficher un message si vide ???????????
     }
 
     /**

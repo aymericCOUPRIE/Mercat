@@ -7,12 +7,12 @@ import router.Router;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.*;
 
 /**
  * 
  */
 public class HomePageController {
+
 
     /**
      * Default constructor
@@ -25,8 +25,11 @@ public class HomePageController {
      */
     private UserFacade userFacade;
 
+
     @FXML
-    MenuItem handleConsumers;
+    private javafx.scene.control.MenuItem handleC;
+
+
     /**
      *
      */
@@ -76,7 +79,7 @@ public class HomePageController {
      */
     public void initialize(){
         if(! UserFacade.getInstanceUserFacade().getConnectedUser().getRole().equals("admin")){
-            handleConsumers.setVisible(false); //??????pourquoi marche pas cette merde???
+            handleC.setVisible(false);
         }
     }
 
