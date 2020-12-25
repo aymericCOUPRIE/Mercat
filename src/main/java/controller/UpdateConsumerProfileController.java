@@ -69,7 +69,7 @@ public class UpdateConsumerProfileController {
      *
      */
     public void deleteConsumer() {
-        if(userFacade.deleteUser(txtPseudo.getText())){
+        if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
 
             display("Your account has been deleted");
 
@@ -78,8 +78,9 @@ public class UpdateConsumerProfileController {
                 Router.getInstance().activate("Login");
             });
 
+        }else{
+            display("Your account hasn't been deleted ..");
         }
-        // redirection différente si admin et message diff
     }
 
     /**

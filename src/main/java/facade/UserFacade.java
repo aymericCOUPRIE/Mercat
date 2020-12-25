@@ -15,6 +15,7 @@ import java.util.*;
 public class UserFacade {
 
     private static User user;
+
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private UserDAO userDAO = af.createUserDAO();
 

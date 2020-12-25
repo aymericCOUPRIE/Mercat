@@ -4,11 +4,14 @@ import com.sun.management.UnixOperatingSystemMXBean;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Consumer;
 import router.Router;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 
@@ -26,6 +29,8 @@ public class HandleConsumerController {
      */
     private UserFacade userFacade;
 
+    @FXML
+    private Label msgText;
 
     /**
      * @return
@@ -52,8 +57,14 @@ public class HandleConsumerController {
      * @return
      */
     public void daleteConsumer(String pseudo) {
-        // TODO implement here -> voir si faut modifier fonction deleteUser et afficher un message sur la page pour confirmer la suppression
-        userFacade.getInstanceUserFacade().deleteUser(pseudo);
+
+        if(userFacade.getInstanceUserFacade().deleteUser(pseudo)){
+
+            display(pseudo + " account has been deleted");
+
+        }else{
+            display(pseudo + " account hasn't been deleted ..");
+        }
     }
 
     /**
@@ -62,6 +73,15 @@ public class HandleConsumerController {
      */
     public void back(){
         Router.getInstance().activate("HomePage");
+    }
+    /**
+     * It allows to display a message on the user interface
+     * @param msg
+     */
+    @FXML
+    public void display(String msg)
+    {
+        msgText.setText(msg);
     }
 
 
