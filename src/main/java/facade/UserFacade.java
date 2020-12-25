@@ -162,7 +162,19 @@ public class UserFacade {
      * @return
      */
     public ArrayList<String> getAllConsumerPseudo() {
+
         return userDAO.getAllPseudo("consumer");
+    }
+
+
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+
+    public String searchConsumer(String pseudo){
+        return userDAO.searchConsumer(pseudo);
     }
 
     /**
@@ -171,6 +183,7 @@ public class UserFacade {
      */
     public Seller getSellerDetails(String pseudo) {
         // TODO implement here
+        // Flo tu peut te servir de getConsumerDetails je pense, faudrait la renomer getUserDetails dans mon code du coup
         return null;
     }
 

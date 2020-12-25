@@ -74,5 +74,11 @@ public abstract class UserDAO {
      * @return ArrayList<String>
      */
     public abstract ArrayList<String> getAllPseudo(String role);
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+    public abstract String searchConsumer(String pseudo);
 
 }
