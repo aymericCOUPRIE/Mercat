@@ -76,14 +76,13 @@ public class HomePageController {
 
     /**
      * This method allows to manage the display of the menu according to the user's role.
-     */
+
     public void initialize(){
-        if(! UserFacade.getInstanceUserFacade().getConnectedUser().getRole().equals("admin")){
+        if(!(UserFacade.getInstanceUserFacade().getConnectedUser().getRole().equals("admin"))){
             handleC.setVisible(false);
         }
     }
 
-
-
+     */
 
 }

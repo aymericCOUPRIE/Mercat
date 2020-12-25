@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Consumer;
+import model.User;
 import router.Router;
 
 import javafx.event.ActionEvent;
@@ -59,8 +60,8 @@ public class UpdateConsumerProfileController {
      * @return Consumer
      *
      */
-    public Consumer getConsumerDetails() {
-        return (Consumer) userFacade.getConsumerDetails();
+    public User getConsumerDetails() {
+        return  userFacade.getConsumerDetails();
     }
 
     /**
@@ -104,7 +105,7 @@ public class UpdateConsumerProfileController {
     public void initialize() {
         // TO DO
 
-        Consumer c = getConsumerDetails();
+        User c = getConsumerDetails();
         txtPseudo.setText(c.getPseudo());
         txtFirstname.setText(c.getFirstName());
         txtLastname.setText(c.getLastName());

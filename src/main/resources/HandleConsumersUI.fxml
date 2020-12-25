@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HandleConsumerController">
    <top>
       <GridPane prefHeight="162.0" prefWidth="599.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -65,7 +65,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Label fx:id="msgText" text="cul" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Label fx:id="msgText" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </top>

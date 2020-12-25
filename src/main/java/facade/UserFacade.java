@@ -153,7 +153,7 @@ public class UserFacade {
     public User getConsumerDetails() {
         if(isAdmin()){
             return userDAO.findUser((String) Router.getInstance().getParams()[0]);
-        } else {
+        } else {//je suis un admin ou un consumer
             return  getConnectedUser();
         }
 
@@ -175,6 +175,7 @@ public class UserFacade {
      */
 
     public String searchConsumer(String pseudo){
+
         return userDAO.searchConsumer(pseudo);
     }
 
