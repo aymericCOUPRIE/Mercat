@@ -54,10 +54,14 @@ public class HomePageController {
      */
     @FXML
     public void handleUserAcount(ActionEvent e) throws IOException {
-        if(UserFacade.isSeller()){
+        System.out.println("je suis avant le if dans handle user account"
+        );
+        if(userFacade.getInstanceUserFacade().isSeller()){
             //flo met là la redirection vers ta page pour modifier un seller
         }else{ //je suis un consumer ou un admin
             Router.getInstance().activate("HandleConsumer");
+            System.out.println("je suis dans le controller de homepage");
+            System.out.println("je suis un admin:" + userFacade.getInstanceUserFacade().isAdmin());
         }
 
     }

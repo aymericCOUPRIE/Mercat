@@ -104,7 +104,8 @@ public class UpdateConsumerProfileController {
      */
     public void initialize() {
         // TO DO
-
+System.out.println("je suis sur la page update my profile consumer");
+System.out.println(getConsumerDetails());
         User c = getConsumerDetails();
         txtPseudo.setText(c.getPseudo());
         txtFirstname.setText(c.getFirstName());

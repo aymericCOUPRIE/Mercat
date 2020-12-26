@@ -32,6 +32,9 @@ public class HandleConsumerController {
     @FXML
     private Label msgText;
 
+    @FXML
+    private ListView ListPseudo;
+
     /**
      * @return
      */
@@ -84,5 +87,8 @@ public class HandleConsumerController {
         msgText.setText(msg);
     }
 
+    public void initialize(){
+        ListPseudo.getItems().addAll(userFacade.getInstanceUserFacade().getAllConsumerPseudo());
+    }
 
 }
