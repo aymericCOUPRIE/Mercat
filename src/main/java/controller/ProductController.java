@@ -4,9 +4,11 @@ import facade.BasketFacade;
 import facade.ProductFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import model.Product;
 
-import java.awt.*;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -22,13 +24,14 @@ public class ProductController {
     private ChoiceBox txtCategory;
 
     @FXML
-    private TextArea txtDescription;
+    private TextField txtDescription;
 
     @FXML
     private TextField txtPrice;
 
     @FXML
     private TextField txtPrice2;
+
 
     @FXML
     private TextField txtName;
