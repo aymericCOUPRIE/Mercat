@@ -18,7 +18,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/CategoryUI.fxml"));
             Parent skillLayout = root.load();
             Scene scene = new Scene(skillLayout, 1000, 800);
 

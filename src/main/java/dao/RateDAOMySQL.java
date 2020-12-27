@@ -9,12 +9,12 @@ import java.util.*;
 /**
  * 
  */
-public class RateDAOMySQl extends RateDAO {
+public class RateDAOMySQL extends RateDAO {
 
     /**
      * Default constructor
      */
-    public RateDAOMySQl() {
+    public RateDAOMySQL() {
     }
 
     /**

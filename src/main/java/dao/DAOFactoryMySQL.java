@@ -74,7 +74,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      */
     public CategoryDAO createCategoryDAO() {
         // TODO implement here
-        return null;
+        return new CategoryDAOMySQL(connect);
     }
 
 }

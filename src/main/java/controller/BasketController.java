@@ -13,23 +13,20 @@ import java.util.*;
 public class BasketController {
 
     /**
-     * Default constructor
-     */
-    public BasketController() {
-    }
-
-    /**
-     * 
+     *
      */
     private BasketFacade basketFacade;
 
     /**
-     * 
+     *
      */
     private OrderFacade orderFacade;
 
-
-
+    /**
+     * Default constructor
+     */
+    public BasketController() {
+    }
 
 
     /**

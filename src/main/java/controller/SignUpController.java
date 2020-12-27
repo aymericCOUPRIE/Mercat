@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class SignUpController {
 
@@ -71,7 +71,8 @@ public class SignUpController {
 
     private String messageAttention;
 
-    private boolean isAConsumer =false;
+    private boolean isAConsumer = false;
+
     /**
      * Default constructor
      */
@@ -79,7 +80,7 @@ public class SignUpController {
     }
 
     /**
-     * 
+     *
      */
     private UserFacade userFacade = new UserFacade();
 
@@ -102,11 +103,11 @@ public class SignUpController {
     }
 
 
-    public void signUpSeller(ActionEvent e) throws IOException{
+    public void signUpSeller(ActionEvent e) throws IOException {
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
         email = txtEmailAdress.getText();
-        phoneNumber=txtPhoneNumber.getText();
+        phoneNumber = txtPhoneNumber.getText();
         street = txtStreetAdress.getText();
         postal = txtPostal.getText();
         city = txtCity.getText();
@@ -114,7 +115,7 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        if(checkInfosSeller()!=false){
+        if (checkInfosSeller() != false) {
             signUp(e);
         }
     }
@@ -123,43 +124,43 @@ public class SignUpController {
     /**
      * Method used by btnSignUp from Java FX
      * It allows to register into the system
+     *
      * @param e
      * @return
      */
     public void signUp(ActionEvent e) throws IOException {
-            boolean noError = true;
-            if(isAConsumer){
-                noError = userFacade.signUpConsumer(pseudo,
-                        firstName,
-                        lastName,
-                        password,
-                        email,
-                        street,
-                        city,
-                        postal,
-                        phoneNumber);
-            }else {
-                noError = userFacade.signUpSeller(pseudo,
-                        firstName,
-                        lastName,
-                        password,
-                        email,
-                        street,
-                        city,
-                        postal,
-                        phoneNumber,
-                        companyName);
-            }
-        if(noError){
-            Router.getInstance().activate("Login");
+        boolean noError = true;
+        if (isAConsumer) {
+            noError = userFacade.signUpConsumer(pseudo,
+                    firstName,
+                    lastName,
+                    password,
+                    email,
+                    street,
+                    city,
+                    postal,
+                    phoneNumber);
+        } else {
+            noError = userFacade.signUpSeller(pseudo,
+                    firstName,
+                    lastName,
+                    password,
+                    email,
+                    street,
+                    city,
+                    postal,
+                    phoneNumber,
+                    companyName);
         }
-        else {
+        if (noError) {
+            Router.getInstance().activate("Login");
+        } else {
             display("Your pseudo already exists");
         }
     }
 
     /**
-     *  Method used by btnLogin from Java FX
+     * Method used by btnLogin from Java FX
      * It allows to go to the page "login"
      */
     @FXML
@@ -168,36 +169,36 @@ public class SignUpController {
     }
 
 
-    private boolean checkInfosConsumer(){
-        if((pseudo.equals("")||password.equals("")||phoneNumber.equals("")||street.equals("")||postal.equals("")||city.equals(""))){
+    private boolean checkInfosConsumer() {
+        if ((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals(""))) {
             this.messageAttention = "You need to provide every information";
             display(messageAttention);
             return false;
 
-        }else
+        } else
             return internVerification();
     }
 
 
     private boolean internVerification() {
-        if(password.length()<8){
+        if (password.length() < 8) {
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
-        }else{
-            String test = "0"+Integer.parseInt(phoneNumber);
+        } else {
+            String test = "0" + Integer.parseInt(phoneNumber);
             System.out.println(phoneNumber.length());
-            System.out.println(test==phoneNumber);
+            System.out.println(test == phoneNumber);
             System.out.println(phoneNumber);
             //TODO Ajouter une fonctionalité qui vérifie qu'il y a que des chiffres dans le phonenumber
-            if((phoneNumber.length()==10||phoneNumber.length()==12)){
-                System.out.println("REGEX DU MAIL "+email.matches("/^\\S+@\\S+\\.\\S+$/"));
+            if ((phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
+                System.out.println("REGEX DU MAIL " + email.matches("/^\\S+@\\S+\\.\\S+$/"));
                 //if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
-                    System.out.println("REGARDE CE VRAI");
-                    return true;
+                System.out.println("REGARDE CE VRAI");
+                return true;
                 //}else{
-                  //  this.messageAttention = "This email address is incorrect";
+                //  this.messageAttention = "This email address is incorrect";
                 //}
-            }else{
+            } else {
                 this.messageAttention = "Your phone number is incorrect";
                 display(messageAttention);
             }
@@ -205,18 +206,18 @@ public class SignUpController {
         return false;
     }
 
-    private boolean checkInfosSeller(){
-        if((pseudo.equals("")&&password.equals("")||phoneNumber.equals("")&&street.equals("")&&postal.equals("")&&city.equals("")&&companyName.equals(""))){
+    private boolean checkInfosSeller() {
+        if ((pseudo.equals("") && password.equals("") || phoneNumber.equals("") && street.equals("") && postal.equals("") && city.equals("") && companyName.equals(""))) {
             this.messageAttention = "You need to provide every information";
             display(messageAttention);
             return false;
 
-        }else
+        } else
             return internVerification();
     }
 
     /**
-     *  Method used by btnconsumer from Java FX
+     * Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
      */
     @FXML
@@ -225,7 +226,7 @@ public class SignUpController {
     }
 
     /**
-     *  Method used by btnSeller from Java FX
+     * Method used by btnSeller from Java FX
      * It allows to go to the page "SignUpSeller"
      */
     @FXML
@@ -235,11 +236,11 @@ public class SignUpController {
 
     /**
      * It allows to display an error message on the user interface
+     *
      * @param msg
      */
     @FXML
-    public void display(String msg)
-    {
+    public void display(String msg) {
         errorText.setText(msg);
     }
 
