@@ -3,6 +3,7 @@ package controller;
 import facade.BasketFacade;
 import facade.ProductFacade;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import model.Product;
 
 import java.awt.*;
@@ -14,11 +15,11 @@ import java.util.*;
  */
 public class ProductController {
 
-    @FXML
-    private Button btnAddProduct;
+    //@FXML
+    //private Button btnProduct;
 
     @FXML
-    private TextField txtCategory;
+    private ChoiceBox txtCategory;
 
     @FXML
     private TextArea txtDescription;
@@ -33,7 +34,8 @@ public class ProductController {
     private TextField txtName;
 
     @FXML
-    private TextField errorText;
+    private Label errorText;
+
 
     private String categoryName;
     private String priceEuros;
