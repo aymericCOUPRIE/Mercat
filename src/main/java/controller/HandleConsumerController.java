@@ -32,25 +32,23 @@ public class HandleConsumerController {
     private ListView ListPseudo;
 
     String selectedPseudo = "nothing";
-    /**
-     * @return
-     */
-    public ArrayList<String> getAllConsumerPseudo() {
-        return userFacade.getInstanceUserFacade().getAllConsumerPseudo();
 
-        //afficher un message si vide ???????????
-    }
+
 
     /**
-     * this method redirects the admin to the update consumer page whose pseudo is passed in parameter
+     * this method redirects the admin to the update consumer page whose pseudo has been selected
      *
-     * @param pseudo
      */
-    public void updateConsumer(String pseudo) {
-        Object[] params = new Object[1];
-        params[0] = pseudo;
-        Router.getInstance().activate("HandleConsumer", params);
-
+    public void updateConsumer() {
+        System.out.println(selectedPseudo);
+        if(selectedPseudo.equals("nothing")){
+            display("You must select a consumer");
+        } else{
+            System.out.println("je suis dans le else de update");
+            Object[] params = new Object[1];
+            params[0] = selectedPseudo;
+            Router.getInstance().activate("HandleConsumer", params);
+        }
     }
 
     /**
@@ -104,6 +102,7 @@ public class HandleConsumerController {
         });
 
 
+
     }
 
     /**
@@ -112,6 +111,10 @@ public class HandleConsumerController {
     public void initialize() {
        handleItemClick();
         ListPseudo.getItems().addAll(userFacade.getInstanceUserFacade().getAllConsumerPseudo());
+
+        if(ListPseudo.getItems().size() == 0 ){
+            display("There is no consumer yet..");
+        }
     }
 }
 
