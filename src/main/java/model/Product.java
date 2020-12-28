@@ -132,9 +132,8 @@ public class Product {
     /**
      * @return
      */
-    public int getIdCategorie() {
-        // TODO implement here
-        return 0;
+    public String getCategory() {
+        return this.category;
     }
 
 }

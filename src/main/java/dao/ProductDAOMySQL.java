@@ -5,6 +5,7 @@ import dataBase.MySQLConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -33,17 +34,17 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param name 
      * @return
      */
-    public Set<Product> getProductsByName(String name) {
+    public ArrayList<Product> getProductsByName(String name) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param name 
-     * @param city 
+     * @param name
+     * @param city
      * @return
      */
-    public Set<Product> getProductsByNameAndCity(String name, String city) {
+    public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         // TODO implement here
         return null;
     }
@@ -53,7 +54,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCategory(String name, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, int idCategory) {
         // TODO implement here
         return null;
     }
@@ -64,7 +65,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
         // TODO implement here
         return null;
     }
@@ -86,7 +87,6 @@ public class ProductDAOMySQL extends ProductDAO {
 
             return preparedStatement.executeUpdate()!=0;
 
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
@@ -95,13 +95,59 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
-    public boolean updateProduct(String nameProduct, String description, float price) {
-        return false;
+    public boolean updateProduct(Product p, String newDescription) {
+        int id = getProductId(p);
+        String requete = "UPDATE product SET description = ? WHERE idProduct = ?";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,newDescription);
+            preparedStatement.setString(2,""+id);
+
+            return preparedStatement.executeUpdate()!=0;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
-    public boolean deleteProduct(String nameProduct, String description, float price) {
-        return false;
+    public int getProductId(Product p){
+        String requete = "SELECT idProduct FROM product WHERE name=? AND description=? AND price=? AND seller=? AND category=?";
+
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, p.getNameProduct());
+            preparedStatement.setString(2,p.getDescription());
+            preparedStatement.setString(3,""+p.getPriceProduct());
+            preparedStatement.setString(4,p.getPseudoSeller());
+            preparedStatement.setString(5,p.getCategory());
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("idProduct");
+            }
+            return -1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return -1;
+        }
     }
 
+    @Override
+    public boolean deleteProduct(Product p) {
+        int id = getProductId(p);
+        String requete = "DELETE FROM product WHERE idProduct=?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,""+id);
+
+            return preparedStatement.executeUpdate()!=0;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -36,11 +36,12 @@ public abstract class ProductDAO {
         return null;
     }
 
+
     /**
      * @param name 
      * @return
      */
-    public Set<Product> getProductsByName(String name) {
+    public ArrayList<Product> getProductsByName(String name) {
         // TODO implement here
         return null;
     }
@@ -50,7 +51,7 @@ public abstract class ProductDAO {
      * @param city 
      * @return
      */
-    public Set<Product> getProductsByNameAndCity(String name, String city) {
+    public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         // TODO implement here
         return null;
     }
@@ -60,7 +61,7 @@ public abstract class ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCategory(String name, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, int idCategory) {
         // TODO implement here
         return null;
     }
@@ -71,7 +72,7 @@ public abstract class ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
         // TODO implement here
         return null;
     }
@@ -84,27 +85,25 @@ public abstract class ProductDAO {
     public abstract boolean createProduct(Product p);
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p
+     * @param newDescription
+     * @return boolean
      */
-    public abstract boolean updateProduct(String nameProduct, String description, float price);
+    public abstract boolean updateProduct(Product p, String newDescription);
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p
+     * @return true if the product was deleted
      */
-    public abstract boolean deleteProduct(String nameProduct, String description, float price);
+    public abstract boolean deleteProduct(Product p);
 
     /**
-     * @return
+     * @return une arrrayList de tous les produits présents dans la db
      */
-    public Set<String> getAllProduct() {
-        // TODO implement here
+    public ArrayList<Product> getAllProduct() {
         return null;
     }
+
+    public abstract int getProductId(Product p);
 
 }

@@ -121,7 +121,7 @@ public class ProductController {
     /**
      * @return
      */
-    public void updateProduct() {
+    public void updateProduct(ActionEvent e) {
         // TODO implement here
     }
 
