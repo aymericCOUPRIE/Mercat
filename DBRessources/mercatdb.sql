@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  mer. 23 déc. 2020 à 21:57
+-- Généré le :  lun. 28 déc. 2020 à 15:34
 -- Version du serveur :  8.0.22-0ubuntu0.20.04.3
 -- Version de PHP :  7.4.3
 
@@ -32,6 +32,13 @@ CREATE TABLE `category` (
   `nameCategory` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`nameCategory`) VALUES
+('Informatique');
+
 -- --------------------------------------------------------
 
 --
@@ -41,11 +48,24 @@ CREATE TABLE `category` (
 CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `price` float NOT NULL,
-  `seller` int NOT NULL,
-  `category` int NOT NULL,
+  `price` varchar(100) NOT NULL,
+  `seller` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
   `idProduct` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `product`
+--
+
+INSERT INTO `product` (`name`, `description`, `price`, `seller`, `category`, `idProduct`) VALUES
+('', 'ddsdsds', '0.0', '', 'Informatique', 1),
+('', 'ddsdsds', '0.0', '', 'Informatique', 2),
+('', 'ddsdsds', '0.0', '', 'Informatique', 3),
+('', 'ddsdsds', '0.0', '', 'Informatique', 4),
+('', 'Momo', '0.0', '', 'Informatique', 5),
+('Table', 'Momkdkdk', '12.12', 'Anna', 'Informatique', 6),
+('Mouton', 'Mommmdd', '12.0', 'Anna', 'Informatique', 7);
 
 -- --------------------------------------------------------
 
@@ -64,6 +84,7 @@ CREATE TABLE `user` (
   `postalCode` varchar(100) NOT NULL,
   `pictureUser` varchar(100) NOT NULL,
   `role` varchar(100) NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
   `companyName` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -71,15 +92,8 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`pseudo`, `firstName`, `lastName`, `password`, `emailAddress`, `streetAddress`, `city`, `postalCode`, `pictureUser`, `role`, `companyName`) VALUES
-('Anna', 'sdsds', 'fdfdf', 'DfD810qtzIWW2knNOQ4mHbPA/Ka24tTbOVfZ/gT8Z1nGM86xOsBIPerCgV2a+9DhMF3lkYM1cN5uSFt3tyrS/Q==', 'anna@gmail.com', 'kdkjjf', 'sfsf', 'kkk', '', '', 'null'),
-('Ayemr', 'Akokok', 'Mkjfkdjf', '345FFFFFFF', 'anan@g', '34 rue jelsjflj', 'JUJUJJ', '34567', '', '', 'null'),
-('Ayemrd', 'ddddddddddd', 'ffffffffff', 'dffffffffff', 'dfffffffff', 'dfffd', 'dff', '23456', '', '', 'null'),
-('juuuu', 'mmmsdsd', 'lsflsjfljfsljf', 'Annnakdfdkj', 'kdjflkjfldfj', 'ksjlsd', 'ksfjksfjfjsf', '34567', '', '', 'null'),
-('momo', 'Moll', 'SDdd', 'DfD810qtzIWW2knNOQ4mHbPA/Ka24tTbOVfZ/gT8Z1nGM86xOsBIPerCgV2a+9DhMF3lkYM1cN5uSFt3tyrS/Q==', 'dkjdksjdksj@gmail.com', '56 ru ejdhd', 'Génissac', '22334', '', '', 'null'),
-('spatchoun', 'aaal', 'lkjlkj', 'Anna2204', 'lksjflsjLK', 'LKJLKJKL', 'JKLJKLJ', 'llkj', 'kjkjkl', 'lkjlkj', 'lkjlj'),
-('test', 'dfsfsffs', 'Mammam', '+lhdichR3TOKcNz1Naoqkv7ng23Wr/EiZYPojgmWKT8WvACcZSgm4PxccGaVoDzdzjcvE57/TROVnabx9dPqvg==', 'skskjfjfjfj@gmail.com', 'kjfjff', 'GGG', '23456', '', '', 'null'),
-('Tibi', 'Stdfd', 'kljljlj', 'DfD810qtzIWW2knNOQ4mHbPA/Ka24tTbOVfZ/gT8Z1nGM86xOsBIPerCgV2a+9DhMF3lkYM1cN5uSFt3tyrS/Q==', 'anna@gmal.com', 'khkhsf', 'jjjjj', '33454', '', '', 'null');
+INSERT INTO `user` (`pseudo`, `firstName`, `lastName`, `password`, `emailAddress`, `streetAddress`, `city`, `postalCode`, `pictureUser`, `role`, `phoneNumber`, `companyName`) VALUES
+('Admin', 'fsfsf', 'sfsfsfsf', 'DfD810qtzIWW2knNOQ4mHbPA/Ka24tTbOVfZ/gT8Z1nGM86xOsBIPerCgV2a+9DhMF3lkYM1cN5uSFt3tyrS/Q==', 'ksjkfjf@gmail.com', 'ksjfksfjs', 'fdfdfdfdf', '43555', '', '', '0909090909', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -111,7 +125,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `idProduct` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduct` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

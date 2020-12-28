@@ -98,7 +98,7 @@ public class ProductController {
                     Product p = new Product(productName,description,f,seller,categoryName);
                     System.out.println("BOllllOM" + p.getDescription());
                     if(productFacade.createProduct(p)){
-                        display("Produuit ajouté");
+                        display("Produit ajouté");
                     }
                 }catch (NumberFormatException n){
                     display("The cent field must be an integer");
