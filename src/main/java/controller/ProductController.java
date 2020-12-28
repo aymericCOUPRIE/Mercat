@@ -2,6 +2,7 @@ package controller;
 
 import facade.BasketFacade;
 import facade.ProductFacade;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -34,7 +35,7 @@ public class ProductController {
 
 
     @FXML
-    private TextField txtName;
+    private TextField txtNameProduct;
 
     @FXML
     private Label errorText;
@@ -73,25 +74,32 @@ public class ProductController {
      * This method is called when the seller tries to add a new Product.
      * @return
      */
-    public void addProduct() {
+    public void addProduct(ActionEvent e) {
         // TODO implement here
-        categoryName = txtCategory.getText();
-        productName = txtName.getText();
+        categoryName = txtCategory.getAccessibleText();
+        productName = txtNameProduct.getText();
         description = txtDescription.getText();
+
         priceEuros = txtPrice.getText();
         priceCents = txtPrice2.getText();
+
 
         if(productName.equals("")||description.equals("")||priceEuros.equals("")){
             display("You need to fill every field");
         }else{
             try{
-                int e = Integer.parseInt(priceEuros);
+                int i = Integer.parseInt(priceEuros);
                 try{
+                    String seller = "Anna";
                     int c = Integer.parseInt(priceCents);
-                    String price = e+"."+c;
+                    String price = i+"."+c;
                     Float f = Float.parseFloat(price);
-                    Product p = new Product(productName,price,categoryName,""+1,categoryName);
-                    productFacade.createProduct(p);
+                    System.out.println();
+                    Product p = new Product(productName,description,f,seller,categoryName);
+                    System.out.println("BOllllOM" + p.getDescription());
+                    if(productFacade.createProduct(p)){
+                        display("Produuit ajouté");
+                    }
                 }catch (NumberFormatException n){
                     display("The cent field must be an integer");
                 }

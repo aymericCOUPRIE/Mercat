@@ -123,8 +123,10 @@ public class ProductFacade {
      * @param p le Produit
      * @return
      */
-    public void createProduct(Product p) {
-        product = productDAO.createProduct(p);
+    public boolean createProduct(Product p) {
+        System.out.println("BOOOO" + p.getDescription());
+        return productDAO.createProduct(p);
+
     }
 
     /**

@@ -39,6 +39,7 @@
                         <Font name="Arial Black" size="35.0" />
                     </font>
                 </Label>
+            <Label fx:id="errorText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <GridPane prefHeight="638.0" prefWidth="999.0">
