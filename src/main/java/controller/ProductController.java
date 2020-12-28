@@ -2,10 +2,14 @@ package controller;
 
 import facade.BasketFacade;
 import facade.ProductFacade;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import model.Product;
 
-import java.awt.*;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -14,14 +18,14 @@ import java.util.*;
  */
 public class ProductController {
 
-    @FXML
-    private Button btnAddProduct;
+    //@FXML
+    //private Button btnProduct;
 
     @FXML
-    private TextField txtCategory;
+    private ChoiceBox txtCategory;
 
     @FXML
-    private TextArea txtDescription;
+    private TextField txtDescription;
 
     @FXML
     private TextField txtPrice;
@@ -29,11 +33,13 @@ public class ProductController {
     @FXML
     private TextField txtPrice2;
 
-    @FXML
-    private TextField txtName;
 
     @FXML
-    private TextField errorText;
+    private TextField txtNameProduct;
+
+    @FXML
+    private Label errorText;
+
 
     private String categoryName;
     private String priceEuros;
@@ -68,25 +74,32 @@ public class ProductController {
      * This method is called when the seller tries to add a new Product.
      * @return
      */
-    public void addProduct() {
+    public void addProduct(ActionEvent e) {
         // TODO implement here
-        categoryName = txtCategory.getText();
-        productName = txtName.getText();
+        categoryName = txtCategory.getAccessibleText();
+        productName = txtNameProduct.getText();
         description = txtDescription.getText();
+
         priceEuros = txtPrice.getText();
         priceCents = txtPrice2.getText();
+
 
         if(productName.equals("")||description.equals("")||priceEuros.equals("")){
             display("You need to fill every field");
         }else{
             try{
-                int e = Integer.parseInt(priceEuros);
+                int i = Integer.parseInt(priceEuros);
                 try{
+                    String seller = "Anna";
                     int c = Integer.parseInt(priceCents);
-                    String price = e+"."+c;
+                    String price = i+"."+c;
                     Float f = Float.parseFloat(price);
-                    Product p = new Product(productName,price,categoryName,""+1,categoryName);
-                    productFacade.createProduct(p);
+                    System.out.println();
+                    Product p = new Product(productName,description,f,seller,categoryName);
+                    System.out.println("BOllllOM" + p.getDescription());
+                    if(productFacade.createProduct(p)){
+                        display("Produuit ajouté");
+                    }
                 }catch (NumberFormatException n){
                     display("The cent field must be an integer");
                 }

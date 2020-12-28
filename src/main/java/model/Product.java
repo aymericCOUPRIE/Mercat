@@ -8,43 +8,50 @@ import java.util.*;
 public class Product {
 
     /**
-     * Default constructor
-     */
-    public Product(String nameProduct,String description,String priceProduct,String seller,String category) {
-    }
-
-    /**
-     * 
+     *
      */
     private int idProduct;
 
     /**
-     * 
+     *
      */
     private String nameProduct;
 
     /**
-     * 
+     *
      */
     private float priceProduct;
 
     /**
-     * 
+     *
      */
     private String pictureProduct;
 
     /**
-     * 
+     *
      */
     private String pseudoSeller;
 
     /**
-     * 
+     *
      */
-    private int idCategorie;
+    private String category;
 
 
     private String description;
+    /**
+     * Default constructor
+     */
+    public Product(String nameProduct,String description,float priceProduct,String seller,String category) {
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pseudoSeller = seller;
+        this.category =category;
+
+    }
+
+
 
     public String getDescription(){
         return this.description;
@@ -66,8 +73,7 @@ public class Product {
      * @return
      */
     public String getNameProduct() {
-        // TODO implement here
-        return "";
+        return this.nameProduct;
     }
 
     /**
@@ -79,11 +85,10 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return priceProduct
      */
     public float getPriceProduct() {
-        // TODO implement here
-        return 0.0f;
+        return this.priceProduct;
     }
 
     /**
@@ -95,11 +100,10 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return pictureProduct
      */
     public String getPictureProduct() {
-        // TODO implement here
-        return "";
+        return  this.pictureProduct;
     }
 
     /**
@@ -111,11 +115,10 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return the name of the seller
      */
     public String getPseudoSeller() {
-        // TODO implement here
-        return "";
+        return this.pseudoSeller;
     }
 
     /**

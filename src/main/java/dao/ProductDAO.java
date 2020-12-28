@@ -10,16 +10,20 @@ import java.util.*;
  */
 public abstract class ProductDAO {
 
+    protected Connection connect = null;
+
     /**
      * Default constructor
+     * @param connect
      */
-    public ProductDAO() {
+    public ProductDAO(Connection connect) {
+        this.connect = connect;
     }
 
     /**
      * 
      */
-    public Connection connect;
+
 
 
 
