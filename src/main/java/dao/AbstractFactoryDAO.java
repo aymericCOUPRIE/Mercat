@@ -67,10 +67,7 @@ public abstract class AbstractFactoryDAO {
     /**
      * @return
      */
-    public CategoryDAO createCategoryDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract CategoryDAO createCategoryDAO();
 
 
 }
