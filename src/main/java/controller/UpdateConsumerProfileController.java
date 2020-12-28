@@ -72,12 +72,21 @@ public class UpdateConsumerProfileController {
     public void deleteConsumer() {
         if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
 
-            display("Your account has been deleted");
+            if(!(userFacade.getInstanceUserFacade().isAdmin())){
+                display("Your account has been deleted");
 
-            CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(() -> {
-                // Your code here executes after 5 seconds!
-                Router.getInstance().activate("Login");
-            });
+                CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(() -> {
+                    // Your code here executes after 5 seconds!
+                    Router.getInstance().activate("Login");
+                });
+            }else{
+                display(Router.getInstance().getParams()[0].toString() + " account has been deleted");
+                CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(() -> {
+                    // Your code here executes after 5 seconds!
+                    Router.getInstance().activate("HandleConsumerS");
+                });
+            }
+
 
         }else{
             display("Your account hasn't been deleted ..");
@@ -103,10 +112,7 @@ public class UpdateConsumerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-        // TO DO
-        System.out.println("je suis sur la page update my profile consumer");
-        System.out.println(getConsumerDetails().toString());
-
+        //User car ça peut être un admin ou un consumer
         User c = getConsumerDetails();
         txtPseudo.setText(c.getPseudo());
         txtFirstname.setText(c.getFirstName());

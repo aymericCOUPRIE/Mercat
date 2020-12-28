@@ -17,11 +17,6 @@ import javafx.event.ActionEvent;
 public class LoginController {
 
     // Java FX Implementation
-    @FXML
-    private Button btnSubmit;
-
-    @FXML
-    private Button btnSignUp;
 
     @FXML
     private TextField txtPseudoUser;
@@ -34,8 +29,7 @@ public class LoginController {
 
     // Configuration
 
-    private String pseudo;
-    private String passWord;
+    private String pseudo,passWord;
 
 
     /**

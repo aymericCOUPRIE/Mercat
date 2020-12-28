@@ -40,7 +40,7 @@
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" promptText="Consumer's pseudo" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="txtShearchField" alignment="CENTER" promptText="Consumer's pseudo" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276; -fx-text-fill: white;" text="Back" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
@@ -54,7 +54,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button fx:id="btnSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="94.0" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276; -fx-text-fill: white;" text="Search" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchConsumer" prefHeight="28.0" prefWidth="94.0" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276; -fx-text-fill: white;" text="Search" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>

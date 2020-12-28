@@ -4,6 +4,8 @@ import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import org.w3c.dom.Text;
 import router.Router;
 
 import java.util.*;
@@ -29,6 +31,9 @@ public class HandleConsumerController {
     private Label msgText;
 
     @FXML
+    private TextField txtShearchField;
+
+    @FXML
     private ListView ListPseudo;
 
     String selectedPseudo = "nothing";
@@ -40,11 +45,10 @@ public class HandleConsumerController {
      *
      */
     public void updateConsumer() {
-        System.out.println(selectedPseudo);
+
         if(selectedPseudo.equals("nothing")){
             display("You must select a consumer");
         } else{
-            System.out.println("je suis dans le else de update");
             Object[] params = new Object[1];
             params[0] = selectedPseudo;
             Router.getInstance().activate("HandleConsumer", params);
@@ -106,15 +110,39 @@ public class HandleConsumerController {
     }
 
     /**
+     * This method permit to find a consumer
+     * It will display the pseudo or an error message
+     */
+    public void searchConsumer(){
+
+        if(txtShearchField.getText().equals("")){
+            display("You must enter a consumer's pseudo!");
+        }else{
+            String res = userFacade.getInstanceUserFacade().searchConsumer(txtShearchField.getText());
+            if(res.equals("User not exist!") || res.equals("This user is not a consumer..")){
+                display(res);
+            }else{
+                ListPseudo.getItems().clear();
+                ListPseudo.getItems().add(res);
+            }
+        }
+
+
+    }
+
+    /**
      * initialize the page with the list of all consumers
      */
     public void initialize() {
+        System.out.println("yes je suis sur la bonne page dans initialize");
        handleItemClick();
         ListPseudo.getItems().addAll(userFacade.getInstanceUserFacade().getAllConsumerPseudo());
 
         if(ListPseudo.getItems().size() == 0 ){
             display("There is no consumer yet..");
         }
+
+
     }
 }
 
