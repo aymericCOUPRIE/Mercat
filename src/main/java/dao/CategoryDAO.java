@@ -5,36 +5,44 @@ import model.Category;
 import java.sql.Connection;
 import java.util.*;
 
-/**
- * 
- */
-public class CategoryDAO {
+public abstract class CategoryDAO {
 
+    protected Connection connect = null;
     /**
      * Default constructor
      */
-    public CategoryDAO() {
+
+    public CategoryDAO(Connection connect) {
+        this.connect = connect;
     }
 
     /**
-     * 
-     */
-    public Connection connect;
-
-    /**
-     * @param id 
+     * @param nomCat
      * @return
      */
-    public void getCategory(int id) {
-        // TODO implement here
-    }
+    public abstract Category getCategory(String nomCat);
 
     /**
-     * @return
+     * @return the list of all existing categories
      */
-    public Set<Category> getAllCategory() {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<Category> getAllCategory();
 
+
+    /**
+     * @param nomCategory
+     */
+    public abstract Category createCategory(String nomCategory);
+
+
+    /**
+     * @param newNameCategory
+     * @param nameCategory
+     */
+    public abstract void updateCategory(String newNameCategory, String nameCategory);
+
+
+    /**
+     * @param idCategory
+     */
+    public abstract void deleteCategory(int idCategory);
 }
