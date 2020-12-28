@@ -32,13 +32,14 @@ public class UserDAOMySQL extends UserDAO {
     public User findUser(String pseudo) {
         User user;
         String requete = "SELECT * FROM user WHERE pseudo = ?";
-        // TODO implement here
+
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, pseudo);
             ResultSet res = preparedStatement.executeQuery();
 
-            if(res!= null){
+            if(res.next()){
+
                 return instantiateUser(res);
 
             }else {//il n'y a pas de résultat dans ma requête
@@ -75,6 +76,7 @@ public class UserDAOMySQL extends UserDAO {
 
             if (res.next()) {
                 if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
+
                     return instantiateUser(res);
                 }
             } else {//il n'y a pas de résultat dans ma requête
@@ -90,6 +92,7 @@ public class UserDAOMySQL extends UserDAO {
 
     private User instantiateUser(ResultSet res) throws SQLException {
         User user;
+
         if (res.getString("role").equals("seller")) {
             user = new Seller(
                     res.getString("pseudo"),
@@ -268,7 +271,7 @@ public class UserDAOMySQL extends UserDAO {
             if(!res.next()){
             return "User not exist!";
             }else if(!res.getString("role").equals("consumer")){
-                return "This user is not a consumer.. He is a " +res.getString("role");
+                return "This user is not a consumer..";
             }else{
                 return pseudo;
             }

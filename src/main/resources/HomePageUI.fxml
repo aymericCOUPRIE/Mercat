@@ -11,7 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" onAction="#handleUserAcount" text="Menu">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleUserAcount" text="Handle my  account" />
+                  <MenuItem fx:id="myAccount" mnemonicParsing="false" onAction="#handleUserAcount" text="Handle my  account" />
                   <MenuItem fx:id="handleC" mnemonicParsing="false" onAction="#handleConsumers" text="Handle Consumers" />
                </items></Menu>
         </menus>

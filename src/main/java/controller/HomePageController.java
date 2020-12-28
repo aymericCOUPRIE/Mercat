@@ -4,6 +4,7 @@ import facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import router.Router;
+import javafx.scene.control.MenuItem;
 
 import java.awt.*;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class HomePageController {
 
 
     @FXML
-    private javafx.scene.control.MenuItem handleC;
+    private MenuItem handleC,myAccount;
 
 
     /**
@@ -54,14 +55,12 @@ public class HomePageController {
      */
     @FXML
     public void handleUserAcount(ActionEvent e) throws IOException {
-        System.out.println("je suis avant le if dans handle user account"
-        );
+
         if(userFacade.getInstanceUserFacade().isSeller()){
             //flo met là la redirection vers ta page pour modifier un seller
-        }else{ //je suis un consumer ou un admin
+        }else{ //je suis un consumer
             Router.getInstance().activate("HandleConsumer");
-            System.out.println("je suis dans le controller de homepage");
-            System.out.println("je suis un admin:" + userFacade.getInstanceUserFacade().isAdmin());
+
         }
 
     }
@@ -74,6 +73,7 @@ public class HomePageController {
      */
     @FXML
     public void handleConsumers(ActionEvent e) throws IOException{
+        System.out.println("yo je suis sur la page home et dans handle consumerS");
         //pas besoin de tester si bien admin car boutton menu affiché selement pour les admins
         Router.getInstance().activate("HandleConsumerS");
     }
@@ -84,6 +84,8 @@ public class HomePageController {
     public void initialize(){
         if(!(UserFacade.getInstanceUserFacade().getConnectedUser().getRole().equals("admin"))){
             handleC.setVisible(false);
+        }else{ //je suis un admin
+            myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
         }
     }
 
