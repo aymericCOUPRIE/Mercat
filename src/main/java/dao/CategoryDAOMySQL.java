@@ -21,18 +21,18 @@ public class CategoryDAOMySQL extends CategoryDAO {
     }
 
     /**
-     * @param idCat
+     * @param nomCat
      * @return
      */
-    public Category getCategory(int idCat) {
+    public Category getCategory(String nomCat) {
         Category category = null;
 
-        String requete = "SELECT libelleCategory FROM category WHERE idCategory = ?";
+        String requete = "SELECT * FROM category WHERE libelleCategorie = ?";
 
         try {
 
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, String.valueOf(idCat));
+            preparedStatement.setString(1, nomCat);
             ResultSet res = preparedStatement.executeQuery();
 
             if (res.next()) {
@@ -54,7 +54,7 @@ public class CategoryDAOMySQL extends CategoryDAO {
     public ArrayList<Category> getAllCategory() {
         // TODO implement here
         ArrayList<Category> listCategory;
-        String requete = "SELECT * FROM category";
+        String requete = "SELECT * FROM category ORDER BY libelleCategorie ASC";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -75,6 +75,23 @@ public class CategoryDAOMySQL extends CategoryDAO {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Category createCategory(String nomCategory) {
+        String requete = "INSERT INTO category (idCategorie, libelleCategorie) VALUES (NULL, ?);";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, nomCategory);
+            int res = preparedStatement.executeUpdate();
+
+            if (res == 0) throw new SQLException("Category not inserted");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return getCategory(nomCategory);
     }
 
     @Override
@@ -105,7 +122,7 @@ public class CategoryDAOMySQL extends CategoryDAO {
             int res = preparedStatement.executeUpdate();
 
             //TODO
-            if (res == 0 ) throw new SQLException("No ligne deleted");
+            if (res == 0) throw new SQLException("No ligne deleted");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

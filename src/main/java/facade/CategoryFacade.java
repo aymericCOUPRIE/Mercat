@@ -38,8 +38,8 @@ public class CategoryFacade {
      * @param nameCategory
      * @return
      */
-    public void createCategory(String nameCategory) {
-        // TODO implement here
+    public Category createCategory(String nameCategory) {
+        return categoryDAO.createCategory(nameCategory);
     }
 
     /**
@@ -59,6 +59,13 @@ public class CategoryFacade {
         return categoryDAO.getAllCategory();
     }
 
+
+    /**
+     * @param idCategory
+     */
+    public void deleteCategory(int idCategory) {
+        categoryDAO.deleteCategory(idCategory);
+    }
 
 
 }
