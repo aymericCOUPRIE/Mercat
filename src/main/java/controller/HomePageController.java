@@ -58,6 +58,7 @@ public class HomePageController {
         );
         if(userFacade.getInstanceUserFacade().isSeller()){
             //flo met là la redirection vers ta page pour modifier un seller
+            Router.getInstance().activate("HandleSeller");
         }else{ //je suis un consumer ou un admin
             Router.getInstance().activate("HandleConsumer");
             System.out.println("je suis dans le controller de homepage");
