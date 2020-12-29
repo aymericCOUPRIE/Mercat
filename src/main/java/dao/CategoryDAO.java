@@ -8,10 +8,10 @@ import java.util.*;
 public abstract class CategoryDAO {
 
     protected Connection connect = null;
+
     /**
      * Default constructor
      */
-
     public CategoryDAO(Connection connect) {
         this.connect = connect;
     }

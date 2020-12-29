@@ -1,63 +1,58 @@
 package dao;
 
+import model.Basket;
 import model.Order;
 
 import java.sql.Connection;
 import java.util.*;
 
 /**
- * 
+ *
  */
-public class OrderDAO {
+public abstract class OrderDAO {
+
+    /**
+     *
+     */
+    protected Connection connect = null;
 
     /**
      * Default constructor
      */
-    public OrderDAO() {
+    public OrderDAO(Connection connect) {
+        this.connect = connect;
     }
 
     /**
-     * 
-     */
-    public Connection connect;
-
-
-    /**
-     * @param pseudoConsumer 
-     * @param pseudoSeller 
-     * @param dateOrder 
+     * @param pseudoConsumer
+     * @param pseudoSeller
+     * @param dateOrder
      * @return
      */
-    public Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder) {
-        // TODO implement here
-        return null;
-    }
+    public abstract Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder);
 
     /**
-     * @param state  
+     * @param state
      * @return
      */
-    public boolean updateOrderState(String state ) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean updateOrderState(Order order, String state);
 
     /**
-     * @param order 
+     * @param basket
      * @return
      */
-    public boolean createOrder(Order order) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean insertOrder(Basket basket);
 
     /**
-     * @param date 
+     * @param order, date
      * @return
      */
-    public boolean updateOrderDeliveryDate(Date date) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean updateOrderDeliveryDate(Order order, Date date);
+
+    /**
+     * @param pseudo
+     * @return the the order concerning 1 consumer
+     */
+    public abstract ArrayList<Order> getAllOrdersConsumer(String pseudo);
 
 }

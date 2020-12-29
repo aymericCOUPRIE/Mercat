@@ -3,139 +3,141 @@ package model;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class Order {
 
     /**
-     * Default constructor
-     */
-    public Order() {
-    }
-
-    /**
-     * 
-     */
-    private int quantity;
-
-    /**
-     * 
-     */
-    private Date dateOrder;
-
-    /**
-     * 
-     */
-    private Date deliveryDate;
-
-    /**
-     * 
-     */
-    private String stateOrder;
-
-    /**
-     * 
-     */
-    private String pseudoSeller;
-
-    /**
-     * 
+     *
      */
     private String pseudoConsumer;
 
     /**
-     * 
+     *
+     */
+    private String pseudoSeller;
+
+    /**
+     *
+     */
+    private Date dateOrder;
+
+    /**
+     *
+     */
+    private String deliveryAddress;
+
+    /**
+     *
+     */
+    private Date deliveryDate;
+
+    /**
+     *
      */
     private int idProduct;
 
+    /**
+     *
+     */
+    private float quantity;
+
+    /**
+     *
+     */
+    private String stateOrder;
 
 
     /**
-     * @return
+     * Default constructor
      */
-    public int getQuantity() {
-        // TODO implement here
-        return 0;
+    public Order(String pseudoConsumer, String pseudoSeller, Date dateOrder, String deliveryAddress, Date deliveryDate, int idProduct, float quantity, String stateOrder) {
+        this.pseudoConsumer = pseudoConsumer;
+        this.pseudoSeller = pseudoSeller;
+        this.dateOrder = dateOrder;
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryDate = deliveryDate;
+        this.idProduct = idProduct;
+        this.quantity = quantity;
+        this.stateOrder = stateOrder;
     }
 
     /**
-     * @param quantity 
-     * @return
+     * @return the quantity for a product
      */
-    public void setQuantity(int quantity) {
-        // TODO implement here
+    public float getQuantity() {
+        return this.quantity;
     }
 
     /**
-     * @return
+     * @param quantity
+     */
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the date of the order (Default : current date)
      */
     public Date getDateOrder() {
-        // TODO implement here
-        return null;
+        return this.dateOrder;
     }
 
     /**
-     * @param dateOrder 
-     * @return
+     * @param dateOrder
      */
     public void setDateOrder(Date dateOrder) {
-        // TODO implement here
+        this.dateOrder = dateOrder;
     }
 
     /**
-     * @return
+     * @return the delivery date
      */
     public Date getDeliveryDate() {
-        // TODO implement here
-        return null;
+        return this.deliveryDate;
     }
 
     /**
-     * @param deliveryDate 
-     * @return
+     * @param deliveryDate
      */
     public void setDeliveryDate(Date deliveryDate) {
-        // TODO implement here
+        this.deliveryDate = deliveryDate;
     }
 
     /**
-     * @return
+     * @return the current state of the order (in preparation, delivering, delivered...)
      */
-    public Date getStateOrder() {
-        // TODO implement here
-        return null;
+    public String getStateOrder() {
+        return stateOrder;
     }
 
     /**
-     * @param stateDate 
+     * @param stateDate
      * @return
      */
     public void setStateOrder(Date stateDate) {
-        // TODO implement here
+        this.stateOrder = stateOrder;
     }
 
     /**
-     * @return
+     * @return the pseudo of the Seller
      */
     public String getPseudoSeller() {
-        // TODO implement here
-        return "";
+        return this.pseudoSeller;
     }
 
     /**
-     * @return
+     * @return the pseudo of the consumer
      */
     public String getPseudoConsumer() {
-        // TODO implement here
-        return "";
+        return this.pseudoConsumer;
     }
 
     /**
-     * @return
+     * @return the id of the Product (only 1 possible for each Order)
      */
     public int getIdProduct() {
-        // TODO implement here
-        return 0;
+        return this.idProduct;
     }
 
 }
