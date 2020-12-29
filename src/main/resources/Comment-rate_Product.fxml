@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #0000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #0000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CommentController">
     <children>
       <GridPane prefHeight="154.0" prefWidth="1000.0">
         <columnConstraints>
@@ -83,7 +83,7 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-                  <Button fx:id="btnSubmitComment" mnemonicParsing="false" onAction="#setComment" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <Button fx:id="btnSubmitComment" mnemonicParsing="false" onAction="#addComment" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                       <font>
                           <Font size="20.0" />
                       </font>
@@ -96,7 +96,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button fx:id="btnSubmitRate" layoutX="677.0" layoutY="336.0" mnemonicParsing="false" onAction="#setRate" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="btnSubmitRate" layoutX="677.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateComment" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Submit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>

@@ -44,9 +44,9 @@ public class SellerFacade {
      * @param rate 
      * @return
      */
-    public boolean AddRate(Consumer Consumer, int rate) {
-        // TODO implement here
-        return false;
+    public void AddRate(Consumer Consumer, int rate) {
+        System.out.println("SellerFacade");
+        rateDAO.createRateSeller(this.getSeller() , Consumer, rate);
     }
 
 }

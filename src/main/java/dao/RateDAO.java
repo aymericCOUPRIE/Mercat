@@ -11,18 +11,21 @@ import java.util.*;
 /**
  * 
  */
-public class RateDAO {
+public abstract class RateDAO {
+    /**
+     *
+     */
+    protected Connection connect = null;
 
     /**
      * Default constructor
+     *
+     * @param connect
      */
-    public RateDAO() {
+    public RateDAO(Connection connect) {
+        this.connect = connect;
     }
 
-    /**
-     * 
-     */
-    public Connection connect;
 
 
     /**
@@ -72,10 +75,7 @@ public class RateDAO {
      * @param rate 
      * @return
      */
-    public boolean createRateSeller(Seller seller, Consumer consumer, int rate) {
-        // TODO implement here
-        return false;
-    }
+    public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
 
     /**
      * @param seller 

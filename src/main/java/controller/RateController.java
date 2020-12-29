@@ -1,10 +1,13 @@
 package controller;
 
 import facade.ProductFacade;
+import facade.SellerFacade;
+import facade.UserFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model.Consumer;
 import router.Router;
 
 import java.io.IOException;
@@ -35,7 +38,9 @@ public class RateController {
     /**
      * 
      */
-    private ProductFacade facade;
+    private ProductFacade facade = new ProductFacade();;
+    private SellerFacade facadeS  = new SellerFacade();
+    private UserFacade facadeU = new UserFacade();;
 
 
 
@@ -45,6 +50,7 @@ public class RateController {
      */
     @FXML
     public void addRate(ActionEvent e) throws IOException {
+        facadeS.AddRate((Consumer) facadeU.getConnectedUser(), 3);
         Router.getInstance().activate("Rate_Seller");
     }
 
