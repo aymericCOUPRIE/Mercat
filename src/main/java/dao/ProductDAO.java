@@ -21,13 +21,6 @@ public abstract class ProductDAO {
     }
 
     /**
-     * 
-     */
-
-
-
-
-    /**
      * @param idProduct 
      * @return
      */

@@ -4,10 +4,7 @@ import facade.BasketFacade;
 import facade.ProductFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Product;
 
 import java.text.NumberFormat;
@@ -18,27 +15,49 @@ import java.util.*;
  */
 public class ProductController {
 
-    //@FXML
-    //private Button btnProduct;
-
     @FXML
     private ChoiceBox txtCategory;
-
     @FXML
     private TextField txtDescription;
-
     @FXML
     private TextField txtPrice;
-
     @FXML
     private TextField txtPrice2;
-
-
     @FXML
     private TextField txtNameProduct;
-
     @FXML
     private Label errorText;
+
+    //Partie recherche
+    //Bouton
+    @FXML
+    private Button btnSearchProduct;
+    @FXML
+    private Button btnSearchProductCity;
+    @FXML
+    private Button btnSearchProductCategory;
+    @FXML
+    private Button btnSearchProductNameCategory;
+    //TextField Product
+    @FXML
+    private TextField txtProduct1;
+    @FXML
+    private TextField txtProduct2;
+    @FXML
+    private TextField txtProduct3;
+    @FXML
+    private TextField txtProduct4;
+    //TextField City
+    @FXML
+    private TextField txtCity1;
+    @FXML
+    private TextField txtCity2;
+    //TextField Category
+    @FXML
+    private TextField txtCategory1;
+    @FXML
+    private TextField txtCategory2;
+
 
 
     private String categoryName;
@@ -132,11 +151,39 @@ public class ProductController {
     }
 
     /**
-     * This methode allows to don't have error message at the begining
+     * Thanks to this method you don't have an error message at the beginning
      */
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
     }
 
+    /**
+     * This method enables you to research a product by his name
+     * @param e
+     */
+    public void getProductsByName(ActionEvent e){
+
+    }
+
+    /**
+     * This method enables you to research a product by his name and the name of a city
+     * @param e
+     */
+    public void getProductsByNameAndCity(ActionEvent e){
+    }
+
+    /**
+     * This method enables you to research a product by his name and the category
+     * @param e
+     */
+    public void getProductsByNameAndCategory(ActionEvent e){
+    }
+
+    /**
+     * This method enables you to research a product by name, category and city
+     * @param e
+     */
+    public void getProductsByNameAndCityAndCategory(ActionEvent e){
+    }
 }
