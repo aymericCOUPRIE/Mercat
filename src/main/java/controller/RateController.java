@@ -40,7 +40,7 @@ public class RateController {
      */
     private ProductFacade facade = new ProductFacade();;
     private SellerFacade facadeS  = new SellerFacade();
-    private UserFacade facadeU = new UserFacade();;
+    private UserFacade facadeU = UserFacade.getInstanceUserFacade();;
 
 
 
@@ -51,7 +51,7 @@ public class RateController {
     @FXML
     public void addRate(ActionEvent e) throws IOException {
         facadeS.AddRate((Consumer) facadeU.getConnectedUser(), 3);
-        Router.getInstance().activate("Rate_Seller");
+        //Router.getInstance().activate("Rate_Seller");
     }
 
     /**
@@ -68,6 +68,12 @@ public class RateController {
     public float getAverageRateProduct() {
         // TODO implement here
         return 0.0f;
+    }
+
+    /**
+     */
+    public void initialize() {
+        // TODO Auto-generated method stub
     }
 
 }

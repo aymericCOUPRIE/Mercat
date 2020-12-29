@@ -35,10 +35,7 @@ public abstract class AbstractFactoryDAO {
     /**
      * @return
      */
-    public RateDAO createRateDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract RateDAO createRateDAO();
 
     /**
      * @return

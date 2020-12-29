@@ -44,16 +44,20 @@ public class RateDAOMySQl extends RateDAO {
 
     @Override
     public void createRateSeller(Seller seller, Consumer consumer, int rate) {
-        String requete = "INSERT INTO rate (rate, Seller, idProduct, Consumer) VALUES (?,?,?,?)";
+
+        String requete = "INSERT INTO rate (rate, pseudoConsumer, pseudoSeller, idProduct) VALUES (?,?,?,?)";
         System.out.println(requete);
-        //String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + user.getCompanyName() + "')";
-        //System.out.println(requete);
+        //String requete = "INSERT INTO rate VALUES (2, "stephanie", "azer", 0)";
+        System.out.println(rate + " " + seller.getLogin() + " " + consumer.getLogin());
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1,rate);
-            preparedStatement.setString(2,seller.getLogin());
-            preparedStatement.setInt(3,0);
-            preparedStatement.setString(4,consumer.getLogin());
+            preparedStatement.setString(2,consumer.getLogin());
+            preparedStatement.setString(3,seller.getLogin());
+            preparedStatement.setInt(4,0);
+
+            preparedStatement.executeUpdate();
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
