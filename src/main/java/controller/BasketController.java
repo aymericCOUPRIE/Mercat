@@ -74,7 +74,9 @@ public class BasketController {
      * @return int
      */
     public int getNbItemBasket(){
-        return BasketFacade.getNbItemBasket();
+    //TODO implement here
+        //peut se calculer seulement ic
+    return 0;
     }
 
     /**

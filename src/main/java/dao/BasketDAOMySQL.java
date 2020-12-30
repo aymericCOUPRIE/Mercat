@@ -53,13 +53,6 @@ public class BasketDAOMySQL extends BasketDAO {
         return false;
     }
 
-    /**
-     *
-     */
-    //SELECT sum(quantity) FROM Basket	 WHERE pseudoConsumer = "Stephanie"
-    public int getNbItemBasket(){
-        // TODO implement here
-        return 0;
-    }
+    
 
 }

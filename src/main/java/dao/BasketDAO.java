@@ -62,8 +62,4 @@ public abstract class BasketDAO {
         return false;
     }
 
-    /**
-     *
-     */
-    public abstract int getNbItemBasket();
 }

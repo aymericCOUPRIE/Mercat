@@ -15,12 +15,12 @@ public class BasketFacade {
     private BasketDAO basketDAO = af.createBasketDAO();
 
     //notre façade est un singleton
-    private static BasketFacade instanceBasketFacade;
+    private static BasketFacade instanceBasketFacade = getInstanceBasketFacade();
 
     /**
      * @return instanceBasketFacade
      */
-    public BasketFacade getInstanceBasketFacade() {
+    public static BasketFacade getInstanceBasketFacade() {
         if (instanceBasketFacade == null) {
             instanceBasketFacade = new BasketFacade();
         }
@@ -69,5 +69,7 @@ public class BasketFacade {
     public void addToBasket(int idProduct) {
         // TODO implement here
     }
+
+
 
 }

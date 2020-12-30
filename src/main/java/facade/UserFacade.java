@@ -19,7 +19,7 @@ public class UserFacade {
 
 
     //notre façade est un singleton
-    private static UserFacade instanceUserFacade;
+    private static UserFacade instanceUserFacade = getInstanceUserFacade();
 
     /**
      * @return instanceUserFacade
@@ -62,7 +62,7 @@ public class UserFacade {
      */
     public void login(String pseudo, String password) {
         user = userDAO.login(pseudo, password);
-        UserFacade.getInstanceUserFacade().setConnectedUser(user);
+        instanceUserFacade.setConnectedUser(user);
     }
 
     /**
