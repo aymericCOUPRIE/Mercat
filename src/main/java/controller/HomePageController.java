@@ -68,7 +68,7 @@ public class HomePageController {
      */
     @FXML
     public void handleConsumers(ActionEvent e) throws IOException {
-        System.out.println("yo je suis sur la page home et dans handle consumerS");
+
         //pas besoin de tester si bien admin car boutton menu affiché selement pour les admins
         Router.getInstance().activate("HandleConsumerS");
     }

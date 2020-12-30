@@ -129,7 +129,7 @@ public class HandleConsumerController {
      * initialize the page with the list of all consumers
      */
     public void initialize() {
-        System.out.println("yes je suis sur la bonne page dans initialize");
+
         handleItemClick();
         ArrayList<String> tempo = userFacade.getAllConsumerPseudo();
         ListPseudo.getItems().addAll(tempo);
