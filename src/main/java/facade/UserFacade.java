@@ -156,8 +156,8 @@ public class UserFacade {
         } else {//je suis un consumer
             return  getConnectedUser();
         }
-
     }
+
 
     /**
      * @return

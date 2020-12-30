@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Seller;
+import model.User;
 import router.Router;
 
 import java.util.*;
@@ -35,7 +36,7 @@ public class UpdateSellerProfileController {
     @FXML
     private TextField txtCity;
     @FXML
-    private TextField CompanyName;
+    private TextField txtCompanyName;
     @FXML
     private Label errorText;
     /**
@@ -47,9 +48,18 @@ public class UpdateSellerProfileController {
     /**
      * 
      */
-    private UserFacade userFacade;
+    private UserFacade userFacade = new UserFacade();
+    private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
 
 
+    /**
+     * This methode permite to get all the information about a seller.
+     * @return seller
+     *
+     */
+    public User getConsumerDetails() {
+        return  userFacade.getConsumerDetails();
+    }
     /**
      * @return
      */
@@ -115,5 +125,27 @@ public class UpdateSellerProfileController {
     {
         errorText.setText(msg);
     }
+
+    /**
+     * To initialize the variable with the information in the data base
+     */
+    public void initialize() {
+        //User car ça peut être un admin ou un consumer
+        Seller c = (Seller) getConsumerDetails();
+        txtPseudo.setText(c.getPseudo());
+        txtFirstname.setText(c.getFirstName());
+        txtLastname.setText(c.getLastName());
+        txtEmailAdress.setText(c.getEmailAddress());
+        txtPassword.setText(c.getPassword());
+        OldPassword = c.getPassword();
+        txtPhoneNumber.setText(c.getPhoneNumber());
+        txtStreetAdress.setText(c.getStreetAddress());
+        txtCity.setText(c.getCity());
+        txtPostal.setText(c.getPostalCode());
+        txtCompanyName.setText(c.getCompanyName());
+        errorText.setText("");
+
+    }
+
 
 }
