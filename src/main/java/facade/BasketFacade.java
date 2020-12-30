@@ -11,31 +11,31 @@ import java.util.*;
  */
 public class BasketFacade {
 
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private BasketDAO basketDAO = af.createBasketDAO();
+
+    //notre façade est un singleton
+    private static BasketFacade instanceBasketFacade;
+
+    /**
+     * @return instanceBasketFacade
+     */
+    public BasketFacade getInstanceBasketFacade() {
+        if (instanceBasketFacade == null) {
+            instanceBasketFacade = new BasketFacade();
+        }
+        return instanceBasketFacade;
+    }
+
     /**
      * Default constructor
      */
     public BasketFacade() {
     }
 
-    /**
-     * 
-     */
-    private BasketDAO basketDAO;
-
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
 
 
 
-    /**
-     * @return
-     */
-    public BasketFacade getInstance() {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @return

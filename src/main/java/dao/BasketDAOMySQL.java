@@ -2,6 +2,7 @@ package dao;
 
 import model.Basket;
 
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -12,7 +13,8 @@ public class BasketDAOMySQL extends BasketDAO {
     /**
      * Default constructor
      */
-    public BasketDAOMySQL() {
+    public BasketDAOMySQL(Connection connect) {
+        super(connect);
     }
 
     /**
@@ -49,6 +51,15 @@ public class BasketDAOMySQL extends BasketDAO {
     public boolean updateBasket(Basket basket) {
         // TODO implement here
         return false;
+    }
+
+    /**
+     *
+     */
+    //SELECT sum(quantity) FROM Basket	 WHERE pseudoConsumer = "Stephanie"
+    public int getNbItemBasket(){
+        // TODO implement here
+        return 0;
     }
 
 }

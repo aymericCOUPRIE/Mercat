@@ -20,7 +20,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
 
 
     /**
-     * Retourne un objet classe interagissant avec la BDD
+     * Retourne un objet classe interagissant avec la BDD des users
      *
      * @return UserDAO
      */
@@ -29,11 +29,11 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     }
 
     /**
-     * @return
+     * * Retourne un objet classe interagissant avec la BDD au niveau des baskets
+     * @return BasketDAO
      */
     public BasketDAO createBasketDAO() {
-        // TODO implement here
-        return null;
+       return new BasketDAOMySQL(connect);
     }
 
 

@@ -2,9 +2,11 @@ package controller;
 
 import facade.BasketFacade;
 import facade.OrderFacade;
+import javafx.fxml.FXML;
 import model.Basket;
 import model.Product;
 
+import java.awt.*;
 import java.util.*;
 
 /**
@@ -27,6 +29,9 @@ public class BasketController {
      */
     public BasketController() {
     }
+
+    @FXML
+    private Label labelNbProducts, labelTotPrice;
 
 
     /**
@@ -54,14 +59,7 @@ public class BasketController {
         // TODO implement here
     }
 
-    /**
-     * @param idProduct 
-     * @return
-     */
-    public Product getProductDetails(int idProduct) {
-        // TODO implement here
-        return null;
-    }
+
 
     /**
      * @return
@@ -72,11 +70,26 @@ public class BasketController {
     }
 
     /**
+     * give the total number of item in the basket
+     * @return int
+     */
+    public int getNbItemBasket(){
+        return BasketFacade.getNbItemBasket();
+    }
+
+    /**
      * @param baskets 
      * @return
      */
     public void createOrder(Set<Basket> baskets) {
         // TODO implement here
+    }
+
+    /**
+     *
+     */
+    public void initialize(){
+        //TO DO
     }
 
 }
