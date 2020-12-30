@@ -8,18 +8,22 @@ import java.util.*;
 /**
  * 
  */
-public class BasketDAO {
+public abstract class BasketDAO {
+
+    /**
+     *
+     */
+    protected Connection connect = null;
 
     /**
      * Default constructor
+     * @param connect
      */
-    public BasketDAO() {
+    public BasketDAO(Connection connect) {
+        this.connect = connect;
     }
 
-    /**
-     * 
-     */
-    public Connection connect;
+
 
 
     /**

@@ -19,17 +19,14 @@ public abstract class AbstractFactoryDAO {
     }
 
     /**
-     * @return un objet classe interagissant avec la BDD
+     * @return un objet classe interagissant avec la BDD au niveau des users
      */
     public abstract UserDAO createUserDAO();
 
     /**
-     * @return
+     * @return un objet classe interagissant avec la BDD au niveau des baskets
      */
-    public BasketDAO createBasketDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract BasketDAO createBasketDAO();
 
 
     /**
