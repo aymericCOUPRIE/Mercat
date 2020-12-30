@@ -5,14 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
 import router.Router;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * 
+ *
  */
 public class HandleConsumerController {
 
@@ -25,7 +23,7 @@ public class HandleConsumerController {
     /**
      *
      */
-    private UserFacade userFacade;
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     @FXML
     private Label msgText;
@@ -39,16 +37,14 @@ public class HandleConsumerController {
     String selectedPseudo = "nothing";
 
 
-
     /**
      * this method redirects the admin to the update consumer page whose pseudo has been selected
-     *
      */
     public void updateConsumer() {
 
-        if(selectedPseudo.equals("nothing")){
+        if (selectedPseudo.equals("nothing")) {
             display("You must select a consumer");
-        } else{
+        } else {
             Object[] params = new Object[1];
             params[0] = selectedPseudo;
             Router.getInstance().activate("HandleConsumer", params);
@@ -57,14 +53,14 @@ public class HandleConsumerController {
 
     /**
      * delete the consumer selected in the listView
+     *
      * @return
      */
     public void deleteConsumer() {
 
-        if(selectedPseudo.equals("nothing")){
+        if (selectedPseudo.equals("nothing")) {
             display("You must select a consumer");
-        }
-        else if (userFacade.getInstanceUserFacade().deleteUser(selectedPseudo)) {
+        } else if (userFacade.getInstanceUserFacade().deleteUser(selectedPseudo)) {
 
             display(selectedPseudo + " account has been deleted");
 
@@ -106,22 +102,21 @@ public class HandleConsumerController {
         });
 
 
-
     }
 
     /**
      * This method permit to find a consumer
      * It will display the pseudo or an error message
      */
-    public void searchConsumer(){
+    public void searchConsumer() {
 
-        if(txtShearchField.getText().equals("")){
+        if (txtShearchField.getText().equals("")) {
             display("You must enter a consumer's pseudo!");
-        }else{
+        } else {
             String res = userFacade.getInstanceUserFacade().searchConsumer(txtShearchField.getText());
-            if(res.equals("User not exist!") || res.equals("This user is not a consumer..")){
+            if (res.equals("User not exist!") || res.equals("This user is not a consumer..")) {
                 display(res);
-            }else{
+            } else {
                 ListPseudo.getItems().clear();
                 ListPseudo.getItems().add(res);
             }
@@ -135,14 +130,13 @@ public class HandleConsumerController {
      */
     public void initialize() {
         System.out.println("yes je suis sur la bonne page dans initialize");
-       handleItemClick();
-        ListPseudo.getItems().addAll(userFacade.getInstanceUserFacade().getAllConsumerPseudo());
+        handleItemClick();
+        ArrayList<String> tempo = userFacade.getAllConsumerPseudo();
+        ListPseudo.getItems().addAll(tempo);
 
-        if(ListPseudo.getItems().size() == 0 ){
+        if (ListPseudo.getItems().size() == 0) {
             display("There is no consumer yet..");
         }
-
-
     }
 }
 

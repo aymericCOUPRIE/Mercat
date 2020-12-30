@@ -38,21 +38,20 @@ public class UserDAOMySQL extends UserDAO {
             preparedStatement.setString(1, pseudo);
             ResultSet res = preparedStatement.executeQuery();
 
-            if(res.next()){
+            if (res.next()) {
 
                 return instantiateUser(res);
 
-            }else {//il n'y a pas de résultat dans ma requête
+            } else {//il n'y a pas de résultat dans ma requête
                 return null;
             }
 
         } catch (SQLException throwables) {
-        throwables.printStackTrace();
+            throwables.printStackTrace();
         }
         //je n'ai pas pu executer la requête
         return null;
     }
-
 
 
     /**
@@ -137,16 +136,16 @@ public class UserDAOMySQL extends UserDAO {
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,user.getPseudo());
-            preparedStatement.setString(2,user.getFirstName());
-            preparedStatement.setString(3,user.getLastName());
-            preparedStatement.setString(4,hashPassword);
-            preparedStatement.setString(5,user.getEmailAddress());
-            preparedStatement.setString(6,user.getStreetAddress());
-            preparedStatement.setString(7,user.getCity());
-            preparedStatement.setString(8,user.getPostalCode());
-            preparedStatement.setString(9,user.getPictureUser());
-            preparedStatement.setString(10,user.getRole());
+            preparedStatement.setString(1, user.getPseudo());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, hashPassword);
+            preparedStatement.setString(5, user.getEmailAddress());
+            preparedStatement.setString(6, user.getStreetAddress());
+            preparedStatement.setString(7, user.getCity());
+            preparedStatement.setString(8, user.getPostalCode());
+            preparedStatement.setString(9, user.getPictureUser());
+            preparedStatement.setString(10, user.getRole());
             preparedStatement.setString(11, user.getPhoneNumber());
 
             return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
@@ -164,16 +163,16 @@ public class UserDAOMySQL extends UserDAO {
         System.out.println(requete);
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,user.getPseudo());
-            preparedStatement.setString(2,user.getFirstName());
-            preparedStatement.setString(3,user.getLastName());
-            preparedStatement.setString(4,hashPassword);
-            preparedStatement.setString(5,user.getEmailAddress());
-            preparedStatement.setString(6,user.getStreetAddress());
-            preparedStatement.setString(7,user.getCity());
-            preparedStatement.setString(8,user.getPostalCode());
-            preparedStatement.setString(9,user.getPictureUser());
-            preparedStatement.setString(10,user.getRole());
+            preparedStatement.setString(1, user.getPseudo());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, hashPassword);
+            preparedStatement.setString(5, user.getEmailAddress());
+            preparedStatement.setString(6, user.getStreetAddress());
+            preparedStatement.setString(7, user.getCity());
+            preparedStatement.setString(8, user.getPostalCode());
+            preparedStatement.setString(9, user.getPictureUser());
+            preparedStatement.setString(10, user.getRole());
             preparedStatement.setString(11, user.getPhoneNumber());
             preparedStatement.setString(12, user.getCompanyName());
 
@@ -183,35 +182,37 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
+
     /**
      * Update information in the database about a consumer
+     *
      * @param pseudo,firstName,lastName,password,OldPassword,emailAdress,streetAddress,city,postalCode,phoneNumber
      * @return
      */
-    public boolean updateConsumer(String pseudo,String firstName, String lastName, String password,String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber){
+    public boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
 
-        if(!OldPassword.equals(password)) { //j'ai changé de mdp
+        if (!OldPassword.equals(password)) { //j'ai changé de mdp
             password = PasswordSecured.hash(password);
         }
 
-        String requete =" UPDATE User SET firstName = ?,lastName = ? ,password = ?,emailAddress = ?,streetAddress = ?,city = ?,postalCode = ? ,phoneNumber = ?  WHERE pseudo = ?";
-         try{
-             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-             preparedStatement.setString(1,firstName);
-             preparedStatement.setString(2,lastName);
-             preparedStatement.setString(3,password);
-             preparedStatement.setString(4,emailAdress);
-             preparedStatement.setString(5,streetAddress);
-             preparedStatement.setString(6,city);
-             preparedStatement.setString(7,postalCode);
-             preparedStatement.setString(8,phoneNumber);
-             preparedStatement.setString(9,pseudo);
+        String requete = " UPDATE user SET firstName = ?,lastName = ? ,password = ?,emailAddress = ?,streetAddress = ?,city = ?,postalCode = ? ,phoneNumber = ?  WHERE pseudo = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, emailAdress);
+            preparedStatement.setString(5, streetAddress);
+            preparedStatement.setString(6, city);
+            preparedStatement.setString(7, postalCode);
+            preparedStatement.setString(8, phoneNumber);
+            preparedStatement.setString(9, pseudo);
 
-             return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
-         }catch (SQLException throwables) {
-             throwables.printStackTrace();
-             return false;
-         }
+            return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -219,71 +220,71 @@ public class UserDAOMySQL extends UserDAO {
      * @return true if the user has been deleted successfully
      */
     public boolean deleteUser(String pseudo) {
-        String requete = "DELETE FROM User WHERE pseudo = ?";
+        String requete = "DELETE FROM user WHERE pseudo = ?";
 
-        try{
+        try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,pseudo);
+            preparedStatement.setString(1, pseudo);
             return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
-        }catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
         }
     }
+
     /**
      * This methode permite to have the pseudo of user according to their past role in parameters
+     *
      * @param role
      * @return ArrayList<String>
      */
     public ArrayList<String> getAllPseudo(String role) {
 
-        ArrayList <String> listRes = new ArrayList<String>();
-        String requete = "SELECT pseudo FROM User WHERE role = ? ";
+        ArrayList<String> listRes = new ArrayList<>();
+        String requete = "SELECT pseudo FROM user WHERE role = ? ";
 
-        try{
+        try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,role);
+            preparedStatement.setString(1, role);
             ResultSet res = preparedStatement.executeQuery();
 
-           while (res.next()) {
-               listRes.add(res.getString("pseudo"));
-           }
-           return listRes;
-        } catch (SQLException throwables) {
-        throwables.printStackTrace();
-            //je n'ai pas pu executer la requête
-            return null;
-    }
-    }
-
-    /**
-
-     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
-     * @param pseudo
-     * @return String pseudo ou errormsg
-     */
-    public String searchConsumer(String pseudo){
-        String requete = "SELECT pseudo,role FROM User WHERE pseudo =?";
-        try{
-            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,pseudo);
-            ResultSet res = preparedStatement.executeQuery();
-            if(!res.next()){
-            return "User not exist!";
-            }else if(!res.getString("role").equals("consumer")){
-                return "This user is not a consumer..";
-            }else{
-                return pseudo;
+            while (res.next()) {
+                listRes.add(res.getString("pseudo"));
             }
-        }catch (SQLException throwables) {
+
+            return listRes;
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
             //je n'ai pas pu executer la requête
             return null;
         }
     }
 
-
-
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     *
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+    public String searchConsumer(String pseudo) {
+        String requete = "SELECT pseudo,role FROM user WHERE pseudo =?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery();
+            if (!res.next()) {
+                return "User not exist!";
+            } else if (!res.getString("role").equals("consumer")) {
+                return "This user is not a consumer..";
+            } else {
+                return pseudo;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            //je n'ai pas pu executer la requête
+            return null;
+        }
+    }
 
 
 }
