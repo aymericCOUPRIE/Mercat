@@ -73,9 +73,16 @@ public abstract class RateDAO {
      * @param seller 
      * @param consumer 
      * @param rate 
-     * @return
+     * @return false if the key is duplicate
      */
     public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
+
+    /**
+     * @param seller
+     * @param consumer
+     * @return the rate put by the consumer
+     */
+    public abstract int rateSeller(Seller seller, Consumer consumer);
 
     /**
      * @param seller 

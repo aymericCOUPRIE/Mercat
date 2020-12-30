@@ -5,9 +5,7 @@ import model.Product;
 import model.Rate;
 import model.Seller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -59,9 +57,38 @@ public class RateDAOMySQl extends RateDAO {
             preparedStatement.executeUpdate();
 
 
-        } catch (SQLException throwables) {
+        }catch (SQLIntegrityConstraintViolationException throwables) {
+        }
+        catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    public int rateSeller(Seller seller, Consumer consumer) {
+
+        String requete = "SELECT rate FROM rate where pseudoConsumer = ? AND pseudoSeller = ?";
+        System.out.println(requete);
+
+        try {
+            Object rate= new Object();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, consumer.getLogin());
+            preparedStatement.setString(2, seller.getLogin());
+            ResultSet res = preparedStatement.executeQuery();
+
+            // Recupère résultat et conversion
+            res.next();
+            rate = res.getObject(1);
+            String i = rate.toString();
+
+            //int i = Integer.parseInt(rate);
+            return Integer.parseInt(i);
+        }
+        catch (SQLException throwables) {
+            return 0;
+        }
+    }
+
 
 }
