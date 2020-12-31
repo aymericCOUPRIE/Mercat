@@ -96,15 +96,11 @@ public class UpdateSellerProfileController {
      */
     @FXML
     public void updateSeller() {
-        /*
-        //pas besoin de vérifier si champs vides car remplis par défaut
-        if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
+        if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText(),txtCompanyName.getText())){
             display("Your profil has been updated !");
         } else {
             display("Error !");
         }
-
-         */
     }
 
 
@@ -129,10 +125,12 @@ public class UpdateSellerProfileController {
     /**
      * To initialize the variable with the information in the data base
      */
+    @FXML
     public void initialize() {
         //User car ça peut être un admin ou un consumer
         Seller c = (Seller) getConsumerDetails();
         txtPseudo.setText(c.getPseudo());
+        System.out.println(c.getFirstName());
         txtFirstname.setText(c.getFirstName());
         txtLastname.setText(c.getLastName());
         txtEmailAdress.setText(c.getEmailAddress());

@@ -67,6 +67,7 @@ public abstract class UserDAO {
      */
    public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
 
+   public abstract boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company);
 
     /**
      * This methode permite to have the pseudo of user according to their past role in parameters

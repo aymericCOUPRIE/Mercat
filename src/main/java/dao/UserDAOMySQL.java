@@ -215,6 +215,35 @@ public class UserDAOMySQL extends UserDAO {
         }
     }
 
+    public boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
+
+        if (!OldPassword.equals(password)) { //j'ai changé de mdp
+            password = PasswordSecured.hash(password);
+        }
+
+        String requete = " UPDATE user SET firstName = ?,lastName = ? ,password = ?,emailAddress = ?,streetAddress = ?,city = ?,postalCode = ? ,phoneNumber = ?, companyName = ?  WHERE pseudo = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, emailAdress);
+            preparedStatement.setString(5, streetAddress);
+            preparedStatement.setString(6, city);
+            preparedStatement.setString(7, postalCode);
+            preparedStatement.setString(8, phoneNumber);
+            preparedStatement.setString(9, company);
+            preparedStatement.setString(10, pseudo);
+
+            return preparedStatement.executeUpdate() != 0; //cas où aucune ligne a été modifiée
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     /**
      * @param pseudo
      * @return true if the user has been deleted successfully

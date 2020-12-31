@@ -96,14 +96,14 @@ public class UserFacade {
      * @return
      */
     public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
-        if(isSeller()){
-            //flo ton code pour modifier un seller
-            return false; //a enlever
-        }else{//je suis un consumer ou un admin
-
             return userDAO.updateConsumer( pseudo,firstName, lastName, password,OldPassword, emailAdress, streetAddress, city, postalCode,phoneNumber);
-        }
-
+    }
+    /**
+     * @param
+     * @return
+     */
+    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
+            return userDAO.updateSeller( pseudo,firstName, lastName, password,OldPassword, emailAdress, streetAddress, city, postalCode,phoneNumber,company);
     }
 
     /**
