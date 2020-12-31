@@ -184,9 +184,7 @@ public class UserFacade {
      * @return
      */
     public Seller getSellerDetails(String pseudo) {
-        // TODO implement here
-        // Flo tu peut te servir de getConsumerDetails je pense, faudrait la renomer getUserDetails dans mon code du coup
-        return null;
+        return (Seller) userDAO.findUser("s");
     }
 
     /**
