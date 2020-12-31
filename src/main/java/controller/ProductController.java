@@ -59,7 +59,6 @@ public class ProductController {
     private TextField txtCategory2;
 
 
-
     private String categoryName;
     private String priceEuros;
     private String priceCents;
