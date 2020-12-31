@@ -1,6 +1,10 @@
 package controller;
 
 import facade.UserFacade;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.util.*;
 
@@ -15,10 +19,16 @@ public class HandleSellersController {
     public HandleSellersController() {
     }
 
-    /**
-     * 
-     */
-    private UserFacade userFacade;
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+
+    @FXML
+    private Label msgText;
+
+    @FXML
+    private TextField txtShearchField;
+
+    @FXML
+    private ListView ListPseudo;
 
 
     /**
