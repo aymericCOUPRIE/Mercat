@@ -10,58 +10,49 @@ public class Basket {
     /**
      * Default constructor
      */
-    public Basket() {
+
+    public Basket(int quantity, Product product, String pseudoConsumer) {
+        this.quantity = quantity;
+        this.product = product;
+        this.pseudoConsumer = pseudoConsumer;
     }
 
     /**
-     * 
+     *
      */
     private int quantity;
 
     /**
-     * 
+     *
      */
-    private int idProduct;
+    private Product product;
 
     /**
-     * 
+     *
      */
     private String pseudoConsumer;
 
-
-
-
-
-    /**
-     * @return
-     */
     public int getQuantity() {
-        // TODO implement here
-        return 0;
+        return quantity;
     }
 
-    /**
-     * @param qte 
-     * @return
-     */
-    public void setQuantity(int qte) {
-        // TODO implement here
+    public Product getProduct() {
+        return product;
     }
 
-    /**
-     * @return
-     */
-    public int getIdProduct() {
-        // TODO implement here
-        return 0;
-    }
-
-    /**
-     * @return
-     */
     public String getPseudoConsumer() {
-        // TODO implement here
-        return "";
+        return pseudoConsumer;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setPseudoConsumer(String pseudoConsumer) {
+        this.pseudoConsumer = pseudoConsumer;
+    }
 }

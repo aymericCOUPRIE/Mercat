@@ -18,7 +18,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("/CategoryUI.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
             Parent skillLayout = root.load();
             Scene scene = new Scene(skillLayout, 1000, 800);
 
@@ -40,6 +40,7 @@ public class Main extends Application {
         r.add("Login", "/LoginUI.fxml");
         r.add("SignUpC", "/SignUpUIConsumer.fxml");
         r.add("SignUpS", "/SignUpUISeller.fxml");
+        r.add("Basket","/BasketUI.fxml");
     }
 
 }

@@ -10,7 +10,7 @@ public class User {
     /**
      *
      */
-    private String login;
+    private String pseudo;
 
     /**
      *
@@ -66,7 +66,7 @@ public class User {
 
 
     /**
-     * @param login
+     * @param pseudo
      * @param firstName
      * @param lastName
      * @param password
@@ -78,8 +78,8 @@ public class User {
      * @param role
      * @param phoneNumber
      */
-    public User(String login, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role, String phoneNumber) {
-        this.login = login;
+    public User(String pseudo, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role, String phoneNumber) {
+        this.pseudo = pseudo;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -93,40 +93,14 @@ public class User {
     }
 
 
-    /**
-     * @return
-     */
-    public void login() {
-        // TODO implement here
+
+
+    public String getPseudo() {
+        return pseudo;
     }
 
-    /**
-     * @return
-     */
-    public void signUp() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void updateInformation() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public void deleteAccount() {
-        // TODO implement here
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public String getFirstName() {
@@ -212,7 +186,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
+                "login='" + pseudo + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +

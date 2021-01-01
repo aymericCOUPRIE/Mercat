@@ -27,13 +27,11 @@ public abstract class BasketDAO {
 
 
     /**
-     * @param pseudoConsumer 
-     * @return
+     * this method allows to retrieve all the baskets of the consumer whose the pseudo is passed in parameter
+     * @param pseudoConsumer
+     * @return ArrayList<Basket>
      */
-    public Set<Basket> getAllBasket(String pseudoConsumer) {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<Basket> getAllBasket(String pseudoConsumer);
 
     /**
      * @param basket 
@@ -54,12 +52,10 @@ public abstract class BasketDAO {
     }
 
     /**
-     * @param basket 
-     * @return
+     * @param idProduct,quantity
+     * @return boolean True si le panier a bien été modifié
      */
-    public boolean updateBasket(Basket basket) {
-        // TODO implement here
-        return false;
+    public abstract boolean updateBasket(int idProduct, int quantity);
     }
 
 }

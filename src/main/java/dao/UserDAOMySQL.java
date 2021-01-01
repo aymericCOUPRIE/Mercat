@@ -130,7 +130,7 @@ public class UserDAOMySQL extends UserDAO {
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,user.getLogin());
+            preparedStatement.setString(1,user.getPseudo());
             preparedStatement.setString(2,user.getFirstName());
             preparedStatement.setString(3,user.getLastName());
             preparedStatement.setString(4,hashPassword);
@@ -157,7 +157,7 @@ public class UserDAOMySQL extends UserDAO {
         //System.out.println(requete);
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1,user.getLogin());
+            preparedStatement.setString(1,user.getPseudo());
             preparedStatement.setString(2,user.getFirstName());
             preparedStatement.setString(3,user.getLastName());
             preparedStatement.setString(4,hashPassword);

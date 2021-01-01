@@ -2,10 +2,17 @@ package controller;
 
 import facade.BasketFacade;
 import facade.OrderFacade;
+import facade.UserFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import model.Basket;
 import model.Product;
 
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.awt.*;
 import java.util.*;
 
@@ -14,15 +21,11 @@ import java.util.*;
  */
 public class BasketController {
 
-    /**
-     *
-     */
-    private BasketFacade basketFacade;
+    private BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
 
-    /**
-     *
-     */
     private OrderFacade orderFacade;
+
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     /**
      * Default constructor
@@ -31,15 +34,17 @@ public class BasketController {
     }
 
     @FXML
-    private Label labelNbProducts, labelTotPrice;
-
+   // private Label labelNbProducts, labelTotPrice;
+    private TableView tableViewBasket;
+    public TableColumn<Basket, String> pictureLabel, productNameLabel;
+    public TableColumn<Basket, Integer> quantityLabel, priceLabel;;
 
     /**
-     * @return
+     * this method allows to retrieve all the baskets of the connected consumer
+     * @return ArrayList<Basket>
      */
-    public Set<Basket> getAllBasket() {
-        // TODO implement here
-        return null;
+    public ArrayList<Basket> getAllBasket() {
+      return basketFacade.getAllBasket(userFacade.getConnectedUser().getPseudo());
     }
 
     /**
@@ -91,7 +96,38 @@ public class BasketController {
      *
      */
     public void initialize(){
-        //TO DO
+        //TODO
+
+        ObservableList<Basket> listBasket = FXCollections.observableArrayList(getAllBasket());
+
+        //rajouter photo si a le temps
+
+
+        productNameLabel.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
+        //getNameProduct()
+
+        //STRING
+        //quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        quantityLabel.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+
+        //rempli la tableView
+        tableViewBasket.setItems(listBasket);
+
+
+
+        /*Allows the quantity to be modified directly in the tableView
+        quantityLabel.setOnEditCommit(e -> {
+            Category category = e.getTableView().getItems().get(e.getTablePosition().getRow());
+            String oldName = category.getNameCategory();
+            category.setNameCategory(e.getNewValue());
+            BasketFacade.updateBasket(category.getNameCategory(), oldName);
+        });
+
+
+        tableViewBasket.setEditable(true);
+         */
     }
 
 }

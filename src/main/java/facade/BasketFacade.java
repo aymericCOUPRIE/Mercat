@@ -38,11 +38,12 @@ public class BasketFacade {
 
 
     /**
-     * @return
+     * this method allows to retrieve all the baskets of the connected consumer whose the pseudo is passed in parameter
+     * @param pseudo
+     * @return ArrayList<Basket>
      */
-    public Set<Basket> getAllBasket() {
-        // TODO implement here
-        return null;
+    public ArrayList<Basket> getAllBasket(String pseudo) {
+        return basketDAO.getAllBasket(pseudo);
     }
 
     /**
@@ -51,7 +52,7 @@ public class BasketFacade {
      * @return
      */
     public void updateBasket(int idProduct, int quantity) {
-        // TODO implement here
+        return basketDAO.updateBasket(idProduct,quantity);
     }
 
     /**

@@ -3,49 +3,61 @@ package model;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class Product {
 
     /**
-     * Default constructor
-     */
-    public Product() {
-    }
-
-    /**
-     * 
+     *
      */
     private int idProduct;
 
     /**
-     * 
+     *
      */
     private String nameProduct;
 
     /**
-     * 
+     *
      */
     private float priceProduct;
 
     /**
-     * 
+     *
      */
     private String pictureProduct;
 
     /**
-     * 
+     *
      */
     private String pseudoSeller;
 
     /**
-     * 
+     *
      */
-    private int idCategorie;
+    private int category;
+    private String description;
+    /**
+     * Default constructor
+     */
+    public Product(String nameProduct,String description,float priceProduct,String seller,int category) {
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pseudoSeller = seller;
+        this.category =category;
+
+    }
 
 
 
+    public String getDescription(){
+        return this.description;
+    }
 
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
 
     /**
      * @return
@@ -59,12 +71,11 @@ public class Product {
      * @return
      */
     public String getNameProduct() {
-        // TODO implement here
-        return "";
+        return this.nameProduct;
     }
 
     /**
-     * @param name 
+     * @param name
      * @return
      */
     public void setNameProduct(String name) {
@@ -72,15 +83,14 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return priceProduct
      */
     public float getPriceProduct() {
-        // TODO implement here
-        return 0.0f;
+        return this.priceProduct;
     }
 
     /**
-     * @param price 
+     * @param price
      * @return
      */
     public void setPriceProduct(float price) {
@@ -88,15 +98,14 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return pictureProduct
      */
     public String getPictureProduct() {
-        // TODO implement here
-        return "";
+        return  this.pictureProduct;
     }
 
     /**
-     * @param url 
+     * @param url
      * @return
      */
     public void setPictureProduct(String url) {
@@ -104,15 +113,14 @@ public class Product {
     }
 
     /**
-     * @return
+     * @return the name of the seller
      */
     public String getPseudoSeller() {
-        // TODO implement here
-        return "";
+        return this.pseudoSeller;
     }
 
     /**
-     * @param categ 
+     * @param categ
      * @return
      */
     public void setIdCategorie(int categ) {
@@ -122,9 +130,8 @@ public class Product {
     /**
      * @return
      */
-    public int getIdCategorie() {
-        // TODO implement here
-        return 0;
+    public int getCategory() {
+        return this.category;
     }
 
 }
