@@ -2,6 +2,7 @@ package controller;
 
 import facade.BasketFacade;
 import facade.OrderFacade;
+import facade.UserFacade;
 import javafx.fxml.FXML;
 import model.Basket;
 import model.Product;
@@ -14,15 +15,11 @@ import java.util.*;
  */
 public class BasketController {
 
-    /**
-     *
-     */
-    private BasketFacade basketFacade;
+    private BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
 
-    /**
-     *
-     */
     private OrderFacade orderFacade;
+
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     /**
      * Default constructor
@@ -35,11 +32,11 @@ public class BasketController {
 
 
     /**
-     * @return
+     * this method allows to retrieve all the baskets of the connected consumer
+     * @return ArrayList<Basket>
      */
-    public Set<Basket> getAllBasket() {
-        // TODO implement here
-        return null;
+    public ArrayList<Basket> getAllBasket() {
+      return basketFacade.getAllBasket(userFacade.getConnectedUser().getPseudo());
     }
 
     /**
