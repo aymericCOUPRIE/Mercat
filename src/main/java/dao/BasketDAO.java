@@ -52,12 +52,10 @@ public abstract class BasketDAO {
     }
 
     /**
-     * @param basket 
-     * @return
+     * @param idProduct,quantity
+     * @return boolean True si le panier a bien été modifié
      */
-    public boolean updateBasket(Basket basket) {
-        // TODO implement here
-        return false;
+    public abstract boolean updateBasket(int idProduct, int quantity);
     }
 
 }

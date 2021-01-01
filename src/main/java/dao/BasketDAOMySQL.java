@@ -28,7 +28,7 @@ public class BasketDAOMySQL extends BasketDAO {
      * @return ArrayList<Basket>
      */
     public ArrayList<Basket> getAllBasket(String pseudoConsumer) {
-        // TODO implement here
+
         ArrayList<Basket> allBasket = new ArrayList<Basket>();
         String requete = "SELECT * FROM basket JOIN product ON product.idProduct = basket.idProduct WHERE basket.pseudoConsumer = ? ";
 
@@ -45,6 +45,7 @@ public class BasketDAOMySQL extends BasketDAO {
                         res.getString("pseudoConsumer")
                 );
                 allBasket.add(b);
+
             }
 
             return allBasket;
@@ -76,12 +77,13 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * @param basket 
-     * @return
+     * @param idProduct,quantity
+     * @return boolean true si le panier a été modifié
      */
-    public boolean updateBasket(Basket basket) {
-        // TODO implement here
-        return false;
+    public boolean updateBasket(int idProduct, int quantity) {
+        //TODO
+        String requete = "UPDATE Basket SET quantity = 3  WHERE idProduct = 1 and pseudoConsumer=\"Stephanie\"";
+        return true;
     }
 
 

@@ -67,10 +67,10 @@
             </GridPane>
             <TableView fx:id="tableViewBasket" layoutX="72.0" prefHeight="200.0" prefWidth="450.0">
               <columns>
-                <TableColumn prefWidth="147.0" text="Picture" />
-                <TableColumn prefWidth="163.0" text="Product's name" />
-                  <TableColumn prefWidth="59.0" text="Quantity" />
-                  <TableColumn text="Price" />
+                <TableColumn fx:id="pictureLabel" prefWidth="147.0" text="Picture" />
+                <TableColumn fx:id="productNameLabel" prefWidth="163.0" text="Product's name" />
+                  <TableColumn fx:id="quantityLabel" prefWidth="59.0" text="Quantity" />
+                  <TableColumn fx:id="priceLabel" text="Price" />
               </columns>
             </TableView>
          </children></AnchorPane>
