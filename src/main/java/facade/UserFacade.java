@@ -194,10 +194,9 @@ public class UserFacade {
     }
 
     /**
-     * @param pseudo
      * @return
      */
-    public Seller getSellerDetails(String pseudo) {
+    public Seller getSellerDetails() {
         if(isAdmin()){
             return (Seller) userDAO.findUser((String) Router.getInstance().getParams()[0]);
         } else {
@@ -205,6 +204,14 @@ public class UserFacade {
         }
     }
 
+    /**
+     * @param pseudo
+     * @return
+     */
+    public Seller getSellerDetails(String pseudo) {
+        // METTRE get Params comme au dessus qd les branches seront merge
+        return (Seller) userDAO.findUser("s");
+    }
 
 
 
