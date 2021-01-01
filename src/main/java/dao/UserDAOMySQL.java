@@ -315,6 +315,31 @@ public class UserDAOMySQL extends UserDAO {
         }
     }
 
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     *
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+    public String searchSeller(String pseudo) {
+        String requete = "SELECT pseudo,role FROM user WHERE pseudo =?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery();
+            if (!res.next()) {
+                return "User not exist!";
+            } else if (!res.getString("role").equals("seller")) {
+                return "This user is not a seller..";
+            } else {
+                return pseudo;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
 
 }
 

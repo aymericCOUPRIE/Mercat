@@ -74,19 +74,25 @@ public class UpdateSellerProfileController {
      *
      */
     public void deleteSeller() {
-        /*
         if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
 
-            display("Your account has been deleted");
+            if(!(userFacade.getInstanceUserFacade().isAdmin())){
+                display("Your account has been deleted");
 
-            CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS).execute(() -> {
-                // Your code here executes after 5 seconds!
-                Router.getInstance().activate("Login");
-            });
-
+                CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
+                    // Your code here executes after 3 seconds!
+                    Router.getInstance().activate("Login");
+                });
+            }else{
+                display(Router.getInstance().getParams()[0].toString() + " account has been deleted");
+                CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
+                    // Your code here executes after 3 seconds!
+                    Router.getInstance().activate("HandleConsumerS");
+                });
+            }
         }else{
-            display("Your account hasn't been deleted ..");
-        }*/
+            display("Your account hasn't been deleted ...");
+        }
     }
 
     /**

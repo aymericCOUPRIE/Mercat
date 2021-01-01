@@ -163,10 +163,15 @@ public class UserFacade {
      * @return
      */
     public ArrayList<String> getAllConsumerPseudo() {
-
         return userDAO.getAllPseudo("consumer");
     }
 
+    /**
+     * @return
+     */
+    public ArrayList<String> getAllSellersPseudo() {
+        return userDAO.getAllPseudo("seller");
+    }
 
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
@@ -175,8 +180,17 @@ public class UserFacade {
      */
 
     public String searchConsumer(String pseudo){
-
         return userDAO.searchConsumer(pseudo);
+    }
+
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un seller
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+
+    public String searchSeller(String pseudo){
+        return userDAO.searchSeller(pseudo);
     }
 
     /**
@@ -184,16 +198,14 @@ public class UserFacade {
      * @return
      */
     public Seller getSellerDetails(String pseudo) {
-        return (Seller) userDAO.findUser("s");
+        if(isAdmin()){
+            return (Seller) userDAO.findUser((String) Router.getInstance().getParams()[0]);
+        } else {
+            return  (Seller) getConnectedUser();
+        }
     }
 
-    /**
-     * @return
-     */
-    public Set<String> getAllSellersPseudo() {
-        // TODO implement here
-        return null;
-    }
+
 
 
 }

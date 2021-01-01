@@ -44,6 +44,7 @@ public class Main extends Application {
         r.add("HandleConsumerS", "/HandleConsumersUI.fxml");
         r.add("HandleSeller", "/UpdateSellerProfileUI.fxml");
         r.add("ProfileSeller", "/SellerProfileUI.fxml");
+        r.add("HandleSellerS", "/HandleSellersUI.fxml");
     }
 
 }

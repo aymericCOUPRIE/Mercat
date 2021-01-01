@@ -25,7 +25,7 @@ public class HomePageController {
     //private SearchFacade searchFacade;
 
     @FXML
-    private MenuItem handleC, myAccount;
+    private MenuItem handleC, myAccount, handleS;
 
 
     /**
@@ -74,11 +74,24 @@ public class HomePageController {
     }
 
     /**
+     * Method used by the menue from Java FX
+     * It permits to go in the handle sellers page
+     *
+     * @param e
+     * @throws IOException
+     */
+    @FXML
+    public void handleSellers(ActionEvent e) throws IOException {
+        Router.getInstance().activate("HandleSellerS");
+    }
+
+    /**
      * This method allows to manage the display of the menu according to the user's role.
      */
     public void initialize() {
         if (!(userFacade.getConnectedUser().getRole().equals("admin"))) {
             handleC.setVisible(false);
+            handleS.setVisible(false);
         } else { //je suis un admin
             myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
         }

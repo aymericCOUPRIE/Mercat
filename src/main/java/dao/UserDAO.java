@@ -81,5 +81,6 @@ public abstract class UserDAO {
      * @return String pseudo ou errormsg
      */
     public abstract String searchConsumer(String pseudo);
+    public abstract String searchSeller(String pseudo);
 
 }
