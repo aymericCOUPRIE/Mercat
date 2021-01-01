@@ -28,7 +28,7 @@ public class BasketController {
     }
 
     @FXML
-    private Label labelNbProducts, labelTotPrice;
+   // private Label labelNbProducts, labelTotPrice;
 
 
     /**
