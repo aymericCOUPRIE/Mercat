@@ -52,10 +52,13 @@ public abstract class BasketDAO {
     }
 
     /**
-     * @param idProduct,quantity
+     * This methode permit to update the quantity of an order
+     * @param pseudo,idProduct,quantity
      * @return boolean True si le panier a bien été modifié
      */
-    public abstract boolean updateBasket(int idProduct, int quantity);
+
+    public abstract boolean updateBasket(String pseudo,int idProduct, int quantity);
+
 
 
 }

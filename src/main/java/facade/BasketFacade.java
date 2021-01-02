@@ -47,9 +47,11 @@ public class BasketFacade {
     }
 
     /**
+     * This methode permit to update the quantity of a product in the basket
      * @param idProduct 
-     * @param quantity 
-     * @return
+     * @param quantity
+     * @param pseudo
+
      */
     public void updateBasket(int idProduct, int quantity) {
         basketDAO.updateBasket(idProduct,quantity);

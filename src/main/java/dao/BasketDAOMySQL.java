@@ -79,12 +79,13 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * @param idProduct,quantity
-     * @return boolean true si le panier a été modifié
+     * This methode permit to update the quantity of an order
+     * @param pseudo,idProduct,quantity
+     * @return boolean True si le panier a bien été modifié
      */
-    public boolean updateBasket(int idProduct, int quantity) {
+    public boolean updateBasket(String pseudo,int idProduct, int quantity) {
         //TODO
-        String requete = "UPDATE Basket SET quantity = 3  WHERE idProduct = 1 and pseudoConsumer=\"Stephanie\"";
+        String requete = "UPDATE Basket SET quantity = ?  WHERE idProduct = ? and pseudoConsumer= ?";
         return true;
     }
 
