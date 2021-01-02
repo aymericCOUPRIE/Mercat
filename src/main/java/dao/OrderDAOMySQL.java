@@ -25,9 +25,11 @@ public class OrderDAOMySQL extends OrderDAO {
      * @param basket
      * @return
      */
+
     public boolean insertOrder(Basket basket) {
         String requete = "INSERT INTO order_ok (pseudoConsumer, pseudoSeller, dateOrder, deliveryAddress, deliveryDate, idProduct, quantity, stateOrder) VALUES (?,?,NOW(),?,NOW(),?,?,?)";
 
+        /*
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, basket.getPseudoConsumer());
@@ -43,6 +45,8 @@ public class OrderDAOMySQL extends OrderDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        */
+
         return false;
     }
 

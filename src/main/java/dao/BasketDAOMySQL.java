@@ -41,9 +41,10 @@ public class BasketDAOMySQL extends BasketDAO {
             while (res.next()){
                 Basket b = new Basket(
                         res.getInt("quantity"),
-                        new Product(res.getString("nameProduct"), res.getString("description"), res.getFloat("priceProduct"),res.getString("seller"),res.getInt("category")),
+                        new Product(res.getInt("idProduct"), res.getString("nameProduct"), res.getString("description"), res.getFloat("priceProduct"),res.getString("pseudoSeller"),res.getInt("idCategorie")),
                         res.getString("pseudoConsumer")
                 );
+
                 allBasket.add(b);
 
             }

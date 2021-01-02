@@ -3,6 +3,7 @@ package controller;
 import facade.BasketFacade;
 import facade.OrderFacade;
 import facade.UserFacade;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -100,10 +101,12 @@ public class BasketController {
 
         ObservableList<Basket> listBasket = FXCollections.observableArrayList(getAllBasket());
 
+
+
         //rajouter photo si a le temps
 
 
-        productNameLabel.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
+        productNameLabel.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getProduct().getNameProduct()));
         //getNameProduct()
 
         //STRING

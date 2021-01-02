@@ -52,7 +52,7 @@ public class BasketFacade {
      * @return
      */
     public void updateBasket(int idProduct, int quantity) {
-        return basketDAO.updateBasket(idProduct,quantity);
+        basketDAO.updateBasket(idProduct,quantity);
     }
 
     /**

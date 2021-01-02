@@ -40,7 +40,8 @@ public class Product {
     /**
      * Default constructor
      */
-    public Product(String nameProduct,String description,float priceProduct,String seller,int category) {
+    public Product(int idProduct, String nameProduct,String description,float priceProduct,String seller,int category) {
+        this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.description = description;
         this.priceProduct = priceProduct;

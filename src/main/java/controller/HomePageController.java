@@ -96,9 +96,11 @@ public class HomePageController {
         }
          */
 
+        /*
         if(!userFacade.getConnectedUser().getRole().equals("consumer")){ //seul consumer a un panier
             myAccount.setVisible(false);
         }
+        */
     }
 
 

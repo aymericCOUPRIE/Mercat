@@ -56,6 +56,6 @@ public abstract class BasketDAO {
      * @return boolean True si le panier a bien été modifié
      */
     public abstract boolean updateBasket(int idProduct, int quantity);
-    }
+
 
 }
