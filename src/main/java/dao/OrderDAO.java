@@ -41,7 +41,7 @@ public abstract class OrderDAO {
      * @param basket
      * @return
      */
-    public abstract boolean insertOrder(Basket basket);
+    public abstract boolean insertOrder(List<Basket> basket);
 
     /**
      * @param order, date

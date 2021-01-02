@@ -32,40 +32,37 @@ public class Product {
      */
     private String pseudoSeller;
 
+
     /**
      *
      */
-    private int category;
+    private int idCategorie;
+
+    /**
+     *
+     */
     private String description;
+
     /**
      * Default constructor
      */
-    public Product(int idProduct, String nameProduct,String description,float priceProduct,String seller,int category) {
+
+
+    public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, int idCategorie) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.description = description;
         this.priceProduct = priceProduct;
-        this.pseudoSeller = seller;
-        this.category =category;
-
-    }
-
-
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+        this.pictureProduct = pictureProduct;
+        this.pseudoSeller = pseudoSeller;
+        this.idCategorie = idCategorie;
     }
 
     /**
      * @return
      */
     public int getIdProduct() {
-        // TODO implement here
-        return 0;
+        return this.idProduct;
     }
 
     /**
@@ -81,6 +78,14 @@ public class Product {
      */
     public void setNameProduct(String name) {
         // TODO implement here
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     /**
@@ -102,7 +107,7 @@ public class Product {
      * @return pictureProduct
      */
     public String getPictureProduct() {
-        return  this.pictureProduct;
+        return this.pictureProduct;
     }
 
     /**
@@ -131,8 +136,8 @@ public class Product {
     /**
      * @return
      */
-    public int getCategory() {
-        return this.category;
+    public int getIdCategorie() {
+        return this.idCategorie;
     }
 
 }

@@ -19,7 +19,7 @@ public class ConsultHistoricController {
     /**
      * 
      */
-    private OrderFacade orderFacade;
+    private OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
 
 
     /**

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class BasketDAOMySQL extends BasketDAO {
 
@@ -24,6 +24,7 @@ public class BasketDAOMySQL extends BasketDAO {
 
     /**
      * this method allows to retrieve all the baskets of the consumer whose the pseudo is passed in parameter
+     *
      * @param pseudoConsumer
      * @return ArrayList<Basket>
      */
@@ -38,10 +39,10 @@ public class BasketDAOMySQL extends BasketDAO {
             preparedStatement.setString(1, pseudoConsumer);
             ResultSet res = preparedStatement.executeQuery();
 
-            while (res.next()){
+            while (res.next()) {
                 Basket b = new Basket(
                         res.getInt("quantity"),
-                        new Product(res.getInt("idProduct"), res.getString("nameProduct"), res.getString("description"), res.getFloat("priceProduct"),res.getString("pseudoSeller"),res.getInt("idCategorie")),
+                        new Product(res.getInt("idProduct"), res.getString("nameProduct"), res.getString("description"), res.getFloat("priceProduct"), res.getString("pictureProduct"), res.getString("pseudoSeller"), res.getInt("idCategorie")),
                         res.getString("pseudoConsumer")
                 );
 
@@ -55,12 +56,12 @@ public class BasketDAOMySQL extends BasketDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    //je n'ai pas pu executer la requête
+        //je n'ai pas pu executer la requête
         return null;
     }
 
     /**
-     * @param basket 
+     * @param basket
      * @return
      */
     public boolean createBasket(Basket basket) {
@@ -69,7 +70,7 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * @param basket 
+     * @param basket
      * @return
      */
     public boolean deleteBasket(Basket basket) {
@@ -86,7 +87,6 @@ public class BasketDAOMySQL extends BasketDAO {
         String requete = "UPDATE Basket SET quantity = 3  WHERE idProduct = 1 and pseudoConsumer=\"Stephanie\"";
         return true;
     }
-
 
 
 }

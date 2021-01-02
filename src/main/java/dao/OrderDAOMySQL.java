@@ -2,6 +2,7 @@ package dao;
 
 import model.Basket;
 import model.Order;
+import model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,30 +23,46 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param basket
+     * @param baskets
      * @return
      */
+    public boolean insertOrder(List<Basket> baskets) {
 
-    public boolean insertOrder(Basket basket) {
-        String requete = "INSERT INTO order_ok (pseudoConsumer, pseudoSeller, dateOrder, deliveryAddress, deliveryDate, idProduct, quantity, stateOrder) VALUES (?,?,NOW(),?,NOW(),?,?,?)";
+        List<Integer> listsIdProduct = new ArrayList<>();
+        for (Basket b : baskets) {
+            listsIdProduct.add(b.getProduct().getIdProduct());
+        }
 
-        /*
+        String requete = "INSERT INTO order_ok (pseudoConsumer, pseudoSeller, dateOrder, deliveryAddress, deliveryDate, quantity, stateOrder) VALUES (?,?,?,?,NOW(),?,?)";
+
+        String pseudoConsumer = baskets.get(0).getPseudoConsumer();
+        String pseudoSeller = "JE SAIS PAS COMMENT L'AVOIR";
+        float quantity = baskets.get(0).getQuantity();
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+
         try {
+
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, basket.getPseudoConsumer());
-            preparedStatement.setString(2, "inutileCarOnStockIDProduct???");
-            preparedStatement.setString(3, "inutileCarOnADejaIDConsumer");
-            preparedStatement.setInt(4, basket.getIdProduct());
-            preparedStatement.setFloat(5, basket.getQuantity());
+            preparedStatement.setString(1, pseudoConsumer);
+            preparedStatement.setString(2, pseudoSeller);
+            preparedStatement.setDate(3, date);
+            preparedStatement.setString(4, "inutileCarOnADejaIDConsumer");
+            preparedStatement.setFloat(5, quantity);
             preparedStatement.setString(6, "Beginning");
             int res = preparedStatement.executeUpdate();
+
+            if (res != 0) { //Vérifie que le INSERT order c'est bien passé
+                Order tempo = find(pseudoConsumer, pseudoSeller, date);
+                insertAllProducts(tempo.getIdOrder(), listsIdProduct);
+            }
 
             return res == 0 ? false : true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        */
+
 
         return false;
     }
@@ -78,7 +95,7 @@ public class OrderDAOMySQL extends OrderDAO {
      * @param pseudoConsumer
      * @param pseudoSeller
      * @param dateOrder
-     * @return
+     * @return an Order
      */
     public Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder) {
 
@@ -96,6 +113,7 @@ public class OrderDAOMySQL extends OrderDAO {
                 Order order = createOrderObject(res);
                 return order;
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -119,7 +137,7 @@ public class OrderDAOMySQL extends OrderDAO {
             int res = preparedStatement.executeUpdate();
 
             return res == 0 ? false : true;
-            
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -151,16 +169,72 @@ public class OrderDAOMySQL extends OrderDAO {
 
     private Order createOrderObject(ResultSet res) throws SQLException {
         Order order = new Order(
+                res.getInt("idOrder"),
                 res.getString("pseudoConsumer"),
                 res.getString("pseudoSeller"),
                 res.getDate("dateOrder"),
                 res.getString("deliveryAddress"),
                 res.getDate("deliveryDate"),
-                res.getInt("idProduct"),
                 res.getFloat("quantity"),
-                res.getString("stateOrder")
+                res.getString("stateOrder"),
+                getAllProductsFromOrder(res.getInt("idOrder"))
         );
         return order;
+    }
+
+    private boolean insertAllProducts(int idOrder, List<Integer> idProducts) {
+        String requete = "INSERT INTO orderlistproduct VALUES (?, ?)";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idOrder);
+
+            boolean res = true;
+            for (Integer i : idProducts) {
+                preparedStatement.setInt(2, i);
+                if (preparedStatement.executeUpdate() == 0) {
+                    res = false;
+                }
+            }
+            return res;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+
+    private List<Product> getAllProductsFromOrder(int idOrder) {
+        String requete = "SELECT * FROM orderlistproduct INNER JOIN products ON orderListProduct.idProduct = product.idProduct WHERE idOrder = ?";
+
+        try {
+
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idOrder);
+            ResultSet res = preparedStatement.executeQuery();
+
+            List<Product> products = new ArrayList<>();
+
+            while (res.next()) {
+                Product product = new Product(
+                        res.getInt("idProduct"),
+                        res.getString("nameProduct"),
+                        res.getString("description"),
+                        res.getFloat("priceProduct"),
+                        res.getString("pictureProduct"),
+                        res.getString("pseudoSeller"),
+                        res.getInt("idCategorie")
+                );
+                products.add(product);
+            }
+
+            return products;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
 

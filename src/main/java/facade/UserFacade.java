@@ -22,22 +22,20 @@ public class UserFacade {
     private static UserFacade instanceUserFacade = getInstanceUserFacade();
 
     /**
+     * Default constructor du singleton façade
+     */
+    public UserFacade() {
+    }
+
+    /**
      * @return instanceUserFacade
      **/
-
     public static UserFacade getInstanceUserFacade() {
         if (instanceUserFacade == null) {
             instanceUserFacade = new UserFacade();
         }
         return instanceUserFacade;
     }
-
-    /**
-     * Default constructor du singleton façade
-     */
-    public UserFacade() {
-    }
-
 
     /**
      * @param pseudo

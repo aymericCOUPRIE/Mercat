@@ -10,6 +10,11 @@ public class Order {
     /**
      *
      */
+    private int idOrder;
+
+    /**
+     *
+     */
     private String pseudoConsumer;
 
     /**
@@ -47,19 +52,32 @@ public class Order {
      */
     private String stateOrder;
 
+    /**
+     *
+     */
+    private List<Product> products;
 
     /**
      * Default constructor
      */
-    public Order(String pseudoConsumer, String pseudoSeller, Date dateOrder, String deliveryAddress, Date deliveryDate, int idProduct, float quantity, String stateOrder) {
+    public Order(int idOrder, String pseudoConsumer, String pseudoSeller, Date dateOrder, String deliveryAddress, Date deliveryDate, float quantity, String stateOrder, List<Product> products) {
+        this.idOrder = idOrder;
         this.pseudoConsumer = pseudoConsumer;
         this.pseudoSeller = pseudoSeller;
         this.dateOrder = dateOrder;
         this.deliveryAddress = deliveryAddress;
         this.deliveryDate = deliveryDate;
-        this.idProduct = idProduct;
         this.quantity = quantity;
         this.stateOrder = stateOrder;
+        this.products = products;
+    }
+
+
+    /**
+     * @return the id of the order
+     */
+    public int getIdOrder() {
+        return idOrder;
     }
 
     /**
@@ -131,13 +149,6 @@ public class Order {
      */
     public String getPseudoConsumer() {
         return this.pseudoConsumer;
-    }
-
-    /**
-     * @return the id of the Product (only 1 possible for each Order)
-     */
-    public int getIdProduct() {
-        return this.idProduct;
     }
 
 }

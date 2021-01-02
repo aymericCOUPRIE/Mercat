@@ -50,22 +50,37 @@ public class CategoryController {
      */
     public void initialize() {
 
+        //Transforme mon ArrayList d'objet "category" en ObservableList
         ObservableList<Category> listCat = FXCollections.observableArrayList(categoryFacade.getAllCategory());
+
+        //Donne le nom de l'attribut de l'objet que tu veux afficher dans la colonne
         nomCat.setCellValueFactory(new PropertyValueFactory<>("nameCategory"));
 
+        //Dis à ta colonne que chaque ligne c'est un nouvel objet (de ce que j'ai compris)
         nomCat.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        //Remplis ta tableView avec ton Observable list
         tableViewCategory.setItems(listCat);
 
+        //Si tu veu ajouter un bouton pour n'importe quelle action dans ton tableau (pour chaque objet)
         addDeleteButton();
 
 
         //Allows the name to be modified directly in the tableView
         nomCat.setOnEditCommit(e -> {
+            //Récupère l'objet et l'attribut sur lequel tu as cliqué
             Category category = e.getTableView().getItems().get(e.getTablePosition().getRow());
+
+            //Récupère le nouveau text que tu as saisie
             String oldName = category.getNameCategory();
+
+            //Tu modifies ton objet qui modifie aussi dans le tableau
             category.setNameCategory(e.getNewValue());
+
+            //Mise à jour dans la BDD
             categoryFacade.updateCategory(category.getNameCategory(), oldName);
         });
+        //Pour rendre les cases du tableView modiable
         tableViewCategory.setEditable(true);
     }
 

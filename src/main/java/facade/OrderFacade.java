@@ -8,9 +8,15 @@ import model.Order;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class OrderFacade {
+
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private OrderDAO orderDAO = af.createOrderDAO();
+    private Order order;
+
+    private static OrderFacade instanceOrderFacade;
 
     /**
      * Default constructor
@@ -18,46 +24,38 @@ public class OrderFacade {
     public OrderFacade() {
     }
 
-    /**
-     * 
-     */
-    private OrderDAO orderDAO;
-
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
-
-
-
+    public static OrderFacade getInstanceOrderFacade() {
+        if (instanceOrderFacade == null) {
+            instanceOrderFacade = new OrderFacade();
+        }
+        return instanceOrderFacade;
+    }
 
     /**
      * @return
      */
-    public Set<Order> getAllOrders() {
-        // TODO implement here
-        return null;
+    public List<Order> getAllOrders(String pseudo) {
+        return orderDAO.getAllOrdersConsumer(pseudo);
     }
 
     /**
-     * @param order 
+     * @param order
      * @return
      */
     public void getOrderDetails(Order order) {
-        // TODO implement here
+        //orderDAO.find()
     }
 
     /**
-     * @param baskets 
+     * @param baskets
      * @return
      */
-    public Order createOrder(Set<Basket> baskets) {
-        // TODO implement here
-        return null;
+    public boolean insertOrder(List<Basket> baskets) {
+        return orderDAO.insertOrder(baskets);
     }
 
     /**
-     * @param date 
+     * @param date
      * @return
      */
     public boolean updateOrderDeliveryDate(Date date) {
@@ -66,23 +64,21 @@ public class OrderFacade {
     }
 
     /**
-     * @param state 
+     * @param state
      * @return
      */
-    public boolean updateOrderState(String state) {
-        // TODO implement here
-        return false;
+    public boolean updateOrderState(Order order, String state) {
+        return orderDAO.updateOrderState(order, state);
     }
 
     /**
-     * @param pseudoConsumer 
-     * @param pseudoSeller 
-     * @param dateOrder 
-     * @return
+     * @param pseudoConsumer
+     * @param pseudoSeller
+     * @param orderDate
+     * @return a specific order
      */
-    public Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder) {
-        // TODO implement here
-        return null;
+    public Order find(String pseudoConsumer, String pseudoSeller, Date orderDate) {
+        return orderDAO.find(pseudoConsumer, pseudoSeller, orderDate);
     }
 
 }
