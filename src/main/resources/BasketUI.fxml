@@ -39,6 +39,7 @@
                         <Font name="Arial Black" size="32.0" />
                      </font>
                   </Label>
+                  <Label fx:id="txterror" textFill="#1a5276" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children></AnchorPane>

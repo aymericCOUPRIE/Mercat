@@ -53,8 +53,11 @@ public class BasketFacade {
      * @param pseudo
 
      */
-    public void updateBasket(int idProduct, int quantity) {
-        basketDAO.updateBasket(idProduct,quantity);
+
+    public void updateBasket(String pseudo, int idProduct, int quantity) {
+        //vérifier si true que ça c'est bien fait..
+        basketDAO.updateBasket(pseudo,idProduct,quantity);
+
     }
 
     /**

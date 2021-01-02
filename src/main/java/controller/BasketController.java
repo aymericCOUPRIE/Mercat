@@ -3,6 +3,7 @@ package controller;
 import facade.BasketFacade;
 import facade.OrderFacade;
 import facade.UserFacade;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,7 @@ public class BasketController {
     }
 
     @FXML
-   // private Label labelNbProducts, labelTotPrice;
+    private Label txterror; //labelNbProducts, labelTotPrice;
     private TableView tableViewBasket;
     public TableColumn<Basket, String> pictureLabel, productNameLabel;
     public TableColumn<Basket, Integer> quantityLabel, priceLabel;;
@@ -93,12 +94,14 @@ public class BasketController {
         // TODO implement here
     }
 
+
+
     /**
-     *
+     * This methode permit to initialize all the informations about the basket of the consumer
      */
     public void initialize(){
         //TODO
-
+        txterror.setText("");
         ObservableList<Basket> listBasket = FXCollections.observableArrayList(getAllBasket());
 
 
@@ -107,12 +110,10 @@ public class BasketController {
 
 
         productNameLabel.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getProduct().getNameProduct()));
-        //getNameProduct()
-
-        //STRING
-        //quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn());
 
         quantityLabel.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        priceLabel.setCellValueFactory(data -> new SimpleFloatProperty(data.getValue().getProduct().getPriceProduct() * new PropertyValueFactory<>("quantity")));
 
 
         //rempli la tableView
@@ -121,11 +122,12 @@ public class BasketController {
 
 
         /*Allows the quantity to be modified directly in the tableView
+        //vérifier que ce soit positif sinon message d'erreur!!
         quantityLabel.setOnEditCommit(e -> {
-            Category category = e.getTableView().getItems().get(e.getTablePosition().getRow());
-            String oldName = category.getNameCategory();
-            category.setNameCategory(e.getNewValue());
-            BasketFacade.updateBasket(category.getNameCategory(), oldName);
+            Basket basket = e.getTableView().getItems().get(e.getTablePosition().getRow());
+            String oldQuantity = basket.getQuantity();
+            basket.setQuantity(e.getNewValue());
+            BasketFacade.updateBasket(basket.getquantity(), oldQuantity);
         });
 
 
