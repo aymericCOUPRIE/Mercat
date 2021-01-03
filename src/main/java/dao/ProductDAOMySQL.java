@@ -1,7 +1,7 @@
 package dao;
 
+import model.Category;
 import model.Product;
-import dataBase.MySQLConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,11 +31,19 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param name 
-     * @return
+     * @param nameP
+     * @return an ArrayList of products, all of them have the same name
      */
-    public ArrayList<Product> getProductsByName(String name) {
-        // TODO implement here
+    public ArrayList<Product> getProductsByName(String nameP) {
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM Product WHERE name = ? ORDER BY name ASC";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,nameP);
+            return getProductList(listProduct, preparedStatement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
     }
 
@@ -45,7 +53,16 @@ public class ProductDAOMySQL extends ProductDAO {
      * @return
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
-        // TODO implement here
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM Product WHERE name = ? AND city = ? ORDER BY name ASC";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,city);
+            return getProductList(listProduct, preparedStatement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
     }
 
@@ -55,8 +72,36 @@ public class ProductDAOMySQL extends ProductDAO {
      * @return
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name, int idCategory) {
-        // TODO implement here
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM Product WHERE name = ? AND category = ? ORDER BY name ASC";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,""+idCategory);
+            return getProductList(listProduct, preparedStatement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
+    }
+
+    private ArrayList<Product> getProductList(ArrayList<Product> listProduct, PreparedStatement preparedStatement) throws SQLException {
+        ResultSet res = preparedStatement.executeQuery();
+
+        Product product;
+
+        while(res.next()){
+            product = new Product(
+                    res.getString("name"),
+                    res.getString("description"),
+                    res.getFloat("price"),
+                    res.getString("seller"),
+                    res.getString("category"),
+                    getProductCity("seller")
+            );
+            listProduct.add(product);
+        }
+        return listProduct;
     }
 
     /**
@@ -66,7 +111,17 @@ public class ProductDAOMySQL extends ProductDAO {
      * @return
      */
     public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
-        // TODO implement here
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM Product WHERE name = ? AND category = ? AND city = ? ORDER BY name ASC";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,""+idCategory);
+            preparedStatement.setString(3,city);
+            return getProductList(listProduct, preparedStatement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
     }
 
@@ -90,7 +145,6 @@ public class ProductDAOMySQL extends ProductDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
-
         }
     }
 
@@ -150,4 +204,23 @@ public class ProductDAOMySQL extends ProductDAO {
             return false;
         }
     }
+
+    private String getProductCity(String seller){
+        String requete = "SELECT city FROM seller WHERE pseudo = ?";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,seller);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if(rs.next()){
+                return rs.getString("city");
+            }
+            return "-1";
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+            return "-1";
+        }
+    }
+
 }

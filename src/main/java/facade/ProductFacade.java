@@ -22,11 +22,13 @@ public class ProductFacade {
 
     private static ProductFacade instanceProductFacade;
 
+    private ArrayList<Product> listProduct = new ArrayList<Product>();
+
     /**
      * @return instanceUserFacade
      **/
 
-    public static ProductFacade getInstanceUserFacade() {
+    public static ProductFacade getInstance() {
         if (instanceProductFacade == null) {
             instanceProductFacade= new ProductFacade();
         }
@@ -59,9 +61,8 @@ public class ProductFacade {
     /**
      * @return
      */
-    public Product getProduct() {
-        // TODO implement here
-        return null;
+    public ArrayList<Product> getProducts() {
+        return listProduct;
     }
 
     /**
@@ -151,9 +152,8 @@ public class ProductFacade {
      * @param name
      * @return a collection of products
      */
-    public Set<Product> getProductsByName(String name) {
-        // TODO implement here
-        return null;
+    public void getProductsByName(String name) {
+        productDAO.getProductsByName(name);
     }
 
     /**
@@ -161,9 +161,8 @@ public class ProductFacade {
      * @param city 
      * @return
      */
-    public Set<Product> getProductsByNameAndCity(String name, String city) {
-        // TODO implement here
-        return null;
+    public void getProductsByNameAndCity(String name, String city) {
+
     }
 
     /**
@@ -171,9 +170,8 @@ public class ProductFacade {
      * @param category  
      * @return
      */
-    public Set<Product> getProductsByNameAndCategory(String name , String category ) {
-        // TODO implement here
-        return null;
+    public void getProductsByNameAndCategory(String name , String category ) {
+
     }
 
     /**
@@ -182,9 +180,8 @@ public class ProductFacade {
      * @param category 
      * @return
      */
-    public Set<Product> getProductByNameAndCityAndCategory(String name, String city, String category) {
-        // TODO implement here
-        return null;
+    public void getProductByNameAndCityAndCategory(String name, String city, String category) {
+
     }
 
 }

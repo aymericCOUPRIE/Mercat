@@ -37,6 +37,8 @@ public class Product {
      */
     private String category;
     private String description;
+
+    private String city;
     /**
      * Default constructor
      */
@@ -46,9 +48,16 @@ public class Product {
         this.priceProduct = priceProduct;
         this.pseudoSeller = seller;
         this.category =category;
-
     }
 
+    public Product(String nameProduct,String description,float priceProduct,String seller,String category,String city) {
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pseudoSeller = seller;
+        this.category =category;
+        this.city = city;
+    }
 
 
     public String getDescription(){

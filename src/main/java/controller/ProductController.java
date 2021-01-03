@@ -2,10 +2,14 @@ package controller;
 
 import facade.BasketFacade;
 import facade.ProductFacade;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Product;
+import router.Router;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -115,7 +119,7 @@ public class ProductController {
                     Float f = Float.parseFloat(price);
                     System.out.println();
                     Product p = new Product(productName,description,f,seller,categoryName);
-                    System.out.println("BOllllOM" + p.getDescription());
+                    System.out.println(p.getDescription());
                     if(productFacade.createProduct(p)){
                         display("Produit ajouté");
                     }
@@ -156,6 +160,7 @@ public class ProductController {
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(productFacade.getProducts());
     }
 
     /**
@@ -214,4 +219,11 @@ public class ProductController {
             productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
         }
     }
+
+    @FXML
+    public void goHome(ActionEvent e) {
+        Router.getInstance().activate("SearchProduct");
+    }
+
+
 }
