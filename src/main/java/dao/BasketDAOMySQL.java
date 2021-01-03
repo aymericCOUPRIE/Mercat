@@ -84,10 +84,20 @@ public class BasketDAOMySQL extends BasketDAO {
      * @return boolean True si le panier a bien été modifié
      */
     public boolean updateBasket(String pseudo,int idProduct, int quantity) {
-        //TODO
-        String requete = "UPDATE Basket SET quantity = ?  WHERE idProduct = ? and pseudoConsumer= ?";
-        return true;
+
+        String requete = "UPDATE basket SET quantity = ?  WHERE idProduct = ? and pseudoConsumer= ?";
+
+        try {
+
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, idProduct);
+            preparedStatement.setString(3, pseudo);
+
+            return preparedStatement.executeUpdate() != 0; //savoir si modif a été faite
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
-
-
 }

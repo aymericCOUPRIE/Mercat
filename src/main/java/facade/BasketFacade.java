@@ -54,9 +54,9 @@ public class BasketFacade {
 
      */
 
-    public void updateBasket(String pseudo, int idProduct, int quantity) {
-        //vérifier si true que ça c'est bien fait..
-        basketDAO.updateBasket(pseudo,idProduct,quantity);
+    public boolean updateBasket(String pseudo, int idProduct, int quantity) {
+
+       return basketDAO.updateBasket(pseudo,idProduct,quantity);
 
     }
 
