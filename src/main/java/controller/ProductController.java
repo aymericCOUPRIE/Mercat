@@ -64,6 +64,7 @@ public class ProductController {
     private String priceCents;
     private String description;
     private String productName;
+    private String city;
 
     private ProductFacade productFacade = new ProductFacade();
 
@@ -162,7 +163,13 @@ public class ProductController {
      * @param e
      */
     public void getProductsByName(ActionEvent e){
-
+        productName = txtProduct1.getText();
+        if(productName.equals("")){
+            display("You need to fill the field");
+        }else{
+            productFacade.getProductsByName(productName);
+            //ALLER AILLEURS
+        }
     }
 
     /**
@@ -170,6 +177,13 @@ public class ProductController {
      * @param e
      */
     public void getProductsByNameAndCity(ActionEvent e){
+        productName = txtProduct2.getText();
+        city = txtCity1.getText();
+        if(productName.equals("")||city.equals("")){
+            display("You need to fill every field");
+        }else{
+            productFacade.getProductsByNameAndCity(productName,city);
+        }
     }
 
     /**
@@ -177,6 +191,13 @@ public class ProductController {
      * @param e
      */
     public void getProductsByNameAndCategory(ActionEvent e){
+        productName = txtProduct3.getText();
+        categoryName = txtCategory1.getText();
+        if(productName.equals("")||categoryName.equals("")){
+            display("You need to fill every field");
+        }else{
+            productFacade.getProductsByNameAndCategory(productName,categoryName);
+        }
     }
 
     /**
@@ -184,5 +205,13 @@ public class ProductController {
      * @param e
      */
     public void getProductsByNameAndCityAndCategory(ActionEvent e){
+        productName = txtProduct4.getText();
+        categoryName = txtCategory2.getText();
+        city = txtCity2.getText();
+        if(productName.equals("")||city.equals("")||categoryName.equals("")){
+            display("You need to fill every field");
+        }else{
+            productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
+        }
     }
 }

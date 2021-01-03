@@ -124,9 +124,7 @@ public class ProductFacade {
      * @return
      */
     public boolean createProduct(Product p) {
-        System.out.println("BOOOO" + p.getDescription());
         return productDAO.createProduct(p);
-
     }
 
     /**
@@ -150,10 +148,10 @@ public class ProductFacade {
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * @param name
+     * @return a collection of products
      */
-    public Product getProduct(int idProduct) {
+    public Set<Product> getProductsByName(String name) {
         // TODO implement here
         return null;
     }
