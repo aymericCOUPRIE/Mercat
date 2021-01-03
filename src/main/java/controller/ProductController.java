@@ -173,6 +173,7 @@ public class ProductController {
             display("You need to fill the field");
         }else{
             productFacade.getProductsByName(productName);
+            Router.getInstance().activate("ProductUI");
             //ALLER AILLEURS
         }
     }

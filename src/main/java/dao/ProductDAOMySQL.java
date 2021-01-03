@@ -36,7 +36,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByName(String nameP) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM Product WHERE name = ? ORDER BY name ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? ORDER BY nameProduct ASC";
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1,nameP);
@@ -54,7 +54,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM Product WHERE name = ? AND city = ? ORDER BY name ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? AND city = ? ORDER BY nameProduct ASC";
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1,name);
@@ -68,16 +68,17 @@ public class ProductDAOMySQL extends ProductDAO {
 
     /**
      * @param name 
-     * @param idCategory 
+     * @param category
      * @return
      */
-    public ArrayList<Product> getProductsByNameAndCategory(String name, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM Product WHERE name = ? AND category = ? ORDER BY name ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie = ? ORDER BY nameProduct ASC";
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1,name);
-            preparedStatement.setString(2,""+idCategory);
+            int id = getCategoryId(category);
+            preparedStatement.setInt(2,id);
             return getProductList(listProduct, preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -112,12 +113,11 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM Product WHERE name = ? AND category = ? AND city = ? ORDER BY name ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie = ? ORDER BY nameProduct ASC";
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1,name);
             preparedStatement.setString(2,""+idCategory);
-            preparedStatement.setString(3,city);
             return getProductList(listProduct, preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -168,7 +168,7 @@ public class ProductDAOMySQL extends ProductDAO {
 
     @Override
     public int getProductId(Product p){
-        String requete = "SELECT idProduct FROM product WHERE name=? AND description=? AND price=? AND seller=? AND category=?";
+        String requete = "SELECT idProduct FROM product WHERE nameProduct=? AND description=? AND price=? AND seller=? AND category=?";
 
         try{
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -189,6 +189,22 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
+    public int getCategoryId(String c){
+        String requete = "SELECT idCategorie FROM Categorie WHERE LibelleCategorie = ?";
+        try{
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,c);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if(rs.next()){
+                return rs.getInt("idCategorie");
+            }
+            return -1;
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+            return -1;
+        }
+    }
     @Override
     public boolean deleteProduct(Product p) {
         int id = getProductId(p);

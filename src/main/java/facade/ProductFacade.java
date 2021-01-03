@@ -152,8 +152,8 @@ public class ProductFacade {
      * @param name
      * @return a collection of products
      */
-    public void getProductsByName(String name) {
-        productDAO.getProductsByName(name);
+    public ArrayList<Product> getProductsByName(String name) {
+        return productDAO.getProductsByName(name);
     }
 
     /**
@@ -161,8 +161,8 @@ public class ProductFacade {
      * @param city 
      * @return
      */
-    public void getProductsByNameAndCity(String name, String city) {
-
+    public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
+        return productDAO.getProductsByNameAndCity(name, city);
     }
 
     /**
@@ -170,8 +170,8 @@ public class ProductFacade {
      * @param category  
      * @return
      */
-    public void getProductsByNameAndCategory(String name , String category ) {
-
+    public ArrayList<Product> getProductsByNameAndCategory(String name , String category ) {
+        return productDAO.getProductsByNameAndCategory(name,category);
     }
 
     /**

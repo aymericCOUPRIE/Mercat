@@ -5,6 +5,7 @@ import facade.UserFacade;
 import facade.ProductFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Product;
+import router.Router;
 
 import java.util.*;
 
@@ -31,12 +33,12 @@ public class ProductPageController {
     @FXML
     private TableColumn<Product, String> product;
 
-    /**
-     *
-     */
-    private UserFacade userFacade;
+    @FXML
+    private Button home;
 
+    private UserFacade userFacade;
     private ProductFacade productFacade = ProductFacade.getInstance();
+
     /**
      * Default constructor
      */
@@ -56,6 +58,11 @@ public class ProductPageController {
      * This method is used for adding a button which goes to product's description page
      */
     private void addGoToButton(){}
+
+    @FXML
+    private void goHome(ActionEvent e){
+        Router.getInstance().activate("SearchProduct");
+    }
 
 
 }

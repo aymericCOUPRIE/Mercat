@@ -54,7 +54,7 @@ public abstract class ProductDAO {
      * @param idCategory 
      * @return
      */
-    public ArrayList<Product> getProductsByNameAndCategory(String name, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, String idCategory) {
         // TODO implement here
         return null;
     }

@@ -42,6 +42,7 @@ public class Main extends Application {
         r.add("SignUpS", "/SignUpUISeller.fxml");
         r.add("AddProduct","/AddProduct.fxml");
         r.add("ModifyProduct","/ModifyProduct.fxml");
+        r.add("ProductUI","/ProductUI.fxml");
     }
 
 }
