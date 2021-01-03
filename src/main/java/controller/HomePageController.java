@@ -41,10 +41,11 @@ public class HomePageController {
         // TODO implement here
     }
 
-/* code branche user
     /**
      * Method used by the menue from Java FX
      * It permits to go to the page to handle a consumer acount
+     */
+
 
     @FXML
     public void handleUserAcount(ActionEvent e) throws IOException {
@@ -65,6 +66,7 @@ public class HomePageController {
      *
      * @param e
      * @throws IOException
+     */
 
     @FXML
     public void handleConsumers(ActionEvent e) throws IOException {
@@ -72,15 +74,16 @@ public class HomePageController {
         //pas besoin de tester si bien admin car boutton menu affiché selement pour les admins
         Router.getInstance().activate("HandleConsumerS");
     }
-    */
+
 
     /**
-     *  Method used by the menue from Java FX
-     *  It permits to go in the basket page of the consumer logged
-     *   @param e
+     * Method used by the menue from Java FX
+     * It permits to go in the basket page of the consumer logged
+     *
+     * @param e
      * @throws IOException
      */
-    public void basket(ActionEvent e ) throws IOException{
+    public void basket(ActionEvent e) throws IOException {
         Router.getInstance().activate("Basket");
     }
 
@@ -89,11 +92,11 @@ public class HomePageController {
      */
     public void initialize() {
         /** code branche user
-        if (!(userFacade.getConnectedUser().getRole().equals("admin"))) {
-            handleC.setVisible(false);
-        } else { //je suis un admin
-            myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
-        }
+         if (!(userFacade.getConnectedUser().getRole().equals("admin"))) {
+         handleC.setVisible(false);
+         } else { //je suis un admin
+         myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
+         }
          */
 
         /*

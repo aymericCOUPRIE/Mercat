@@ -1,5 +1,6 @@
 package dao;
 
+import javafx.util.Pair;
 import model.Basket;
 import model.Order;
 import model.Product;
@@ -28,9 +29,10 @@ public class OrderDAOMySQL extends OrderDAO {
      */
     public boolean insertOrder(List<Basket> baskets) {
 
-        List<Integer> listsIdProduct = new ArrayList<>();
+
+        List<Pair<Integer, Integer>> listsIdProduct = new ArrayList<>();
         for (Basket b : baskets) {
-            listsIdProduct.add(b.getProduct().getIdProduct());
+            listsIdProduct.add(new Pair(b.getProduct().getIdProduct(), b.getQuantity()));
         }
 
         String requete = "INSERT INTO order_ok (pseudoConsumer, pseudoSeller, dateOrder, deliveryAddress, deliveryDate, quantity, stateOrder) VALUES (?,?,?,?,NOW(),?,?)";
@@ -48,8 +50,8 @@ public class OrderDAOMySQL extends OrderDAO {
             preparedStatement.setString(2, pseudoSeller);
             preparedStatement.setDate(3, date);
             preparedStatement.setString(4, "inutileCarOnADejaIDConsumer");
-            preparedStatement.setFloat(5, quantity);
             preparedStatement.setString(6, "Beginning");
+
             int res = preparedStatement.executeUpdate();
 
             if (res != 0) { //Vérifie que le INSERT order c'est bien passé
@@ -175,23 +177,25 @@ public class OrderDAOMySQL extends OrderDAO {
                 res.getDate("dateOrder"),
                 res.getString("deliveryAddress"),
                 res.getDate("deliveryDate"),
-                res.getFloat("quantity"),
+                //res.getFloat("quantity"),
                 res.getString("stateOrder"),
                 getAllProductsFromOrder(res.getInt("idOrder"))
         );
         return order;
     }
 
-    private boolean insertAllProducts(int idOrder, List<Integer> idProducts) {
-        String requete = "INSERT INTO orderlistproduct VALUES (?, ?)";
+    private boolean insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
+        String requete = "INSERT INTO orderlistproduct (idOrder, idProduct, quantity) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, idOrder);
 
             boolean res = true;
-            for (Integer i : idProducts) {
-                preparedStatement.setInt(2, i);
+            for (Pair<Integer, Integer> i : idProducts) {
+                preparedStatement.setInt(2, i.getKey());
+                preparedStatement.setInt(3, i.getValue());
+
                 if (preparedStatement.executeUpdate() == 0) {
                     res = false;
                 }
@@ -205,8 +209,8 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
 
-    private List<Product> getAllProductsFromOrder(int idOrder) {
-        String requete = "SELECT * FROM orderlistproduct INNER JOIN products ON orderListProduct.idProduct = product.idProduct WHERE idOrder = ?";
+    private List<Pair<Product, Integer>> getAllProductsFromOrder(int idOrder) {
+        String requete = "SELECT * FROM orderlistproduct INNER JOIN product ON orderlistproduct.idProduct = product.idProduct WHERE idOrder = ?";
 
         try {
 
@@ -214,7 +218,7 @@ public class OrderDAOMySQL extends OrderDAO {
             preparedStatement.setInt(1, idOrder);
             ResultSet res = preparedStatement.executeQuery();
 
-            List<Product> products = new ArrayList<>();
+            List<Pair<Product, Integer>> products = new ArrayList<>();
 
             while (res.next()) {
                 Product product = new Product(
@@ -226,7 +230,7 @@ public class OrderDAOMySQL extends OrderDAO {
                         res.getString("pseudoSeller"),
                         res.getInt("idCategorie")
                 );
-                products.add(product);
+                products.add(new Pair(product, res.getFloat("quantity")));
             }
 
             return products;

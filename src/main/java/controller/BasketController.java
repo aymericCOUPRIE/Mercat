@@ -4,10 +4,12 @@ import facade.BasketFacade;
 import facade.OrderFacade;
 import facade.UserFacade;
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Basket;
@@ -15,7 +17,6 @@ import model.Product;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import java.awt.*;
 import java.util.*;
 
 /**
@@ -37,9 +38,18 @@ public class BasketController {
 
     @FXML
     private Label txterror; //labelNbProducts, labelTotPrice;
+
+    @FXML
     private TableView tableViewBasket;
-    public TableColumn<Basket, String> pictureLabel, productNameLabel;
-    public TableColumn<Basket, Integer> quantityLabel, priceLabel;;
+
+    @FXML
+    private TableColumn<Basket, String> pictureLabel, productNameLabel;
+
+    @FXML
+    private TableColumn<Basket, Integer> quantityLabel;
+
+    @FXML
+    private TableColumn<Basket, Float> priceLabel;
 
     /**
      * this method allows to retrieve all the baskets of the connected consumer
@@ -113,7 +123,7 @@ public class BasketController {
 
         quantityLabel.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        priceLabel.setCellValueFactory(data -> new SimpleFloatProperty(data.getValue().getProduct().getPriceProduct()) * new PropertyValueFactory<>("quantity"));
+        priceLabel.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getProduct().getPriceProduct() * data.getValue().getQuantity()) );
 
 
         //rempli la tableView

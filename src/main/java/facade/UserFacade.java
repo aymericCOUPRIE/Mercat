@@ -116,6 +116,10 @@ public class UserFacade {
         return false;
     }
 
+    public boolean isSeller() {
+        return false;
+    }
+
     /**
      * @param pseudo
      * @return
