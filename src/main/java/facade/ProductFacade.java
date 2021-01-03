@@ -153,6 +153,7 @@ public class ProductFacade {
      * @return a collection of products
      */
     public ArrayList<Product> getProductsByName(String name) {
+        listProduct = productDAO.getProductsByName(name);
         return productDAO.getProductsByName(name);
     }
 
