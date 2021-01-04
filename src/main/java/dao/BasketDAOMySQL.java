@@ -70,24 +70,47 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * @param basket
-     * @return
+     * This methode permit to delete a basket
+     *
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public boolean deleteBasket(Basket basket) {
+    public boolean deleteBasket(int idProduct, String pseudo) {
         // TODO implement here
-        return false;
+        String requete = "DELETE FROM basket WHERE idProduct = ? AND pseudoConsumer = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idProduct);
+            preparedStatement.setString(2, pseudo );
+
+            return preparedStatement.executeUpdate() != 0; //savoir si suppression a été faite
+        }catch (SQLException throwables) {
+                throwables.printStackTrace();
+                return false;
+            }
     }
 
     /**
      * This methode permit to update the quantity of an order
+     *
      * @param pseudo,idProduct,quantity
      * @return boolean True si le panier a bien été modifié
      */
-    public boolean updateBasket(String pseudo,int idProduct, int quantity) {
-        //TODO
-        String requete = "UPDATE Basket SET quantity = ?  WHERE idProduct = ? and pseudoConsumer= ?";
-        return true;
+    public boolean updateBasket(String pseudo, int idProduct, int quantity) {
+
+        String requete = "UPDATE basket SET quantity = ?  WHERE idProduct = ? and pseudoConsumer= ?";
+
+        try {
+
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2, idProduct);
+            preparedStatement.setString(3, pseudo);
+
+            return preparedStatement.executeUpdate() != 0; //savoir si modif a été faite
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
-
-
 }

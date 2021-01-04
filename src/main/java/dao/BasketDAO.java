@@ -42,14 +42,13 @@ public abstract class BasketDAO {
         return false;
     }
 
+
     /**
-     * @param basket 
-     * @return
+     * This methode permit to delete a basket
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public boolean deleteBasket(Basket basket) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteBasket(int idProduct, String pseudo);
 
     /**
      * This methode permit to update the quantity of an order

@@ -102,11 +102,11 @@ public class HomePageController {
          }
          */
 
-        /*
-        if(!userFacade.getConnectedUser().getRole().equals("consumer")){ //seul consumer a un panier
+
+        if (!userFacade.getConnectedUser().getRole().equals("consumer")) { //seul consumer a un panier
             myAccount.setVisible(false);
         }
-        */
+
     }
 
     public void consultHistoricOrder(ActionEvent e) {

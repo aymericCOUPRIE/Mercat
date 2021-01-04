@@ -54,18 +54,20 @@ public class BasketFacade {
 
      */
 
-    public void updateBasket(String pseudo, int idProduct, int quantity) {
-        //vérifier si true que ça c'est bien fait..
-        basketDAO.updateBasket(pseudo,idProduct,quantity);
+    public boolean updateBasket(String pseudo, int idProduct, int quantity) {
+
+       return basketDAO.updateBasket(pseudo,idProduct,quantity);
 
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * This methode permit to delete a basket
+     *
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public void deleteBasket(int idProduct) {
-        // TODO implement here
+    public boolean deleteBasket(int idProduct, String pseudo) {
+        return basketDAO.deleteBasket(idProduct, pseudo);
     }
 
     /**
