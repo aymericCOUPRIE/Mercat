@@ -178,7 +178,7 @@ public class BasketController {
         tableViewBasket.setItems(listBasket);
 
 
-      
+
         quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         //afficher bouttons delete dans la tableView
@@ -191,19 +191,24 @@ public class BasketController {
 
 
             if (e.getNewValue() > 0) {
-                basket.setQuantity(e.getNewValue());
+                int oldValue = basket.getQuantity();
+
                 if (!basketFacade.updateBasket(userFacade.getConnectedUser().getPseudo(), basket.getProduct().getIdProduct(), basket.getQuantity())) {
                     System.out.println("error during the update of the quantity..");
                 } else {
+
                     tableViewBasket.refresh();
-                    int diff = basket.getQuantity() - e.getNewValue();
+                    int diff = oldValue - e.getNewValue();
 
                     //mettre à jour le nb d'item tot dans panier
                     int newQtity = Integer.parseInt(labelNbProducts.getText()) - diff;
                     labelNbProducts.setText(String.valueOf(newQtity));
                     //mettre à jour le prix tot
-                    float newTotPrice = Float.parseFloat(labelTotPrice.getText()) - diff;
+                    float newTotPrice = Float.parseFloat(labelTotPrice.getText()) - (diff * basket.getProduct().getPriceProduct());
                     labelTotPrice.setText(String.valueOf(newTotPrice));
+
+                    //mettre à jour la ligne dans la tableView
+                    basket.setQuantity(e.getNewValue());
                 }
             } else {
                 txterror.setText("You need to provide a positive quantity !");
