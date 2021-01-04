@@ -61,11 +61,13 @@ public class BasketFacade {
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * This methode permit to delete a basket
+     *
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public void deleteBasket(int idProduct) {
-        // TODO implement here
+    public boolean deleteBasket(int idProduct, String pseudo) {
+        return basketDAO.deleteBasket(idProduct, pseudo);
     }
 
     /**

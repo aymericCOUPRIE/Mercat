@@ -60,18 +60,20 @@
                 <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="products :" textFill="#1a5276" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text=" products :" textFill="#1a5276" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="labelNbProducts" textFill="#1a5276" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <Label fx:id="labelTotPrice" textFill="#1a5276" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" text="€" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <Label fx:id="labelTotPrice" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276;" text="Oder" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <TableView fx:id="tableViewBasket" layoutX="72.0" prefHeight="200.0" prefWidth="450.0">
+            <TableView fx:id="tableViewBasket" layoutX="14.0" prefHeight="200.0" prefWidth="568.0">
               <columns>
                 <TableColumn fx:id="pictureLabel" prefWidth="147.0" text="Picture" />
                 <TableColumn fx:id="productNameLabel" prefWidth="163.0" text="Product's name" />
-                  <TableColumn fx:id="quantityLabel" prefWidth="59.0" text="Quantity" />
-                  <TableColumn fx:id="priceLabel" text="Price" />
+                  <TableColumn fx:id="deleteCol" prefWidth="108.0" text=" " />
+                  <TableColumn fx:id="quantityLabel" prefWidth="85.0" text="Quantity" />
+                  <TableColumn fx:id="priceLabel" minWidth="0.0" prefWidth="64.0" text="Price" />
               </columns>
             </TableView>
          </children></AnchorPane>

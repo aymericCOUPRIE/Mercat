@@ -3,21 +3,19 @@ package controller;
 import facade.BasketFacade;
 import facade.OrderFacade;
 import facade.UserFacade;
-import javafx.beans.property.SimpleFloatProperty;
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 import model.Basket;
 import model.Product;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 import java.util.*;
 
@@ -39,7 +37,7 @@ public class BasketController {
     }
 
     @FXML
-    private Label txterror; //labelNbProducts, labelTotPrice;
+    private Label txterror, labelNbProducts, labelTotPrice;
 
     @FXML
     private TableView tableViewBasket;
@@ -48,7 +46,7 @@ public class BasketController {
     private TableColumn<Basket, String> pictureLabel, productNameLabel;
 
     @FXML
-    private TableColumn<Basket, Integer> quantityLabel;
+    private TableColumn<Basket, Integer> quantityLabel, deleteCol;
 
     @FXML
     private TableColumn<Basket, Float> priceLabel;
@@ -64,31 +62,54 @@ public class BasketController {
 
 
     /**
-     * @param idProduct
-     * @return
+     * This methode permit to delete a basket from the dataBase
+     * and update the UI : delete the row
+     *                      update the total quantity of product
+     *                      update the total price
+     *
+     * @param b, index
      */
-    public void deleteBasket(int idProduct) {
-        // TODO implement here
+    private void deleteBasket(Basket b, int index) {
+        if (!basketFacade.deleteBasket(b.getProduct().getIdProduct(), userFacade.getConnectedUser().getPseudo())) {
+            System.out.println("error delete basket");
+        } else {
+            tableViewBasket.getItems().remove(index);
+
+            //mettre à jour le nb de produits dans le panier
+
+            int newQtity= Integer.parseInt(labelNbProducts.getText()) - b.getQuantity();
+            labelNbProducts.setText(String.valueOf(newQtity));
+
+            //mettre à jour le prix total
+
+           float newTOTprice = Float.parseFloat(labelTotPrice.getText()) - (b.getQuantity() * b.getProduct().getPriceProduct());
+           labelTotPrice.setText(String.valueOf(newTOTprice));
+        }
     }
 
 
     /**
      * @return
      */
-    public float getPrixTotalBasket() {
-        // TODO implement here
-        return 0.0f;
+    public float getPrixTotalBasket(ObservableList<Basket> listBasket) {
+        float priceTOT = 0;
+        for(Basket b: listBasket){
+           priceTOT += b.getQuantity() * b.getProduct().getPriceProduct();
+        }
+        return priceTOT;
     }
 
     /**
      * give the total number of item in the basket
-     *
+     * @param listBasket
      * @return int
      */
-    public int getNbItemBasket() {
-        //TODO implement here
-        //peut se calculer seulement ic
-        return 0;
+    public int getNbItemBasket(ObservableList<Basket> listBasket) {
+        int cpt = 0;
+        for(Basket b: listBasket){
+           cpt+= b.getQuantity();
+        }
+        return cpt;
     }
 
     /**
@@ -99,12 +120,37 @@ public class BasketController {
         // TODO implement here
     }
 
+    /**
+     * Add a button delete in the tableView
+     */
+    private void addButton() {
+        deleteCol.setCellFactory(param -> new TableCell<>() {
+
+            private final Button deleteButton = new Button("Delete from basket");
+
+            {
+                deleteButton.setOnAction(event -> deleteBasket(param.getTableView().getItems().get(getIndex()), getIndex()));
+            }
+
+            //supprimer la ligne du tableau qui correspond au produit qu'on a enlevé du panier
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(deleteButton);
+                }
+            }
+
+        });
+    }
 
     /**
      * This methode permit to initialize all the informations about the basket of the consumer
      */
     public void initialize() {
-        //TODO
+
         txterror.setText("");
         ObservableList<Basket> listBasket = FXCollections.observableArrayList(getAllBasket());
 
@@ -123,32 +169,43 @@ public class BasketController {
         tableViewBasket.setItems(listBasket);
 
 
-        //Allows the quantity to be modified directly in the tableView
-
         quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        tableViewBasket.setEditable(true);
 
+        //afficher bouttons delete dans la tableView
+        addButton();
+
+        //Allows the quantity to be modified directly in the tableView
 
         quantityLabel.setOnEditCommit(e -> {
             Basket basket = e.getTableView().getItems().get(e.getTablePosition().getRow());
 
-            int oldQuantity = basket.getQuantity();
-            //vérifie que c'est un int ?????
+
+
             if (e.getNewValue() > 0) {
                 basket.setQuantity(e.getNewValue());
                 if (!basketFacade.updateBasket(userFacade.getConnectedUser().getPseudo(), basket.getProduct().getIdProduct(), basket.getQuantity())) {
                     System.out.println("error during the update of the quantity..");
-                }else{
+                } else {
                     tableViewBasket.refresh();
+                    int diff =  basket.getQuantity() - e.getNewValue();
+
+                    //mettre à jour le nb d'item tot dans panier
+                    int newQtity = Integer.parseInt(labelNbProducts.getText()) - diff;
+                    labelNbProducts.setText(String.valueOf(newQtity));
+                    //mettre à jour le prix tot
+                    float newTotPrice = Float.parseFloat(labelTotPrice.getText() ) - diff;
+                    labelTotPrice.setText(String.valueOf(newTotPrice));
                 }
             } else {
                 txterror.setText("You need to provide a positive quantity !");
             }
-
-
         });
 
+        tableViewBasket.setEditable(true);
 
+        labelNbProducts.setText(String.valueOf(getNbItemBasket(listBasket)));
+
+        labelTotPrice.setText(String.valueOf(getPrixTotalBasket(listBasket)));
 
     }
 
