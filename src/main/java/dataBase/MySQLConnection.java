@@ -55,19 +55,6 @@ public class MySQLConnection {
         }
         return p;
     }
-    /*
-    Test pour vérifier qu'on est bien connecté
-
-    public static void main (String [] args ) throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/mercatdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","root");
-        ResultSet rs = conn.prepareStatement("show tables").executeQuery();
-        while(rs.next()){
-            String s = rs.getString(1);
-            System.out.println(s);
-        }
-    }
-    */
 }
 
 

@@ -9,10 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import model.Category;
 
 
 import javafx.event.ActionEvent;
+
+import static javafx.scene.paint.Color.BLUE;
 
 /**
  *
@@ -111,7 +115,6 @@ public class CategoryController {
      * @return
      */
     private void deleteCategory(ActionEvent event, int idCategory, int index) {
-        // TODO implement here
         categoryFacade.deleteCategory(idCategory);
         tableViewCategory.getItems().remove(index);
     }

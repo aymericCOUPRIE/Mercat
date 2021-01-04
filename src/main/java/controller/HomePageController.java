@@ -14,9 +14,7 @@ import java.io.IOException;
  */
 public class HomePageController {
 
-    /**
-     *
-     */
+    private Router router = Router.getInstance();
     private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
@@ -26,6 +24,7 @@ public class HomePageController {
 
     @FXML
     private MenuItem handleC, myAccount;
+    private ActionEvent e;
 
 
     /**
@@ -88,6 +87,10 @@ public class HomePageController {
     }
 
     /**
+     *
+     */
+
+    /**
      * This method allows to manage the display of the menu according to the user's role.
      */
     public void initialize() {
@@ -106,5 +109,7 @@ public class HomePageController {
         */
     }
 
-
+    public void consultHistoricOrder(ActionEvent e) {
+        router.activate("HistoricOrder");
+    }
 }

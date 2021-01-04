@@ -41,7 +41,7 @@ public class Main extends Application {
         r.add("SignUpC", "/SignUpUIConsumer.fxml");
         r.add("SignUpS", "/SignUpUISeller.fxml");
         r.add("Basket","/BasketUI.fxml");
-        r.add("HistoricOrder", "/ConsultHsioricOrderUI.fxml");
+        r.add("HistoricOrder", "/ConsultHistoricOrderUI.fxml");
     }
 
 }

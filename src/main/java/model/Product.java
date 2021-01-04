@@ -140,4 +140,16 @@ public class Product {
         return this.idCategorie;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "idProduct=" + idProduct +
+                ", nameProduct='" + nameProduct + '\'' +
+                ", priceProduct=" + priceProduct +
+                ", pictureProduct='" + pictureProduct + '\'' +
+                ", pseudoSeller='" + pseudoSeller + '\'' +
+                ", idCategorie=" + idCategorie +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

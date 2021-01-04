@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL - jdbc:mysql://mysql-mercat.alwaysdata.net/mercat_db?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=Europe/Paris" uuid="d42bf831-818c-4fde-8f91-4f8486a239d9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://mysql-mercat.alwaysdata.net/mercat_db?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=Europe/Paris</jdbc-url>
+    </data-source>
+  </component>
+</project>

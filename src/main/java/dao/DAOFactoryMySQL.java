@@ -30,10 +30,11 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
 
     /**
      * * Retourne un objet classe interagissant avec la BDD au niveau des baskets
+     *
      * @return BasketDAO
      */
     public BasketDAO createBasketDAO() {
-       return new BasketDAOMySQL(connect);
+        return new BasketDAOMySQL(connect);
     }
 
 
@@ -57,8 +58,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      * @return
      */
     public OrderDAO createOrderDAO() {
-        // TODO implement here
-        return null;
+        return new OrderDAOMySQL(connect);
     }
 
     /**
@@ -73,7 +73,6 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      * @return
      */
     public CategoryDAO createCategoryDAO() {
-        // TODO implement here
         return new CategoryDAOMySQL(connect);
     }
 

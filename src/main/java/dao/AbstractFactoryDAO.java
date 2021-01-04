@@ -1,20 +1,21 @@
 package dao;
 
 /**
- * 
+ *
  */
 public abstract class AbstractFactoryDAO {
 
-   private static AbstractFactoryDAO theFactory;
+    private static AbstractFactoryDAO theFactory;
+
     /**
      * @return la factory
      */
     public static AbstractFactoryDAO getFactory() {
 
-        if(theFactory == null){
+        if (theFactory == null) {
             theFactory = new DAOFactoryMySQL();
         }
-        return theFactory ;
+        return theFactory;
 
     }
 
@@ -32,34 +33,22 @@ public abstract class AbstractFactoryDAO {
     /**
      * @return
      */
-    public RateDAO createRateDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract RateDAO createRateDAO();
 
     /**
      * @return
      */
-    public CommentDAO createCommentDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract CommentDAO createCommentDAO();
 
     /**
      * @return
      */
-    public OrderDAO createOrderDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract OrderDAO createOrderDAO();
 
     /**
      * @return
      */
-    public ProductDAO createProductDAO() {
-        // TODO implement here
-        return null;
-    }
+    public abstract ProductDAO createProductDAO();
 
     /**
      * @return

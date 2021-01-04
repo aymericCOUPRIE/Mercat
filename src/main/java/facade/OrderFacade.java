@@ -14,7 +14,6 @@ public class OrderFacade {
 
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private OrderDAO orderDAO = af.createOrderDAO();
-    private Order order;
 
     private static OrderFacade instanceOrderFacade;
 
