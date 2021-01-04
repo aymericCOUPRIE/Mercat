@@ -178,21 +178,7 @@ public class BasketController {
         tableViewBasket.setItems(listBasket);
 
 
-        //vérifier que ce soit positif sinon message d'erreur!!
-
-        quantityLabel.setOnEditCommit(e -> {
-            Basket basket = e.getTableView().getItems().get(e.getTablePosition().getRow());
-            int oldQuantity = basket.getQuantity();
-            if (e.getNewValue() > 0) {
-                basket.setQuantity(e.getNewValue());
-                //BasketFacade.updateBasket(basket.getquantity(), oldQuantity);
-                e.getTableView().getItems().get(e.getTablePosition().getRow());
-                //e.getTablePosition().getRow()
-                tableViewBasket.refresh();
-            } else {
-                txterror.setText("You need to provide a positive quantity !");
-            }
-        });
+      
         quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
         //afficher bouttons delete dans la tableView
