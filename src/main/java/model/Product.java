@@ -3,10 +3,11 @@ package model;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class Product {
 
+    private int idCategorie;
     /**
      *
      */
@@ -32,6 +33,7 @@ public class Product {
      */
     private String pseudoSeller;
 
+
     /**
      *
      */
@@ -39,41 +41,55 @@ public class Product {
     private String description;
 
     private String city;
+
     /**
      * Default constructor
      */
-    public Product(String nameProduct,String description,float priceProduct,String seller,String category) {
+    public Product(String nameProduct, String description, float priceProduct, String seller, String category) {
         this.nameProduct = nameProduct;
         this.description = description;
         this.priceProduct = priceProduct;
         this.pseudoSeller = seller;
-        this.category =category;
+        this.category = category;
     }
 
-    public Product(String nameProduct,String description,float priceProduct,String seller,String category,String city) {
+    public Product(String nameProduct, String description, float priceProduct, String seller, String category, String city) {
         this.nameProduct = nameProduct;
         this.description = description;
         this.priceProduct = priceProduct;
         this.pseudoSeller = seller;
-        this.category =category;
+        this.category = category;
         this.city = city;
     }
 
+    /**
+     * Default constructor
+     */
 
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
+
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
+    }
+
+    public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, int idCategorie) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pictureProduct = pictureProduct;
+        this.pseudoSeller = pseudoSeller;
+        this.idCategorie = idCategorie;
     }
 
     /**
      * @return
      */
     public int getIdProduct() {
-        // TODO implement here
-        return 0;
+        return this.idProduct;
     }
 
     /**
@@ -84,7 +100,7 @@ public class Product {
     }
 
     /**
-     * @param name 
+     * @param name
      * @return
      */
     public void setNameProduct(String name) {
@@ -99,7 +115,7 @@ public class Product {
     }
 
     /**
-     * @param price 
+     * @param price
      * @return
      */
     public void setPriceProduct(float price) {
@@ -110,11 +126,11 @@ public class Product {
      * @return pictureProduct
      */
     public String getPictureProduct() {
-        return  this.pictureProduct;
+        return this.pictureProduct;
     }
 
     /**
-     * @param url 
+     * @param url
      * @return
      */
     public void setPictureProduct(String url) {
@@ -129,18 +145,21 @@ public class Product {
     }
 
     /**
-     * @param categ 
+     * @param categ
      * @return
      */
     public void setIdCategorie(int categ) {
         // TODO implement here
     }
 
+
     /**
      * @return
      */
-    public String getCategory() {
-        return this.category;
+    //public String getCategory () {
+    //    return this.category;
+    //}
+    public int getIdCategorie() {
+        return this.idCategorie;
     }
-
 }

@@ -11,55 +11,63 @@ import java.util.*;
  */
 public class BasketFacade {
 
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private BasketDAO basketDAO = af.createBasketDAO();
+
+    //notre façade est un singleton
+    private static BasketFacade instanceBasketFacade = getInstanceBasketFacade();
+
+    /**
+     * @return instanceBasketFacade
+     */
+    public static BasketFacade getInstanceBasketFacade() {
+        if (instanceBasketFacade == null) {
+            instanceBasketFacade = new BasketFacade();
+        }
+        return instanceBasketFacade;
+    }
+
     /**
      * Default constructor
      */
     public BasketFacade() {
     }
 
-    /**
-     * 
-     */
-    private BasketDAO basketDAO;
 
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
 
 
 
     /**
-     * @return
+     * this method allows to retrieve all the baskets of the connected consumer whose the pseudo is passed in parameter
+     * @param pseudo
+     * @return ArrayList<Basket>
      */
-    public BasketFacade getInstance() {
-        // TODO implement here
-        return null;
+    public ArrayList<Basket> getAllBasket(String pseudo) {
+        return basketDAO.getAllBasket(pseudo);
     }
 
     /**
-     * @return
-     */
-    public Set<Basket> getAllBasket() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
+     * This methode permit to update the quantity of a product in the basket
      * @param idProduct 
-     * @param quantity 
-     * @return
+     * @param quantity
+     * @param pseudo
+
      */
-    public void updateBasket(int idProduct, int quantity) {
-        // TODO implement here
+
+    public boolean updateBasket(String pseudo, int idProduct, int quantity) {
+
+       return basketDAO.updateBasket(pseudo,idProduct,quantity);
+
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * This methode permit to delete a basket
+     *
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public void deleteBasket(int idProduct) {
-        // TODO implement here
+    public boolean deleteBasket(int idProduct, String pseudo) {
+        return basketDAO.deleteBasket(idProduct, pseudo);
     }
 
     /**
@@ -69,5 +77,7 @@ public class BasketFacade {
     public void addToBasket(int idProduct) {
         // TODO implement here
     }
+
+
 
 }

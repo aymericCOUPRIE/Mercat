@@ -48,6 +48,8 @@ public class Main extends Application {
         r.add("AddProduct", "/AddProduct.fxml");
         r.add("ModifyProduct", "/ModifyProduct.fxml");
         r.add("ProductUI", "/ProductUI.fxml");
+        r.add("Basket","/BasketUI.fxml");
+        r.add("HistoricOrder", "/ConsultHistoricOrderUI.fxml");
     }
 
 }

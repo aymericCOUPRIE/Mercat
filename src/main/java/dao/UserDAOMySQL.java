@@ -129,9 +129,7 @@ public class UserDAOMySQL extends UserDAO {
     public boolean createConsumer(Consumer user) {
 
         String hashPassword = PasswordSecured.hash(user.getPassword());
-        //String requete = "INSERT INTO user VALUES ('" + user.getLogin() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + hashPassword + "','" + user.getEmailAddress() + "','" + user.getStreetAddress() + "','" + user.getCity() + "','" + user.getPostalCode() + "','" + user.getPictureUser() + "','" + user.getRole() + "','" + "" + "')";
         String requete = "INSERT INTO user (pseudo,firstName,lastName, password,emailAddress, streetAddress,city,postalCode, pictureUser, role, phoneNumber) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        //System.out.println(requete);
 
 
         try {
@@ -241,7 +239,6 @@ public class UserDAOMySQL extends UserDAO {
             return false;
         }
     }
-
 
 
     /**

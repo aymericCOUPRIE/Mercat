@@ -1,56 +1,247 @@
 package dao;
 
+import javafx.util.Pair;
+import model.Basket;
 import model.Order;
+import model.Product;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class OrderDAOMySQL extends OrderDAO {
 
     /**
      * Default constructor
      */
-    public OrderDAOMySQL() {
+    public OrderDAOMySQL(Connection connect) {
+        super(connect);
     }
 
     /**
-     * @param state  
+     * @param baskets
      * @return
      */
-    public boolean updateOrderState(String state ) {
-        // TODO implement here
+    public boolean insertOrder(List<Basket> baskets) {
+
+
+        List<Pair<Integer, Integer>> listsIdProduct = new ArrayList<>();
+        for (Basket b : baskets) {
+            listsIdProduct.add(new Pair<>(b.getProduct().getIdProduct(), b.getQuantity()));
+        }
+
+        String requete = "INSERT INTO orderdb (dateOrder, deliveryDate, deliveryAdress, stateOrder, pseudoSeller, pseudoConsumer) VALUES (?,?,?,?,?,?)";
+
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        String pseudoConsumer = baskets.get(0).getPseudoConsumer();
+        String pseudoSeller = "ulisses";
+
+
+        try {
+
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setDate(1, date);
+            preparedStatement.setDate(2, date);
+            preparedStatement.setString(3, "delivery adddress");
+            preparedStatement.setString(4, "state order");
+            preparedStatement.setString(5, "pseudo seller");
+            preparedStatement.setString(6, baskets.get(0).getPseudoConsumer());
+
+            int res = preparedStatement.executeUpdate();
+
+            if (res != 0) { //Vérifie que le INSERT order c'est bien passé
+                Order tempo = find(pseudoConsumer, pseudoSeller, date);
+                insertAllProducts(tempo.getIdOrder(), listsIdProduct);
+            }
+
+            return res == 0 ? false : true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
         return false;
     }
 
     /**
-     * @param order 
+     * @param order, state
      * @return
      */
-    public boolean createOrder(Order order) {
-        // TODO implement here
+    public boolean updateOrderState(Order order, String state) {
+        String requete = "UPDATE orderdb SET stateOrder = ? WHERE pseudoConsumer = ? AND pseudoSeller = ? AND dateOrder = ?";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, state);
+            preparedStatement.setString(2, order.getPseudoConsumer());
+            preparedStatement.setString(3, order.getPseudoSeller());
+            preparedStatement.setDate(4, (java.sql.Date) order.getDateOrder());
+            int res = preparedStatement.executeUpdate();
+
+            return res == 0 ? false : true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return false;
     }
 
     /**
-     * @param pseudoConsumer 
-     * @param pseudoSeller 
-     * @param dateOrder 
-     * @return
+     * @param pseudoConsumer
+     * @param pseudoSeller
+     * @param dateOrder
+     * @return an Order
      */
     public Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder) {
-        // TODO implement here
+
+        String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ? AND pseudoSeller = ? AND dateOrder = ?";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudoConsumer);
+            preparedStatement.setString(2, pseudoSeller);
+            preparedStatement.setDate(3, (java.sql.Date) dateOrder);
+
+            ResultSet res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                Order order = createOrderObject(res);
+                return order;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return null;
     }
 
     /**
-     * @param date 
+     * @param date
      * @return
      */
-    public boolean updateOrderDeliveryDate(Date date) {
-        // TODO implement here
+    public boolean updateOrderDeliveryDate(Order order, Date date) {
+        String requete = "UPDATE orderdb SET deliveryDate = ? WHERE pseudoConsumer = ? AND pseudoSeller = ? AND dateOrder = ?";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, order.getPseudoConsumer());
+            preparedStatement.setString(2, order.getPseudoSeller());
+            preparedStatement.setDate(3, (java.sql.Date) order.getDateOrder());
+
+            int res = preparedStatement.executeUpdate();
+
+            return res == 0 ? false : true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
+
+    @Override
+    public ArrayList<Order> getAllOrdersConsumer(String pseudo) {
+        String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ?";
+
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery();
+
+            ArrayList<Order> listOrders = new ArrayList<>();
+            while (res.next()) {
+                listOrders.add(createOrderObject(res));
+            }
+
+            return listOrders;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    private Order createOrderObject(ResultSet res) throws SQLException {
+        Order order = new Order(
+                res.getInt("idOrder"),
+                res.getString("pseudoConsumer"),
+                res.getString("pseudoSeller"),
+                res.getDate("dateOrder"),
+                res.getString("deliveryAddress"),
+                res.getDate("deliveryDate"),
+                res.getString("stateOrder"),
+                getAllProductsFromOrder(res.getInt("idOrder"))
+        );
+        return order;
+    }
+
+    private boolean insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
+        String requete = "INSERT INTO orderlistproduct (idOrder, idProduct, quantity) VALUES (?, ?, ?)";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idOrder);
+
+            boolean res = true;
+            for (Pair<Integer, Integer> i : idProducts) {
+                preparedStatement.setInt(2, i.getKey());
+                preparedStatement.setInt(3, i.getValue());
+
+                if (preparedStatement.executeUpdate() == 0) {
+                    res = false;
+                }
+            }
+            return res;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+
+    private List<Pair<Product, Integer>> getAllProductsFromOrder(int idOrder) {
+        String requete = "SELECT * FROM orderlistproduct INNER JOIN product ON orderlistproduct.idProduct = product.idProduct WHERE idOrder = ?";
+
+        try {
+
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idOrder);
+            ResultSet res = preparedStatement.executeQuery();
+
+            List<Pair<Product, Integer>> products = new ArrayList<>();
+
+            while (res.next()) {
+                Product product = new Product(
+                        res.getInt("idProduct"),
+                        res.getString("nameProduct"),
+                        res.getString("description"),
+                        res.getFloat("priceProduct"),
+                        res.getString("pictureProduct"),
+                        res.getString("pseudoSeller"),
+                        res.getInt("idCategorie")
+                );
+                
+                products.add(new Pair<>(product, res.getInt("quantity")));
+            }
+
+            return products;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

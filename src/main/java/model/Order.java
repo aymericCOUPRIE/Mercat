@@ -1,141 +1,94 @@
 package model;
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class Order {
+
+    private int idOrder;
+    private String pseudoConsumer;
+    private String pseudoSeller;
+    private Date dateOrder;
+    private String deliveryAddress;
+    private Date deliveryDate;
+    private String stateOrder;
+    private List<Pair<Product, Integer>> productsQuantity;
 
     /**
      * Default constructor
      */
-    public Order() {
+    public Order(int idOrder, String pseudoConsumer, String pseudoSeller, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity) {
+        this.idOrder = idOrder;
+        this.pseudoConsumer = pseudoConsumer;
+        this.pseudoSeller = pseudoSeller;
+        this.dateOrder = dateOrder;
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryDate = deliveryDate;
+        this.stateOrder = stateOrder;
+        this.productsQuantity = productsQuantity;
     }
 
-    /**
-     * 
-     */
-    private int quantity;
-
-    /**
-     * 
-     */
-    private Date dateOrder;
-
-    /**
-     * 
-     */
-    private Date deliveryDate;
-
-    /**
-     * 
-     */
-    private String stateOrder;
-
-    /**
-     * 
-     */
-    private String pseudoSeller;
-
-    /**
-     * 
-     */
-    private String pseudoConsumer;
-
-    /**
-     * 
-     */
-    private int idProduct;
-
-
-
-    /**
-     * @return
-     */
-    public int getQuantity() {
-        // TODO implement here
-        return 0;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    /**
-     * @param quantity 
-     * @return
-     */
-    public void setQuantity(int quantity) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Date getDateOrder() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param dateOrder 
-     * @return
-     */
-    public void setDateOrder(Date dateOrder) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Date getDeliveryDate() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param deliveryDate 
-     * @return
-     */
-    public void setDeliveryDate(Date deliveryDate) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Date getStateOrder() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param stateDate 
-     * @return
-     */
-    public void setStateOrder(Date stateDate) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public String getPseudoSeller() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @return
-     */
     public String getPseudoConsumer() {
-        // TODO implement here
-        return "";
+        return pseudoConsumer;
     }
 
-    /**
-     * @return
-     */
-    public int getIdProduct() {
-        // TODO implement here
-        return 0;
+    public void setPseudoConsumer(String pseudoConsumer) {
+        this.pseudoConsumer = pseudoConsumer;
     }
 
+    public String getPseudoSeller() {
+        return pseudoSeller;
+    }
+
+    public void setPseudoSeller(String pseudoSeller) {
+        this.pseudoSeller = pseudoSeller;
+    }
+
+    public Date getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(Date dateOrder) {
+        this.dateOrder = dateOrder;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getStateOrder() {
+        return stateOrder;
+    }
+
+    public void setStateOrder(String stateOrder) {
+        this.stateOrder = stateOrder;
+    }
+
+    public List<Pair<Product, Integer>> getProductsQuantity() {
+        return productsQuantity;
+    }
+
+    public void setProductsQuantity(List<Pair<Product, Integer>> productsQuantity) {
+        this.productsQuantity = productsQuantity;
+    }
 }

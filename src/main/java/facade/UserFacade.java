@@ -21,18 +21,7 @@ public class UserFacade {
 
 
     //notre façade est un singleton
-    private static UserFacade instanceUserFacade;
-
-    /**
-     * @return instanceUserFacade
-     **/
-
-    public static UserFacade getInstanceUserFacade() {
-        if (instanceUserFacade == null) {
-            instanceUserFacade = new UserFacade();
-        }
-        return instanceUserFacade;
-    }
+    private static UserFacade instanceUserFacade = getInstanceUserFacade();
 
     /**
      * Default constructor du singleton façade
@@ -40,7 +29,15 @@ public class UserFacade {
     public UserFacade() {
     }
 
-
+    /**
+     * @return instanceUserFacade
+     **/
+    public static UserFacade getInstanceUserFacade() {
+        if (instanceUserFacade == null) {
+            instanceUserFacade = new UserFacade();
+        }
+        return instanceUserFacade;
+    }
 
     /**
      * @param pseudo
@@ -54,7 +51,7 @@ public class UserFacade {
      * @return
      */
     public boolean signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
-        Consumer userConsumer = new Consumer(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","consumer", phoneNumber);
+        Consumer userConsumer = new Consumer(pseudo, firstName, lastName, password, emailAdress, streetAddress, city, postalCode, "", "consumer", phoneNumber);
         return userDAO.createConsumer(userConsumer);
     }
 
@@ -65,7 +62,7 @@ public class UserFacade {
      */
     public void login(String pseudo, String password) {
         user = userDAO.login(pseudo, password);
-        UserFacade.getInstanceUserFacade().setConnectedUser(user);
+        instanceUserFacade.setConnectedUser(user);
     }
 
     /**
@@ -87,7 +84,7 @@ public class UserFacade {
      * @return
      */
     public boolean signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String companyName) {
-        Seller userSeller = new Seller(pseudo,firstName,lastName,password,emailAdress,streetAddress,city,postalCode,"","seller", phoneNumber, companyName);
+        Seller userSeller = new Seller(pseudo, firstName, lastName, password, emailAdress, streetAddress, city, postalCode, "", "seller", phoneNumber, companyName);
         return userDAO.createSeller(userSeller);
     }
 
@@ -96,14 +93,15 @@ public class UserFacade {
      * @return
      */
     public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
-            return userDAO.updateConsumer( pseudo,firstName, lastName, password,OldPassword, emailAdress, streetAddress, city, postalCode,phoneNumber);
+        return userDAO.updateConsumer(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber);
     }
+
     /**
      * @param
      * @return
      */
     public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
-            return userDAO.updateSeller( pseudo,firstName, lastName, password,OldPassword, emailAdress, streetAddress, city, postalCode,phoneNumber,company);
+        return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
     }
 
     /**
@@ -124,37 +122,38 @@ public class UserFacade {
      * @return boolean true if the current user is an admin, else false
      */
     public static boolean isAdmin() {
-       return getConnectedUser().getRole().equals("admin");
+        return getConnectedUser().getRole().equals("admin");
     }
 
     /**
      * @return boolean true if the current user is a seller, else false
      */
-    public static boolean isSeller(){
+    public static boolean isSeller() {
         return getConnectedUser().getRole().equals("seller");
     }
 
     /**
      * This methode permit to delete an user from the dataBase
      * It is the same methode for all the kind of user
+     *
      * @param pseudo
      */
 
-    public boolean deleteUser(String pseudo){
+    public boolean deleteUser(String pseudo) {
         return userDAO.deleteUser(pseudo);
     }
 
 
-
     /**
      * this method is used to get all the informations about a consumer
+     *
      * @return User
      */
     public User getConsumerDetails() {
-        if(isAdmin()){
+        if (isAdmin()) {
             return userDAO.findUser((String) Router.getInstance().getParams()[0]);
         } else {//je suis un consumer
-            return  getConnectedUser();
+            return getConnectedUser();
         }
     }
 
@@ -175,21 +174,23 @@ public class UserFacade {
 
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     *
      * @param pseudo
      * @return String pseudo ou errormsg
      */
 
-    public String searchConsumer(String pseudo){
+    public String searchConsumer(String pseudo) {
         return userDAO.searchConsumer(pseudo);
     }
 
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un seller
+     *
      * @param pseudo
      * @return String pseudo ou errormsg
      */
 
-    public String searchSeller(String pseudo){
+    public String searchSeller(String pseudo) {
         return userDAO.searchSeller(pseudo);
     }
 
@@ -197,10 +198,10 @@ public class UserFacade {
      * @return
      */
     public Seller getSellerDetails() {
-        if(isAdmin()){
+        if (isAdmin()) {
             return (Seller) userDAO.findUser((String) Router.getInstance().getParams()[0]);
         } else {
-            return  (Seller) getConnectedUser();
+            return (Seller) getConnectedUser();
         }
     }
 
@@ -212,7 +213,6 @@ public class UserFacade {
         // METTRE get Params comme au dessus qd les branches seront merge
         return (Seller) userDAO.findUser("s");
     }
-
 
 
 }

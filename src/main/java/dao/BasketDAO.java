@@ -8,28 +8,30 @@ import java.util.*;
 /**
  * 
  */
-public class BasketDAO {
+public abstract class BasketDAO {
+
+    /**
+     *
+     */
+    protected Connection connect = null;
 
     /**
      * Default constructor
+     * @param connect
      */
-    public BasketDAO() {
+    public BasketDAO(Connection connect) {
+        this.connect = connect;
     }
 
-    /**
-     * 
-     */
-    public Connection connect;
+
 
 
     /**
-     * @param pseudoConsumer 
-     * @return
+     * this method allows to retrieve all the baskets of the consumer whose the pseudo is passed in parameter
+     * @param pseudoConsumer
+     * @return ArrayList<Basket>
      */
-    public Set<Basket> getAllBasket(String pseudoConsumer) {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<Basket> getAllBasket(String pseudoConsumer);
 
     /**
      * @param basket 
@@ -40,22 +42,22 @@ public class BasketDAO {
         return false;
     }
 
-    /**
-     * @param basket 
-     * @return
-     */
-    public boolean deleteBasket(Basket basket) {
-        // TODO implement here
-        return false;
-    }
 
     /**
-     * @param basket 
-     * @return
+     * This methode permit to delete a basket
+     * @param idProduct, pseudo
+     * @return boolean true if it's done
      */
-    public boolean updateBasket(Basket basket) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteBasket(int idProduct, String pseudo);
+
+    /**
+     * This methode permit to update the quantity of an order
+     * @param pseudo,idProduct,quantity
+     * @return boolean True si le panier a bien été modifié
+     */
+
+    public abstract boolean updateBasket(String pseudo,int idProduct, int quantity);
+
+
 
 }
