@@ -64,7 +64,7 @@ public class RateDAOMySQL extends RateDAO {
     }
 
     @Override
-    public int rateSeller(Seller seller, Consumer consumer) {
+    public float rateSeller(Seller seller, Consumer consumer) {
 
         String requete = "SELECT rate FROM rate where pseudoConsumer = ? AND pseudoSeller = ?";
         System.out.println(requete);
@@ -83,6 +83,30 @@ public class RateDAOMySQL extends RateDAO {
 
             //int i = Integer.parseInt(rate);
             return Integer.parseInt(i);
+        } catch (SQLException throwables) {
+            return 0;
+        }
+    }
+
+    @Override
+    public float averageRateSeller(Seller seller) {
+
+        String requete = "SELECT AVG(rate) FROM rate where pseudoSeller = ?";
+        System.out.println(requete);
+
+        try {
+            Object rate = new Object();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, seller.getPseudo());
+            ResultSet res = preparedStatement.executeQuery();
+
+            // Recupère résultat et conversion
+            res.next();
+            rate = res.getObject(1);
+            String i = rate.toString();
+
+            //int i = Integer.parseInt(rate);
+            return Float.parseFloat(i);
         } catch (SQLException throwables) {
             return 0;
         }

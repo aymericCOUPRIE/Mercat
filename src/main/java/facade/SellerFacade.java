@@ -51,10 +51,17 @@ public class SellerFacade {
      * @param Consumer
      * @return integer the rate of the consumer
      */
-    public int getRate(Consumer Consumer) {
+    public float getRate(Consumer Consumer) {
         Seller userSeller = new Seller("stephanie","r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
 
         return DAO.rateSeller(userSeller , Consumer);
+    }
+
+    /**
+     * @return
+     */
+    public float getSellerAverageRate(Seller seller) {
+        return DAO.averageRateSeller(seller);
     }
 
 

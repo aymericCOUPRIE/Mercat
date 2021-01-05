@@ -89,7 +89,7 @@ public class RateController {
     private void desactivateSubmitRate(){
         // Cas page Seller
         if(page == "seller") {
-            Integer rate = facadeS.getRate((Consumer) facadeU.getConnectedUser());
+            Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser());
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
                 txtRate.setText(rate.toString());
