@@ -1,5 +1,6 @@
 package controller;
 
+import facade.SellerFacade;
 import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -43,6 +44,7 @@ public class SellerProfileController {
      */
     private UserFacade userFacade = new UserFacade();
 
+    private SellerFacade sellerFacade = new SellerFacade();
 
 
     /**
@@ -77,12 +79,22 @@ public class SellerProfileController {
         Router.getInstance().activate("HomePage");
     }
 
+    /**
+     * Method used by btnBack from Java FX
+     *  It permit to return to the home page
+     */
+    public void addRatePage(){
+        Object[] params = new Object[1];
+        params[0] = txtPseudo.getText();
+        Router.getInstance().activate("Rate_Seller", params);
+    }
+
 
     /**
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-
+        Float averageRate;
         Seller s = getSellerDetails("s");
         txtPseudo.setText(s.getPseudo());
         txtEmailAdress.setText(s.getEmailAddress());
@@ -91,6 +103,17 @@ public class SellerProfileController {
         txtCity.setText(s.getCity());
         txtPostal.setText(s.getPostalCode());
         txtCompanyName.setText(s.getCompanyName());
+
+        averageRate = sellerFacade.getSellerAverageRate(s);
+        System.out.println(averageRate);
+        if(averageRate == 0){
+            txtAverageRate.setText("/");
+        }
+        else {
+            txtAverageRate.setText(averageRate.toString());
+        }
+
+
 
     }
 

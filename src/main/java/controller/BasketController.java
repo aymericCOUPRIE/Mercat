@@ -28,15 +28,8 @@ public class BasketController {
 
     private BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
 
-    private OrderFacade orderFacade;
-
     private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
-    /**
-     * Default constructor
-     */
-    public BasketController() {
-    }
 
     @FXML
     private Label txterror, labelNbProducts, labelTotPrice;
@@ -62,14 +55,6 @@ public class BasketController {
         return basketFacade.getAllBasket(userFacade.getConnectedUser().getPseudo());
     }
 
-    /**
-     * @param idProduct
-     * @param quantity
-     * @return
-     */
-    public void updateBasket(int idProduct, int quantity) {
-        // TODO implement here
-    }
 
     /**
      * This methode permit to delete a basket from the dataBase
@@ -77,7 +62,7 @@ public class BasketController {
      * update the total quantity of product
      * update the total price
      *
-     * @param b, index
+     * @param b,index
      */
     private void deleteBasket(Basket b, int index) {
         if (!basketFacade.deleteBasket(b.getProduct().getIdProduct(), userFacade.getConnectedUser().getPseudo())) {
@@ -96,7 +81,13 @@ public class BasketController {
             labelTotPrice.setText(String.valueOf(newTOTprice));
         }
     }
-
+    /**
+     * @param baskets
+     * @return
+     */
+    public void createOrder(Set<Basket> baskets) {
+        // TODO implement here
+    }
     /**
      * @return
      */
@@ -121,13 +112,6 @@ public class BasketController {
         return cpt;
     }
 
-    /**
-     * @param baskets
-     * @return
-     */
-    public void createOrder(Set<Basket> baskets) {
-        // TODO implement here
-    }
 
     /**
      * Add a button delete in the tableView

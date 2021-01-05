@@ -78,6 +78,19 @@
                   </RadialGradient>
                </textFill>
             </Button>
+            <Button fx:id="btnBack" layoutX="784.0" layoutY="259.0" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="117.0" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Back" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </Button>
             </children>
         </GridPane>
     </children>

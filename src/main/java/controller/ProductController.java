@@ -86,12 +86,6 @@ public class ProductController {
 
 
 
-    /**
-     * @return
-     */
-    public void addToBasket() {
-        // TODO implement here
-    }
 
     /**
      * This method is called when the seller tries to add a new Product.
