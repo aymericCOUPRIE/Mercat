@@ -35,13 +35,22 @@ public class DetailProductController {
      * This methode permit to add the product of the curent page in the customer's basket
      */
     public void addToBasket() {
-        if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
 
-            errorLabel.setText("The product has been added into the basket!");
+       if(txtQuantity.getText().isEmpty()){
+           errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
+       }else if(Integer.parseInt(txtQuantity.getText()) > 0){
+           if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
 
-        } else {
-            errorLabel.setText("error: le produit n'a pas été ajouté au panier...");
-        }
+               errorLabel.setText("The product has been added into the basket!");
+
+           } else {
+               errorLabel.setText("This product is already in your basket. If you want to update the quantity, please go on 'My basket' page.");
+           }
+
+       }else{
+           errorLabel.setText("You must provide a positive quantity!");
+       }
+
 
     }
 

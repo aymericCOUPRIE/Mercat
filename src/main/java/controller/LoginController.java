@@ -62,9 +62,8 @@ public class LoginController {
         } else { //les champs ont été remplis
             userFacade.login(pseudo, passWord);
             if (userFacade.isConnected()) { //je suis connecté donc je suis redirigé sur la page d'acceuil
-//TODO                Router.getInstance().activate("AddProduct");
-//TODO               Router.getInstance().activate("Rate_Product");
-                Router.getInstance().activate("HomePage");
+                //Router.getInstance().activate("HomePage");
+                Router.getInstance().activate("DetailsProduct");
             } else {
                 display("You provide a wrong pseudo or password! Try again.");
             }

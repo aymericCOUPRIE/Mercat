@@ -65,14 +65,16 @@ public class BasketDAOMySQL extends BasketDAO {
      * @param pseudo,idProduct,quantity
      * @return boolean True si le panier a bien été modifié
      */
-    public boolean createBasket(String pseudo,int idProduct, int quantity) {
+    public boolean createBasket(int idProduct, int quantity, String pseudo) {
         // TODO implement here
         String requete = "INSERT INTO basket (quantity, idProduct, pseudoConsumer) VALUES (?,?,?)";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, quantity);
             preparedStatement.setInt(2,idProduct);
-            preparedStatement.setInt(3,pseudo);
+            preparedStatement.setString(3,pseudo);
+            System.out.println("preparestat" +preparedStatement.toString());
+            System.out.println("prod"+ idProduct + " pseudo "+ pseudo + " quantity: " + quantity);
 
             return preparedStatement.executeUpdate() != 0; //savoir si création a été faite
         } catch (SQLException throwables) {
