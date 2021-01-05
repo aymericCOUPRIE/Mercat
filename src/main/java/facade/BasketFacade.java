@@ -71,11 +71,12 @@ public class BasketFacade {
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * This methode permit to add the product of the curent page in the customer's basket
+     * @param idProduct, pseudo, quantity
+     * @return boolean true if the product has been added into the basket
      */
-    public void addToBasket(int idProduct) {
-        // TODO implement here
+    public boolean addToBasket(int idProduct, int quantity, String pseudo) {
+        return basketDAO.createBasket(idProduct, quantity, pseudo);
     }
 
 

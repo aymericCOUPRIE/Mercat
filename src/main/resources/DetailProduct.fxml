@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailProductController">
    <children>
-      <Button layoutX="282.0" layoutY="164.0" mnemonicParsing="false" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276 #1A5276  #1A5276 #1A5276  #1A5276;" text="Add to basket" textFill="WHITE" />
+      <Button layoutX="282.0" layoutY="164.0" mnemonicParsing="false" onAction="#addToBasket" style="-fx-background-color: #1A5276;" text="Add to basket" textFill="WHITE" />
+      <TextField fx:id="txtQuantity" alignment="CENTER" layoutX="249.0" layoutY="130.0" promptText="quantity" />
+      <Label fx:id="errorLabel" layoutX="111.0" layoutY="61.0" text="Effacer le texte par défaut plus tard, juste pour que tu le vois et le place où tu veux" textFill="#1a5276" />
    </children>
 </AnchorPane>
