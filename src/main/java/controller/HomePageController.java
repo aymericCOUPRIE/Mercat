@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import router.Router;
 import javafx.scene.control.MenuItem;
 
-import java.awt.*;
 import java.io.IOException;
 
 /**

@@ -42,8 +42,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      * @return
      */
     public RateDAO createRateDAO() {
-        // TODO implement here
-        return null;
+        return new RateDAOMySQL(connect);
     }
 
     /**

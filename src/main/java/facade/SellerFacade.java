@@ -2,6 +2,7 @@ package facade;
 
 import dao.AbstractFactoryDAO;
 import dao.RateDAO;
+import dao.UserDAO;
 import model.Consumer;
 import model.Seller;
 
@@ -23,11 +24,8 @@ public class SellerFacade {
      */
     private RateDAO rateDAO;
 
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
-
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private RateDAO DAO = af.createRateDAO();
 
 
 
@@ -44,9 +42,20 @@ public class SellerFacade {
      * @param rate 
      * @return
      */
-    public boolean AddRate(Consumer Consumer, int rate) {
-        // TODO implement here
-        return false;
+    public void AddRate(Consumer Consumer, int rate) {
+        Seller userSeller = new Seller("stephanie","r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
+        DAO.createRateSeller(userSeller , Consumer, rate);
     }
+
+    /**
+     * @param Consumer
+     * @return integer the rate of the consumer
+     */
+    public int getRate(Consumer Consumer) {
+        Seller userSeller = new Seller("stephanie","r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
+
+        return DAO.rateSeller(userSeller , Consumer);
+    }
+
 
 }

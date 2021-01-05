@@ -3,6 +3,7 @@ package controller;
 import facade.UserFacade;
 
 import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +13,7 @@ import router.Router;
 import javafx.event.ActionEvent;
 
 /**
- * 
+ *
  */
 public class LoginController {
 
@@ -29,7 +30,7 @@ public class LoginController {
 
     // Configuration
 
-    private String pseudo,passWord;
+    private String pseudo, passWord;
 
 
     /**
@@ -44,32 +45,34 @@ public class LoginController {
     }
 
 
-
     /**
      * Method used by btnLogin from Java FX
      * It allows to log in the system
+     *
      * @param e
      * @throws IOException
      */
     @FXML
     public void login(ActionEvent e) throws IOException {
-       pseudo = txtPseudoUser.getText();
-       passWord = txtPassWord.getText();
+        pseudo = txtPseudoUser.getText();
+        passWord = txtPassWord.getText();
 
-       if(pseudo.equals("") || passWord.equals("")){
-           display("You need to provide your email or your password.");
-       }else{ //les champs ont été remplis
-           userFacade.login(pseudo,passWord);
-           if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
-               Router.getInstance().activate("AddProduct");
-           }else{
-               display("You provide a wrong pseudo or password! Try again.");
-           }
-       }
+        if (pseudo.equals("") || passWord.equals("")) {
+            display("You need to provide your email or your password.");
+        } else { //les champs ont été remplis
+            userFacade.login(pseudo, passWord);
+            if (userFacade.isConnected()) { //je suis connecté donc je suis redirigé sur la page d'acceuil
+//TODO                Router.getInstance().activate("AddProduct");
+//TODO               Router.getInstance().activate("Rate_Product");
+                Router.getInstance().activate("HomePage");
+            } else {
+                display("You provide a wrong pseudo or password! Try again.");
+            }
+        }
     }
 
     /**
-     *  Method used by btnLogin from Java FX
+     * Method used by btnLogin from Java FX
      * It permits to go to the page to sign up
      */
     @FXML
@@ -79,11 +82,11 @@ public class LoginController {
 
     /**
      * It allows to display an error message on the user interface
+     *
      * @param msg
      */
     @FXML
-    public void display(String msg)
-    {
+    public void display(String msg) {
         errorText.setText(msg);
     }
 
@@ -92,7 +95,7 @@ public class LoginController {
      */
     public void initialize() {
 
-            errorText.setText("");
+        errorText.setText("");
 
     }
 }
