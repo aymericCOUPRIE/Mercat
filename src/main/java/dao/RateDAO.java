@@ -82,7 +82,14 @@ public abstract class RateDAO {
      * @param consumer
      * @return the rate put by the consumer
      */
-    public abstract int rateSeller(Seller seller, Consumer consumer);
+    public abstract float rateSeller(Seller seller, Consumer consumer);
+
+
+    /**
+     * @param seller
+     * @return the average rate of a seller
+     */
+    public abstract float averageRateSeller(Seller seller);
 
     /**
      * @param seller 

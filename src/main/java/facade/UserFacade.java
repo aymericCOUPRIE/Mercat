@@ -205,6 +205,10 @@ public class UserFacade {
         }
     }
 
+
+
+
+
     /**
      * @param pseudo
      * @return

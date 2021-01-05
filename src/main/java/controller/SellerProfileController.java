@@ -1,5 +1,6 @@
 package controller;
 
+import facade.SellerFacade;
 import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -43,6 +44,7 @@ public class SellerProfileController {
      */
     private UserFacade userFacade = new UserFacade();
 
+    private SellerFacade sellerFacade = new SellerFacade();
 
 
     /**
@@ -82,7 +84,7 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-
+        Float averageRate;
         Seller s = getSellerDetails("s");
         txtPseudo.setText(s.getPseudo());
         txtEmailAdress.setText(s.getEmailAddress());
@@ -91,6 +93,9 @@ public class SellerProfileController {
         txtCity.setText(s.getCity());
         txtPostal.setText(s.getPostalCode());
         txtCompanyName.setText(s.getCompanyName());
+
+        averageRate = sellerFacade.getSellerAverageRate(s);
+        txtAverageRate.setText(averageRate.toString());
 
     }
 
