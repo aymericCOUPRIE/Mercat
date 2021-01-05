@@ -34,18 +34,16 @@ public abstract class BasketDAO {
     public abstract ArrayList<Basket> getAllBasket(String pseudoConsumer);
 
     /**
-     * @param basket 
-     * @return
+     * This methode permit to add the product of the curent page in the customer's basket
+     * @param idProduct,pseudo,quantity
+     * @return boolean true if the product has been added into the basket
      */
-    public boolean createBasket(Basket basket) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean createBasket(int idProduct, int quantity, String pseudo);
 
 
     /**
      * This methode permit to delete a basket
-     * @param idProduct, pseudo
+     * @param idProduct,pseudo
      * @return boolean true if it's done
      */
     public abstract boolean deleteBasket(int idProduct, String pseudo);

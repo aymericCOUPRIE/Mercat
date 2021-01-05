@@ -61,12 +61,25 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * @param basket
-     * @return
+     * This methode permit to update the quantity of an order
+     * @param pseudo,idProduct,quantity
+     * @return boolean True si le panier a bien été modifié
      */
-    public boolean createBasket(Basket basket) {
+    public boolean createBasket(String pseudo,int idProduct, int quantity) {
         // TODO implement here
-        return false;
+        String requete = "INSERT INTO basket (quantity, idProduct, pseudoConsumer) VALUES (?,?,?)";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, nomCategory);
+            int res = preparedStatement.executeUpdate();
+
+            if (res == 0) throw new SQLException("Category not inserted");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+
+
     }
 
     /**
@@ -76,7 +89,7 @@ public class BasketDAOMySQL extends BasketDAO {
      * @return boolean true if it's done
      */
     public boolean deleteBasket(int idProduct, String pseudo) {
-        // TODO implement here
+
         String requete = "DELETE FROM basket WHERE idProduct = ? AND pseudoConsumer = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
