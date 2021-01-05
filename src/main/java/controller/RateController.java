@@ -46,7 +46,7 @@ public class RateController {
     private SellerFacade facadeS  = new SellerFacade();
     private UserFacade facadeU = UserFacade.getInstanceUserFacade();;
 
-
+    private String name;
 
     /**
      *  Method used by btnLogin from Java FX
@@ -60,8 +60,13 @@ public class RateController {
                 int i = Integer.parseInt(rate);
                 // Page seller
                 if(page == "seller") {
-                    facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i);
-                    Router.getInstance().activate("Rate_Seller");
+
+                    facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i, name);
+                    System.out.println("OUI");
+                    Object[] params = new Object[1];
+                    params[0] = name;
+                    Router.getInstance().activate("Rate_Seller", params);
+                    //Router.getInstance().activate("Rate_Seller");
                 }
             } else {
                 errorText.setText("Choose a rate between 1 and 5");
@@ -89,7 +94,7 @@ public class RateController {
     private void desactivateSubmitRate(){
         // Cas page Seller
         if(page == "seller") {
-            Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser());
+            Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser(), name);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
                 txtRate.setText(rate.toString());
@@ -101,7 +106,14 @@ public class RateController {
             // Recuperer code Anna Product
         }
     }
-
+    /**
+     *
+     * Method used by btnBack from Java FX
+     * It permit to return to the seller page
+     */
+    public void back() {
+        Router.getInstance().activate("ProfileSeller");
+    }
 
     /**
      */
@@ -114,7 +126,7 @@ public class RateController {
         } else{
             page = "product";
         }
-
+        name = (String) Router.getInstance().getParams()[0];
         desactivateSubmitRate();
 
     }

@@ -79,6 +79,16 @@ public class SellerProfileController {
         Router.getInstance().activate("HomePage");
     }
 
+    /**
+     * Method used by btnBack from Java FX
+     *  It permit to return to the home page
+     */
+    public void addRatePage(){
+        Object[] params = new Object[1];
+        params[0] = txtPseudo.getText();
+        Router.getInstance().activate("Rate_Seller", params);
+    }
+
 
     /**
      * To initialize the variable with the information in the data base
@@ -95,7 +105,15 @@ public class SellerProfileController {
         txtCompanyName.setText(s.getCompanyName());
 
         averageRate = sellerFacade.getSellerAverageRate(s);
-        txtAverageRate.setText(averageRate.toString());
+        System.out.println(averageRate);
+        if(averageRate == 0){
+            txtAverageRate.setText("/");
+        }
+        else {
+            txtAverageRate.setText(averageRate.toString());
+        }
+
+
 
     }
 

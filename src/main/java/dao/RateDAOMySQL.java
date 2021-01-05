@@ -101,13 +101,19 @@ public class RateDAOMySQL extends RateDAO {
             ResultSet res = preparedStatement.executeQuery();
 
             // Recupère résultat et conversion
+
             res.next();
             rate = res.getObject(1);
-            String i = rate.toString();
+            if(rate != null) {
+                String i = rate.toString();
+                return Float.parseFloat(i);
+            } else {
+                return 0;
+            }
 
-            //int i = Integer.parseInt(rate);
-            return Float.parseFloat(i);
+
         } catch (SQLException throwables) {
+            throwables.printStackTrace();
             return 0;
         }
     }

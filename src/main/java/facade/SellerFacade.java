@@ -42,8 +42,8 @@ public class SellerFacade {
      * @param rate 
      * @return
      */
-    public void AddRate(Consumer Consumer, int rate) {
-        Seller userSeller = new Seller("stephanie","r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
+    public void AddRate(Consumer Consumer, int rate, String seller) {
+        Seller userSeller = new Seller(seller,"r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
         DAO.createRateSeller(userSeller , Consumer, rate);
     }
 
@@ -51,8 +51,8 @@ public class SellerFacade {
      * @param Consumer
      * @return integer the rate of the consumer
      */
-    public float getRate(Consumer Consumer) {
-        Seller userSeller = new Seller("stephanie","r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
+    public float getRate(Consumer Consumer, String seller) {
+        Seller userSeller = new Seller(seller,"r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
 
         return DAO.rateSeller(userSeller , Consumer);
     }
