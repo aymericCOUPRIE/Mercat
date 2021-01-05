@@ -26,41 +26,15 @@ public abstract class UserDAO {
     }
 
 
+
     /**
+     * this methode permite to delete an user from the database
      * @param pseudo
-     * @return
+     * @return true if the user has been deleted from the database
      */
-    public User find(int pseudo) {
-        // TODO implement here
-        return null;
-    }
+    public abstract boolean deleteUser(String pseudo);
 
-    /**
-     * @param user
-     * @return
-     */
-    public boolean createUser(User user) {
-        // TODO implement here
-        return false;
-    }
 
-    /**
-     * @param user
-     * @return
-     */
-    public boolean deleteUser(User user) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param user
-     * @return
-     */
-    public boolean updateUser(User user) {
-        // TODO implement here
-        return false;
-    }
 
     /**
      * @param pseudo
@@ -84,27 +58,29 @@ public abstract class UserDAO {
 
     /**
      * @param pseudo
-     * @return
+     * @return User dont le pseudo est passé en paramètres
      */
-    public User find(String pseudo) {
-        // TODO implement here
-        return null;
-    }
+    public abstract User findUser(String pseudo);
 
     /**
-     * @return
+     *
      */
-    public Set<String> getAllSellersPseudo() {
-        // TODO implement here
-        return null;
-    }
+   public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
+
+   public abstract boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company);
 
     /**
-     * @return
+     * This methode permite to have the pseudo of user according to their past role in parameters
+     * @param role
+     * @return ArrayList<String>
      */
-    public Set<String> getAllConsumer() {
-        // TODO implement here
-        return null;
-    }
+    public abstract ArrayList<String> getAllPseudo(String role);
+    /**
+     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
+     * @param pseudo
+     * @return String pseudo ou errormsg
+     */
+    public abstract String searchConsumer(String pseudo);
+    public abstract String searchSeller(String pseudo);
 
 }

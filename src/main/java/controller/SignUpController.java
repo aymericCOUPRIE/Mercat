@@ -71,7 +71,7 @@ public class SignUpController {
 
     private String messageAttention;
 
-    private boolean isAConsumer =false;
+    private boolean isAConsumer = true;
     /**
      * Default constructor
      */
@@ -128,7 +128,7 @@ public class SignUpController {
      */
     public void signUp(ActionEvent e) throws IOException {
             boolean noError = true;
-            if(isAConsumer){
+            if(this.isAConsumer){
                 noError = userFacade.signUpConsumer(pseudo,
                         firstName,
                         lastName,
@@ -179,7 +179,7 @@ public class SignUpController {
     }
 
 
-    private boolean internVerification() {
+    public boolean internVerification() {
         if(password.length()<8){
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
@@ -221,6 +221,7 @@ public class SignUpController {
      */
     @FXML
     public void consumerPage(ActionEvent e) throws IOException {
+        this.isAConsumer = true;
         Router.getInstance().activate("SignUpC");
     }
 
@@ -230,6 +231,7 @@ public class SignUpController {
      */
     @FXML
     public void sellerPage(ActionEvent e) throws IOException {
+        this.isAConsumer = false;
         Router.getInstance().activate("SignUpS");
     }
 
