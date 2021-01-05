@@ -7,12 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.User;
 import router.Router;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -70,6 +69,8 @@ public class SignUpController {
     private String idSellerButton;
     private String idConsumerButton;
 
+    private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private String messageAttention;
 
     private boolean isAConsumer = true;
@@ -191,18 +192,14 @@ public class SignUpController {
             display(messageAttention);
         } else {
             String test = "0" + Integer.parseInt(phoneNumber);
-            System.out.println(phoneNumber.length());
-            System.out.println(test == phoneNumber);
-            System.out.println(phoneNumber);
-            //TODO Ajouter une fonctionalité qui vérifie qu'il y a que des chiffres dans le phonenumber
-            if ((phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
-                System.out.println("REGEX DU MAIL " + email.matches("/^\\S+@\\S+\\.\\S+$/"));
-                //if(email.matches("/^\\S+@\\S+\\.\\S+$/")){
-                System.out.println("REGARDE CE VRAI");
-                return true;
-                //}else{
-                //  this.messageAttention = "This email address is incorrect";
-                //}
+            if (phoneNumber.matches("[0-9]+")&&(phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
+                Matcher matcher = pattern.matcher(email);
+                if(matcher.matches()){
+                    return true;
+                }else{
+                    this.messageAttention = "Your email is incorrect";
+                    display(messageAttention);
+                }
             } else {
                 this.messageAttention = "Your phone number is incorrect";
                 display(messageAttention);
@@ -258,4 +255,6 @@ public class SignUpController {
         // TODO Auto-generated method stub
         errorText.setText("");
     }
+
+
 }

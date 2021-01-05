@@ -88,18 +88,19 @@ public class ProductDAOMySQL extends ProductDAO {
 
     private ArrayList<Product> getProductList(ArrayList<Product> listProduct, PreparedStatement preparedStatement) throws SQLException {
         ResultSet res = preparedStatement.executeQuery();
-
         Product product;
-
         while (res.next()) {
+            String nomSeller = res.getString("pseudoSeller");
+            String libCategorie = getCategoryLibelle(res.getInt("idCategorie"));
             product = new Product(
-                    res.getString("name"),
+                    res.getString("nameProduct"),
                     res.getString("description"),
-                    res.getFloat("price"),
-                    res.getString("seller"),
-                    res.getString("category"),
-                    getProductCity("seller")
+                    res.getFloat("priceProduct"),
+                    nomSeller,
+                    getProductCity("pseudoSeller"),
+                    libCategorie
             );
+            System.out.println(product.getNameProduct());
             listProduct.add(product);
         }
         return listProduct;
@@ -129,17 +130,17 @@ public class ProductDAOMySQL extends ProductDAO {
     public boolean createProduct(Product product) {
         //TODO Demander si cela marche
         //System.out.println("FIRST "+product.getDescription());
-        String requete = "INSERT INTO product (name,description,price,seller,category) VALUES (?,?,?,?,?)";
+        String requete = "INSERT INTO product (nameProduct,priceProduct,pictureProduct,pseudoSeller,idCategorie,description) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, product.getNameProduct());
-            preparedStatement.setString(2, product.getDescription());
-            System.out.println(product.getNameProduct());
-            preparedStatement.setString(3, "" + product.getPriceProduct());
+            preparedStatement.setString(2, "" + product.getPriceProduct());
+            preparedStatement.setString(3,"");
+            //System.out.println(product.getNameProduct());
             preparedStatement.setString(4, product.getPseudoSeller());
             //TODO voir si on ne change pas l'id pour le nom de la catégorie
-            preparedStatement.setString(5, "Informatique");
-
+            preparedStatement.setInt(5, 5);
+            preparedStatement.setString(6,product.getDescription());
             return preparedStatement.executeUpdate() != 0;
 
         } catch (SQLException throwables) {
@@ -190,23 +191,6 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
-    public int getCategoryId(String c) {
-        String requete = "SELECT idCategorie FROM categorie WHERE LibelleCategorie = ?";
-        try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, c);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                return rs.getInt("idCategorie");
-            }
-            return -1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return -1;
-        }
-    }
-
     @Override
     public boolean deleteProduct(Product p) {
         int id = getProductId(p);
@@ -224,7 +208,7 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     private String getProductCity(String seller) {
-        String requete = "SELECT city FROM seller WHERE pseudo = ?";
+        String requete = "SELECT city FROM user WHERE pseudo = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, seller);
@@ -238,6 +222,41 @@ public class ProductDAOMySQL extends ProductDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return "-1";
+        }
+    }
+
+    private String getCategoryLibelle(int id){
+        String requete = "SELECT LibelleCategorie FROM category WHERE idCategorie = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("LibelleCategorie");
+            }
+            return "-1";
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return "-1";
+        }
+    }
+
+    private int getCategoryId(String c) {
+        String requete = "SELECT idCategorie FROM categorie WHERE LibelleCategorie = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, c);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("idCategorie");
+            }
+            return -1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return -1;
         }
     }
 

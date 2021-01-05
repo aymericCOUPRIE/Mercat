@@ -39,7 +39,6 @@ public class Product {
      */
     private String category;
     private String description;
-
     private String city;
 
     /**
@@ -62,6 +61,15 @@ public class Product {
         this.city = city;
     }
 
+    public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, int idCategorie) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pictureProduct = pictureProduct;
+        this.pseudoSeller = pseudoSeller;
+        this.idCategorie = idCategorie;
+    }
     /**
      * Default constructor
      */
@@ -75,15 +83,7 @@ public class Product {
         this.idProduct = idProduct;
     }
 
-    public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, int idCategorie) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.description = description;
-        this.priceProduct = priceProduct;
-        this.pictureProduct = pictureProduct;
-        this.pseudoSeller = pseudoSeller;
-        this.idCategorie = idCategorie;
-    }
+
 
     /**
      * @return

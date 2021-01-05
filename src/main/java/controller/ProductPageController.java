@@ -61,7 +61,7 @@ public class ProductPageController {
 
     @FXML
     private void goHome(ActionEvent e){
-        Router.getInstance().activate("SearchProduct");
+        Router.getInstance().activate("AddProduct");
     }
 
 
