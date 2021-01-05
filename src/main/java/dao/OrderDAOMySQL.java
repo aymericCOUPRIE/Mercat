@@ -161,8 +161,6 @@ public class OrderDAOMySQL extends OrderDAO {
                 listOrders.add(createOrderObject(res));
             }
 
-            System.out.println(listOrders.get(0));
-
             return listOrders;
 
         } catch (SQLException throwables) {
@@ -233,9 +231,7 @@ public class OrderDAOMySQL extends OrderDAO {
                         res.getString("pseudoSeller"),
                         res.getInt("idCategorie")
                 );
-
-                System.out.println(product);
-
+                
                 products.add(new Pair<>(product, res.getInt("quantity")));
             }
 
