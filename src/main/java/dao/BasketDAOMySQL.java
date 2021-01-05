@@ -70,10 +70,11 @@ public class BasketDAOMySQL extends BasketDAO {
         String requete = "INSERT INTO basket (quantity, idProduct, pseudoConsumer) VALUES (?,?,?)";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, nomCategory);
-            int res = preparedStatement.executeUpdate();
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setInt(2,idProduct);
+            preparedStatement.setInt(3,pseudo);
 
-            if (res == 0) throw new SQLException("Category not inserted");
+            return preparedStatement.executeUpdate() != 0; //savoir si création a été faite
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
