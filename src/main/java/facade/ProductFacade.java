@@ -16,21 +16,32 @@ import java.util.*;
  */
 public class ProductFacade {
 
+    private boolean product;
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private ProductDAO productDAO = af.createProductDAO();
+
+    private static ProductFacade instanceProductFacade;
+
+    private ArrayList<Product> listProduct = new ArrayList<Product>();
+
+    /**
+     * @return instanceUserFacade
+     **/
+
+    public static ProductFacade getInstance() {
+        if (instanceProductFacade == null) {
+            instanceProductFacade= new ProductFacade();
+        }
+        return instanceProductFacade;
+    }
+
     /**
      * Default constructor
      */
     public ProductFacade() {
     }
 
-    /**
-     * 
-     */
-    private ProductDAO productDAO;
 
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
 
     /**
      * 
@@ -50,9 +61,8 @@ public class ProductFacade {
     /**
      * @return
      */
-    public Product getProduct() {
-        // TODO implement here
-        return null;
+    public ArrayList<Product> getProducts() {
+        return listProduct;
     }
 
     /**
@@ -111,15 +121,11 @@ public class ProductFacade {
     }
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @param picture 
-     * @param idCategory 
+     * @param p le Produit
      * @return
      */
-    public void createProduct(String nameProduct, String description, float price, String picture, int idCategory) {
-        // TODO implement here
+    public boolean createProduct(Product p) {
+        return productDAO.createProduct(p);
     }
 
     /**
@@ -143,12 +149,12 @@ public class ProductFacade {
     }
 
     /**
-     * @param idProduct 
-     * @return
+     * @param name
+     * @return a collection of products
      */
-    public Product getProduct(int idProduct) {
-        // TODO implement here
-        return null;
+    public ArrayList<Product> getProductsByName(String name) {
+        listProduct = productDAO.getProductsByName(name);
+        return productDAO.getProductsByName(name);
     }
 
     /**
@@ -156,9 +162,8 @@ public class ProductFacade {
      * @param city 
      * @return
      */
-    public Set<Product> getProductsByNameAndCity(String name, String city) {
-        // TODO implement here
-        return null;
+    public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
+        return productDAO.getProductsByNameAndCity(name, city);
     }
 
     /**
@@ -166,9 +171,8 @@ public class ProductFacade {
      * @param category  
      * @return
      */
-    public Set<Product> getProductsByNameAndCategory(String name , String category ) {
-        // TODO implement here
-        return null;
+    public ArrayList<Product> getProductsByNameAndCategory(String name , String category ) {
+        return productDAO.getProductsByNameAndCategory(name,category);
     }
 
     /**
@@ -177,9 +181,8 @@ public class ProductFacade {
      * @param category 
      * @return
      */
-    public Set<Product> getProductByNameAndCityAndCategory(String name, String city, String category) {
-        // TODO implement here
-        return null;
+    public void getProductByNameAndCityAndCategory(String name, String city, String category) {
+
     }
 
 }

@@ -1,62 +1,71 @@
 package facade;
 
 import dao.AbstractFactoryDAO;
+import dao.CategoryDAO;
 import model.Category;
 
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class CategoryFacade {
+
+    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private CategoryDAO categoryDAO = af.createCategoryDAO();
+    private Category category;
+
+    private static CategoryFacade instanceFacade;
 
     /**
      * Default constructor
      */
-    public CategoryFacade() {
+    private CategoryFacade() {
+    }
+
+
+    /**
+     * @return instance of CategoryFacade
+     */
+    public static CategoryFacade getInstance() {
+        if (instanceFacade == null) {
+            instanceFacade = new CategoryFacade();
+        }
+        return instanceFacade;
     }
 
     /**
-     * 
-     */
-    private Category categoryDAO;
-
-    /**
-     * 
-     */
-    private Category category;
-
-    /**
-     * 
-     */
-    private AbstractFactoryDAO af;
-
-
-
-
-    /**
+     * @param nameCategory
      * @return
      */
-    public CategoryFacade getInstance() {
-        // TODO implement here
-        return null;
+    public Category createCategory(String nameCategory) {
+        return categoryDAO.createCategory(nameCategory);
     }
 
     /**
-     * @param nameCategory 
-     * @return
-     */
-    public void createCategory(String nameCategory) {
-        // TODO implement here
-    }
-
-    /**
-     * @param newNameCategory 
-     * @param nameCategory 
+     * @param newNameCategory
+     * @param nameCategory
      * @return
      */
     public void updateCategory(String newNameCategory, String nameCategory) {
-        // TODO implement here
+        categoryDAO.updateCategory(newNameCategory, nameCategory);
     }
+
+
+    /**
+     * @return All categories in database
+     */
+    public ArrayList<Category> getAllCategory() {
+        return categoryDAO.getAllCategory();
+    }
+
+
+    /**
+     * @param idCategory
+     */
+    public void deleteCategory(int idCategory) {
+        categoryDAO.deleteCategory(idCategory);
+    }
+
 
 }

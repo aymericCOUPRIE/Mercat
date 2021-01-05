@@ -61,7 +61,7 @@ public class LoginController {
        }else{ //les champs ont été remplis
            userFacade.login(pseudo,passWord);
            if(userFacade.isConnected()){ //je suis connecté donc je suis redirigé sur la page d'acceuil
-               Router.getInstance().activate("HomePage");
+               Router.getInstance().activate("AddProduct");
            }else{
                display("You provide a wrong pseudo or password! Try again.");
            }

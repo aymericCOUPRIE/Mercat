@@ -8,20 +8,17 @@ import java.util.*;
 /**
  * 
  */
-public class ProductDAO {
+public abstract class ProductDAO {
+
+    protected Connection connect = null;
 
     /**
      * Default constructor
+     * @param connect
      */
-    public ProductDAO() {
+    public ProductDAO(Connection connect) {
+        this.connect = connect;
     }
-
-    /**
-     * 
-     */
-    public Connection connect;
-
-
 
     /**
      * @param idProduct 
@@ -32,11 +29,12 @@ public class ProductDAO {
         return null;
     }
 
+
     /**
      * @param name 
      * @return
      */
-    public Set<Product> getProductsByName(String name) {
+    public ArrayList<Product> getProductsByName(String name) {
         // TODO implement here
         return null;
     }
@@ -46,7 +44,7 @@ public class ProductDAO {
      * @param city 
      * @return
      */
-    public Set<Product> getProductsByNameAndCity(String name, String city) {
+    public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         // TODO implement here
         return null;
     }
@@ -56,7 +54,7 @@ public class ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCategory(String name, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, String idCategory) {
         // TODO implement here
         return null;
     }
@@ -67,50 +65,38 @@ public class ProductDAO {
      * @param idCategory 
      * @return
      */
-    public Set<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p le produit
+     * @return boolean
+     * Permet de renvoyer true ou false selon si l'on a réussie à insérer le produit dans la base de données
      */
-    public boolean createProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean createProduct(Product p);
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p
+     * @param newDescription
+     * @return boolean
      */
-    public boolean updateProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean updateProduct(Product p, String newDescription);
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @return
+     * @param p
+     * @return true if the product was deleted
      */
-    public boolean deleteProduct(String nameProduct, String description, float price) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteProduct(Product p);
 
     /**
-     * @return
+     * @return une arrrayList de tous les produits présents dans la db
      */
-    public Set<String> getAllProduct() {
-        // TODO implement here
+    public ArrayList<Product> getAllProduct() {
         return null;
     }
+
+    public abstract int getProductId(Product p);
 
 }

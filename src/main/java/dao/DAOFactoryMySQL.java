@@ -65,8 +65,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      * @return
      */
     public ProductDAO createProductDAO() {
-        // TODO implement here
-        return null;
+        return new ProductDAOMySQL(connect);
     }
 
     /**
@@ -74,7 +73,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
      */
     public CategoryDAO createCategoryDAO() {
         // TODO implement here
-        return null;
+        return new CategoryDAOMySQL(connect);
     }
 
 }
