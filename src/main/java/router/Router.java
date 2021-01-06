@@ -1,10 +1,13 @@
 package router;
 
 import application.Main;
+import facade.CategoryFacade;
 import javafx.fxml.FXMLLoader;
+import model.Category;
 import model.Product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 
@@ -23,6 +26,7 @@ public class Router {
     public  Object[] params;
 
     private static ArrayList<Product> parametre;
+    private static ArrayList<Category> parametreC = CategoryFacade.getInstance().getAllCategory();
 
     /**
      * associer un nom à des chemins
@@ -113,5 +117,9 @@ public class Router {
 
     public ArrayList<Product> getParametre() {
         return parametre;
+    }
+
+    public static ArrayList<Category> getParametreC() {
+        return parametreC;
     }
 }

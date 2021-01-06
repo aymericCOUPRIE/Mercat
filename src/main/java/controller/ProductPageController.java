@@ -43,9 +43,13 @@ public class ProductPageController {
 
     public void initialize() {
         ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
+        //La colonne nameProduct aura la propriété "nameProduct" de l'objet"
         nameProduct.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
 
+        //Chaque ligne est un nouvel object
         nameProduct.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        //Remplis le tableau avec ma liste d'objets
         tableViewProduct.setItems(listProduct);
 
         addGoToButton();

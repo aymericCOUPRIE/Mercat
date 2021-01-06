@@ -1,6 +1,7 @@
 package controller;
 
 import facade.BasketFacade;
+import facade.CategoryFacade;
 import facade.ProductFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.Category;
 import model.Product;
 import router.Router;
 
@@ -72,6 +74,7 @@ public class ProductController {
     private String city;
 
     private ProductFacade productFacade = new ProductFacade();
+    private CategoryFacade categoryFacade = CategoryFacade.getInstance();
 
     /**
      * Default constructor
@@ -155,7 +158,9 @@ public class ProductController {
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(productFacade.getProducts());
+        ObservableList<Category> listCategory = FXCollections.observableArrayList(Router.getInstance().getParametreC());
+
+
     }
 
     /**
