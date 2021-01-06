@@ -8,9 +8,12 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- * 
+ *
  */
-public class CommentDAO {
+public abstract class CommentDAO {
+
+    protected Connection connect;
+
 
     /**
      * Default constructor
@@ -19,50 +22,32 @@ public class CommentDAO {
     }
 
     /**
-     * 
-     */
-    public Connection connect;
-
-
-    /**
-     * @param product 
-     * @param consumer 
-     * @param comment 
+     * @param product
+     * @param consumer
+     * @param comment
      * @return
      */
-    public boolean createComment(Product product, Consumer consumer, String comment) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean createComment(Product product, Consumer consumer, String comment);
 
     /**
-     * @param product 
-     * @param consumer 
-     * @param comment 
+     * @param product
+     * @param consumer
+     * @param comment
      * @return
      */
-    public boolean updateComment(Product product, Consumer consumer, String comment) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean updateComment(Product product, Consumer consumer, String comment);
 
     /**
-     * @param product 
-     * @param consumer 
+     * @param product
+     * @param consumer
      * @return
      */
-    public boolean deleteComment(Product product, Consumer consumer) {
-        // TODO implement here
-        return false;
-    }
+    public abstract boolean deleteComment(Product product, Consumer consumer);
 
     /**
-     * @param product 
+     * @param product
      * @return
      */
-    public Set<Comment> getAllComments(Product product) {
-        // TODO implement here
-        return null;
-    }
+    public abstract Set<Comment> getAllComments(Product product);
 
 }

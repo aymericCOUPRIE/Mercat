@@ -21,7 +21,6 @@
                 </Label>
                 <TableView fx:id="tbv_Order" maxWidth="1.7976931348623157E308" prefHeight="200.0">
                     <columns>
-                        <TableColumn fx:id="tbv_cl_From" prefWidth="75.0" text="From" />
                         <TableColumn fx:id="tbv_cl_OrderDate" prefWidth="75.0" text="Order Date" />
                         <TableColumn fx:id="tbv_cl_Status" prefWidth="75.0" text="Status" />
                         <TableColumn fx:id="tbv_cl_Details" prefWidth="75.0" text="Details" />

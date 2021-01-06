@@ -21,10 +21,9 @@ public class Order {
     /**
      * Default constructor
      */
-    public Order(int idOrder, String pseudoConsumer, String pseudoSeller, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity) {
+    public Order(int idOrder, String pseudoConsumer, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity) {
         this.idOrder = idOrder;
         this.pseudoConsumer = pseudoConsumer;
-        this.pseudoSeller = pseudoSeller;
         this.dateOrder = dateOrder;
         this.deliveryAddress = deliveryAddress;
         this.deliveryDate = deliveryDate;
@@ -42,14 +41,6 @@ public class Order {
 
     public void setPseudoConsumer(String pseudoConsumer) {
         this.pseudoConsumer = pseudoConsumer;
-    }
-
-    public String getPseudoSeller() {
-        return pseudoSeller;
-    }
-
-    public void setPseudoSeller(String pseudoSeller) {
-        this.pseudoSeller = pseudoSeller;
     }
 
     public Date getDateOrder() {
