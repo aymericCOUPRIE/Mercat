@@ -191,7 +191,6 @@ public class SignUpController {
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
         } else {
-            String test = "0" + Integer.parseInt(phoneNumber);
             if (phoneNumber.matches("[0-9]+")&&(phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
                 Matcher matcher = pattern.matcher(email);
                 if(matcher.matches()){
