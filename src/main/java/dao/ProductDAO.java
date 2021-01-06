@@ -77,6 +77,7 @@ public abstract class ProductDAO {
      */
     public abstract boolean createProduct(Product p);
 
+
     /**
      * @param p
      * @param newDescription
