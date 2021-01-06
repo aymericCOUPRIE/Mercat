@@ -12,7 +12,7 @@ import router.Router;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import utils.CheckInfosUser;
 /**
  *
  */
@@ -66,13 +66,18 @@ public class SignUpController {
     private String postal;
     private String city;
 
-    //Regex à vérifier pour le mail
-    private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+//TODO supprimer si vous vous en servez pas..
+    private String idSellerButton;
+    private String idConsumerButton;
+
     private String messageAttention;
 
+    //TODO delete ça flo quand t'aura utilisé la fonction dans utils -> checkinfoUser pour éviter dupliquer code de base d'anna
+    private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+
     private boolean isAConsumer = true;
-    //private boolean isAConsumer = false;
+
 
     /**
      * Default constructor
@@ -87,6 +92,7 @@ public class SignUpController {
 
 
     public void signUpConsumer(ActionEvent e) throws IOException {
+
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
         email = txtEmailAdress.getText();
@@ -97,10 +103,16 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        if (checkInfosConsumer() != false) {
-            System.out.println("Ca marche");
-            signUp(e);
-        }
+       String check = CheckInfosUser.checkInfosConsumer(pseudo,email,password,phoneNumber,street,postal,city);
+       System.out.println(email);
+        System.out.println(check);
+       if(check.equals("OK")){
+           signUp(e);
+       }else{
+
+           display(check);
+       }
+
     }
 
 
@@ -116,9 +128,12 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
+
+
         if (checkInfosSeller() != false) {
             signUp(e);
         }
+
     }
 
 
@@ -155,11 +170,8 @@ public class SignUpController {
         }
         if (noError) {
             Router.getInstance().activate("Login");
-        }
-        if (noError) {
-            Router.getInstance().activate("Login");
         } else {
-            display("Your pseudo already exists");
+            display("This pseudo already exists, choose an another one!");
         }
     }
 
@@ -172,6 +184,7 @@ public class SignUpController {
         Router.getInstance().activate("Login");
     }
 
+    //TODO fonction à supprimer Flo quand t'aura utilisé la fonction dans utils -> checkinfoUser pour éviter dupliquer code de base d'anna
 
     private boolean checkInfosConsumer() {
         if ((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals(""))) {
@@ -183,6 +196,7 @@ public class SignUpController {
             return internVerification();
     }
 
+//TODO fonction à supprimer Flo quand t'aura utilisé la fonction dans utils -> checkinfoUser pour éviter dupliquer code de base d'anna
 
     private boolean internVerification() {
         if (password.length() < 8) {
@@ -205,6 +219,7 @@ public class SignUpController {
         return false;
     }
 
+    //TODO à modifier flo -> inspire toi de consumer, crée une fonction similaire à la mienne dans utils checkInfoUsers aussi
     private boolean checkInfosSeller() {
         if ((pseudo.equals("") && password.equals("") || phoneNumber.equals("") && street.equals("") && postal.equals("") && city.equals("") && companyName.equals(""))) {
             this.messageAttention = "You need to provide every information";
@@ -240,7 +255,6 @@ public class SignUpController {
      *
      * @param msg
      */
-    @FXML
     public void display(String msg) {
         errorText.setText(msg);
     }
@@ -249,7 +263,6 @@ public class SignUpController {
      * This methode allows to don't have error message at the beginning
      */
     public void initialize() {
-        // TODO Auto-generated method stub
         errorText.setText("");
     }
 
