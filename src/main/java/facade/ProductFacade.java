@@ -178,13 +178,13 @@ public class ProductFacade {
     }
 
     /**
-     * @param name 
-     * @param city 
-     * @param category 
+     * @param name
+     * @param city
+     * @param category
      * @return
      */
-    public void getProductByNameAndCityAndCategory(String name, String city, String category) {
-
+    public ArrayList<Product> getProductByNameAndCityAndCategory(String name, String city, String category) {
+        return productDAO.getProductsByNameAndCityAndCategory(name,city,category);
     }
 
 }

@@ -1,13 +1,12 @@
 package dao;
 
-import model.Category;
 import model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -112,13 +111,14 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param idCategory
      * @return
      */
-    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, int idCategory) {
+    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String idCategory) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
         String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie = ? ORDER BY nameProduct ASC";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, name);
-            preparedStatement.setString(2, "" + idCategory);
+            int id = getCategoryId(idCategory);
+            preparedStatement.setInt(2, id);
             return getProductList(listProduct, preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

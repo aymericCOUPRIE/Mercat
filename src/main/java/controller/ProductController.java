@@ -169,7 +169,6 @@ public class ProductController {
         }else{
             ArrayList<Product> p = productFacade.getProductsByName(productName);
             Router.getInstance().activate("ProductUI",p);
-            //ALLER AILLEURS
         }
     }
 
@@ -183,7 +182,8 @@ public class ProductController {
         if(productName.equals("")||city.equals("")){
             display("You need to fill every field");
         }else{
-            productFacade.getProductsByNameAndCity(productName,city);
+            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName,city);
+            Router.getInstance().activate("ProductUI",p);
         }
     }
 
@@ -197,7 +197,8 @@ public class ProductController {
         if(productName.equals("")||categoryName.equals("")){
             display("You need to fill every field");
         }else{
-            productFacade.getProductsByNameAndCategory(productName,categoryName);
+            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName,categoryName);
+            Router.getInstance().activate("ProductUI",p);
         }
     }
 
@@ -212,7 +213,8 @@ public class ProductController {
         if(productName.equals("")||city.equals("")||categoryName.equals("")){
             display("You need to fill every field");
         }else{
-            productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
+            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
+            Router.getInstance().activate("ProductUI",p);
         }
     }
 
