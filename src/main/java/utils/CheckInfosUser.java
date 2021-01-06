@@ -8,8 +8,8 @@ public abstract class CheckInfosUser {
     private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 
-    public static String checkInfosConsumer(String pseudo,String email, String password, String phoneNumber, String street, String postal, String city){
-        if((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals("") || email.equals(""))){
+    public static String checkInfosConsumer(String pseudo,String email,String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city){
+        if((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals("") || email.equals("")|| firstname.equals("")|| lastname.equals(""))){
             return "You need to provide every information";
         }else{
             if (password.length() < 8) {
@@ -31,5 +31,6 @@ public abstract class CheckInfosUser {
         }
 
     }
+
 
 }

@@ -103,9 +103,8 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-       String check = CheckInfosUser.checkInfosConsumer(pseudo,email,password,phoneNumber,street,postal,city);
-       System.out.println(email);
-        System.out.println(check);
+       String check = CheckInfosUser.checkInfosConsumer(pseudo,email,firstName, lastName,password,phoneNumber,street,postal,city);
+
        if(check.equals("OK")){
            signUp(e);
        }else{
@@ -219,7 +218,7 @@ public class SignUpController {
         return false;
     }
 
-    //TODO à modifier flo -> inspire toi de consumer, crée une fonction similaire à la mienne dans utils checkInfoUsers aussi
+    //TODO à modifier flo -> inspire toi de consumer, vérifie que ton param en plus est pas vide et après utilise ma fonction :)
     private boolean checkInfosSeller() {
         if ((pseudo.equals("") && password.equals("") || phoneNumber.equals("") && street.equals("") && postal.equals("") && city.equals("") && companyName.equals(""))) {
             this.messageAttention = "You need to provide every information";

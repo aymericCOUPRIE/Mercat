@@ -11,6 +11,7 @@ import model.User;
 import router.Router;
 
 import javafx.event.ActionEvent;
+import utils.CheckInfosUser;
 
 import java.io.IOException;
 import java.util.*;
@@ -98,12 +99,20 @@ public class UpdateConsumerProfileController {
      */
     @FXML
     public void updateConsumer() {
-        //pas besoin de vérifier si champs vides car remplis par défaut
-       if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
-           display("Your profil has been updated !");
-       } else {
-           display("Error !");
-       }
+
+        String check = CheckInfosUser.checkInfosConsumer(txtPseudo.getText(),txtEmailAdress.getText(),txtFirstname.getText(),txtLastname.getText(),txtPassword.getText(),txtPhoneNumber.getText(),txtStreetAdress.getText(),txtPostal.getText(),txtCity.getText());
+
+        if(check.equals("OK")){
+            if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
+                display("Your profil has been updated !");
+            } else {
+                display("Error during update !");
+            }
+        }else{
+
+            display(check);
+        }
+
     }
 
     /**
