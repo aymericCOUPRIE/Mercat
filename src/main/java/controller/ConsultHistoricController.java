@@ -10,15 +10,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import javafx.util.converter.DateStringConverter;
 import model.Order;
 import model.Product;
+import model.User;
 
 import java.util.*;
-
-import static javafx.scene.paint.Color.rgb;
 
 /**
  *
@@ -29,7 +27,7 @@ public class ConsultHistoricController {
     private TableView<Order> tbv_Order;
 
     @FXML
-    private TableColumn<Order, String> tbv_cl_From, tbv_cl_Status;
+    private TableColumn<Order, String> tbv_cl_Status;
 
     @FXML
     private TableColumn<Order, Date> tbv_cl_OrderDate;
@@ -47,8 +45,8 @@ public class ConsultHistoricController {
     private TableColumn<Pair<Product, Integer>, String> tbv_cl_img, tbv_cl_productName, tbv_cl_prix, tbv_cl_quantite;
 
 
-    private OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private final OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
 
     /**
@@ -56,10 +54,7 @@ public class ConsultHistoricController {
      */
     public void initialize() {
 
-        ObservableList<Order> listOrder = FXCollections.observableArrayList(orderFacade.getAllOrders(userFacade.getConnectedUser().getPseudo()));
-
-        tbv_cl_From.setCellValueFactory(new PropertyValueFactory<>("pseudoSeller"));
-        tbv_cl_From.setCellFactory(TextFieldTableCell.forTableColumn());
+        ObservableList<Order> listOrder = FXCollections.observableArrayList(orderFacade.getAllOrders(UserFacade.getConnectedUser().getPseudo()));
 
         tbv_cl_OrderDate.setCellValueFactory(new PropertyValueFactory<>("dateOrder"));
         tbv_cl_OrderDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
@@ -68,6 +63,9 @@ public class ConsultHistoricController {
         tbv_cl_Status.setCellFactory(TextFieldTableCell.forTableColumn());
 
         tbv_Order.setItems(listOrder);
+
+        //If the user is a seller then he can change the order state
+        tbv_cl_Status.setEditable(UserFacade.isSeller());
 
         addDetailsButton();
 
@@ -106,12 +104,12 @@ public class ConsultHistoricController {
         float total = 0;
 
         for (Pair<Product, Integer> o : order.getProductsQuantity()) {
-            int tempo = o.getValue().intValue();
+            int tempo = o.getValue();
             float tempo2 = o.getKey().getPriceProduct();
             total += tempo2 * tempo;
         }
 
-        lbl_Total.setText(total + " €");
+        lbl_Total.setText(total + " \u20ac");
 
         ObservableList<Pair<Product, Integer>> listProduct = FXCollections.observableArrayList(order.getProductsQuantity());
 
@@ -130,22 +128,4 @@ public class ConsultHistoricController {
         tbv_productDetails.setItems(listProduct);
 
     }
-
-
-    /**
-     * @param order
-     * @return
-     */
-    public void getOrderDetails(Order order) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Set<Order> getAllOrders() {
-        // TODO implement here
-        return null;
-    }
-
 }

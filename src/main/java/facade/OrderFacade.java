@@ -49,17 +49,16 @@ public class OrderFacade {
      * @param baskets
      * @return
      */
-    public boolean insertOrder(List<Basket> baskets) {
-        return orderDAO.insertOrder(baskets);
+    public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
+        return orderDAO.insertOrder(baskets, pseudoConsumer);
     }
 
     /**
      * @param date
      * @return
      */
-    public boolean updateOrderDeliveryDate(Date date) {
-        // TODO implement here
-        return false;
+    public boolean updateOrderDeliveryDate(Order order, Date date) {
+        return orderDAO.updateOrderDeliveryDate(order, date);
     }
 
     /**
@@ -77,7 +76,7 @@ public class OrderFacade {
      * @return a specific order
      */
     public Order find(String pseudoConsumer, String pseudoSeller, Date orderDate) {
-        return orderDAO.find(pseudoConsumer, pseudoSeller, orderDate);
+        return orderDAO.find(pseudoConsumer, orderDate);
     }
 
 }

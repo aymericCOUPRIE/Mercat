@@ -25,11 +25,10 @@ public abstract class OrderDAO {
 
     /**
      * @param pseudoConsumer
-     * @param pseudoSeller
      * @param dateOrder
      * @return
      */
-    public abstract Order find(String pseudoConsumer, String pseudoSeller, Date dateOrder);
+    public abstract Order find(String pseudoConsumer, Date dateOrder);
 
     /**
      * @param state
@@ -41,7 +40,7 @@ public abstract class OrderDAO {
      * @param basket
      * @return
      */
-    public abstract boolean insertOrder(List<Basket> basket);
+    public abstract boolean insertOrder(List<Basket> basket, String pseudoConsumer);
 
     /**
      * @param order, date

@@ -64,7 +64,7 @@
                   <Label fx:id="labelNbProducts" textFill="#1a5276" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" text="€" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Label fx:id="labelTotPrice" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276;" text="Oder" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#createOrder" style="-fx-background-color: #1A5276  #1A5276 #1A5276  #1A5276;" text="Order" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <TableView fx:id="tableViewBasket" layoutX="14.0" prefHeight="200.0" prefWidth="568.0">

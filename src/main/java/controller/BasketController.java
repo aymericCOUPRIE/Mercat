@@ -27,9 +27,8 @@ import java.util.*;
 public class BasketController {
 
     private BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
-
     private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
-
+    private OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
 
     @FXML
     private Label txterror, labelNbProducts, labelTotPrice;
@@ -81,13 +80,14 @@ public class BasketController {
             labelTotPrice.setText(String.valueOf(newTOTprice));
         }
     }
+
     /**
-     * @param baskets
      * @return
      */
-    public void createOrder(Set<Basket> baskets) {
-        // TODO implement here
+    public void createOrder() {
+        orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo());
     }
+
     /**
      * @return
      */
@@ -160,7 +160,6 @@ public class BasketController {
 
         //rempli la tableView
         tableViewBasket.setItems(listBasket);
-
 
 
         quantityLabel.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
