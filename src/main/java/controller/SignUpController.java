@@ -66,9 +66,7 @@ public class SignUpController {
     private String postal;
     private String city;
 
-    private String idSellerButton;
-    private String idConsumerButton;
-
+    //Regex à vérifier pour le mail
     private static final String EMAIL_PATTERN = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private String messageAttention;

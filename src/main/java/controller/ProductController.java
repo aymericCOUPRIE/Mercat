@@ -158,8 +158,13 @@ public class ProductController {
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
-        ObservableList<Category> listCategory = FXCollections.observableArrayList(Router.getInstance().getParametreC());
-
+        ArrayList<Category> listCategory = Router.getInstance().getParametreC();
+        ArrayList<String> listNomCategory = new ArrayList<String>();
+        for(Category c : listCategory){
+            listNomCategory.add(c.getNameCategory());
+        }
+        ObservableList<String> listObservableCategory = FXCollections.observableArrayList(listNomCategory);
+        txtCategory.setItems(listObservableCategory);
 
     }
 
