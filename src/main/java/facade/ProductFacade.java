@@ -152,8 +152,8 @@ public class ProductFacade {
      * @param name
      * @return a collection of products
      */
-    public void getProductsByName(String name) {
-        listProduct = productDAO.getProductsByName(name);
+    public ArrayList<Product> getProductsByName(String name) {
+        return productDAO.getProductsByName(name);
     }
 
     /**

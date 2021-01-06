@@ -2,17 +2,18 @@ package controller;
 
 import facade.BasketFacade;
 import facade.ProductFacade;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.Product;
 import router.Router;
 
-import java.text.NumberFormat;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * 
@@ -166,8 +167,8 @@ public class ProductController {
         if(productName.equals("")){
             display("You need to fill the field");
         }else{
-            productFacade.getProductsByName(productName);
-            Router.getInstance().activate("ProductUI");
+            ArrayList<Product> p = productFacade.getProductsByName(productName);
+            Router.getInstance().activate("ProductUI",p);
             //ALLER AILLEURS
         }
     }

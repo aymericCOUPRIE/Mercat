@@ -2,6 +2,7 @@ package router;
 
 import application.Main;
 import javafx.fxml.FXMLLoader;
+import model.Product;
 
 import java.util.*;
 
@@ -20,6 +21,8 @@ public class Router {
      * si on veut passer des paramètres en changent de page
      */
     public  Object[] params;
+
+    private ArrayList<Product> parametre;
 
     /**
      * associer un nom à des chemins
@@ -94,10 +97,18 @@ public class Router {
         }
     }
 
-
-
-
-
-
+    /**
+     * @param name
+     * @param p
+     * Changer de page avec une ArrayList de Product
+     */
+    public void activate(String name, ArrayList<Product> p) {
+        this.parametre = p;
+        try {
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
