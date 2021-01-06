@@ -22,7 +22,7 @@ public class Router {
      */
     public  Object[] params;
 
-    private ArrayList<Product> parametre;
+    private static ArrayList<Product> parametre;
 
     /**
      * associer un nom à des chemins
@@ -111,4 +111,7 @@ public class Router {
         }
     }
 
+    public ArrayList<Product> getParametre() {
+        return parametre;
+    }
 }

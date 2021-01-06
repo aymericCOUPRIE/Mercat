@@ -1,13 +1,13 @@
 package application;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import router.Router;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -18,7 +18,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/SearchProduct.fxml"));
             Parent skillLayout = root.load();
             Scene scene = new Scene(skillLayout, 1000, 800);
 

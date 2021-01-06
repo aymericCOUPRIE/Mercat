@@ -1,21 +1,18 @@
 package controller;
 
-import facade.CategoryFacade;
-import facade.UserFacade;
 import facade.ProductFacade;
+import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Product;
 import router.Router;
-
-import java.util.*;
 
 /**
  * 
@@ -45,7 +42,7 @@ public class ProductPageController {
     public ProductPageController() {}
 
     public void initialize() {
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(productFacade.getProducts());
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
         nameProduct.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
 
         nameProduct.setCellFactory(TextFieldTableCell.forTableColumn());
