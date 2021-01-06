@@ -4,10 +4,7 @@ import dao.AbstractFactoryDAO;
 import dao.CommentDAO;
 import dao.ProductDAO;
 import dao.RateDAO;
-import model.Comment;
-import model.Consumer;
-import model.Product;
-import model.Rate;
+import model.*;
 
 import java.util.*;
 
@@ -19,6 +16,7 @@ public class ProductFacade {
     private boolean product;
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private ProductDAO productDAO = af.createProductDAO();
+    private RateDAO rateDAO = af.createRateDAO();
 
     private static ProductFacade instanceProductFacade;
 
@@ -43,10 +41,6 @@ public class ProductFacade {
 
 
 
-    /**
-     * 
-     */
-    private RateDAO rateDAO;
 
     /**
      * 
@@ -118,6 +112,15 @@ public class ProductFacade {
     public Set<Rate> getAllRates() {
         // TODO implement here
         return null;
+    }
+
+    public float getRate(Consumer c, int id) {
+        return rateDAO.rateProduct(c , id);
+    }
+
+
+    public void AddRate(Consumer consumer, int rate, int idProduct) {
+        rateDAO.createRateProduct(consumer, rate, idProduct);
     }
 
     /**

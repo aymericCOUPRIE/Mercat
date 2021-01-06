@@ -28,16 +28,6 @@ public abstract class RateDAO {
 
 
 
-    /**
-     * @param product 
-     * @param consumer 
-     * @param rate 
-     * @return
-     */
-    public boolean createRateProduct(Product product, Consumer consumer, int rate) {
-        // TODO implement here
-        return false;
-    }
 
     /**
      * @param product 
@@ -77,12 +67,20 @@ public abstract class RateDAO {
      */
     public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
 
+    public abstract void createRateProduct(Consumer consumer, int rate, int idProduct);
+
     /**
      * @param seller
      * @param consumer
      * @return the rate put by the consumer
      */
     public abstract float rateSeller(Seller seller, Consumer consumer);
+
+    /**
+     * @param consumer
+     * @return the rate put by the consumer
+     */
+    public abstract float rateProduct(Consumer consumer, int i);
 
 
     /**

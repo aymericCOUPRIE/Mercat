@@ -68,6 +68,15 @@ public class RateController {
                     Router.getInstance().activate("Rate_Seller", params);
                     //Router.getInstance().activate("Rate_Seller");
                 }
+                else {
+                    int x = Integer.parseInt(name);
+                    facade.AddRate((Consumer) facadeU.getConnectedUser(), i, x);
+                    System.out.println("OUI");
+                    Object[] params = new Object[1];
+                    params[0] = name;
+                    Router.getInstance().activate("Rate_Product", params);
+                    //Router.getInstance().activate("Rate_Seller");
+                }
             } else {
                 errorText.setText("Choose a rate between 1 and 5");
             }
@@ -103,7 +112,13 @@ public class RateController {
         }
         // Cas page Product
         if(page == "product") {
-            // Recuperer code Anna Product
+            int i = Integer.parseInt(name);
+            Float rate = facade.getRate((Consumer) facadeU.getConnectedUser(), i);
+            if (rate != 0) {
+                btnSubmitRate.setOpacity(0.4);
+                txtRate.setText(rate.toString());
+                txtRate.setEditable(false);
+            }
         }
     }
     /**
@@ -123,10 +138,13 @@ public class RateController {
 
         if(section.getText().equals("Seller")){
             page = "seller";
+            name = "s";
         } else{
             page = "product";
+            name = "4";
         }
-        name = (String) Router.getInstance().getParams()[0];
+        //name = (String) Router.getInstance().getParams()[0];
+        name = "4";
         desactivateSubmitRate();
 
     }
