@@ -17,6 +17,7 @@ public class ProductFacade {
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private ProductDAO productDAO = af.createProductDAO();
     private RateDAO rateDAO = af.createRateDAO();
+    private CommentDAO commentDAO = af.createCommentDAO();
 
     private static ProductFacade instanceProductFacade;
 
@@ -42,10 +43,7 @@ public class ProductFacade {
 
 
 
-    /**
-     * 
-     */
-    private CommentDAO commentDAO;
+
 
 
 
@@ -59,14 +57,14 @@ public class ProductFacade {
         return listProduct;
     }
 
+
     /**
-     * @param Consumer 
-     * @param rate 
+     * @param consumer 
+     * @param comment 
      * @return
      */
-    public boolean addRate(Consumer Consumer, int rate) {
-        // TODO implement here
-        return false;
+    public void addComment(Consumer consumer, String comment, int idProduct) {
+        commentDAO.createComment(consumer, comment, idProduct);
     }
 
     /**
@@ -74,19 +72,8 @@ public class ProductFacade {
      * @param comment 
      * @return
      */
-    public boolean addComment(Consumer consumer, String comment) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param consumer 
-     * @param comment 
-     * @return
-     */
-    public boolean updateComment(Consumer consumer, String comment) {
-        // TODO implement here
-        return false;
+    public void updateComment(Consumer consumer, String comment, int idProduct) {
+        commentDAO.updateComment(consumer, comment, idProduct);
     }
 
     /**
@@ -116,6 +103,10 @@ public class ProductFacade {
 
     public float getRate(Consumer c, int id) {
         return rateDAO.rateProduct(c , id);
+    }
+
+    public String getComment(Consumer c, int id) {
+        return commentDAO.getComment(c , id);
     }
 
 

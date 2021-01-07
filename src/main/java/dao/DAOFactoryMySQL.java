@@ -48,10 +48,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     /**
      * @return
      */
-    public CommentDAO createCommentDAO() {
-        // TODO implement here
-        return null;
-    }
+    public CommentDAO createCommentDAO() {return new CommentDAOMySQl(connect); }
 
     /**
      * @return

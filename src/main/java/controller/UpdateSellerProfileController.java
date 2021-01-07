@@ -10,6 +10,7 @@ import model.User;
 import router.Router;
 
 import java.util.*;
+import utils.CheckInfosUser;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -102,11 +103,19 @@ public class UpdateSellerProfileController {
      */
     @FXML
     public void updateSeller() {
+
+        String check = CheckInfosUser.checkInfosSeller(txtPseudo.getText(),txtEmailAdress.getText(),txtFirstname.getText(),txtLastname.getText(),txtPassword.getText(),txtPhoneNumber.getText(),txtStreetAdress.getText(),txtPostal.getText(),txtCity.getText(),txtCompanyName.getText());
+
+        if(check.equals("OK")){
         if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText(),txtCompanyName.getText())){
             display("Your profil has been updated !");
         } else {
-            display("Error !");
+            display("Error during update !");
         }
+        }else{
+
+        display(check);
+    }
     }
 
 

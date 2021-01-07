@@ -42,9 +42,9 @@ public class RateController {
     /**
      * 
      */
-    private ProductFacade facade = new ProductFacade();;
+    private ProductFacade facade = new ProductFacade();
     private SellerFacade facadeS  = new SellerFacade();
-    private UserFacade facadeU = UserFacade.getInstanceUserFacade();;
+    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
     private String name;
 
