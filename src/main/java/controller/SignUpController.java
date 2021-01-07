@@ -18,8 +18,6 @@ import java.util.regex.Pattern;
  */
 public class SignUpController {
 
-
-    //JavaFX implementation
     @FXML
     private TextField txtCompanyName;
     @FXML
@@ -73,7 +71,7 @@ public class SignUpController {
     private String messageAttention;
 
     private boolean isAConsumer = true;
-
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
      * Default constructor
@@ -82,11 +80,9 @@ public class SignUpController {
     }
 
     /**
-     *
+     * Method used by btnRegisterConsumer from Java FX
+     * It register a Consumer
      */
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
-
-
     public void signUpConsumer(ActionEvent e) throws IOException {
 
         pseudo = txtPseudo.getText();
@@ -110,7 +106,10 @@ public class SignUpController {
 
     }
 
-
+    /**
+     * Method used by btnRegisterSeller from Java FX
+     * It register a Seller
+     */
     public void signUpSeller(ActionEvent e) throws IOException {
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
@@ -140,7 +139,6 @@ public class SignUpController {
      * It allows to register into the system
      *
      * @param e
-     * @return
      */
     public void signUp(ActionEvent e) throws IOException {
         boolean noError = true;

@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import model.Seller;
 import model.User;
 import router.Router;
-
-import java.util.*;
 import utils.CheckInfosUser;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -40,6 +38,10 @@ public class UpdateSellerProfileController {
     private TextField txtCompanyName;
     @FXML
     private Label errorText;
+
+    private UserFacade userFacade = new UserFacade();
+    private String OldPassword;
+
     /**
      * Default constructor
      */
@@ -47,32 +49,18 @@ public class UpdateSellerProfileController {
     }
 
     /**
-     * 
-     */
-    private UserFacade userFacade = new UserFacade();
-    private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
-
-
-    /**
-     * This methode permite to get all the information about a seller.
-     * @return seller
+     * This method permits to get all the information about a user.
+     * @return User
      *
      */
     public User getConsumerDetails() {
         return  userFacade.getConsumerDetails();
     }
-    /**
-     * @return
-     */
-    public Seller getSellerDetails() {
-        // TODO implement here
-        return null;
-    }
+
 
     /**
      *  Method used by btnDeleteSeller from Java FX
      *  It permit to delete the seller account from the dataBase
-     *
      */
     public void deleteSeller() {
         if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
@@ -81,13 +69,11 @@ public class UpdateSellerProfileController {
                 display("Your account has been deleted");
 
                 CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
-                    // Your code here executes after 3 seconds!
                     Router.getInstance().activate("Login");
                 });
             }else{
                 display(Router.getInstance().getParams()[0].toString() + " account has been deleted");
                 CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
-                    // Your code here executes after 3 seconds!
                     Router.getInstance().activate("HandleConsumerS");
                 });
             }
@@ -98,8 +84,7 @@ public class UpdateSellerProfileController {
 
     /**
      *  Method used by btnUpdateSeller from Java FX
-     *  It permit to update some information about the seller in the dataBase
-     * @param
+     *  It permits to update some information about the seller in the dataBase
      */
     @FXML
     public void updateSeller() {
@@ -118,10 +103,9 @@ public class UpdateSellerProfileController {
     }
     }
 
-
     /**
      * Method used by btnBack from Java FX
-     *  It permit to return to the home page
+     *  It permits to return to the home page
      */
     public void back(){
         Router.getInstance().activate("HomePage");
@@ -142,10 +126,9 @@ public class UpdateSellerProfileController {
      */
     @FXML
     public void initialize() {
-        //User car ça peut être un admin ou un consumer
+
         Seller c = (Seller) getConsumerDetails();
         txtPseudo.setText(c.getPseudo());
-        System.out.println(c.getFirstName());
         txtFirstname.setText(c.getFirstName());
         txtLastname.setText(c.getLastName());
         txtEmailAdress.setText(c.getEmailAddress());

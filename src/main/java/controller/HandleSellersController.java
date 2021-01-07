@@ -14,25 +14,22 @@ import java.util.*;
  */
 public class HandleSellersController {
 
-    /**
-     * Default constructor
-     */
-    public HandleSellersController() {
-    }
-
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
-
     @FXML
     private Label msgText;
-
     @FXML
     private TextField txtShearchField;
-
     @FXML
     private ListView ListPseudo;
 
     String selectedPseudo = "nothing";
 
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+
+    /**
+     * Default constructor
+     */
+    public HandleSellersController() {
+    }
 
     /**
      * this method redirects the admin to the update consumer page whose pseudo has been selected
@@ -49,9 +46,7 @@ public class HandleSellersController {
     }
 
     /**
-     * delete the consumer selected in the listView
-     *
-     * @return
+     * delete the seller selected in the listView
      */
     public void deleteSeller() {
 
@@ -93,16 +88,13 @@ public class HandleSellersController {
      * handle the selected pseudo in the list
      */
     public void handleItemClick() {
-
         ListPseudo.setOnMouseClicked(event -> {
             selectedPseudo = ListPseudo.getSelectionModel().getSelectedItem().toString();
         });
-
-
     }
 
     /**
-     * This method permit to find a consumer
+     * This method permit to find a seller
      * It will display the pseudo or an error message
      */
     public void searchSeller() {
@@ -118,12 +110,10 @@ public class HandleSellersController {
                 ListPseudo.getItems().add(res);
             }
         }
-
-
     }
 
     /**
-     * initialize the page with the list of all consumers
+     * initialize the page with the list of all seller
      */
     public void initialize() {
 

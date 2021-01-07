@@ -20,16 +20,6 @@ public class RateDAOMySQL extends RateDAO {
         super(connect);
     }
 
-    /**
-     * @param product
-     * @param consumer
-     * @param rate
-     * @return
-     */
-    public boolean createRateProduct(Product product, Consumer consumer, int rate) {
-        // TODO implement here
-        return false;
-    }
 
     /**
      * @param product
@@ -84,9 +74,6 @@ public class RateDAOMySQL extends RateDAO {
             throwables.printStackTrace();
         }
     }
-
-
-
 
     @Override
     public float rateSeller(Seller seller, Consumer consumer) {

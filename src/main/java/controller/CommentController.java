@@ -17,9 +17,6 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 
- */
 public class CommentController {
 
     @FXML
@@ -32,6 +29,9 @@ public class CommentController {
     private boolean vide = true;
     String name = "4";
 
+    private ProductFacade facadeP = new ProductFacade();
+    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
+
     /**
      * Default constructor
      */
@@ -39,14 +39,8 @@ public class CommentController {
     }
 
     /**
-     * 
-     */
-    private ProductFacade facadeP = new ProductFacade();
-    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
-
-
-    /**
-     * @return
+     *  Method used by btnSubmitComment from Java FX
+     * It permits to add a comment to a product
      */
     @FXML
     public void addComment() {
@@ -63,10 +57,6 @@ public class CommentController {
         }
 
     }
-
-
-
-
 
     /**
      * Method used by btnBack from Java FX
@@ -87,7 +77,8 @@ public class CommentController {
     }
 
     /**
-     * To initialize the variable with the information in the data base
+     * The first method used on the page
+     * It permit to get and set a comment if the consumer had already put it
      */
     @FXML
     public void initialize() {

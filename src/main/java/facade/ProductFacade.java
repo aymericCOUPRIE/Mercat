@@ -40,16 +40,6 @@ public class ProductFacade {
     public ProductFacade() {
     }
 
-
-
-
-
-
-
-
-
-
-
     /**
      * @return
      */
@@ -60,7 +50,8 @@ public class ProductFacade {
 
     /**
      * @param consumer 
-     * @param comment 
+     * @param comment
+     * @param idProduct
      * @return
      */
     public void addComment(Consumer consumer, String comment, int idProduct) {
@@ -69,11 +60,40 @@ public class ProductFacade {
 
     /**
      * @param consumer 
-     * @param comment 
+     * @param comment
+     * @param idProduct
      * @return
      */
     public void updateComment(Consumer consumer, String comment, int idProduct) {
         commentDAO.updateComment(consumer, comment, idProduct);
+    }
+
+    /**
+     * @param c
+     * @param id
+     * @return
+     */
+    public float getRate(Consumer c, int id) {
+        return rateDAO.rateProduct(c , id);
+    }
+
+    /**
+     * @param c
+     * @param id
+     * @return
+     */
+    public String getComment(Consumer c, int id) {
+        return commentDAO.getComment(c , id);
+    }
+
+    /**
+     * @param consumer
+     * @param rate
+     * @param idProduct
+     * @return
+     */
+    public void AddRate(Consumer consumer, int rate, int idProduct) {
+        rateDAO.createRateProduct(consumer, rate, idProduct);
     }
 
     /**
@@ -101,18 +121,6 @@ public class ProductFacade {
         return null;
     }
 
-    public float getRate(Consumer c, int id) {
-        return rateDAO.rateProduct(c , id);
-    }
-
-    public String getComment(Consumer c, int id) {
-        return commentDAO.getComment(c , id);
-    }
-
-
-    public void AddRate(Consumer consumer, int rate, int idProduct) {
-        rateDAO.createRateProduct(consumer, rate, idProduct);
-    }
 
     /**
      * @param p le Produit
