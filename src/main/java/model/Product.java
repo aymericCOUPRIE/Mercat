@@ -1,7 +1,5 @@
 package model;
 
-import java.util.*;
-
 /**
  *
  */
@@ -83,7 +81,9 @@ public class Product {
         this.idProduct = idProduct;
     }
 
-
+    public String getCity() {
+        return city;
+    }
 
     /**
      * @return

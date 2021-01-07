@@ -53,7 +53,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM product WHERE nameProduct = ? AND city = ? ORDER BY nameProduct ASC";
+        String requete = "SELECT * FROM product as p,user as u WHERE nameProduct=? AND p.pseudoSeller=u.pseudo AND u.city =?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, name);
@@ -72,7 +72,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie = ? ORDER BY nameProduct ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie=? ORDER BY nameProduct ASC";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, name);
@@ -89,6 +89,7 @@ public class ProductDAOMySQL extends ProductDAO {
         ResultSet res = preparedStatement.executeQuery();
         Product product;
         while (res.next()) {
+            System.out.println("TEST2");
             String nomSeller = res.getString("pseudoSeller");
             String libCategorie = getCategoryLibelle(res.getInt("idCategorie"));
             product = new Product(
@@ -99,6 +100,7 @@ public class ProductDAOMySQL extends ProductDAO {
                     getProductCity("pseudoSeller"),
                     libCategorie
             );
+            System.out.println(product.getNameProduct());
             System.out.println(product.getNameProduct());
             listProduct.add(product);
         }
@@ -113,12 +115,13 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String idCategory) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie = ? ORDER BY nameProduct ASC";
+        String requete = "SELECT * FROM product as p,user as u WHERE nameProduct = ? AND idCategorie = ? AND p.pseudoSeller=u.pseudo AND u.city =? ORDER BY nameProduct ASC";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, name);
             int id = getCategoryId(idCategory);
             preparedStatement.setInt(2, id);
+            preparedStatement.setString(3,city);
             return getProductList(listProduct, preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -244,7 +247,7 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     private int getCategoryId(String c) {
-        String requete = "SELECT idCategorie FROM categorie WHERE LibelleCategorie = ?";
+        String requete = "SELECT idCategorie FROM category WHERE LibelleCategorie = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, c);
