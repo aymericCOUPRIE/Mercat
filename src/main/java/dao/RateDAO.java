@@ -12,9 +12,7 @@ import java.util.*;
  * 
  */
 public abstract class RateDAO {
-    /**
-     *
-     */
+
     protected Connection connect = null;
 
     /**
@@ -24,30 +22,6 @@ public abstract class RateDAO {
      */
     public RateDAO(Connection connect) {
         this.connect = connect;
-    }
-
-
-
-
-    /**
-     * @param product 
-     * @param consumer 
-     * @param rate 
-     * @return
-     */
-    public boolean updateRate(Product product, Consumer consumer, int rate) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param product 
-     * @param consumer 
-     * @return
-     */
-    public boolean deleteRate(Product product, Consumer consumer) {
-        // TODO implement here
-        return false;
     }
 
     /**
@@ -62,11 +36,15 @@ public abstract class RateDAO {
     /**
      * @param seller 
      * @param consumer 
-     * @param rate 
-     * @return false if the key is duplicate
+     * @param rate
      */
     public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
 
+    /**
+     * @param consumer
+     * @param rate
+     * @param idProduct
+     */
     public abstract void createRateProduct(Consumer consumer, int rate, int idProduct);
 
     /**
@@ -81,7 +59,6 @@ public abstract class RateDAO {
      * @return the rate put by the consumer
      */
     public abstract float rateProduct(Consumer consumer, int i);
-
 
     /**
      * @param seller

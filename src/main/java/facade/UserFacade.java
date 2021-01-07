@@ -207,11 +207,9 @@ public class UserFacade {
 
 
 
-
-
     /**
      * @param pseudo
-     * @return
+     * @return seller
      */
     public Seller getSellerDetails(String pseudo) {
         // METTRE get Params comme au dessus qd les branches seront merge

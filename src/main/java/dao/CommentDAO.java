@@ -12,30 +12,30 @@ import java.util.*;
  */
 public abstract class CommentDAO {
 
-    protected Connection connect;
-
+    protected Connection connect = null;
 
     /**
      * Default constructor
      */
-    public CommentDAO() {
+    public CommentDAO(Connection connect) {
+        this.connect = connect;
     }
 
     /**
-     * @param product
      * @param consumer
      * @param comment
+     * @param id
      * @return
      */
-    public abstract boolean createComment(Product product, Consumer consumer, String comment);
+    public abstract void createComment(Consumer consumer, String comment, int id);
 
     /**
-     * @param product
      * @param consumer
      * @param comment
+     * @param id
      * @return
      */
-    public abstract boolean updateComment(Product product, Consumer consumer, String comment);
+    public abstract void updateComment(Consumer consumer, String comment, int id);
 
     /**
      * @param product
@@ -43,6 +43,13 @@ public abstract class CommentDAO {
      * @return
      */
     public abstract boolean deleteComment(Product product, Consumer consumer);
+
+    /**
+     * @param consumer
+     * @param id
+     * @return String, the comment put by the consumer
+     */
+    public abstract String getComment(Consumer consumer, int id);
 
     /**
      * @param product

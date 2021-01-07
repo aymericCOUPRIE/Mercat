@@ -7,13 +7,8 @@ import model.User;
 import java.sql.Connection;
 import java.util.*;
 
-/**
- *
- */
 public abstract class UserDAO {
-    /**
-     *
-     */
+
     protected Connection connect = null;
 
     /**
@@ -26,15 +21,12 @@ public abstract class UserDAO {
     }
 
 
-
     /**
      * this methode permite to delete an user from the database
      * @param pseudo
      * @return true if the user has been deleted from the database
      */
     public abstract boolean deleteUser(String pseudo);
-
-
 
     /**
      * @param pseudo
@@ -63,10 +55,9 @@ public abstract class UserDAO {
     public abstract User findUser(String pseudo);
 
     /**
-     *
+     * Update user with all new information
      */
    public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
-
    public abstract boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company);
 
     /**
@@ -75,6 +66,7 @@ public abstract class UserDAO {
      * @return ArrayList<String>
      */
     public abstract ArrayList<String> getAllPseudo(String role);
+
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
      * @param pseudo

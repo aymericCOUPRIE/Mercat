@@ -19,27 +19,14 @@ public class SellerFacade {
     public SellerFacade() {
     }
 
-    /**
-     * 
-     */
     private RateDAO rateDAO;
-
     private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private RateDAO DAO = af.createRateDAO();
 
-
-
-    /**
-     * @return
-     */
-    public Seller getSeller() {
-        // TODO implement here
-        return null;
-    }
-
     /**
      * @param Consumer 
-     * @param rate 
+     * @param rate
+     * @param seller
      * @return
      */
     public void AddRate(Consumer Consumer, int rate, String seller) {
@@ -49,16 +36,17 @@ public class SellerFacade {
 
     /**
      * @param Consumer
-     * @return integer the rate of the consumer
+     * @param seller
+     * @return integer, the rate of the consumer
      */
     public float getRate(Consumer Consumer, String seller) {
         Seller userSeller = new Seller(seller,"r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
-
         return DAO.rateSeller(userSeller , Consumer);
     }
 
     /**
-     * @return
+     * @param seller
+     * @return float, the average of all rates of a seller
      */
     public float getSellerAverageRate(Seller seller) {
         return DAO.averageRateSeller(seller);

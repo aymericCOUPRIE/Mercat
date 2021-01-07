@@ -32,5 +32,11 @@ public abstract class CheckInfosUser {
 
     }
 
-
+    public static String checkInfosSeller(String pseudo,String email,String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city, String companyName){
+        if(companyName.equals("")){
+            return "You need to provide every information";
+        }else{
+            return checkInfosConsumer(pseudo,email,firstname,lastname,password,phoneNumber,street,postal,city);
+        }
+    }
 }

@@ -10,18 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Consumer;
 import router.Router;
-
 import java.io.IOException;
-import java.util.*;
 
-/**
- * 
- */
 public class RateController {
 
     @FXML
     private Button btnSubmitRate;
-
     @FXML
     private TextField txtRate;
     @FXML
@@ -31,26 +25,19 @@ public class RateController {
 
     private String rate;
     private String page = "";
+    private String name;
+
+    private ProductFacade facade = new ProductFacade();
+    private SellerFacade facadeS  = new SellerFacade();
+    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
 
-    /**
-     * Default constructor
-     */
     public RateController() {
     }
 
     /**
-     * 
-     */
-    private ProductFacade facade = new ProductFacade();;
-    private SellerFacade facadeS  = new SellerFacade();
-    private UserFacade facadeU = UserFacade.getInstanceUserFacade();;
-
-    private String name;
-
-    /**
-     *  Method used by btnLogin from Java FX
-     * It permits to go to the page to sign up
+     *  Method used by btnSubmitRate from Java FX
+     * It permits to add a rate to a seller or a product
      */
     @FXML
     public void addRate(ActionEvent e) throws IOException {
@@ -81,25 +68,11 @@ public class RateController {
                 errorText.setText("Choose a rate between 1 and 5");
             }
         }
-        //Router.getInstance().activate("Rate_Seller");
     }
 
     /**
-     * @return
+     *  Method for the deactivation of the button submit rate
      */
-    public float getAverageRateSeller() {
-        // TODO implement here
-        return 0.0f;
-    }
-
-    /**
-     * @return
-     */
-    public float getAverageRateProduct() {
-        // TODO implement here
-        return 0.0f;
-    }
-
     private void desactivateSubmitRate(){
         // Cas page Seller
         if(page == "seller") {
@@ -121,8 +94,8 @@ public class RateController {
             }
         }
     }
+
     /**
-     *
      * Method used by btnBack from Java FX
      * It permit to return to the seller page
      */
@@ -131,6 +104,8 @@ public class RateController {
     }
 
     /**
+     * The first method used on the page
+     * It permit to get and set a rate if the consumer had already put it
      */
     public void initialize() {
 
