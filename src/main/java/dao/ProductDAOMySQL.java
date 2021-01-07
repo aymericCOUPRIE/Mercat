@@ -139,7 +139,7 @@ public class ProductDAOMySQL extends ProductDAO {
             //System.out.println(product.getNameProduct());
             preparedStatement.setString(4, product.getPseudoSeller());
             //TODO voir si on ne change pas l'id pour le nom de la catégorie
-            preparedStatement.setInt(5, 5);
+            preparedStatement.setInt(5, product.getIdCategorie());
             preparedStatement.setString(6,product.getDescription());
             return preparedStatement.executeUpdate() != 0;
 

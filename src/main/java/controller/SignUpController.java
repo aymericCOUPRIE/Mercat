@@ -8,11 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import router.Router;
+import utils.CheckInfosUser;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import utils.CheckInfosUser;
 /**
  *
  */
@@ -202,16 +202,26 @@ public class SignUpController {
             this.messageAttention = "Your password must have at least 8 characters";
             display(messageAttention);
         } else {
-            if (phoneNumber.matches("[0-9]+")&&(phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
-                Matcher matcher = pattern.matcher(email);
-                if(matcher.matches()){
-                    return true;
-                }else{
-                    this.messageAttention = "Your email is incorrect";
+            if(passwordNotNull(password)) {
+                if (phoneNumber.matches("[0-9]+") && (phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
+                    Matcher matcher = pattern.matcher(email);
+                    if (matcher.matches()) {
+                        if(postal.matches("[0-9]+")&&(postal.length()==5)){
+                            return true;
+                        }else{
+                            this.messageAttention = "Your postal code is invalid";
+                            display(messageAttention);
+                        }
+                    } else {
+                        this.messageAttention = "Your email is incorrect";
+                        display(messageAttention);
+                    }
+                } else {
+                    this.messageAttention = "Your phone number is incorrect";
                     display(messageAttention);
                 }
-            } else {
-                this.messageAttention = "Your phone number is incorrect";
+            }else{
+                this.messageAttention = "You cannot have a space in the password" ;
                 display(messageAttention);
             }
         }
@@ -229,6 +239,9 @@ public class SignUpController {
             return internVerification();
     }
 
+    private boolean passwordNotNull(String p){
+        return p.indexOf(" ")==-1; //-1 signifie qu'il y a pas d'espace dans la chaîne de caractères
+    }
     /**
      * Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
