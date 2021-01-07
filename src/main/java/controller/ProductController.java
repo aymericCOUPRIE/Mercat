@@ -164,7 +164,7 @@ public class ProductController {
             listNomCategory.add(c.getNameCategory());
         }
         ObservableList<String> listObservableCategory = FXCollections.observableArrayList(listNomCategory);
-        txtCategory.setItems(listObservableCategory);
+        //txtCategory.setItems(listObservableCategory);
 
     }
 

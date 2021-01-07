@@ -3,13 +3,14 @@ package controller;
 import facade.BasketFacade;
 import facade.OrderFacade;
 import facade.UserFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.Basket;
 import model.Product;
+import router.Router;
 
-import java.util.Set;
 
 public class DetailProductController {
 
@@ -30,6 +31,13 @@ public class DetailProductController {
 
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private Label nameP;
+    @FXML
+    private Label descriptionP;
+    @FXML
+    private Label priceP;
 
     /**
      * This methode permit to add the product of the curent page in the customer's basket
@@ -56,6 +64,11 @@ public class DetailProductController {
 
     public void initialize() {
         errorLabel.setText("");
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
+
+        nameP.setText(listProduct.get(0).getNameProduct());
+        descriptionP.setText(listProduct.get(0).getDescription());
+        priceP.setText(""+listProduct.get(0).getPriceProduct());
     }
 
 }

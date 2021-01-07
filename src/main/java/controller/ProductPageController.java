@@ -7,12 +7,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Product;
 import router.Router;
+
+import java.util.ArrayList;
 
 /**
  * 
@@ -44,21 +47,43 @@ public class ProductPageController {
     public void initialize() {
         ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
         //La colonne nameProduct aura la propriété "nameProduct" de l'objet"
+        System.out.println(Router.getInstance().getParametre().get(0).getPseudoSeller());
         nameProduct.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
+
+        cityProduct.setCellValueFactory(new PropertyValueFactory<>("seller"));
+        //seller.setCellValueFactory(new PropertyValueFactory<>());
 
         //Chaque ligne est un nouvel object
         nameProduct.setCellFactory(TextFieldTableCell.forTableColumn());
+        cityProduct.setCellFactory(TextFieldTableCell.forTableColumn());
 
         //Remplis le tableau avec ma liste d'objets
         tableViewProduct.setItems(listProduct);
+        //Pour chaque produit ajoute un bouton qui va vers ça page avec ses informations
 
-        addGoToButton();
+        System.out.println(listProduct.size());
+        if(listProduct.size()!=0){
+            addGoToButton();
+        }
+
     }
 
     /**
      * This method is used for adding a button which goes to product's description page
      */
-    private void addGoToButton(){}
+    private void addGoToButton(){
+
+        product.setCellFactory(param -> new TableCell<>(){
+            private Button goToButton = new Button("DETAILS");
+            {
+                ArrayList<Product> p = new ArrayList<Product>();
+                System.out.println("Produit "+param.getTableView().getItems());
+                //p.add(param.getTableView().getItems().get(getIndex()));
+                goToButton.setOnAction(event -> Router.getInstance().activate("DetailProduct",p));
+            }
+        });
+    }
+
 
     @FXML
     private void goHome(ActionEvent e){
