@@ -114,21 +114,21 @@ public class UserFacade {
     /**
      * @return User qui est connecté en ce moment
      */
-    public static User getConnectedUser() {
+    public User getConnectedUser() {
         return user;
     }
 
     /**
      * @return boolean true if the current user is an admin, else false
      */
-    public static boolean isAdmin() {
+    public boolean isAdmin() {
         return getConnectedUser().getRole().equals("admin");
     }
 
     /**
      * @return boolean true if the current user is a seller, else false
      */
-    public static boolean isSeller() {
+    public boolean isSeller() {
         return getConnectedUser().getRole().equals("seller");
     }
 
@@ -204,7 +204,6 @@ public class UserFacade {
             return (Seller) getConnectedUser();
         }
     }
-
 
 
     /**

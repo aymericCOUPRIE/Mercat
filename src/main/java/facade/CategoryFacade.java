@@ -11,9 +11,8 @@ import java.util.*;
  */
 public class CategoryFacade {
 
-    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private CategoryDAO categoryDAO = af.createCategoryDAO();
-    private Category category;
+    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private final CategoryDAO categoryDAO = af.createCategoryDAO();
 
     private static CategoryFacade instanceFacade;
 
@@ -45,7 +44,6 @@ public class CategoryFacade {
     /**
      * @param newNameCategory
      * @param nameCategory
-     * @return
      */
     public void updateCategory(String newNameCategory, String nameCategory) {
         categoryDAO.updateCategory(newNameCategory, nameCategory);

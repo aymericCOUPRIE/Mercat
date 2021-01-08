@@ -14,7 +14,7 @@ public abstract class OrderDAO {
     /**
      *
      */
-    protected Connection connect = null;
+    protected Connection connect;
 
     /**
      * Default constructor

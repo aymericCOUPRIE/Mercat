@@ -23,8 +23,8 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param baskets
-     * @return
+     * @param baskets lists of all the baskets to insert for a specific order
+     * @return true if the INSERT is done, false if it failed
      */
     public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
 
@@ -53,10 +53,10 @@ public class OrderDAOMySQL extends OrderDAO {
             if (res != 0) { //Vérifie que le INSERT order c'est bien passé
                 Order tempo = find(pseudoConsumer, date);
                 insertAllProducts(tempo.getIdOrder(), listsIdProduct);
-                //deleteAlBasketAfterInsert(baskets);
+                deleteAlBasketAfterInsert(baskets);
             }
 
-            return res == 0 ? false : true;
+            return res != 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -67,8 +67,9 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param order, state
-     * @return
+     * @param order The order that will be updated
+     * @param state The new state of the order
+     * @return true if the update is done, false, if it failed
      */
     public boolean updateOrderState(Order order, String state) {
         String requete = "UPDATE orderdb SET stateOrder = ? WHERE pseudoConsumer = ? AND dateOrder = ?";
@@ -80,7 +81,7 @@ public class OrderDAOMySQL extends OrderDAO {
             preparedStatement.setTimestamp(3, (Timestamp) order.getDateOrder());
             int res = preparedStatement.executeUpdate();
 
-            return res == 0 ? false : true;
+            return res != 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -92,7 +93,7 @@ public class OrderDAOMySQL extends OrderDAO {
     /**
      * @param pseudoConsumer
      * @param dateOrder
-     * @return an Order
+     * @return the order
      */
     public Order find(String pseudoConsumer, Date dateOrder) {
 
@@ -106,8 +107,7 @@ public class OrderDAOMySQL extends OrderDAO {
             ResultSet res = preparedStatement.executeQuery();
 
             if (res.next()) {
-                Order order = createOrderObject(res);
-                return order;
+                return createOrderObject(res);
             }
 
         } catch (SQLException throwables) {
@@ -132,7 +132,7 @@ public class OrderDAOMySQL extends OrderDAO {
 
             int res = preparedStatement.executeUpdate();
 
-            return res == 0 ? false : true;
+            return res != 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -140,6 +140,11 @@ public class OrderDAOMySQL extends OrderDAO {
         return false;
     }
 
+    /**
+     *
+     * @param pseudo
+     * @return
+     */
     @Override
     public ArrayList<Order> getAllOrdersConsumer(String pseudo) {
         String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ?";
@@ -164,9 +169,14 @@ public class OrderDAOMySQL extends OrderDAO {
         return null;
     }
 
-
+    /**
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     private Order createOrderObject(ResultSet res) throws SQLException {
-        Order order = new Order(
+        return new Order(
                 res.getInt("idOrder"),
                 res.getString("pseudoConsumer"),
                 res.getDate("dateOrder"),
@@ -175,34 +185,36 @@ public class OrderDAOMySQL extends OrderDAO {
                 res.getString("stateOrder"),
                 getAllProductsFromOrder(res.getInt("idOrder"))
         );
-        return order;
     }
 
-    private boolean insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
+    /**
+     *
+     * @param idOrder
+     * @param idProducts
+     */
+    private void insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
         String requete = "INSERT INTO orderlistproduct (idOrder, idProduct, quantity) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, idOrder);
 
-            boolean res = true;
             for (Pair<Integer, Integer> i : idProducts) {
                 preparedStatement.setInt(2, i.getKey());
                 preparedStatement.setInt(3, i.getValue());
-
-                if (preparedStatement.executeUpdate() == 0) {
-                    res = false;
-                }
             }
-            return res;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
     }
 
 
+    /**
+     *
+     * @param idOrder
+     * @return
+     */
     private List<Pair<Product, Integer>> getAllProductsFromOrder(int idOrder) {
         String requete = "SELECT * FROM orderlistproduct INNER JOIN product ON orderlistproduct.idProduct = product.idProduct WHERE idOrder = ?";
 
@@ -236,15 +248,19 @@ public class OrderDAOMySQL extends OrderDAO {
         return null;
     }
 
+    /**
+     *
+     * @param baskets
+     */
     private void deleteAlBasketAfterInsert(List<Basket> baskets) {
         String requete = "DELETE FROM basket WHERE idProduct = ? AND pseudoConsumer = ?";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
 
-            for (int i = 0; i < baskets.size(); i++) {
-                preparedStatement.setInt(1, baskets.get(i).getProduct().getIdProduct());
-                preparedStatement.setString(2, baskets.get(i).getPseudoConsumer());
+            for (Basket basket : baskets) {
+                preparedStatement.setInt(1, basket.getProduct().getIdProduct());
+                preparedStatement.setString(2, basket.getPseudoConsumer());
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException throwables) {

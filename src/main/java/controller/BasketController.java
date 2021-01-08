@@ -18,6 +18,7 @@ import model.Basket;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import router.Router;
 
 import java.util.*;
 
@@ -85,7 +86,12 @@ public class BasketController {
      * @return
      */
     public void createOrder() {
-        orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo());
+        boolean res = orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo());
+        if (res) {
+            Router.getInstance().activate("HomePage");
+        } else {
+            txterror.setText("Il y a eu une erreur lors de la creation de votre panier");
+        }
     }
 
     /**
@@ -197,7 +203,6 @@ public class BasketController {
                 txterror.setText("You need to provide a positive quantity !");
             }
         });
-
 
         tableViewBasket.setEditable(true);
 

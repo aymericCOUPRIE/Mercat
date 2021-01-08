@@ -36,18 +36,12 @@ public class CategoryController {
     private Label creationError;
 
 
-    //private UserFacade userFacade;
-    private CategoryFacade categoryFacade = CategoryFacade.getInstance();
+    private final CategoryFacade categoryFacade = CategoryFacade.getInstance();
 
 
     /**
-     * Default constructor
-     */
-    public CategoryController() {
-    }
-
-    /**
-     *
+     * Called automatically when the page is loaded
+     * This methods fills the list of categories
      */
     public void initialize() {
 
@@ -96,6 +90,11 @@ public class CategoryController {
                 deleteSelection.setOnAction(event -> deleteCategory(event, param.getTableView().getItems().get(getIndex()).getIdCategorie(), getIndex()));
             }
 
+            /**
+             *
+             * @param item
+             * @param empty
+             */
             @Override
             protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);
@@ -109,7 +108,12 @@ public class CategoryController {
     }
 
     /**
-     * @return
+     * This method delegate the deletion of the category
+     * It also removes the category from the tableView
+     *
+     * @param event      subject of the action
+     * @param idCategory category that will be deleted
+     * @param index      row number of the category in the tableView
      */
     private void deleteCategory(ActionEvent event, int idCategory, int index) {
         categoryFacade.deleteCategory(idCategory);
@@ -117,11 +121,12 @@ public class CategoryController {
     }
 
     /**
-     * @return
+     * This method handle the creation of a category
+     *
+     * @param event subject of the action
      */
     @FXML
     private void createCategory(ActionEvent event) {
-        // TODO implement here
         String categoryName = newCategoryName.getText();
         if (categoryName.isEmpty()) {
             creationError.setText("error");

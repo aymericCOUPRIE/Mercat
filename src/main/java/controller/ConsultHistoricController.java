@@ -5,7 +5,6 @@ import facade.UserFacade;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,9 +13,9 @@ import javafx.util.Pair;
 import javafx.util.converter.DateStringConverter;
 import model.Order;
 import model.Product;
-import model.User;
 
 import java.util.*;
+
 
 /**
  *
@@ -44,6 +43,8 @@ public class ConsultHistoricController {
     @FXML
     private TableColumn<Pair<Product, Integer>, String> tbv_cl_img, tbv_cl_productName, tbv_cl_prix, tbv_cl_quantite;
 
+    @FXML
+    private Label displayError;
 
     private final OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
@@ -51,32 +52,48 @@ public class ConsultHistoricController {
 
     /**
      * Called automatically when the page is loaded
+     * In this initialize all existing orders are displayed
      */
     public void initialize() {
 
-        ObservableList<Order> listOrder = FXCollections.observableArrayList(orderFacade.getAllOrders(UserFacade.getConnectedUser().getPseudo()));
+        displayError.setText("");
 
-        tbv_cl_OrderDate.setCellValueFactory(new PropertyValueFactory<>("dateOrder"));
-        tbv_cl_OrderDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+        List<Order> list = orderFacade.getAllOrders(userFacade.getConnectedUser().getPseudo());
+        if (list.isEmpty()) {
+            displayError.setText("Vous n'avez aucune commande");
+        } else {
 
-        tbv_cl_Status.setCellValueFactory(new PropertyValueFactory<>("stateOrder"));
-        tbv_cl_Status.setCellFactory(TextFieldTableCell.forTableColumn());
+            ObservableList<Order> listOrder = FXCollections.observableArrayList(list);
 
-        tbv_Order.setItems(listOrder);
+            tbv_cl_OrderDate.setCellValueFactory(new PropertyValueFactory<>("dateOrder"));
+            tbv_cl_OrderDate.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
 
-        //If the user is a seller then he can change the order state
-        tbv_cl_Status.setEditable(UserFacade.isSeller());
+            tbv_cl_Status.setCellValueFactory(new PropertyValueFactory<>("stateOrder"));
+            tbv_cl_Status.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        addDetailsButton();
+            tbv_Order.setItems(listOrder);
 
+            //If the user is a seller then he can change the order state
+            if (userFacade.isSeller()) {
+                tbv_cl_Status.setEditable(true);
+
+            }
+
+            addDetailsButton();
+
+        }
     }
 
+    /**
+     * Adds a button for each order in the tableView
+     * This button will allow to display more details for a specific order
+     */
     private void addDetailsButton() {
         tbv_cl_Details.setCellFactory(param -> new TableCell<>() {
             private final Button detailsButton = new Button("More details");
 
             {
-                detailsButton.setOnAction(event -> displayDetails(event, param.getTableView().getItems().get(getIndex()), getIndex()));
+                detailsButton.setOnAction(event -> displayDetails(param.getTableView().getItems().get(getIndex())));
             }
 
             @Override
@@ -96,7 +113,13 @@ public class ConsultHistoricController {
     }
 
 
-    private void displayDetails(ActionEvent event, Order order, int index) {
+    /**
+     * This methods displays more details for a specific order
+     * It shows the content (products, prices and more details)
+     *
+     * @param order The order the user wants to have more details about
+     */
+    private void displayDetails(Order order) {
 
         lbl_deliveryAddress.setText(order.getDeliveryAddress());
         lbl_deliveryDate.setText(String.valueOf(order.getDeliveryDate()));

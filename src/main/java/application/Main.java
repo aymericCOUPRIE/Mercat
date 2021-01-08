@@ -18,7 +18,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("/SearchProduct.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
             Parent skillLayout = root.load();
             Scene scene = new Scene(skillLayout, 1000, 800);
 
@@ -54,6 +54,7 @@ public class Main extends Application {
         r.add("Rate_Product", "/Rate_Product.fxml");
         r.add("Comment_Product", "/Comment_Product.fxml");
         r.add("DetailsProduct", "/DetailProduct.fxml");
+        r.add("UpdateCategories", "/CategoryUI.fxml");
     }
 
 }

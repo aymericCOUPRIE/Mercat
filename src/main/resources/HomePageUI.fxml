@@ -5,23 +5,18 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.HomePageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomePageController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Menu">
                     <items>
-                        <MenuItem fx:id="myAccount" mnemonicParsing="false" onAction="#handleUserAcount"
-                                  text="Handle my  account"/>
-                        <MenuItem fx:id="handleC" mnemonicParsing="false" onAction="#handleConsumers"
-                                  text="Handle Consumers"/>
-                        <MenuItem fx:id="handleS" mnemonicParsing="false" onAction="#handleSellers"
-                                  text="Handle Sellers"/>
-                        <MenuItem fx:id="basket" mnemonicParsing="false" onAction="#basket" text="My basket"/>
-                        <MenuItem fx:id="ConsultHistoricOrder" mnemonicParsing="false" onAction="#consultHistoricOrder"
-                                  text="Consult historic order"/>
+                        <MenuItem fx:id="myAccount" mnemonicParsing="false" onAction="#handleUserAcount" text="Handle my  account" />
+                        <MenuItem fx:id="handleC" mnemonicParsing="false" onAction="#handleConsumers" text="Handle Consumers" />
+                        <MenuItem fx:id="handleS" mnemonicParsing="false" onAction="#handleSellers" text="Handle Sellers" />
+                        <MenuItem fx:id="basket" mnemonicParsing="false" onAction="#basket" text="My basket" />
+                        <MenuItem fx:id="ConsultHistoricOrder" mnemonicParsing="false" onAction="#consultHistoricOrder" text="Consult historic order" />
+                  <MenuItem fx:id="updateCategories" mnemonicParsing="false" onAction="#updateCategoriesPage" text="Update Categories" />
                     </items>
                 </Menu>
             </menus>

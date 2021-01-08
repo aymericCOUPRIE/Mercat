@@ -12,8 +12,8 @@ import java.util.*;
  */
 public class OrderFacade {
 
-    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private OrderDAO orderDAO = af.createOrderDAO();
+    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private final OrderDAO orderDAO = af.createOrderDAO();
 
     private static OrderFacade instanceOrderFacade;
 
@@ -35,14 +35,6 @@ public class OrderFacade {
      */
     public List<Order> getAllOrders(String pseudo) {
         return orderDAO.getAllOrdersConsumer(pseudo);
-    }
-
-    /**
-     * @param order
-     * @return
-     */
-    public void getOrderDetails(Order order) {
-        //orderDAO.find()
     }
 
     /**
@@ -71,11 +63,10 @@ public class OrderFacade {
 
     /**
      * @param pseudoConsumer
-     * @param pseudoSeller
      * @param orderDate
      * @return a specific order
      */
-    public Order find(String pseudoConsumer, String pseudoSeller, Date orderDate) {
+    public Order find(String pseudoConsumer, Date orderDate) {
         return orderDAO.find(pseudoConsumer, orderDate);
     }
 

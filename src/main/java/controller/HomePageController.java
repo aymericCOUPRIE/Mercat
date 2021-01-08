@@ -16,20 +16,10 @@ public class HomePageController {
     private Router router = Router.getInstance();
     private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
-    /**
-     *
-     */
-    //private SearchFacade searchFacade;
 
     @FXML
-    private MenuItem handleC, myAccount, handleS;
+    private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories;
     private ActionEvent e;
-
-    /**
-     * Default constructor
-     */
-    public HomePageController() {
-    }
 
     /**
      * @return
@@ -76,8 +66,10 @@ public class HomePageController {
         if (!(userFacade.getConnectedUser().getRole().equals("admin"))) {
             handleC.setVisible(false);
             handleS.setVisible(false);
+            updateCategories.setVisible(false);
         } else { //je suis un admin
             myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
+            ConsultHistoricOrder.setVisible(false);
         }
 
         if (!userFacade.getConnectedUser().getRole().equals("consumer")) { //seul consumer a un panier
@@ -115,5 +107,9 @@ public class HomePageController {
 
     public void consultHistoricOrder(ActionEvent e) {
         router.activate("HistoricOrder");
+    }
+
+    public void updateCategoriesPage(ActionEvent e) {
+        router.activate("UpdateCategories");
     }
 }
