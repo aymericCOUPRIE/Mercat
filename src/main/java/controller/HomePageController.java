@@ -1,12 +1,20 @@
 package controller;
 
+import facade.ProductFacade;
 import facade.UserFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import router.Router;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import model.Category;
+import model.Product;
+import router.Router;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,12 +23,42 @@ public class HomePageController {
 
     private Router router = Router.getInstance();
     private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private ProductFacade productFacade = ProductFacade.getInstance();
 
 
     @FXML
     private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories;
     private ActionEvent e;
 
+    private ProductController productController = new ProductController();
+
+    @FXML
+    private Label errorText;
+
+    @FXML
+    private TextField txtProduct1;
+    @FXML
+    private TextField txtProduct2;
+    @FXML
+    private TextField txtProduct3;
+    @FXML
+    private TextField txtProduct4;
+    @FXML
+    private TextField txtCity1;
+    @FXML
+    private TextField txtCity2;
+    @FXML
+    private TextField txtCategory1;
+    @FXML
+    private TextField txtCategory2;
+
+
+    private String categoryName;
+    private String priceEuros;
+    private String priceCents;
+    private String description;
+    private String productName;
+    private String city;
     /**
      * @return
      */
@@ -75,7 +113,13 @@ public class HomePageController {
         if (!userFacade.getConnectedUser().getRole().equals("consumer")) { //seul consumer a un panier
             myAccount.setVisible(false);
         }
-
+        errorText.setText("");
+        ArrayList<Category> listCategory = Router.getInstance().getParametreC();
+        ArrayList<String> listNomCategory = new ArrayList<String>();
+        for(Category c : listCategory){
+            listNomCategory.add(c.getNameCategory());
+        }
+        ObservableList<String> listObservableCategory = FXCollections.observableArrayList(listNomCategory);
     }
 
     /**
@@ -112,4 +156,65 @@ public class HomePageController {
     public void updateCategoriesPage(ActionEvent e) {
         router.activate("UpdateCategories");
     }
+
+    public void getProductsByName(ActionEvent e){
+        productName = txtProduct1.getText();
+        if(productName.equals("")){
+            display("You need to fill the field");
+        }else{
+            ArrayList<Product> p = productFacade.getProductsByName(productName);
+            Router.getInstance().activate("ProductUI",p);
+        }
+    }
+
+    /**
+     * This method enables you to research a product by his name and the name of a city
+     * @param e
+     */
+    public void getProductsByNameAndCity(ActionEvent e){
+        productName = txtProduct2.getText();
+        city = txtCity1.getText();
+        if(productName.equals("")||city.equals("")){
+            display("You need to fill every field");
+        }else{
+            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName,city);
+            Router.getInstance().activate("ProductUI",p);
+        }
+    }
+
+    /**
+     * This method enables you to research a product by his name and the category
+     * @param e
+     */
+    public void getProductsByNameAndCategory(ActionEvent e){
+        productName = txtProduct3.getText();
+        categoryName = txtCategory1.getText();
+        if(productName.equals("")||categoryName.equals("")){
+            display("You need to fill every field");
+        }else{
+            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName,categoryName);
+            Router.getInstance().activate("ProductUI",p);
+        }
+    }
+
+    /**
+     * This method enables you to research a product by name, category and city
+     * @param e
+     */
+    public void getProductsByNameAndCityAndCategory(ActionEvent e){
+        productName = txtProduct4.getText();
+        categoryName = txtCategory2.getText();
+        city = txtCity2.getText();
+        if(productName.equals("")||city.equals("")||categoryName.equals("")){
+            display("You need to fill every field");
+        }else{
+            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
+            Router.getInstance().activate("ProductUI",p);
+        }
+    }
+    public void display(String msg)
+    {
+        errorText.setText(msg);
+    }
+
 }

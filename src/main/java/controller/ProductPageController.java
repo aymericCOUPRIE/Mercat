@@ -31,7 +31,7 @@ public class ProductPageController {
     @FXML
     private TableColumn<Product, String> seller;
     @FXML
-    private TableColumn<Product, String> product;
+    private TableColumn<Product, Integer> product;
 
     @FXML
     private Button home;
@@ -50,8 +50,8 @@ public class ProductPageController {
         System.out.println(Router.getInstance().getParametre().get(0).getPseudoSeller());
         nameProduct.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
 
-        cityProduct.setCellValueFactory(new PropertyValueFactory<>("seller"));
-        //seller.setCellValueFactory(new PropertyValueFactory<>());
+        seller.setCellValueFactory(new PropertyValueFactory<>("pseudoSeller"));
+        cityProduct.setCellValueFactory(new PropertyValueFactory<>("city"));
 
         //Chaque ligne est un nouvel object
         nameProduct.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -79,7 +79,17 @@ public class ProductPageController {
                 ArrayList<Product> p = new ArrayList<Product>();
                 System.out.println("Produit "+param.getTableView().getItems());
                 //p.add(param.getTableView().getItems().get(getIndex()));
-                goToButton.setOnAction(event -> Router.getInstance().activate("DetailProduct",p));
+                goToButton.setOnAction(event -> Router.getInstance().activate("DetailsProduct"));
+            }
+
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(goToButton);
+                }
             }
         });
     }
