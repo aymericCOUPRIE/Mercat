@@ -27,9 +27,9 @@ import java.util.*;
  */
 public class BasketController {
 
-    private BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
-    private OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
+    private final BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
+    private final OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
 
     @FXML
     private Label txterror, labelNbProducts, labelTotPrice;
