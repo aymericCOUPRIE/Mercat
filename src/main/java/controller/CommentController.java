@@ -25,6 +25,8 @@ public class CommentController {
     private TextField txtComment;
     @FXML
     private Label errorText;
+    @FXML
+    private Label nameProduct;
 
     private boolean vide = true;
     int idProduct;
