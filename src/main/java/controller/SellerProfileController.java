@@ -1,11 +1,13 @@
 package controller;
 
 import facade.OrderFacade;
+import facade.ProductFacade;
 import facade.SellerFacade;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -36,6 +38,8 @@ public class SellerProfileController {
     private Label txtCompanyName;
     @FXML
     private Label txtAverageRate;
+    @FXML
+    private Button btnRate;
 
     /**
      * Default constructor
@@ -51,6 +55,8 @@ public class SellerProfileController {
     private SellerFacade sellerFacade = new SellerFacade();
 
     private OrderFacade orderFacade = new OrderFacade();
+
+    private ProductFacade productFacade = new ProductFacade();
 
     private ArrayList<Product> productArrayList;
 
@@ -105,10 +111,12 @@ public class SellerProfileController {
         ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
         String nameSeller = listProduct.get(0).getPseudoSeller();
 
-        System.out.println(listProduct.get(0).getNameProduct());
-        System.out.println(listProduct.get(0).getIdProduct());
-
-        //boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), listProduct.get(0).getIdProduct());
+        boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
+        if (order){
+            btnRate.setDisable(false);
+        } else {
+            btnRate.setDisable(true);
+        }
 
         Float averageRate;
         Seller s = getSellerDetails(nameSeller);

@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.OrderDAO;
 import dataBase.listOrderStates;
 import javafx.util.Pair;
 import model.Basket;
@@ -276,7 +277,7 @@ public class OrderDAOMySQL extends OrderDAO {
             ResultSet res = preparedStatement.executeQuery();
 
             // Tente récupérer résultat
-            while(res.next()){
+            if(res.next()){
                 return true;
             }
             return false;

@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.CategoryDAO;
 import model.Category;
 
 import java.sql.Connection;

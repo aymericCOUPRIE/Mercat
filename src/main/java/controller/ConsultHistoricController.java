@@ -5,6 +5,7 @@ import facade.UserFacade;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +16,10 @@ import model.Order;
 import model.Product;
 import router.Router;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 
@@ -36,7 +41,7 @@ public class ConsultHistoricController {
     private TableColumn<Order, Integer> tbv_cl_Details;
 
     @FXML
-    private Label lbl_deliveryDate, lbl_deliveryAddress, lbl_Total;
+    private Label lbl_deliveryAddress, lbl_Total, displayError;
 
     @FXML
     private TableView<Pair<Product, Integer>> tbv_productDetails;
@@ -48,7 +53,8 @@ public class ConsultHistoricController {
     private TableColumn<Pair<Product, Integer>, Integer> tbv_cl_rate, tbv_cl_comment;
 
     @FXML
-    private Label displayError;
+    private DatePicker deliveryDate;
+
 
     private final OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
@@ -82,6 +88,9 @@ public class ConsultHistoricController {
             if (userFacade.isSeller()) {
                 editStateOrder();
                 tbv_Order.setEditable(true);
+                deliveryDate.setEditable(true);
+            } else {
+                deliveryDate.setEditable(false);
             }
 
             addDetailsButton();
@@ -135,7 +144,7 @@ public class ConsultHistoricController {
             private final Button rateButton = new Button("Rate");
 
             {
-                        rateButton.setOnAction(event -> goToRate(param.getTableView().getItems().get(getIndex()).getKey().getIdProduct()));
+                rateButton.setOnAction(event -> goToRate(param.getTableView().getItems().get(getIndex()).getKey().getIdProduct()));
             }
 
             @Override
@@ -200,7 +209,7 @@ public class ConsultHistoricController {
     private void displayDetails(Order order) {
 
         lbl_deliveryAddress.setText(order.getDeliveryAddress());
-        lbl_deliveryDate.setText(String.valueOf(order.getDeliveryDate()));
+        deliveryDate.setValue(Instant.ofEpochMilli(order.getDateOrder().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 
         float total = 0;
 
@@ -234,4 +243,9 @@ public class ConsultHistoricController {
         tbv_productDetails.setItems(listProduct);
 
     }
+
+    public void homePage(ActionEvent actionEvent) {
+        Router.getInstance().activate("HomePage");
+    }
+
 }

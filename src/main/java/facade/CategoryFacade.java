@@ -1,7 +1,7 @@
 package facade;
 
-import dao.AbstractFactoryDAO;
-import dao.CategoryDAO;
+import dao.abstraction.AbstractFactoryDAO;
+import dao.abstraction.CategoryDAO;
 import model.Category;
 
 import java.util.*;

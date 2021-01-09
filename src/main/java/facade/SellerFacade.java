@@ -1,12 +1,9 @@
 package facade;
 
-import dao.AbstractFactoryDAO;
-import dao.RateDAO;
-import dao.UserDAO;
+import dao.abstraction.AbstractFactoryDAO;
+import dao.abstraction.RateDAO;
 import model.Consumer;
 import model.Seller;
-
-import java.util.*;
 
 /**
  * 

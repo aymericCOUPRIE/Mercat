@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.*;
 import dataBase.MySQLConnection;
 
 import java.sql.Connection;

@@ -1,9 +1,9 @@
 package facade;
 
-import dao.AbstractFactoryDAO;
-import dao.CommentDAO;
-import dao.ProductDAO;
-import dao.RateDAO;
+import dao.abstraction.AbstractFactoryDAO;
+import dao.abstraction.CommentDAO;
+import dao.abstraction.ProductDAO;
+import dao.abstraction.RateDAO;
 import model.*;
 
 import java.util.*;
@@ -184,6 +184,10 @@ public class ProductFacade {
      */
     public ArrayList<Product> getProductByNameAndCityAndCategory(String name, String city, String category) {
         return productDAO.getProductsByNameAndCityAndCategory(name,city,category);
+    }
+
+    public int getIdProduct(Product p){
+        return productDAO.getProductId(p);
     }
 
 }

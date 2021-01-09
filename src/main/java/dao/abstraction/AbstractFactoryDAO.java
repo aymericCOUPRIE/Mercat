@@ -1,4 +1,6 @@
-package dao;
+package dao.abstraction;
+
+import dao.DAOFactoryMySQL;
 
 /**
  *
