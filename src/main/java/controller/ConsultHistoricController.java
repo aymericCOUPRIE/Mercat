@@ -74,14 +74,28 @@ public class ConsultHistoricController {
             tbv_Order.setItems(listOrder);
 
             //If the user is a seller then he can change the order state
-            if (userFacade.isSeller()) {
-                tbv_cl_Status.setEditable(true);
 
+            if (userFacade.isSeller()) {
+                editStateOrder();
+                tbv_Order.setEditable(true);
             }
 
             addDetailsButton();
 
         }
+    }
+
+    private void editStateOrder() {
+        tbv_cl_Status.setOnEditCommit(e -> {
+            Order order = e.getTableView().getItems().get(e.getTablePosition().getRow());
+            String oldState = order.getStateOrder();
+            order.setStateOrder(e.getNewValue());
+
+            //En cas d'échec de mise à jour dans la BDD retour en arrière
+            if(orderFacade.updateOrderState(order)) {
+                order.setStateOrder(oldState);
+            }
+        });
     }
 
     /**
