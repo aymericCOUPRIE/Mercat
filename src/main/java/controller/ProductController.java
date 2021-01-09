@@ -3,6 +3,7 @@ package controller;
 import facade.BasketFacade;
 import facade.CategoryFacade;
 import facade.ProductFacade;
+import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,6 +65,8 @@ public class ProductController {
     private TextField txtCategory1;
     @FXML
     private TextField txtCategory2;
+    @FXML
+    private Button homeButton;
 
 
     private String categoryName;
@@ -75,6 +78,8 @@ public class ProductController {
 
     private ProductFacade productFacade = new ProductFacade();
     private CategoryFacade categoryFacade = CategoryFacade.getInstance();
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+
 
     /**
      * Default constructor
@@ -97,7 +102,8 @@ public class ProductController {
      */
     public void addProduct(ActionEvent e) {
         // TODO implement here
-        categoryName = txtCategory.getAccessibleText();
+        categoryName = txtCategory.getValue().toString();
+        System.out.println("category :"+categoryName);
         productName = txtNameProduct.getText();
         description = txtDescription.getText();
 
@@ -111,11 +117,10 @@ public class ProductController {
             try{
                 int i = Integer.parseInt(priceEuros);
                 try{
-                    String seller = "Anna";
                     int c = Integer.parseInt(priceCents);
                     String price = i+"."+c;
                     Float f = Float.parseFloat(price);
-                    System.out.println();
+                    String seller = userFacade.getConnectedUser().getPseudo();
                     Product p = new Product(productName,description,f,seller,categoryName);
                     System.out.println(p.getDescription());
                     if(productFacade.createProduct(p)){
@@ -158,12 +163,12 @@ public class ProductController {
     public void initialize() {
         // TODO Auto-generated method stub
         errorText.setText("");
-        ArrayList<Category> listCategory = Router.getInstance().getParametreC();
         ArrayList<String> listNomCategory = new ArrayList<String>();
-        for(Category c : listCategory){
+        for (Category c : categoryFacade.getAllCategory()){
             listNomCategory.add(c.getNameCategory());
         }
-        ObservableList<String> listObservableCategory = FXCollections.observableArrayList(listNomCategory);
+        ObservableList observableList = FXCollections.observableArrayList(listNomCategory);
+        txtCategory.setItems(observableList);
     }
 
     /**
@@ -230,8 +235,7 @@ public class ProductController {
 
     @FXML
     public void goHome(ActionEvent e) {
-        Router.getInstance().activate("SearchProduct");
+        Router.getInstance().activate("HomePage");
     }
-
 
 }

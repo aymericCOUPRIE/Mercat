@@ -27,7 +27,7 @@ public class HomePageController {
 
 
     @FXML
-    private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories;
+    private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories, addProduct;
     private ActionEvent e;
 
     private ProductController productController = new ProductController();
@@ -105,11 +105,12 @@ public class HomePageController {
             handleC.setVisible(false);
             handleS.setVisible(false);
             updateCategories.setVisible(false);
+
         } else { //je suis un admin
             myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
             ConsultHistoricOrder.setVisible(false);
         }
-
+        //TODO myAccount aussi pour un seller !
         if (!userFacade.getConnectedUser().getRole().equals("consumer")) { //seul consumer a un panier
             myAccount.setVisible(false);
         }
@@ -230,4 +231,10 @@ public class HomePageController {
         errorText.setText(msg);
     }
 
+    public void addProduct(){
+        Object[] o = new Object[1];
+        o[0] = userFacade.getConnectedUser().getPseudo();
+        Router.getInstance().activate("AddProduct", o);
+
+    }
 }

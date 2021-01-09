@@ -26,6 +26,7 @@
                         <MenuItem fx:id="handleS" mnemonicParsing="false" onAction="#handleSellers" text="Handle Sellers" />
                         <MenuItem fx:id="basket" mnemonicParsing="false" onAction="#basket" text="My basket" />
                         <MenuItem fx:id="ConsultHistoricOrder" mnemonicParsing="false" onAction="#consultHistoricOrder" text="Consult historic order" />
+                        <MenuItem fx:id="addProduct" mnemonicParsing="false" onAction="#addProduct" text="Add a product" />
                   <MenuItem fx:id="updateCategories" mnemonicParsing="false" onAction="#updateCategoriesPage" text="Update Categories" />
                     </items>
                 </Menu>

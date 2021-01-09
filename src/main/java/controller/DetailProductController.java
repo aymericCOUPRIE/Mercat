@@ -6,6 +6,7 @@ import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Product;
@@ -41,6 +42,8 @@ public class DetailProductController {
     @FXML
     private Label priceP;
 
+    @FXML
+    private Button sellerProductsButton;
     //On stocke le produit de la page
     private ArrayList<Product> productArrayList;
     /**
@@ -78,5 +81,6 @@ public class DetailProductController {
     public void goToSellerPage(){
         Router.getInstance().activate("ProfileSeller",productArrayList);
     }
+
 
 }

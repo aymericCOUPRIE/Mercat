@@ -162,4 +162,8 @@ public class Product {
     public int getIdCategorie() {
         return this.idCategorie;
     }
+
+    public String getCategory() {
+        return category;
+    }
 }

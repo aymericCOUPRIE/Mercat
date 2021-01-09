@@ -6,6 +6,7 @@ import facade.SellerFacade;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,6 +42,7 @@ public class SellerProfileController {
     private Button btnRate;
     @FXML
     private Button sellerProductsButton;
+
 
     /**
      * Default constructor
@@ -108,7 +110,6 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-        //TODO à changer on doit recevoir le pseudo du Produit ! et non un produit
         productArrayList = Router.getInstance().getParametre();
         ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
         String nameSeller = listProduct.get(0).getPseudoSeller();
@@ -140,9 +141,10 @@ public class SellerProfileController {
         }
     }
 
-    /*private void goToSellerProducts(ActionEvent e){
+    public void goToSellerProducts(ActionEvent e ){
+        Router.getInstance().activate("LoginUI");
+    }
 
-        Router.getInstance().
-    }*/
+
 
 }

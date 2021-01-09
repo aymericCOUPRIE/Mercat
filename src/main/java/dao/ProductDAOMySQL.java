@@ -139,18 +139,17 @@ public class ProductDAOMySQL extends ProductDAO {
      * Permet de renvoyer true ou false selon si l'on a réussit à insérer le produit dans la base de données
      */
     public boolean createProduct(Product product) {
-        //TODO Demander si cela marche
-        //System.out.println("FIRST "+product.getDescription());
         String requete = "INSERT INTO product (nameProduct,priceProduct,pictureProduct,pseudoSeller,idCategorie,description) VALUES (?,?,?,?,?,?)";
+
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, product.getNameProduct());
             preparedStatement.setString(2, "" + product.getPriceProduct());
             preparedStatement.setString(3,"");
-            //System.out.println(product.getNameProduct());
             preparedStatement.setString(4, product.getPseudoSeller());
             //TODO voir si on ne change pas l'id pour le nom de la catégorie
-            preparedStatement.setInt(5, product.getIdCategorie());
+            System.out.println(getCategoryId(product.getCategory()));
+            preparedStatement.setInt(5, getCategoryId(product.getCategory()));
             preparedStatement.setString(6,product.getDescription());
             return preparedStatement.executeUpdate() != 0;
 
@@ -197,7 +196,6 @@ public class ProductDAOMySQL extends ProductDAO {
             preparedStatement.setString(2, p.getDescription());
             preparedStatement.setString(3, "" + p.getPriceProduct());
             preparedStatement.setString(4, p.getPseudoSeller());
-            preparedStatement.setString(5, String.valueOf(p.getIdCategorie()));
             //TODO ERREUR ERROR modif pour passer du nom à un int
             //preparedStatement.setString(5, String.valueOf(p.getIdCategorie()));
 
@@ -285,6 +283,7 @@ public class ProductDAOMySQL extends ProductDAO {
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, c);
+            System.out.println("C : "+c);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {

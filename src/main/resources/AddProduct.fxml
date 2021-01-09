@@ -106,6 +106,7 @@
                         <Font size="14.0" />
                     </font>
                 </Button>
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#goHome" prefHeight="26.0" prefWidth="175.0" text="Home" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="10" />
             </children>
         </GridPane>
       <TextField fx:id="txtPrice1" prefHeight="26.0" prefWidth="90.0" />
