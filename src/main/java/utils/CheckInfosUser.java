@@ -28,27 +28,25 @@ public abstract class CheckInfosUser {
         if((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals("") || email.equals("")|| firstname.equals("")|| lastname.equals(""))){
             return "You need to provide every information";
         }else{
-            if (password.length() < 8) {
-                return  "Your password must have at least 8 characters";
-            } else {
-
-                if (phoneNumber.matches("[0-9]+")&&(phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
+            if(passwordNotNull(password)) {
+                if (phoneNumber.matches("[0-9]+") && (phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
                     Matcher matcher = pattern.matcher(email);
-                    if(matcher.matches()){
-                        return "OK";
-                    }else{
-                       return  "Your email is incorrect";
-
+                    if (matcher.matches()) {
+                        if(postal.matches("[0-9]+")&&(postal.length()==5)){
+                            return "Ok";
+                        }else{
+                            return "Your postal code is invalid";
+                        }
+                    } else {
+                        return "Your email is incorrect";
                     }
                 } else {
                     return "Your phone number is incorrect";
                 }
             }
         }
-
     }
 
-    //TODO a completer la javado flo
     /**
      *
      * @param pseudo
@@ -69,5 +67,13 @@ public abstract class CheckInfosUser {
         }else{
             return checkInfosConsumer(pseudo,email,firstname,lastname,password,phoneNumber,street,postal,city);
         }
+    }
+
+    /**
+     * @param p the password to check
+     * @return true if there is no space into the password
+     */
+    private static boolean passwordNotNull(String p){
+        return p.indexOf(" ")==-1;
     }
 }
