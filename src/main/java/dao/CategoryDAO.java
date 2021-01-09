@@ -23,7 +23,7 @@ public abstract class CategoryDAO {
     public abstract Category getCategory(String nomCat);
 
     /**
-     * @return the list of all existing categories
+     * @return the list of all existing categories, ArrayList<Category>
      */
     public abstract ArrayList<Category> getAllCategory();
 

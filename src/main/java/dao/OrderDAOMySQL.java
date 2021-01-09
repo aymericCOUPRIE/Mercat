@@ -50,7 +50,7 @@ public class OrderDAOMySQL extends OrderDAO {
 
             int res = preparedStatement.executeUpdate();
 
-            if (res != 0) { //Vérifie que le INSERT order c'est bien passé
+            if (res != 0) { //Vérifie que le INSERT order s'est bien passé
                 Order tempo = find(pseudoConsumer, date);
                 insertAllProducts(tempo.getIdOrder(), listsIdProduct);
                 deleteAlBasketAfterInsert(baskets);

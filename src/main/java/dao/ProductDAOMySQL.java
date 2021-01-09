@@ -15,22 +15,16 @@ public class ProductDAOMySQL extends ProductDAO {
 
     /**
      * Default constructor
+     * @param connect of Connection
      */
     public ProductDAOMySQL(Connection connect) {
         super(connect);
     }
 
-    /**
-     * @param idProduct
-     * @return
-     */
-    public Product getProduct(int idProduct) {
-        // TODO implement here
-        return null;
-    }
+
 
     /**
-     * @param nameP
+     * @param nameP , the name of the product we want to find
      * @return an ArrayList of products, all of them have the same name
      */
     public ArrayList<Product> getProductsByName(String nameP) {
@@ -47,9 +41,9 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param name
-     * @param city
-     * @return
+     *  @param name of the product we want to find
+     *  @param city of the product we want to find
+     *  @return ArrayList<Product>
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
@@ -66,9 +60,9 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param name
-     * @param category
-     * @return
+     * @param name of the product we want to find
+     * @param category of the product we want to find
+     * @return ArrayList<Product>
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
@@ -85,6 +79,14 @@ public class ProductDAOMySQL extends ProductDAO {
         return null;
     }
 
+    /**
+     * this method executes the query, and for each result of the query,
+     * creates the corresponding product, which is add in the ArrayList of Products
+     * @param listProduct, where we add the product found
+     * @param preparedStatement the query, created to search the products
+     * @return an ArrayList of Product, all the products we found with the query
+     * @throws SQLException
+     */
     private ArrayList<Product> getProductList(ArrayList<Product> listProduct, PreparedStatement preparedStatement) throws SQLException {
         ResultSet res = preparedStatement.executeQuery();
         Product product;
@@ -130,6 +132,11 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
+    /**
+     * @param product le produit
+     * @return boolean
+     * Permet de renvoyer true ou false selon si l'on a réussit à insérer le produit dans la base de données
+     */
     public boolean createProduct(Product product) {
         //TODO Demander si cela marche
         //System.out.println("FIRST "+product.getDescription());
@@ -153,6 +160,11 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
+    /**
+     * @param p, the Product we want to update
+     * @param newDescription, the new description of the product
+     * @return boolean, true if the product was updated into the database
+     */
     public boolean updateProduct(Product p, String newDescription) {
         int id = getProductId(p);
         String requete = "UPDATE product SET description = ? WHERE idProduct = ?";
@@ -171,6 +183,10 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
+    /**
+     * @param p, the product whose id we want
+     * @return int, the id of the product
+     */
     public int getProductId(Product p) {
         String requete = "SELECT idProduct FROM product WHERE nameProduct=? AND description=? AND price=? AND seller=? AND category=?";
 
@@ -195,6 +211,10 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     @Override
+    /**
+     * @param p, the Product that we want to delete
+     * @return boolean, true if the product was deleted
+     */
     public boolean deleteProduct(Product p) {
         int id = getProductId(p);
         String requete = "DELETE FROM product WHERE idProduct=?";
@@ -210,6 +230,10 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
+    /**
+     * @param seller, the seller's product name
+     * @return the name of the seller
+     */
     private String getProductCity(String seller) {
         String requete = "SELECT city FROM user WHERE pseudo = ?";
         try {
@@ -227,6 +251,7 @@ public class ProductDAOMySQL extends ProductDAO {
             return "-1";
         }
     }
+
 
     private String getCategoryLibelle(int id){
         String requete = "SELECT LibelleCategorie FROM category WHERE idCategorie = ?";
@@ -262,5 +287,23 @@ public class ProductDAOMySQL extends ProductDAO {
             return -1;
         }
     }
+
+    @Override
+    /**
+     * @return une arrayList de tous les produits présents dans la db
+     */
+    public ArrayList<Product> getAllProduct(){
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM product";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            return getProductList(listProduct, preparedStatement)
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+
 
 }
