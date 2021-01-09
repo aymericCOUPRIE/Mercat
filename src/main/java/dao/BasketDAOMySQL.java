@@ -2,21 +2,18 @@ package dao;
 
 import model.Basket;
 import model.Product;
-
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-/**
- *
- */
+
 public class BasketDAOMySQL extends BasketDAO {
 
     /**
-     * Default constructor
+     * this methode permit to connect the dao with the database
+     * @param connect is the connection for the database
      */
     public BasketDAOMySQL(Connection connect) {
         super(connect);
@@ -24,9 +21,8 @@ public class BasketDAOMySQL extends BasketDAO {
 
     /**
      * this method allows to retrieve all the baskets of the consumer whose the pseudo is passed in parameter
-     *
-     * @param pseudoConsumer
-     * @return ArrayList<Basket>
+     * @param pseudoConsumer to whom the basket belongs
+     * @return ArrayList<Basket> of the consumer
      */
     public ArrayList<Basket> getAllBasket(String pseudoConsumer) {
 
@@ -61,9 +57,11 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * This methode permit to update the quantity of an order
-     * @param pseudo,idProduct,quantity
-     * @return boolean True si le panier a bien été modifié
+     * This methode permit to add the product of the current page in the customer's basket
+     * @param idProduct of the product we whant to add in the basket
+     * @param pseudo of the logged-in consumer
+     * @param quantity of the product
+     * @return boolean true if the product has been added into the basket
      */
     public boolean createBasket(int idProduct, int quantity, String pseudo) {
         // TODO implement here
@@ -87,8 +85,8 @@ public class BasketDAOMySQL extends BasketDAO {
 
     /**
      * This methode permit to delete a basket
-     *
-     * @param idProduct, pseudo
+     * @param idProduct we want to delete from the basket
+     * @param pseudo of the  logged-in consumer
      * @return boolean true if it's done
      */
     public boolean deleteBasket(int idProduct, String pseudo) {
@@ -107,9 +105,10 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * This methode permit to update the quantity of an order
-     *
-     * @param pseudo,idProduct,quantity
+     * This methode permit to update the quantity of a product in the basket
+     * @param pseudo of the  logged-in consumer
+     * @param idProduct  for which you want to change the quantity
+     * @param quantity we want to save
      * @return boolean True si le panier a bien été modifié
      */
     public boolean updateBasket(String pseudo, int idProduct, int quantity) {

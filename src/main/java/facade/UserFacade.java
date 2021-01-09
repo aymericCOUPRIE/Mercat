@@ -9,27 +9,23 @@ import router.Router;
 
 import java.util.*;
 
-/**
- *
- */
 public class UserFacade {
 
     private static User user;
 
-    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private UserDAO userDAO = af.createUserDAO();
+    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
+    private final UserDAO userDAO = af.createUserDAO();
 
 
-    //notre façade est un singleton
+
+    /**
+     * the singleton facade
+     */
     private static UserFacade instanceUserFacade = getInstanceUserFacade();
 
-    /**
-     * Default constructor du singleton façade
-     */
-    public UserFacade() {
-    }
 
     /**
+     * this methode permits to get the instanceUserFacade and make sure we have only one facade
      * @return instanceUserFacade
      **/
     public static UserFacade getInstanceUserFacade() {
@@ -39,6 +35,16 @@ public class UserFacade {
         return instanceUserFacade;
     }
 
+    //TODO java doc
+    /**
+     * @param
+     * @return
+     */
+    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
+        return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
+    }
+
+    //TODO javadoc
     /**
      * @param pseudo
      * @param firstName
@@ -55,10 +61,13 @@ public class UserFacade {
         return userDAO.createConsumer(userConsumer);
     }
 
+
+
     /**
-     * @param pseudo
-     * @param password
-     * @return boolean true si connection réussie, false sinon
+     * this method makes it possible to check if a user with this username and password exists in the database, and if this is the case to connect to it
+     * @param pseudo of the user
+     * @param password of the user
+     * @return User who has just connected or null if connection unsuccessful i.e. bad nickname or password
      */
     public void login(String pseudo, String password) {
         user = userDAO.login(pseudo, password);
@@ -66,12 +75,13 @@ public class UserFacade {
     }
 
     /**
-     * @return boolean, true si l'utilisateur est connecté
+     * @return boolean true if the user is logged-in
      */
     public boolean isConnected() {
         return user != null;
     }
 
+    //TODO java doc
     /**
      * @param pseudo
      * @param password
@@ -89,36 +99,43 @@ public class UserFacade {
     }
 
     /**
-     * @param
-     * @return
+     * this methode permits to update a user with all new information
+     * @param pseudo of the user
+     * @param firstName of the user
+     * @param lastName of the user
+     * @param password of the user
+     * @param OldPassword of the user
+     * @param emailAdress of the user
+     * @param streetAddress of the user
+     * @param city of the user
+     * @param postalCode of the user
+     * @param phoneNumber of the user
+     * @return true if the user has been updated, else false
      */
-    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
+    public boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
+
         return userDAO.updateConsumer(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber);
     }
 
-    /**
-     * @param
-     * @return
-     */
-    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
-        return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
-    }
 
     /**
-     * @param newUser attribue à la façade le user qui vient de se connecter
+     * assigns to the facade the user who has just logged in
+     * @param newUser the user who has just logged in
      */
     public void setConnectedUser(User newUser) {
         user = newUser;
     }
 
     /**
-     * @return User qui est connecté en ce moment
+     * this methode permits to have the user curently logged in
+     * @return user curently logged in
      */
     public User getConnectedUser() {
         return user;
     }
 
     /**
+     * this method permits to know if the user logged in is an admin
      * @return boolean true if the current user is an admin, else false
      */
     public boolean isAdmin() {
@@ -126,6 +143,7 @@ public class UserFacade {
     }
 
     /**
+     * this method permits to know if the user logged in is a seller
      * @return boolean true if the current user is a seller, else false
      */
     public boolean isSeller() {
@@ -133,10 +151,9 @@ public class UserFacade {
     }
 
     /**
-     * This methode permit to delete an user from the dataBase
-     * It is the same methode for all the kind of user
-     *
-     * @param pseudo
+     * this methode permits to delete an user from the database
+     * @param pseudo of the user whose account we want to delete
+     * @return true if the user has been deleted from the database
      */
 
     public boolean deleteUser(String pseudo) {
@@ -145,7 +162,7 @@ public class UserFacade {
 
 
     /**
-     * this method is used to get all the informations about a consumer
+     * this method is used to get all the information about a consumer
      *
      * @return User
      */
@@ -159,12 +176,14 @@ public class UserFacade {
 
 
     /**
-     * @return
+     * This methode permits to have the pseudo of the consumer
+     * @return list of consumer
      */
     public ArrayList<String> getAllConsumerPseudo() {
         return userDAO.getAllPseudo("consumer");
     }
 
+    //TODO java doc
     /**
      * @return
      */
@@ -173,16 +192,15 @@ public class UserFacade {
     }
 
     /**
-     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
-     *
-     * @param pseudo
-     * @return String pseudo ou errormsg
+     *   this methode permits to know if a consumer exist or not
+     * @param pseudo of the user we are looking for
+     * @return  pseudo of the searched user or an error message if it does not exist or if he is not a consumer.
      */
-
     public String searchConsumer(String pseudo) {
         return userDAO.searchConsumer(pseudo);
     }
 
+    //TODO java doc
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un seller
      *
