@@ -25,9 +25,11 @@ public class CommentController {
     private TextField txtComment;
     @FXML
     private Label errorText;
+    @FXML
+    private Label nameProduct;
 
     private boolean vide = true;
-    String name = "4";
+    int idProduct;
 
     private ProductFacade facadeP = new ProductFacade();
     private UserFacade facadeU = UserFacade.getInstanceUserFacade();
@@ -46,13 +48,12 @@ public class CommentController {
     public void addComment() {
         String txt = txtComment.getText();
         System.out.println(vide);
-        int i = Integer.parseInt(name);
 
         if(vide){
-            facadeP.addComment((Consumer) facadeU.getConnectedUser(), txt, i);
+            facadeP.addComment((Consumer) facadeU.getConnectedUser(), txt, idProduct);
             display("Comment update !");
         } else {
-            facadeP.updateComment((Consumer) facadeU.getConnectedUser(), txt, i);
+            facadeP.updateComment((Consumer) facadeU.getConnectedUser(), txt, idProduct);
             display("Comment update !");
         }
 
@@ -63,7 +64,7 @@ public class CommentController {
      *  It permit to return to the home page
      */
     public void back(){
-        Router.getInstance().activate("HomePage");
+        Router.getInstance().activate("HistoricOrder");
     }
 
     /**
@@ -82,9 +83,8 @@ public class CommentController {
      */
     @FXML
     public void initialize() {
-
-        int i = Integer.parseInt(name);
-        String comment = facadeP.getComment((Consumer) facadeU.getConnectedUser(), i);
+        idProduct = (Integer) Router.getInstance().getParams()[0];
+        String comment = facadeP.getComment((Consumer) facadeU.getConnectedUser(), idProduct);
 
         if(comment.equals("")){
            vide = true;

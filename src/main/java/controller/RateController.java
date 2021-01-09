@@ -25,7 +25,8 @@ public class RateController {
 
     private String rate;
     private String page = "";
-    private String name;
+    private String nameSeller;
+    private int idProduct;
 
     private ProductFacade facade = new ProductFacade();
     private SellerFacade facadeS  = new SellerFacade();
@@ -48,19 +49,18 @@ public class RateController {
                 // Page seller
                 if(page == "seller") {
 
-                    facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i, name);
+                    facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i, nameSeller);
                     System.out.println("OUI");
                     Object[] params = new Object[1];
-                    params[0] = name;
+                    params[0] = nameSeller;
                     Router.getInstance().activate("Rate_Seller", params);
                     //Router.getInstance().activate("Rate_Seller");
                 }
                 else {
-                    int x = Integer.parseInt(name);
-                    facade.AddRate((Consumer) facadeU.getConnectedUser(), i, x);
+                    facade.AddRate((Consumer) facadeU.getConnectedUser(), i, idProduct);
                     System.out.println("OUI");
                     Object[] params = new Object[1];
-                    params[0] = name;
+                    params[0] = idProduct;
                     Router.getInstance().activate("Rate_Product", params);
                     //Router.getInstance().activate("Rate_Seller");
                 }
@@ -76,7 +76,7 @@ public class RateController {
     private void desactivateSubmitRate(){
         // Cas page Seller
         if(page == "seller") {
-            Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser(), name);
+            Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser(), nameSeller);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
                 txtRate.setText(rate.toString());
@@ -85,8 +85,7 @@ public class RateController {
         }
         // Cas page Product
         if(page == "product") {
-            int i = Integer.parseInt(name);
-            Float rate = facade.getRate((Consumer) facadeU.getConnectedUser(), i);
+            Float rate = facade.getRate((Consumer) facadeU.getConnectedUser(), idProduct);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
                 txtRate.setText(rate.toString());
@@ -100,7 +99,12 @@ public class RateController {
      * It permit to return to the seller page
      */
     public void back() {
-        Router.getInstance().activate("ProfileSeller");
+        if(page == "product") {
+            Router.getInstance().activate("HistoricOrder");
+        } else {
+            // Quel seller ?
+            Router.getInstance().activate("ProfileSeller");
+        }
     }
 
     /**
@@ -113,13 +117,13 @@ public class RateController {
 
         if(section.getText().equals("Seller")){
             page = "seller";
-            name = "s";
+            nameSeller = (String) Router.getInstance().getParams()[0];
         } else{
             page = "product";
-            name = "4";
+            idProduct = (Integer) Router.getInstance().getParams()[0];
         }
-        //name = (String) Router.getInstance().getParams()[0];
-        name = "4";
+
+        //nameSeller = "s";
         desactivateSubmitRate();
 
     }

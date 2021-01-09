@@ -13,6 +13,7 @@ import javafx.util.Pair;
 import javafx.util.converter.DateStringConverter;
 import model.Order;
 import model.Product;
+import router.Router;
 
 import java.util.*;
 
@@ -42,6 +43,9 @@ public class ConsultHistoricController {
 
     @FXML
     private TableColumn<Pair<Product, Integer>, String> tbv_cl_img, tbv_cl_productName, tbv_cl_prix, tbv_cl_quantite;
+
+    @FXML
+    private TableColumn<Pair<Product, Integer>, Integer> tbv_cl_rate, tbv_cl_comment;
 
     @FXML
     private Label displayError;
@@ -92,7 +96,7 @@ public class ConsultHistoricController {
             order.setStateOrder(e.getNewValue());
 
             //En cas d'échec de mise à jour dans la BDD retour en arrière
-            if(orderFacade.updateOrderState(order)) {
+            if (orderFacade.updateOrderState(order)) {
                 order.setStateOrder(oldState);
             }
         });
@@ -126,6 +130,66 @@ public class ConsultHistoricController {
         });
     }
 
+    private void addRateButton() {
+        tbv_cl_rate.setCellFactory(param -> new TableCell<>() {
+            private final Button rateButton = new Button("Rate");
+
+            {
+                        rateButton.setOnAction(event -> goToRate(param.getTableView().getItems().get(getIndex()).getKey().getIdProduct()));
+            }
+
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+
+                rateButton.setStyle("-fx-background-color: rgb(26,82,118)");
+                //detailsButton.setTextFill(Color.rgb(255, 255, 255));
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(rateButton);
+                }
+            }
+        });
+    }
+
+    private void goToRate(int idProduct) {
+        Object[] params = new Object[1];
+        params[0] = idProduct;
+        Router.getInstance().activate("Rate_Product", params);
+    }
+
+
+    private void addCommentButton() {
+        tbv_cl_comment.setCellFactory(param -> new TableCell<>() {
+            private final Button commentButton = new Button("Comment");
+
+            {
+                commentButton.setOnAction(event -> goToComment(param.getTableView().getItems().get(getIndex()).getKey().getIdProduct()));
+            }
+
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+
+                commentButton.setStyle("-fx-background-color: rgb(26,82,118)");
+                //detailsButton.setTextFill(Color.rgb(255, 255, 255));
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(commentButton);
+                }
+            }
+        });
+    }
+
+    private void goToComment(int idProduct) {
+        Object[] params = new Object[1];
+        params[0] = idProduct;
+        Router.getInstance().activate("Comment_Product", params);
+    }
 
     /**
      * This methods displays more details for a specific order
@@ -161,6 +225,11 @@ public class ConsultHistoricController {
 
         tbv_cl_quantite.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getValue())));
         tbv_cl_quantite.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        if (!userFacade.isSeller()) {
+            addRateButton();
+            addCommentButton();
+        }
 
         tbv_productDetails.setItems(listProduct);
 
