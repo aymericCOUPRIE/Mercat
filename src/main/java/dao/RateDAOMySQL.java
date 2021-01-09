@@ -15,7 +15,9 @@ import java.util.*;
 public class RateDAOMySQL extends RateDAO {
 
     /**
-     * Default constructor
+     * this methode permit to  connect the dao with the database
+     *
+     * @param connect is the connection for the database
      */
     protected RateDAOMySQL(Connection connect) {
         super(connect);

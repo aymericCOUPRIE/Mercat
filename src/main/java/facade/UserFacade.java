@@ -33,10 +33,20 @@ public class UserFacade {
         return instanceUserFacade;
     }
 
-    //TODO java doc
     /**
-     * @param
-     * @return
+     * this methode permits to update a seller with all new information
+     * @param pseudo of the seller
+     * @param firstName of the seller
+     * @param lastName of the seller
+     * @param password of the seller
+     * @param OldPassword of the seller
+     * @param emailAdress of the seller
+     * @param streetAddress of the seller
+     * @param city of the seller
+     * @param postalCode of the seller
+     * @param phoneNumber of the seller
+     * @param company of the seller
+     * @return true if the seller has been updated, else false
      */
     public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
         return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
@@ -79,17 +89,19 @@ public class UserFacade {
         return user != null;
     }
 
-    //TODO java doc
     /**
-     * @param pseudo
-     * @param password
-     * @param emailAdress
-     * @param streetAddress
-     * @param city
-     * @param postalCode
-     * @param phoneNumber
-     * @param companyName
-     * @return
+     * This method permits to add a seller to the database
+     * @param pseudo of the seller
+     * @param firstName of the seller
+     * @param lastName of the seller
+     * @param password of the seller
+     * @param emailAdress of the seller
+     * @param streetAddress of the seller
+     * @param city of the seller
+     * @param postalCode of the seller
+     * @param phoneNumber of the seller
+     * @param companyName of the seller
+     * @return true if the seller has been add to the database
      */
     public boolean signUpSeller(String pseudo, String firstName, String lastName, String password, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String companyName) {
         Seller userSeller = new Seller(pseudo, firstName, lastName, password, emailAdress, streetAddress, city, postalCode, "", "seller", phoneNumber, companyName);
@@ -180,9 +192,9 @@ public class UserFacade {
         return userDAO.getAllPseudo("consumer");
     }
 
-    //TODO java doc
     /**
-     * @return
+     * This methode permits to have the pseudo of all sellers
+     * @return list of sellers
      */
     public ArrayList<String> getAllSellersPseudo() {
         return userDAO.getAllPseudo("seller");
@@ -197,20 +209,18 @@ public class UserFacade {
         return userDAO.searchConsumer(pseudo);
     }
 
-    //TODO java doc
     /**
-     * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un seller
-     *
-     * @param pseudo
-     * @return String pseudo ou errormsg
+     *   this methode permits to know if a seller exist or not
+     * @param pseudo of the user we are looking for
+     * @return  pseudo of the searched user or an error message if it does not exist or if he is not a seller.
      */
-
     public String searchSeller(String pseudo) {
         return userDAO.searchSeller(pseudo);
     }
 
     /**
-     * @return
+     * this methode permits to know the information of a seller when he is connected
+     * @return seller and all of his information
      */
     public Seller getSellerDetails() {
         if (isAdmin()) {
@@ -220,10 +230,10 @@ public class UserFacade {
         }
     }
 
-
     /**
-     * @param pseudo
-     * @return seller
+     * this methode permits to know the information of a seller
+     * @param pseudo of the seller
+     * @return seller and all of his information
      */
     public Seller getSellerDetails(String pseudo) {
         return (Seller) userDAO.findUser(pseudo);
