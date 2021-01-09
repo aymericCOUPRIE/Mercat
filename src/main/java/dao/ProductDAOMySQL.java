@@ -196,7 +196,6 @@ public class ProductDAOMySQL extends ProductDAO {
             preparedStatement.setString(2, p.getDescription());
             preparedStatement.setString(3, "" + p.getPriceProduct());
             preparedStatement.setString(4, p.getPseudoSeller());
-            //TODO ERREUR ERROR modif pour passer du nom à un int
             preparedStatement.setString(5, String.valueOf(p.getIdCategorie()));
 
             ResultSet rs = preparedStatement.executeQuery();
