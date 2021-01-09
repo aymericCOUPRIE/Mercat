@@ -13,6 +13,7 @@ import utils.CheckInfosUser;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  *
  */
@@ -64,7 +65,7 @@ public class SignUpController {
     private String postal;
     private String city;
 
-//TODO supprimer si vous vous en servez pas..
+    //TODO supprimer si vous vous en servez pas..
     private String idSellerButton;
     private String idConsumerButton;
 
@@ -95,15 +96,15 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-       String check = CheckInfosUser.checkInfosConsumer(pseudo,email,firstName, lastName,password,phoneNumber,street,postal,city);
+        String check = CheckInfosUser.checkInfosConsumer(pseudo, email, firstName, lastName, password, phoneNumber, street, postal, city);
 
-       if(check.equals("OK")){
-           this.isAConsumer = true;
-           signUp(e);
-       }else{
+        if (check.equals("OK")) {
+            this.isAConsumer = true;
+            signUp(e);
+        } else {
 
-           display(check);
-       }
+            display(check);
+        }
 
     }
 
@@ -123,13 +124,12 @@ public class SignUpController {
         firstName = txtFirstname.getText();
         lastName = txtLastname.getText();
 
-        String check = CheckInfosUser.checkInfosSeller(pseudo,email,firstName, lastName,password,phoneNumber,street,postal,city,companyName);
+        String check = CheckInfosUser.checkInfosSeller(pseudo, email, firstName, lastName, password, phoneNumber, street, postal, city, companyName);
 
-        if(check.equals("OK")){
+        if (check.equals("OK")) {
             this.isAConsumer = false;
             signUp(e);
-        }else{
-
+        } else {
             display(check);
         }
 
@@ -184,9 +184,10 @@ public class SignUpController {
         Router.getInstance().activate("Login");
     }
 
-    private boolean passwordNotNull(String p){
-        return p.indexOf(" ")==-1; //-1 signifie qu'il y a pas d'espace dans la chaîne de caractères
+    private boolean passwordNotNull(String p) {
+        return p.indexOf(" ") == -1; //-1 signifie qu'il y a pas d'espace dans la chaîne de caractères
     }
+
     /**
      * Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
