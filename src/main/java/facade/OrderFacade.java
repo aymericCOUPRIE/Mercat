@@ -57,8 +57,8 @@ public class OrderFacade {
      * @param state
      * @return
      */
-    public boolean updateOrderState(Order order, String state) {
-        return orderDAO.updateOrderState(order, state);
+    public boolean updateOrderState(Order order) {
+        return orderDAO.updateOrderState(order);
     }
 
     /**

@@ -31,10 +31,9 @@ public abstract class OrderDAO {
     public abstract Order find(String pseudoConsumer, Date dateOrder);
 
     /**
-     * @param state
      * @return
      */
-    public abstract boolean updateOrderState(Order order, String state);
+    public abstract boolean updateOrderState(Order order);
 
     /**
      * @param basket

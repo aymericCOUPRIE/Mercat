@@ -56,7 +56,7 @@ public class OrderDAOMySQL extends OrderDAO {
                 deleteAlBasketAfterInsert(baskets);
             }
 
-            return res != 0;
+            return res == 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -68,20 +68,22 @@ public class OrderDAOMySQL extends OrderDAO {
 
     /**
      * @param order The order that will be updated
-     * @param state The new state of the order
      * @return true if the update is done, false, if it failed
      */
-    public boolean updateOrderState(Order order, String state) {
-        String requete = "UPDATE orderdb SET stateOrder = ? WHERE pseudoConsumer = ? AND dateOrder = ?";
+    public boolean updateOrderState(Order order) {
+        String requete = "UPDATE orderdb SET stateOrder = ? WHERE idOrder = ?";
+
+        System.out.println("UPDATE ORDER");
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, state);
-            preparedStatement.setString(2, order.getPseudoConsumer());
-            preparedStatement.setTimestamp(3, (Timestamp) order.getDateOrder());
+            preparedStatement.setString(1, order.getStateOrder());
+            preparedStatement.setInt(2, order.getIdOrder());
             int res = preparedStatement.executeUpdate();
 
-            return res != 0;
+            System.out.println(res);
+
+            return res == 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -132,7 +134,7 @@ public class OrderDAOMySQL extends OrderDAO {
 
             int res = preparedStatement.executeUpdate();
 
-            return res != 0;
+            return res == 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -141,7 +143,6 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     *
      * @param pseudo
      * @return
      */
@@ -170,7 +171,6 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     *
      * @param res
      * @return
      * @throws SQLException
@@ -188,7 +188,6 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     *
      * @param idOrder
      * @param idProducts
      */
@@ -211,7 +210,6 @@ public class OrderDAOMySQL extends OrderDAO {
 
 
     /**
-     *
      * @param idOrder
      * @return
      */
@@ -249,7 +247,6 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     *
      * @param baskets
      */
     private void deleteAlBasketAfterInsert(List<Basket> baskets) {

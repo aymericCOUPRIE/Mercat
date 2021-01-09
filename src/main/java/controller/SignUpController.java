@@ -70,7 +70,7 @@ public class SignUpController {
 
     private String messageAttention;
 
-    private boolean isAConsumer = true;
+    private boolean isAConsumer;
     private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
@@ -98,6 +98,7 @@ public class SignUpController {
        String check = CheckInfosUser.checkInfosConsumer(pseudo,email,firstName, lastName,password,phoneNumber,street,postal,city);
 
        if(check.equals("OK")){
+           this.isAConsumer = true;
            signUp(e);
        }else{
 
@@ -125,6 +126,7 @@ public class SignUpController {
         String check = CheckInfosUser.checkInfosSeller(pseudo,email,firstName, lastName,password,phoneNumber,street,postal,city,companyName);
 
         if(check.equals("OK")){
+            this.isAConsumer = false;
             signUp(e);
         }else{
 
@@ -143,6 +145,7 @@ public class SignUpController {
     public void signUp(ActionEvent e) throws IOException {
         boolean noError = true;
         if (this.isAConsumer) {
+            System.out.println("CREATE CONSUMER");
             noError = userFacade.signUpConsumer(pseudo,
                     firstName,
                     lastName,
@@ -153,6 +156,7 @@ public class SignUpController {
                     postal,
                     phoneNumber);
         } else {
+            System.out.println("CREATE SELLER");
             noError = userFacade.signUpSeller(pseudo,
                     firstName,
                     lastName,
