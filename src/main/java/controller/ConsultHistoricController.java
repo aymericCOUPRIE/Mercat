@@ -58,6 +58,7 @@ public class ConsultHistoricController {
 
     private final OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private Order order;
 
 
     /**
@@ -90,11 +91,21 @@ public class ConsultHistoricController {
                 tbv_Order.setEditable(true);
                 deliveryDate.setEditable(true);
             } else {
+                deliveryDate.setDisable(true);
                 deliveryDate.setEditable(false);
             }
 
             addDetailsButton();
 
+        }
+    }
+
+    public void updateDeliveryDate() {
+        java.sql.Date date = java.sql.Date.valueOf(deliveryDate.getValue());
+        java.sql.Date oldDate = (java.sql.Date) order.getDeliveryDate();
+        order.setDeliveryDate(date);
+        if (!orderFacade.updateOrderDeliveryDate(order)) {
+            order.setDeliveryDate(oldDate);
         }
     }
 
@@ -208,6 +219,7 @@ public class ConsultHistoricController {
      */
     private void displayDetails(Order order) {
 
+        this.order = order;
         lbl_deliveryAddress.setText(order.getDeliveryAddress());
         deliveryDate.setValue(Instant.ofEpochMilli(order.getDateOrder().getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 

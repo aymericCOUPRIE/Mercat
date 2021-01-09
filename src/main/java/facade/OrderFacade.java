@@ -46,15 +46,15 @@ public class OrderFacade {
     }
 
     /**
-     * @param date
      * @return
      */
-    public boolean updateOrderDeliveryDate(Order order, Date date) {
-        return orderDAO.updateOrderDeliveryDate(order, date);
+    public boolean updateOrderDeliveryDate(Order order) {
+        System.out.println("update 1");
+        return orderDAO.updateOrderDeliveryDate(order);
     }
 
     /**
-     * @param state
+     * @param order
      * @return
      */
     public boolean updateOrderState(Order order) {
@@ -63,7 +63,7 @@ public class OrderFacade {
 
 
     public boolean orderProduct(String c, int idProduct) {
-        return orderDAO.orderProduct(c,idProduct);
+        return orderDAO.orderProduct(c, idProduct);
     }
 
 

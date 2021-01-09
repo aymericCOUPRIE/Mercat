@@ -11,7 +11,6 @@ public class Order {
 
     private int idOrder;
     private String pseudoConsumer;
-    private String pseudoSeller;
     private Date dateOrder;
     private String deliveryAddress;
     private Date deliveryDate;

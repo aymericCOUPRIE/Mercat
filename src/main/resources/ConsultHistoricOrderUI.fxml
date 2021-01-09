@@ -53,7 +53,7 @@
             <Label text="Total :" GridPane.columnIndex="4" />
             <Label fx:id="lbl_deliveryAddress" GridPane.columnIndex="3" />
             <Label fx:id="lbl_Total" GridPane.columnIndex="5" />
-         <DatePicker fx:id="deliveryDate" GridPane.columnIndex="1" />
+         <DatePicker fx:id="deliveryDate" onAction="#updateDeliveryDate" GridPane.columnIndex="1" />
         </GridPane>
         <TableView fx:id="tbv_productDetails" maxWidth="1.7976931348623157E308" prefHeight="200.0">
             <columns>

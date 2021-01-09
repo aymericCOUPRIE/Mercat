@@ -55,7 +55,7 @@ public abstract class OrderDAO {
      * @param order, date
      * @return
      */
-    public abstract boolean updateOrderDeliveryDate(Order order, Date date);
+    public abstract boolean updateOrderDeliveryDate(Order order);
 
     public abstract boolean orderProduct(String c, int idProduct);
 
