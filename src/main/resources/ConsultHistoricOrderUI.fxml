@@ -58,6 +58,8 @@
                 <TableColumn fx:id="tbv_cl_productName" prefWidth="75.0" text="Nom produit" />
                 <TableColumn fx:id="tbv_cl_prix" prefWidth="75.0" text="prix" />
                 <TableColumn fx:id="tbv_cl_quantite" prefWidth="75.0" text="Quantité" />
+            <TableColumn fx:id="tbv_cl_rate" prefWidth="75.0" text="Rate" />
+            <TableColumn fx:id="tbv_cl_comment" prefWidth="75.0" text="Comment" />
             </columns>
             <VBox.margin>
                 <Insets bottom="20.0" left="20.0" right="20.0" />
