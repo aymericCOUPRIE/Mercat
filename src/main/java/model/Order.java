@@ -30,55 +30,104 @@ public class Order {
         this.productsQuantity = productsQuantity;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the id of the order
+     */
     public int getIdOrder() {
         return idOrder;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the pseudo of the consumer
+     */
     public String getPseudoConsumer() {
         return pseudoConsumer;
     }
 
+    /**
+     * SETTER
+     *
+     * @param pseudoConsumer updates the pseduo of the consumer
+     */
     public void setPseudoConsumer(String pseudoConsumer) {
         this.pseudoConsumer = pseudoConsumer;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the date of the order
+     */
     public Date getDateOrder() {
         return dateOrder;
     }
 
-    public void setDateOrder(Date dateOrder) {
-        this.dateOrder = dateOrder;
-    }
 
+    /**
+     * GETTER
+     *
+     * @return the delivery address
+     */
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
 
+    /**
+     * SETTER
+     *
+     * @param deliveryAddress updates the delivery address
+     */
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the delivery date
+     */
     public Date getDeliveryDate() {
         return deliveryDate;
     }
 
+    /**
+     * SETTER
+     *
+     * @param deliveryDate update the delivery date
+     */
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the current stateOrder
+     */
     public String getStateOrder() {
         return stateOrder;
     }
 
+    /**
+     * SETTER
+     *
+     * @param stateOrder updates the state of the order
+     */
     public void setStateOrder(String stateOrder) {
         this.stateOrder = stateOrder;
     }
 
+    /**
+     * GETTER
+     *
+     * @return the list of all Pairs of Product x quantity for the order
+     */
     public List<Pair<Product, Integer>> getProductsQuantity() {
         return productsQuantity;
     }
 
-    public void setProductsQuantity(List<Pair<Product, Integer>> productsQuantity) {
-        this.productsQuantity = productsQuantity;
-    }
 }
