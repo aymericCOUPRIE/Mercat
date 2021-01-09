@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.CommentDAO;
 import model.Comment;
 import model.Consumer;
 import model.Product;

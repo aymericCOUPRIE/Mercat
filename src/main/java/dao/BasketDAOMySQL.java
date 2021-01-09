@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.BasketDAO;
 import model.Basket;
 import model.Product;
 import java.sql.Connection;

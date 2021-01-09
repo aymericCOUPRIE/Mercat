@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.ProductDAO;
 import model.Product;
 
 import java.sql.Connection;

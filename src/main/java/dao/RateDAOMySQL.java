@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.RateDAO;
 import model.Consumer;
 import model.Product;
 import model.Rate;

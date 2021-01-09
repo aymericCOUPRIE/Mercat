@@ -1,4 +1,4 @@
-package dao;
+package dao.abstraction;
 
 import model.Comment;
 import model.Consumer;

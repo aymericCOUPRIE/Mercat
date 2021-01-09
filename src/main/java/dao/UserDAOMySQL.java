@@ -1,5 +1,6 @@
 package dao;
 
+import dao.abstraction.UserDAO;
 import facade.PasswordSecured;
 import model.Consumer;
 import model.Seller;

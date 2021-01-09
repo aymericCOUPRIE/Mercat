@@ -1,7 +1,7 @@
 package facade;
 
-import dao.AbstractFactoryDAO;
-import dao.UserDAO;
+import dao.abstraction.AbstractFactoryDAO;
+import dao.abstraction.UserDAO;
 import model.Consumer;
 import model.Seller;
 import model.User;
