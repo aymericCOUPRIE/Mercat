@@ -47,18 +47,16 @@ public abstract class UserDAO {
      */
     public abstract User login(String pseudo, String password);
 
-    //TODO javadoc
-
     /**
+     * This method create a consumer in the database
      * @param user to create
      * @return True if register successful or false if error
      */
     public abstract boolean createConsumer(Consumer user);
 
-    //TODO javadoc
-
     /**
-     * @param user to crate
+     * This method create a seller in the database
+     * @param user to create
      * @return True if register successful or false if error
      */
     public abstract boolean createSeller(Seller user);
@@ -89,10 +87,30 @@ public abstract class UserDAO {
      */
     public abstract boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber);
 
-    //TODO javadoc
+    /**
+     * Update a seller in the database
+     *
+     * @param pseudo        of the seller
+     * @param firstName     of the seller
+     * @param lastName      of the seller
+     * @param password      of the seller
+     * @param OldPassword   of the seller
+     * @param emailAdress   of the seller
+     * @param streetAddress of the seller
+     * @param city          of the seller
+     * @param postalCode    of the seller
+     * @param phoneNumber   of the seller
+     * @param company       of the seller
+     * @return true if the seller has been modified and false if not.
+     */
     public abstract boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company);
 
-
+    /**
+     * This method return a list of users with a specific role
+     *
+     * @param role        of the user
+     * @return a Array List of String with all pseudos
+     */
     public abstract ArrayList<String> getAllPseudo(String role);
 
     /**
@@ -103,7 +121,12 @@ public abstract class UserDAO {
      */
     public abstract String searchConsumer(String pseudo);
 
-    //TODO javadoc
+    /**
+     * this methode permits to know if a seller exist or not
+     *
+     * @param pseudo of the user we are looking for
+     * @return pseudo of the searched user or an error message if it does not exist or if he is not a seller.
+     */
     public abstract String searchSeller(String pseudo);
 
 }

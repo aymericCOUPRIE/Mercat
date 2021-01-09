@@ -16,7 +16,7 @@ import model.Category;
 import javafx.event.ActionEvent;
 
 /**
- *
+ * This class handles the category interfaces
  */
 public class CategoryController {
 
@@ -73,7 +73,7 @@ public class CategoryController {
             category.setNameCategory(e.getNewValue());
 
             //Mise à jour dans la BDD
-            categoryFacade.updateCategory(category.getNameCategory(), oldName);
+            categoryFacade.updateCategory(category.getNameCategory(), category.getIdCategorie());
         });
         //Pour rendre les cases du tableView modiable
         tableViewCategory.setEditable(true);

@@ -23,8 +23,12 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param baskets lists of all the baskets to insert for a specific order
-     * @return true if the INSERT is done, false if it failed
+     * This method insert in the DB a new category and also the list of all
+     * its product and quantity
+     *
+     * @param baskets        List of all the baskets for a Consumer
+     * @param pseudoConsumer name of the consumer
+     * @return true if the insert order succeeded, false if it failed
      */
     public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
 
@@ -67,8 +71,11 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param order The order that will be updated
-     * @return true if the update is done, false, if it failed
+     * This method is used to update the orderState in the DB
+     * for the coresponding object
+     *
+     * @param order the object order that holds the new orderState
+     * @return true if update succeeded, false if it faild
      */
     public boolean updateOrderState(Order order) {
         String requete = "UPDATE orderdb SET stateOrder = ? WHERE idOrder = ?";
@@ -90,9 +97,11 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param pseudoConsumer
-     * @param dateOrder
-     * @return the order
+     * This method is used to find a specific Order from key elements
+     *
+     * @param pseudoConsumer the pseudo is one elemnt for the primary key in the DB
+     * @param dateOrder      the pseudo is one elemnt for the primary key in the DB
+     * @return the order Object
      */
     public Order find(String pseudoConsumer, Date dateOrder) {
 
@@ -117,7 +126,10 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @return
+     * This method updates the order deliveryDate
+     *
+     * @param order This order object contains the new delivery date
+     * @return true if the insertion in DB succeeded, false if ti failed
      */
     public boolean updateOrderDeliveryDate(Order order) {
         String requete = "UPDATE orderdb SET deliveryDate = ? WHERE idOrder = ?";
@@ -137,11 +149,14 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param pseudo
-     * @return
+     * This method is used to get all the orders from a User
+     * (either a Seller or a Consumer)
+     *
+     * @param pseudo name of the User that wants all its order
+     * @return the the order concerning 1 consumer
      */
     @Override
-    public ArrayList<Order> getAllOrdersConsumer(String pseudo) {
+    public ArrayList<Order> getAllOrders(String pseudo) {
         String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ?";
 
 
@@ -165,8 +180,11 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param res
-     * @return
+     * This method is used in order to have a single method that create an Object "Order"
+     * from a query
+     *
+     * @param res the result of the query
+     * @return the object Order
      * @throws SQLException
      */
     private Order createOrderObject(ResultSet res) throws SQLException {
@@ -182,8 +200,11 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param idOrder
-     * @param idProducts
+     * This method is used whe creating an order,
+     * it insert into the DB all the products and their quantities for the order
+     *
+     * @param idOrder    used in order to add product for a spectific Order
+     * @param idProducts the id of the product added to the order
      */
     private void insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
         String requete = "INSERT INTO orderlistproduct (idOrder, idProduct, quantity) VALUES (?, ?, ?)";
@@ -204,8 +225,11 @@ public class OrderDAOMySQL extends OrderDAO {
 
 
     /**
-     * @param idOrder
-     * @return
+     * This method is used to get all the products and its quantity in order to create
+     * the order object
+     *
+     * @param idOrder id of the order
+     * @return the list of Pairs of the product and it quantity
      */
     private List<Pair<Product, Integer>> getAllProductsFromOrder(int idOrder) {
         String requete = "SELECT * FROM orderlistproduct INNER JOIN product ON orderlistproduct.idProduct = product.idProduct WHERE idOrder = ?";
@@ -241,7 +265,9 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
     /**
-     * @param baskets
+     * This method is used to delete a Basket after it has been inserted in the DB
+     *
+     * @param baskets list of all the baskets to delete
      */
     private void deleteAlBasketAfterInsert(List<Basket> baskets) {
         String requete = "DELETE FROM basket WHERE idProduct = ? AND pseudoConsumer = ?";
@@ -259,7 +285,15 @@ public class OrderDAOMySQL extends OrderDAO {
         }
     }
 
-
+    /**
+     * This method is used to know if a specific product has already been
+     * ordered by the consumer
+     *
+     * @param nameConsumer the name of the consumer
+     * @param idProduct    the id of the product added to the order
+     * @return
+     */
+    @Override
     public boolean orderProduct(String nameConsumer, int idProduct) {
         String requete = "SELECT * FROM orderdb, orderlistproduct WHERE orderdb.idOrder = orderlistproduct.idOrder AND orderdb.pseudoConsumer = ? AND orderlistproduct.idProduct=?";
         System.out.println(nameConsumer + " " + idProduct);

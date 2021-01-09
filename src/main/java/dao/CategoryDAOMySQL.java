@@ -22,8 +22,10 @@ public class CategoryDAOMySQL extends CategoryDAO {
     }
 
     /**
-     * @param nomCat
-     * @return
+     * This method is used to find a specific category
+     *
+     * @param nomCat the name of the category
+     * @return the category, null if their is no category for the given name
      */
     public Category getCategory(String nomCat) {
         Category category = null;
@@ -50,12 +52,16 @@ public class CategoryDAOMySQL extends CategoryDAO {
     }
 
     /**
-     * @return
+     * This method gathers all the categories existing in the DB
+     *
+     * @return the list of all existing categories, ArrayList<Category>
+     * null if their is no category for the given name
      */
+    @Override
     public ArrayList<Category> getAllCategory() {
-        // TODO implement here
+
         ArrayList<Category> listCategory;
-        String requete = "SELECT * FROM category ORDER BY libelleCategorie ASC";
+        String requete = "SELECT * FROM category ORDER BY libelleCategorie ";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -78,6 +84,14 @@ public class CategoryDAOMySQL extends CategoryDAO {
         return null;
     }
 
+    /**
+     * This method create an Object category from a given name
+     * by gathering the data in the DB
+     *
+     * @param nomCategory name of the category
+     * @return the category corresponding to the given name,
+     * null if the insertion failed
+     */
     @Override
     public Category createCategory(String nomCategory) {
         String requete = "INSERT INTO category (idCategorie, libelleCategorie) VALUES (NULL, ?);";
@@ -87,7 +101,10 @@ public class CategoryDAOMySQL extends CategoryDAO {
             preparedStatement.setString(1, nomCategory);
             int res = preparedStatement.executeUpdate();
 
-            if (res == 0) throw new SQLException("Category not inserted");
+            if (res == 0) {
+                return null;
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -95,14 +112,20 @@ public class CategoryDAOMySQL extends CategoryDAO {
         return getCategory(nomCategory);
     }
 
+    /**
+     * This method is used to update the name of a specific category
+     *
+     * @param newNameCategory new name the category
+     * @param nameCategory    old name of hte category
+     */
     @Override
-    public void updateCategory(String newNameCategory, String nameCategory) {
-        String requete = "UPDATE category SET libelleCategorie = ? WHERE libelleCategorie = ?";
+    public void updateCategory(String newNameCategory, int idCategory) {
+        String requete = "UPDATE category SET libelleCategorie = ? WHERE idCategorie = ?";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, newNameCategory);
-            preparedStatement.setString(2, nameCategory);
+            preparedStatement.setInt(2, idCategory);
             int res = preparedStatement.executeUpdate();
 
             //TODO
@@ -113,6 +136,11 @@ public class CategoryDAOMySQL extends CategoryDAO {
     }
 
 
+    /**
+     * This method is used to delete a specific category in the DB
+     *
+     * @param idCategory id of the category (unique)
+     */
     @Override
     public void deleteCategory(int idCategory) {
         String requete = "DELETE FROM category WHERE idCategorie = ?";

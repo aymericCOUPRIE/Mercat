@@ -24,7 +24,8 @@ import java.util.*;
 
 
 /**
- *
+ * This class handles the consulting of order historic
+ * for both the Consumer and the Seller
  */
 public class ConsultHistoricController {
 
@@ -100,6 +101,10 @@ public class ConsultHistoricController {
         }
     }
 
+    /**
+     * Called when the Seller changes date for the delivery date
+     * It Changes the date only if the update in the DB was successful
+     */
     public void updateDeliveryDate() {
         java.sql.Date date = java.sql.Date.valueOf(deliveryDate.getValue());
         java.sql.Date oldDate = (java.sql.Date) order.getDeliveryDate();
@@ -109,6 +114,9 @@ public class ConsultHistoricController {
         }
     }
 
+    /**
+     *
+     */
     private void editStateOrder() {
         tbv_cl_Status.setOnEditCommit(e -> {
             Order order = e.getTableView().getItems().get(e.getTablePosition().getRow());
@@ -150,6 +158,9 @@ public class ConsultHistoricController {
         });
     }
 
+    /**
+     *
+     */
     private void addRateButton() {
         tbv_cl_rate.setCellFactory(param -> new TableCell<>() {
             private final Button rateButton = new Button("Rate");
@@ -174,6 +185,9 @@ public class ConsultHistoricController {
         });
     }
 
+    /**
+     * @param idProduct
+     */
     private void goToRate(int idProduct) {
         Object[] params = new Object[1];
         params[0] = idProduct;
@@ -181,6 +195,9 @@ public class ConsultHistoricController {
     }
 
 
+    /**
+     *
+     */
     private void addCommentButton() {
         tbv_cl_comment.setCellFactory(param -> new TableCell<>() {
             private final Button commentButton = new Button("Comment");
@@ -205,6 +222,9 @@ public class ConsultHistoricController {
         });
     }
 
+    /**
+     * @param idProduct
+     */
     private void goToComment(int idProduct) {
         Object[] params = new Object[1];
         params[0] = idProduct;
@@ -256,7 +276,10 @@ public class ConsultHistoricController {
 
     }
 
-    public void homePage(ActionEvent actionEvent) {
+    /**
+     * Called when the user clicks on the back button
+     */
+    public void homePage() {
         Router.getInstance().activate("HomePage");
     }
 
