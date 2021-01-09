@@ -91,7 +91,10 @@ public abstract class ProductDAO {
         return null;
     }
 
-
+    /**
+     * @param p, the product whose id we want
+     * @return int, the id of the product
+     */
     public abstract int getProductId(Product p);
 
 }
