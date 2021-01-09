@@ -64,7 +64,7 @@ public class RateDAOMySQL extends RateDAO {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, rate);
             preparedStatement.setString(2, consumer.getPseudo());
-            preparedStatement.setString(3, "s");
+            preparedStatement.setString(3, "Admin");
             preparedStatement.setInt(4, idProduct);
 
             preparedStatement.executeUpdate();

@@ -51,7 +51,7 @@ public class OrderDAOMySQL extends OrderDAO {
 
             int res = preparedStatement.executeUpdate();
 
-            if (res != 0) { //Vérifie que le INSERT order c'est bien passé
+            if (res != 0) { //Vérifie que le INSERT order s'est bien passé
                 Order tempo = find(pseudoConsumer, date);
                 insertAllProducts(tempo.getIdOrder(), listsIdProduct);
                 deleteAlBasketAfterInsert(baskets);
@@ -263,6 +263,27 @@ public class OrderDAOMySQL extends OrderDAO {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+
+    public boolean orderProduct(String nameConsumer, int idProduct){
+        String requete = "SELECT * FROM orderdb, orderlistproduct WHERE orderdb.idOrder = orderlistproduct.idOrder AND orderdb.pseudoConsumer = ? AND orderlistproduct.idProduct=?";
+        System.out.println(nameConsumer + " " + idProduct);
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, nameConsumer);
+            preparedStatement.setInt(2, idProduct);
+            ResultSet res = preparedStatement.executeQuery();
+
+            // Tente récupérer résultat
+            if(res.next()){
+                return true;
+            }
+            return false;
+
+        } catch (SQLException throwables) {
+            return false;
         }
     }
 

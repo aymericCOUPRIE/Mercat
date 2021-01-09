@@ -1,12 +1,18 @@
 package controller;
 
+import facade.OrderFacade;
+import facade.ProductFacade;
 import facade.SellerFacade;
 import facade.UserFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Order;
+import model.Product;
 import model.Seller;
 import router.Router;
 
@@ -32,6 +38,8 @@ public class SellerProfileController {
     private Label txtCompanyName;
     @FXML
     private Label txtAverageRate;
+    @FXML
+    private Button btnRate;
 
     /**
      * Default constructor
@@ -46,6 +54,11 @@ public class SellerProfileController {
 
     private SellerFacade sellerFacade = new SellerFacade();
 
+    private OrderFacade orderFacade = new OrderFacade();
+
+    private ProductFacade productFacade = new ProductFacade();
+
+    private ArrayList<Product> productArrayList;
 
     /**
      * @param pseudo 
@@ -76,7 +89,7 @@ public class SellerProfileController {
      *  It permit to return to the home page
      */
     public void back(){
-        Router.getInstance().activate("HomePage");
+        Router.getInstance().activate("DetailsProduct", productArrayList);
     }
 
     /**
@@ -94,8 +107,19 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
+        productArrayList = Router.getInstance().getParametre();
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
+        String nameSeller = listProduct.get(0).getPseudoSeller();
+
+        boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
+        if (order){
+            btnRate.setDisable(false);
+        } else {
+            btnRate.setDisable(true);
+        }
+
         Float averageRate;
-        Seller s = getSellerDetails("s");
+        Seller s = getSellerDetails(nameSeller);
         txtPseudo.setText(s.getPseudo());
         txtEmailAdress.setText(s.getEmailAddress());
         txtPhoneNumber.setText(s.getPhoneNumber());

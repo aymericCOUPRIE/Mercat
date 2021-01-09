@@ -61,6 +61,12 @@ public class OrderFacade {
         return orderDAO.updateOrderState(order);
     }
 
+
+    public boolean orderProduct(String c, int idProduct) {
+        return orderDAO.orderProduct(c,idProduct);
+    }
+
+
     /**
      * @param pseudoConsumer
      * @param orderDate

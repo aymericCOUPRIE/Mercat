@@ -14,35 +14,28 @@ public abstract class ProductDAO {
 
     /**
      * Default constructor
-     * @param connect
+     * @param connect of Connection
      */
     public ProductDAO(Connection connect) {
         this.connect = connect;
     }
 
-    /**
-     * @param idProduct 
-     * @return
-     */
-    public Product getProduct(int idProduct) {
-        // TODO implement here
-        return null;
-    }
+
 
 
     /**
-     * @param name 
+     * @param nameP , the name of the product we want to find
      * @return
      */
-    public ArrayList<Product> getProductsByName(String name) {
+    public ArrayList<Product> getProductsByName(String nameP) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param name 
-     * @param city 
-     * @return
+     * @param name of the product we want to find
+     * @param city of the product we want to find
+     * @return ArrayList<Product>
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         // TODO implement here
@@ -50,44 +43,44 @@ public abstract class ProductDAO {
     }
 
     /**
-     * @param name 
-     * @param idCategory 
-     * @return
+     * @param name of the product we want to find
+     * @param category  of the product we want to find
+     * @return ArrayList<Product>
      */
-    public ArrayList<Product> getProductsByNameAndCategory(String name, String idCategory) {
+    public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param name 
-     * @param city 
-     * @param idCategory 
-     * @return
+     * @param name of the product we want to find
+     * @param city of the product we want to find
+     * @param category of the product we want to find
+     * @return ArrayList<Product>
      */
-    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String idCategory) {
+    public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String category) {
         // TODO implement here
         return null;
     }
 
     /**
-     * @param p le produit
+     * @param product le produit
      * @return boolean
-     * Permet de renvoyer true ou false selon si l'on a réussie à insérer le produit dans la base de données
+     * Permet de renvoyer true ou false selon si l'on a réussit à insérer le produit dans la base de données
      */
-    public abstract boolean createProduct(Product p);
+    public abstract boolean createProduct(Product product);
 
 
     /**
-     * @param p
-     * @param newDescription
-     * @return boolean
+     * @param p, the Product we want to update
+     * @param newDescription, the new description of the product
+     * @return boolean, true if the product was updated into the database
      */
     public abstract boolean updateProduct(Product p, String newDescription);
 
     /**
-     * @param p
-     * @return true if the product was deleted
+     * @param p, the Product that we want to delete
+     * @return boolean, true if the product was deleted
      */
     public abstract boolean deleteProduct(Product p);
 
@@ -98,6 +91,10 @@ public abstract class ProductDAO {
         return null;
     }
 
+    /**
+     * @param p, the product whose id we want
+     * @return int, the id of the product
+     */
     public abstract int getProductId(Product p);
 
 }

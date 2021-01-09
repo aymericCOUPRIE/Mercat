@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import model.Product;
 import router.Router;
 
+import java.util.ArrayList;
+
 
 public class DetailProductController {
 
@@ -39,6 +41,8 @@ public class DetailProductController {
     @FXML
     private Label priceP;
 
+    //On stocke le produit de la page
+    private ArrayList<Product> productArrayList;
     /**
      * This methode permit to add the product of the curent page in the customer's basket
      */
@@ -64,11 +68,15 @@ public class DetailProductController {
 
     public void initialize() {
         errorLabel.setText("");
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
-
+        this.productArrayList = Router.getInstance().getParametre();
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
         nameP.setText(listProduct.get(0).getNameProduct());
         descriptionP.setText(listProduct.get(0).getDescription());
         priceP.setText(""+listProduct.get(0).getPriceProduct());
+    }
+
+    public void goToSellerPage(){
+        Router.getInstance().activate("ProfileSeller",productArrayList);
     }
 
 }
