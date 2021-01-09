@@ -133,14 +133,14 @@ public class ProductController {
     }
 
     /**
-     * @return
+     *
      */
     public void deleteProduct() {
         // TODO implement here
     }
 
     /**
-     * @return
+     *
      */
     public void updateProduct(ActionEvent e) {
         // TODO implement here

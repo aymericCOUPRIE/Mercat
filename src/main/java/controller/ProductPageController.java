@@ -44,6 +44,10 @@ public class ProductPageController {
      */
     public ProductPageController() {}
 
+    /**
+     * Shows the result of a request (gettProductByName...)
+     * Show all the products and their buttons, which enable us to go to the product page
+     */
     public void initialize() {
         ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
         //La colonne nameProduct aura la propriété "nameProduct" de l'objet"
@@ -83,6 +87,9 @@ public class ProductPageController {
             }
 
             @Override
+            /**
+             * Shows the button
+             */
             protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) {

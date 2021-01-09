@@ -153,10 +153,18 @@ public class HomePageController {
         router.activate("HistoricOrder");
     }
 
+    /**
+     * Goes to UpdateCategories page
+     * @param e
+     */
     public void updateCategoriesPage(ActionEvent e) {
         router.activate("UpdateCategories");
     }
 
+    /**
+     * This method enables you to research a product thanks to his name
+     * @param e
+     */
     public void getProductsByName(ActionEvent e){
         productName = txtProduct1.getText();
         if(productName.equals("")){
@@ -212,6 +220,11 @@ public class HomePageController {
             Router.getInstance().activate("ProductUI",p);
         }
     }
+
+    /**
+     * Show on an error message on the page, it informs the user of his mistakes
+     * @param msg
+     */
     public void display(String msg)
     {
         errorText.setText(msg);

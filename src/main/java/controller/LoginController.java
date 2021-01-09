@@ -1,16 +1,14 @@
 package controller;
 
 import facade.UserFacade;
-
-import java.io.IOException;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import router.Router;
-import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 /**
  *
@@ -90,7 +88,7 @@ public class LoginController {
     }
 
     /**
-     * This methode allows to don't have error message at the begining
+     * This methode allows to don't have error message at the beginning
      */
     public void initialize() {
 
