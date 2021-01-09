@@ -44,6 +44,7 @@ public abstract class CheckInfosUser {
                     return "Your phone number is incorrect";
                 }
             }
+            else return "Your password cannot have space in it";
         }
     }
 
