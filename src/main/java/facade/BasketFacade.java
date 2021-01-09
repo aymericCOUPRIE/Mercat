@@ -12,13 +12,14 @@ public class BasketFacade {
 
     private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
     private final BasketDAO basketDAO = af.createBasketDAO();
+
     /**
-     * singleton de notre façade
+     * the singleton facade
      */
     private  static BasketFacade instanceBasketFacade = getInstanceBasketFacade();
 
     /**
-     * this methode permits to get the instanceBasketFacade and make sure we have only one façade
+     * this methode permits to get the instanceBasketFacade and make sure we have only one facade
      * @return instanceBasketFacade
      */
     public static BasketFacade getInstanceBasketFacade() {
@@ -46,9 +47,6 @@ public class BasketFacade {
      * @return boolean True si le panier a bien été modifié
      *
      */
-
-
-
     public boolean updateBasket(String pseudo, int idProduct, int quantity) {
 
        return basketDAO.updateBasket(pseudo,idProduct,quantity);

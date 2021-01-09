@@ -91,7 +91,7 @@ public class UpdateConsumerProfileController {
         String check = CheckInfosUser.checkInfosConsumer(txtPseudo.getText(),txtEmailAdress.getText(),txtFirstname.getText(),txtLastname.getText(),txtPassword.getText(),txtPhoneNumber.getText(),txtStreetAdress.getText(),txtPostal.getText(),txtCity.getText());
 
         if(check.equals("OK")){
-            if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
+            if(userFacade.updateConsumer(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
                 display("Your profile has been updated !");
             } else {
                 display("Error during update !");
