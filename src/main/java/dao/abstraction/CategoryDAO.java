@@ -67,9 +67,9 @@ public abstract class CategoryDAO {
      * This method is used to update the name of a specific category
      *
      * @param newNameCategory new name the category
-     * @param nameCategory    old name of hte category
+     * @param idCategory      id of the category
      */
-    public abstract void updateCategory(String newNameCategory, String nameCategory);
+    public abstract void updateCategory(String newNameCategory, int idCategory);
 
 
     /**

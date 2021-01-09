@@ -119,13 +119,13 @@ public class CategoryDAOMySQL extends CategoryDAO {
      * @param nameCategory    old name of hte category
      */
     @Override
-    public void updateCategory(String newNameCategory, String nameCategory) {
-        String requete = "UPDATE category SET libelleCategorie = ? WHERE libelleCategorie = ?";
+    public void updateCategory(String newNameCategory, int idCategory) {
+        String requete = "UPDATE category SET libelleCategorie = ? WHERE idCategorie = ?";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, newNameCategory);
-            preparedStatement.setString(2, nameCategory);
+            preparedStatement.setInt(2, idCategory);
             int res = preparedStatement.executeUpdate();
 
             //TODO
