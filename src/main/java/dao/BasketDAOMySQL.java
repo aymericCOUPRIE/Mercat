@@ -16,7 +16,7 @@ public class BasketDAOMySQL extends BasketDAO {
      * this methode permit to connect the dao with the database
      * @param connect is the connection for the database
      */
-    public BasketDAOMySQL(Connection connect) {
+    protected BasketDAOMySQL(Connection connect) {
         super(connect);
     }
 

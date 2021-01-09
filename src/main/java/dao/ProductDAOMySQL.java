@@ -18,7 +18,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * Default constructor
      * @param connect of Connection
      */
-    public ProductDAOMySQL(Connection connect) {
+    protected ProductDAOMySQL(Connection connect) {
         super(connect);
     }
 

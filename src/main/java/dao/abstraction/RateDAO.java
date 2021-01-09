@@ -1,5 +1,6 @@
 package dao.abstraction;
 
+import dao.AbstractFactoryDAO;
 import model.Consumer;
 import model.Product;
 import model.Rate;
@@ -9,23 +10,33 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public abstract class RateDAO {
 
     protected Connection connect = null;
+
+    private static RateDAO instanceRateDAO;
 
     /**
      * Default constructor
      *
      * @param connect
      */
-    public RateDAO(Connection connect) {
+    protected RateDAO(Connection connect) {
         this.connect = connect;
     }
 
+
+    public static RateDAO getInstance() {
+        if (instanceRateDAO == null) {
+            instanceRateDAO = AbstractFactoryDAO.getFactory().createRateDAO();
+        }
+        return instanceRateDAO;
+    }
+
     /**
-     * @param product 
+     * @param product
      * @return
      */
     public Set<Rate> getAllRatesProduct(Product product) {
@@ -34,8 +45,8 @@ public abstract class RateDAO {
     }
 
     /**
-     * @param seller 
-     * @param consumer 
+     * @param seller
+     * @param consumer
      * @param rate
      */
     public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
@@ -67,7 +78,7 @@ public abstract class RateDAO {
     public abstract float averageRateSeller(Seller seller);
 
     /**
-     * @param seller 
+     * @param seller
      * @return
      */
     public Set<Rate> getAllRatesSeller(Seller seller) {

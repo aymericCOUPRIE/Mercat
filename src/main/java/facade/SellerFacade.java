@@ -1,6 +1,6 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
+import dao.AbstractFactoryDAO;
 import dao.abstraction.RateDAO;
 import model.Consumer;
 import model.Seller;
@@ -16,9 +16,7 @@ public class SellerFacade {
     public SellerFacade() {
     }
 
-    private RateDAO rateDAO;
-    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private RateDAO DAO = af.createRateDAO();
+    private RateDAO rateDAO = RateDAO.getInstance();
 
     /**
      * @param Consumer 
@@ -28,7 +26,7 @@ public class SellerFacade {
      */
     public void AddRate(Consumer Consumer, int rate, String seller) {
         Seller userSeller = new Seller(seller,"r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
-        DAO.createRateSeller(userSeller , Consumer, rate);
+        rateDAO.createRateSeller(userSeller , Consumer, rate);
     }
 
     /**
@@ -38,7 +36,7 @@ public class SellerFacade {
      */
     public float getRate(Consumer Consumer, String seller) {
         Seller userSeller = new Seller(seller,"r","r","d","@","streetAddress","city","21","","seller", "0102301023", "companyName");
-        return DAO.rateSeller(userSeller , Consumer);
+        return rateDAO.rateSeller(userSeller , Consumer);
     }
 
     /**
@@ -46,7 +44,7 @@ public class SellerFacade {
      * @return float, the average of all rates of a seller
      */
     public float getSellerAverageRate(Seller seller) {
-        return DAO.averageRateSeller(seller);
+        return rateDAO.averageRateSeller(seller);
     }
 
 

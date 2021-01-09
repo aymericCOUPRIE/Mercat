@@ -1,5 +1,6 @@
 package dao.abstraction;
 
+import dao.AbstractFactoryDAO;
 import model.Comment;
 import model.Consumer;
 import model.Product;
@@ -14,13 +15,23 @@ public abstract class CommentDAO {
 
     protected Connection connect = null;
 
+    private static CommentDAO instanceCommentDAO;
+
     /**
      * Default constructor
      */
-    public CommentDAO(Connection connect) {
+    protected CommentDAO(Connection connect) {
         this.connect = connect;
     }
 
+    public static CommentDAO getInstance() {
+        if (instanceCommentDAO == null) {
+            instanceCommentDAO = AbstractFactoryDAO.getFactory().createCommentDAO();
+        }
+        return instanceCommentDAO;
+    }
+
+    
     /**
      * @param consumer
      * @param comment

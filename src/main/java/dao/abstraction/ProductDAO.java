@@ -1,5 +1,6 @@
 package dao.abstraction;
 
+import dao.AbstractFactoryDAO;
 import model.Product;
 
 import java.sql.Connection;
@@ -12,6 +13,8 @@ public abstract class ProductDAO {
 
     protected Connection connect = null;
 
+    private static ProductDAO instanceProductDAO;
+
     /**
      * Default constructor
      * @param connect of Connection
@@ -21,6 +24,12 @@ public abstract class ProductDAO {
     }
 
 
+    public static ProductDAO getInstance() {
+        if(instanceProductDAO == null) {
+            instanceProductDAO = AbstractFactoryDAO.getFactory().createProductDAO();
+        }
+        return instanceProductDAO;
+    }
 
 
     /**

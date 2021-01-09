@@ -17,7 +17,7 @@ public class CategoryDAOMySQL extends CategoryDAO {
     /**
      * Default constructor
      */
-    public CategoryDAOMySQL(Connection connect) {
+    protected CategoryDAOMySQL(Connection connect) {
         super(connect);
     }
 

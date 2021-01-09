@@ -1,6 +1,5 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
 import dao.abstraction.UserDAO;
 import model.Consumer;
 import model.Seller;
@@ -13,8 +12,7 @@ public class UserFacade {
 
     private static User user;
 
-    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private final UserDAO userDAO = af.createUserDAO();
+    private final UserDAO userDAO = UserDAO.getInstance();
 
 
 
@@ -113,7 +111,6 @@ public class UserFacade {
      * @return true if the user has been updated, else false
      */
     public boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
-
         return userDAO.updateConsumer(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber);
     }
 

@@ -1,6 +1,6 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
+import dao.AbstractFactoryDAO;
 import dao.abstraction.CategoryDAO;
 import model.Category;
 
@@ -11,8 +11,7 @@ import java.util.*;
  */
 public class CategoryFacade {
 
-    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private final CategoryDAO categoryDAO = af.createCategoryDAO();
+    private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
 
     private static CategoryFacade instanceFacade;
 

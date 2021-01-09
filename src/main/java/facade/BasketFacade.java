@@ -1,6 +1,6 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
+import dao.AbstractFactoryDAO;
 import dao.abstraction.BasketDAO;
 import model.Basket;
 
@@ -11,8 +11,7 @@ import java.util.ArrayList;
  */
 public class BasketFacade {
 
-    private final AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private final BasketDAO basketDAO = af.createBasketDAO();
+    private final BasketDAO basketDAO = BasketDAO.getInstance();
 
     /**
      * the singleton facade

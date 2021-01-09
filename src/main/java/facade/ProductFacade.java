@@ -1,6 +1,6 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
+import dao.AbstractFactoryDAO;
 import dao.abstraction.CommentDAO;
 import dao.abstraction.ProductDAO;
 import dao.abstraction.RateDAO;
@@ -13,11 +13,9 @@ import java.util.*;
  */
 public class ProductFacade {
 
-    private boolean product;
-    private AbstractFactoryDAO af = AbstractFactoryDAO.getFactory();
-    private ProductDAO productDAO = af.createProductDAO();
-    private RateDAO rateDAO = af.createRateDAO();
-    private CommentDAO commentDAO = af.createCommentDAO();
+    private ProductDAO productDAO = ProductDAO.getInstance();
+    private RateDAO rateDAO = RateDAO.getInstance();
+    private CommentDAO commentDAO = CommentDAO.getInstance();
 
     private static ProductFacade instanceProductFacade;
 

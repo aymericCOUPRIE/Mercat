@@ -1,5 +1,6 @@
 package dao.abstraction;
 
+import dao.AbstractFactoryDAO;
 import model.Basket;
 
 import java.sql.Connection;
@@ -13,15 +14,23 @@ public abstract class BasketDAO {
      */
     protected Connection connect = null;
 
+    private static BasketDAO instanceBasketDAO;
+
     /**
      * this methode permit to connect the dao with the database
      * @param connect is the connection for the database
      */
-    public BasketDAO(Connection connect) {
+    protected BasketDAO(Connection connect) {
         this.connect = connect;
     }
 
 
+    public static BasketDAO getInstance() {
+        if (instanceBasketDAO == null) {
+            instanceBasketDAO = AbstractFactoryDAO.getFactory().createBasketDAO();
+        }
+        return instanceBasketDAO;
+    }
 
 
     /**

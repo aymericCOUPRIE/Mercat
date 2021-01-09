@@ -1,6 +1,6 @@
 package facade;
 
-import dao.abstraction.AbstractFactoryDAO;
+import dao.AbstractFactoryDAO;
 import dao.abstraction.OrderDAO;
 import model.Basket;
 import model.Order;

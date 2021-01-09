@@ -16,7 +16,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     /**
      * Default constructor
      */
-    public DAOFactoryMySQL() {
+    protected DAOFactoryMySQL() {
     }
 
 

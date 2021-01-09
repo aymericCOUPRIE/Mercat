@@ -19,7 +19,7 @@ public class OrderDAOMySQL extends OrderDAO {
     /**
      * Default constructor
      */
-    public OrderDAOMySQL(Connection connect) {
+    protected OrderDAOMySQL(Connection connect) {
         super(connect);
     }
 

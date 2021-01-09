@@ -16,7 +16,7 @@ public class CommentDAOMySQl extends CommentDAO {
     /**
      * Default constructor
      */
-    public CommentDAOMySQl(Connection connect) {
+    protected CommentDAOMySQl(Connection connect) {
             super(connect);
     }
 

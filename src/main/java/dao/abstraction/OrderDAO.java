@@ -1,5 +1,6 @@
 package dao.abstraction;
 
+import dao.AbstractFactoryDAO;
 import model.Basket;
 import model.Order;
 
@@ -16,11 +17,20 @@ public abstract class OrderDAO {
      */
     protected Connection connect;
 
+    private static OrderDAO instanceOrderDAO;
+
     /**
      * Default constructor
      */
-    public OrderDAO(Connection connect) {
+    protected OrderDAO(Connection connect) {
         this.connect = connect;
+    }
+
+    public static OrderDAO getInstance() {
+        if (instanceOrderDAO == null) {
+            instanceOrderDAO = AbstractFactoryDAO.getFactory().createOrderDAO();
+        }
+        return instanceOrderDAO;
     }
 
     /**

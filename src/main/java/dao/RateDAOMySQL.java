@@ -17,7 +17,7 @@ public class RateDAOMySQL extends RateDAO {
     /**
      * Default constructor
      */
-    public RateDAOMySQL(Connection connect) {
+    protected RateDAOMySQL(Connection connect) {
         super(connect);
     }
 

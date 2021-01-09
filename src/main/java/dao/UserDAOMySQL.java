@@ -1,10 +1,11 @@
 package dao;
 
 import dao.abstraction.UserDAO;
-import facade.PasswordSecured;
+import utils.PasswordSecured;
 import model.Consumer;
 import model.Seller;
 import model.User;
+
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,14 +17,16 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * this methode permit to  connect the dao with the database
+     *
      * @param connect is the connection for the database
      */
-    public UserDAOMySQL(Connection connect) {
+    protected UserDAOMySQL(Connection connect) {
         super(connect);
     }
 
     /**
      * this method returns a user whose pseudo is passed in parameter
+     *
      * @param pseudo of the user we want to find
      * @return User dont le pseudo est passé en paramètres
      */
@@ -54,7 +57,8 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * this method makes it possible to check if a user with this username and password exists in the database, and if this is the case to connect to it
-     * @param pseudo of the user
+     *
+     * @param pseudo   of the user
      * @param password of the user
      * @return User who has just connected or null if connection unsuccessful i.e. bad nickname or password
      */
@@ -74,12 +78,12 @@ public class UserDAOMySQL extends UserDAO {
 
             if (res.next()) {
                 if (PasswordSecured.isTheSamePassword(password, res.getString("password"))) {
-
                     return instantiateUser(res);
                 }
             } else {//il n'y a pas de résultat dans ma requête
                 return null;
             }
+
         } catch (SQLException | NoSuchAlgorithmException throwables) {
             throwables.printStackTrace();
         }
@@ -90,6 +94,7 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * this methode permits to create an instance of the consumer class or the seller class
+     *
      * @param res is the result of the SQL request
      * @return user instance create with the informations in res
      * @throws SQLException
@@ -130,7 +135,7 @@ public class UserDAOMySQL extends UserDAO {
         return user;
     }
 
-//TODO java doc
+    //TODO java doc
     public boolean createConsumer(Consumer user) {
 
         String hashPassword = PasswordSecured.hash(user.getPassword());
@@ -189,16 +194,17 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * Update the consumer with all new information
-     * @param pseudo of the consumer
-     * @param firstName of the consumer
-     * @param lastName of the consumer
-     * @param password of the consumer
-     * @param OldPassword of the consumer
-     * @param emailAdress of the consumer
+     *
+     * @param pseudo        of the consumer
+     * @param firstName     of the consumer
+     * @param lastName      of the consumer
+     * @param password      of the consumer
+     * @param OldPassword   of the consumer
+     * @param emailAdress   of the consumer
      * @param streetAddress of the consumer
-     * @param city of the consumer
-     * @param postalCode of the consumer
-     * @param phoneNumber of the consumer
+     * @param city          of the consumer
+     * @param postalCode    of the consumer
+     * @param phoneNumber   of the consumer
      * @return true if the consumer has been modified and false if not.
      */
     public boolean updateConsumer(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber) {
@@ -258,6 +264,7 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * this methode permits to delete an user from the database
+     *
      * @param pseudo of the user whose account we want to delete
      * @return true if the user has been deleted from the database
      */
@@ -276,6 +283,7 @@ public class UserDAOMySQL extends UserDAO {
 
     /**
      * This methode permits to have the pseudo of user according to their past role in parameters
+     *
      * @param role of users we want (consumer or seller)
      * @return list of users whose role corresponds to the one passed in parameters
      */
@@ -302,9 +310,10 @@ public class UserDAOMySQL extends UserDAO {
     }
 
     /**
-     *   this methode permits to know if a consumer exist or not
+     * this methode permits to know if a consumer exist or not
+     *
      * @param pseudo of the user we are looking for
-     * @return  pseudo of the searched user or an error message if it does not exist or if he is not a consumer.
+     * @return pseudo of the searched user or an error message if it does not exist or if he is not a consumer.
      */
     public String searchConsumer(String pseudo) {
         String requete = "SELECT pseudo,role FROM user WHERE pseudo =?";
@@ -327,6 +336,7 @@ public class UserDAOMySQL extends UserDAO {
     }
 
     //TODO java doc
+
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
      *
