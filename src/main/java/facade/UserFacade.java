@@ -229,8 +229,7 @@ public class UserFacade {
      * @return seller
      */
     public Seller getSellerDetails(String pseudo) {
-        // METTRE get Params comme au dessus qd les branches seront merge
-        return (Seller) userDAO.findUser("s");
+        return (Seller) userDAO.findUser(pseudo);
     }
 
 
