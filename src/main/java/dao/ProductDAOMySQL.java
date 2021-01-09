@@ -252,7 +252,10 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
-
+    /**
+     * @param id of the category
+     * @return the libelle of the caegory, which id is in parameterD
+     */
     private String getCategoryLibelle(int id){
         String requete = "SELECT LibelleCategorie FROM category WHERE idCategorie = ?";
         try {
@@ -271,6 +274,10 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
+    /**
+     * @param c, the category name
+     * @return an int which represents the id of the category in parameter
+     */
     private int getCategoryId(String c) {
         String requete = "SELECT idCategorie FROM category WHERE LibelleCategorie = ?";
         try {
