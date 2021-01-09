@@ -186,4 +186,8 @@ public class ProductFacade {
         return productDAO.getProductsByNameAndCityAndCategory(name,city,category);
     }
 
+    public int getIdProduct(Product p){
+        return productDAO.getProductId(p);
+    }
+
 }

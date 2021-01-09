@@ -188,7 +188,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @return int, the id of the product
      */
     public int getProductId(Product p) {
-        String requete = "SELECT idProduct FROM product WHERE nameProduct=? AND description=? AND price=? AND seller=? AND category=?";
+        String requete = "SELECT idProduct FROM product WHERE nameProduct=? AND description=? AND priceProduct=? AND pseudoSeller=?";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -197,7 +197,7 @@ public class ProductDAOMySQL extends ProductDAO {
             preparedStatement.setString(3, "" + p.getPriceProduct());
             preparedStatement.setString(4, p.getPseudoSeller());
             //TODO ERREUR ERROR modif pour passer du nom à un int
-            preparedStatement.setString(5, String.valueOf(p.getIdCategorie()));
+            //preparedStatement.setString(5, String.valueOf(p.getIdCategorie()));
 
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {

@@ -276,7 +276,7 @@ public class OrderDAOMySQL extends OrderDAO {
             ResultSet res = preparedStatement.executeQuery();
 
             // Tente récupérer résultat
-            while(res.next()){
+            if(res.next()){
                 return true;
             }
             return false;
