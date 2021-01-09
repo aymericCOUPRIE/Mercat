@@ -266,4 +266,25 @@ public class OrderDAOMySQL extends OrderDAO {
     }
 
 
+    public boolean orderProduct(String nameConsumer, int idProduct){
+        String requete = "SELECT * FROM orderdb, orderlistproduct WHERE orderdb.idOrder = orderlistproduct.idOrder AND orderdb.pseudoConsumer = ? AND orderlistproduct.idProduct=?";
+        System.out.println(nameConsumer + " " + idProduct);
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, nameConsumer);
+            preparedStatement.setInt(2, idProduct);
+            ResultSet res = preparedStatement.executeQuery();
+
+            // Tente récupérer résultat
+            while(res.next()){
+                return true;
+            }
+            return false;
+
+        } catch (SQLException throwables) {
+            return false;
+        }
+    }
+
+
 }

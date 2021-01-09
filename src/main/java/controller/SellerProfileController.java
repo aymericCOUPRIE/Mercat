@@ -1,5 +1,6 @@
 package controller;
 
+import facade.OrderFacade;
 import facade.SellerFacade;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
@@ -48,6 +49,8 @@ public class SellerProfileController {
     private UserFacade userFacade = new UserFacade();
 
     private SellerFacade sellerFacade = new SellerFacade();
+
+    private OrderFacade orderFacade = new OrderFacade();
 
     private ArrayList<Product> productArrayList;
 
@@ -101,6 +104,11 @@ public class SellerProfileController {
         productArrayList = Router.getInstance().getParametre();
         ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
         String nameSeller = listProduct.get(0).getPseudoSeller();
+
+        System.out.println(listProduct.get(0).getNameProduct());
+        System.out.println(listProduct.get(0).getIdProduct());
+
+        //boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), listProduct.get(0).getIdProduct());
 
         Float averageRate;
         Seller s = getSellerDetails(nameSeller);
