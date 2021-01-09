@@ -2,26 +2,19 @@ package controller;
 
 import facade.UserFacade;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.Consumer;
 import model.User;
 import router.Router;
-
-import javafx.event.ActionEvent;
 import utils.CheckInfosUser;
-
-import java.io.IOException;
-import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 
- */
+
 public class UpdateConsumerProfileController {
+
+
     @FXML
     private Label txtPseudo;
     @FXML
@@ -45,20 +38,15 @@ public class UpdateConsumerProfileController {
 
 
     private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
-    /**
-     * Default constructor
-     */
-    public UpdateConsumerProfileController() {
-    }
 
     /**
-     * 
+     * this facade permits to get the informations about the logged-in user
      */
-    private UserFacade userFacade = new UserFacade();
+    private final UserFacade userFacade = new UserFacade();
 
     /**
-     * This methode permite to get all the information about a seller.
-     * @return Consumer
+     * This methode permits to get all the information about a consumer.
+     * @return logged-in Consumer
      *
      */
     public User getConsumerDetails() {
@@ -71,9 +59,9 @@ public class UpdateConsumerProfileController {
      *
      */
     public void deleteConsumer() {
-        if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
+        if(userFacade.deleteUser(txtPseudo.getText())){
 
-            if(!(userFacade.getInstanceUserFacade().isAdmin())){
+            if(!(userFacade.isAdmin())){
                 display("Your account has been deleted");
 
                 CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
@@ -95,7 +83,7 @@ public class UpdateConsumerProfileController {
     /**
      *  Method used by btnUpdateConsumer from Java FX
      *  It permit to update some information about the consumer in the dataBase
-     * @param
+     *  the information is entered by the user in the form
      */
     @FXML
     public void updateConsumer() {
@@ -104,7 +92,7 @@ public class UpdateConsumerProfileController {
 
         if(check.equals("OK")){
             if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText())){
-                display("Your profil has been updated !");
+                display("Your profile has been updated !");
             } else {
                 display("Error during update !");
             }
@@ -145,7 +133,7 @@ public class UpdateConsumerProfileController {
 
     /**
      * It allows to display an error message on the user interface
-     * @param msg
+     * @param msg to display
      */
     @FXML
     public void display(String msg)
