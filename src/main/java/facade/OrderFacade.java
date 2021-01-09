@@ -23,6 +23,10 @@ public class OrderFacade {
     public OrderFacade() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static OrderFacade getInstanceOrderFacade() {
         if (instanceOrderFacade == null) {
             instanceOrderFacade = new OrderFacade();
@@ -31,14 +35,16 @@ public class OrderFacade {
     }
 
     /**
+     * @param pseudo
      * @return
      */
     public List<Order> getAllOrders(String pseudo) {
-        return orderDAO.getAllOrdersConsumer(pseudo);
+        return orderDAO.getAllOrders(pseudo);
     }
 
     /**
      * @param baskets
+     * @param pseudoConsumer
      * @return
      */
     public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
@@ -46,6 +52,7 @@ public class OrderFacade {
     }
 
     /**
+     * @param order
      * @return
      */
     public boolean updateOrderDeliveryDate(Order order) {
@@ -61,7 +68,11 @@ public class OrderFacade {
         return orderDAO.updateOrderState(order);
     }
 
-
+    /**
+     * @param c
+     * @param idProduct
+     * @return
+     */
     public boolean orderProduct(String c, int idProduct) {
         return orderDAO.orderProduct(c, idProduct);
     }
@@ -70,7 +81,7 @@ public class OrderFacade {
     /**
      * @param pseudoConsumer
      * @param orderDate
-     * @return a specific order
+     * @return
      */
     public Order find(String pseudoConsumer, Date orderDate) {
         return orderDAO.find(pseudoConsumer, orderDate);

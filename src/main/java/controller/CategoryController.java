@@ -16,7 +16,7 @@ import model.Category;
 import javafx.event.ActionEvent;
 
 /**
- *
+ * This class handles the category interface
  */
 public class CategoryController {
 
