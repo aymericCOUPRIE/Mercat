@@ -179,6 +179,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="sellerProductsButton" mnemonicParsing="false" onAction="#goToSellerProducts" text="All my products" GridPane.columnIndex="3" GridPane.rowIndex="10" />
             </children>
         </GridPane>
     </children>

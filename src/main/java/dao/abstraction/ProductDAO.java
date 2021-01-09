@@ -106,4 +106,6 @@ public abstract class ProductDAO {
      */
     public abstract int getProductId(Product p);
 
+    public ArrayList<Product> getProductsBySeller(String seller){return null;}
+
 }

@@ -226,6 +226,8 @@ public class ProductController {
         }
     }
 
+
+
     @FXML
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("SearchProduct");

@@ -33,7 +33,7 @@ public abstract class CheckInfosUser {
                     Matcher matcher = pattern.matcher(email);
                     if (matcher.matches()) {
                         if(postal.matches("[0-9]+")&&(postal.length()==5)){
-                            return "Ok";
+                            return "OK";
                         }else{
                             return "Your postal code is invalid";
                         }
@@ -47,7 +47,7 @@ public abstract class CheckInfosUser {
             else return "Your password cannot have space in it";
         }
     }
-
+    //TODO : Flo
     /**
      *
      * @param pseudo

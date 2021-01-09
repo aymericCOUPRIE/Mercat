@@ -35,9 +35,11 @@ public class ProductPageController {
 
     @FXML
     private Button home;
+    @FXML
+    private Button sellerPageButton;
 
-    private UserFacade userFacade;
     private ProductFacade productFacade = ProductFacade.getInstance();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     /**
      * Default constructor
@@ -107,5 +109,14 @@ public class ProductPageController {
         Router.getInstance().activate("AddProduct");
     }
 
+    @FXML
+    /**
+     * This method is used by the
+     */
+    private void goToSellerPage(ActionEvent e) {
+        Object[] o = new Object[1];
+        o[0] = userFacade.getConnectedUser().getPseudo();
+        Router.getInstance().activate("SellerProfileUI",o);
+    }
 
 }

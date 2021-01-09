@@ -311,7 +311,18 @@ public class ProductDAOMySQL extends ProductDAO {
             throwables.printStackTrace();
         }
         return null;
+    }
 
+    public ArrayList<Product> getProductsBySeller(String seller){
+        ArrayList<Product> listProduct = new ArrayList<Product>();
+        String requete = "SELECT * FROM product WHERE pseudoSeller = ?";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            return getProductList(listProduct,preparedStatement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
 

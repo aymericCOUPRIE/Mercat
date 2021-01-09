@@ -9,14 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import model.Order;
 import model.Product;
 import model.Seller;
 import router.Router;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * 
@@ -40,6 +39,8 @@ public class SellerProfileController {
     private Label txtAverageRate;
     @FXML
     private Button btnRate;
+    @FXML
+    private Button sellerProductsButton;
 
     /**
      * Default constructor
@@ -107,6 +108,7 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
+        //TODO à changer on doit recevoir le pseudo du Produit ! et non un produit
         productArrayList = Router.getInstance().getParametre();
         ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
         String nameSeller = listProduct.get(0).getPseudoSeller();
@@ -136,9 +138,11 @@ public class SellerProfileController {
         else {
             txtAverageRate.setText(averageRate.toString());
         }
-
-
-
     }
+
+    /*private void goToSellerProducts(ActionEvent e){
+
+        Router.getInstance().
+    }*/
 
 }
