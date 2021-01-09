@@ -297,10 +297,12 @@ public class ProductDAOMySQL extends ProductDAO {
         String requete = "SELECT * FROM product";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            return getProductList(listProduct, preparedStatement)
+            return getProductList(listProduct, preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return null;
+
     }
 
 
