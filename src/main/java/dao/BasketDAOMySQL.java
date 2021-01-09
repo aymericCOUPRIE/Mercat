@@ -105,7 +105,7 @@ public class BasketDAOMySQL extends BasketDAO {
     }
 
     /**
-     * This methode permit to update the quantity of an order
+     * This methode permit to update the quantity of a product in the basket
      * @param pseudo of the  logged-in consumer
      * @param idProduct  for which you want to change the quantity
      * @param quantity we want to save
