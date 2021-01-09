@@ -58,11 +58,12 @@ public abstract class OrderDAO {
      * This method insert in the DB a new category and also the list of all
      * its product and quantity
      *
-     * @param basket         List of all the baskets for a Consumer
-     * @param pseudoConsumer name of the consumer
+     * @param basket          List of all the baskets for a Consumer
+     * @param pseudoConsumer  name of the consumer
+     * @param deliveryAddress the delivery address of the order (either at consumer home or at seller shop)
      * @return true if the insert order succeeded, false if it failed
      */
-    public abstract boolean insertOrder(List<Basket> basket, String pseudoConsumer);
+    public abstract boolean insertOrder(List<Basket> basket, String pseudoConsumer, String deliveryAddress);
 
     /**
      * This method updates the order deliveryDate

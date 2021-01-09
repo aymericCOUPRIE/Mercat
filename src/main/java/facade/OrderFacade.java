@@ -48,12 +48,13 @@ public class OrderFacade {
     /**
      * This method is used to add an Order to the DB
      *
-     * @param baskets        list of all the baskets
-     * @param pseudoConsumer unique key for the consumer
+     * @param baskets         list of all the baskets
+     * @param pseudoConsumer  unique key for the consumer
+     * @param deliveryAddress the delivery address of the order (either at consumer home or at seller shop)
      * @return true if the order has been inserted in he DB, false if it failed
      */
-    public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
-        return orderDAO.insertOrder(baskets, pseudoConsumer);
+    public boolean insertOrder(List<Basket> baskets, String pseudoConsumer, String deliveryAddress) {
+        return orderDAO.insertOrder(baskets, pseudoConsumer, deliveryAddress);
     }
 
     /**

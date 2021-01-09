@@ -26,29 +26,33 @@ public class OrderDAOMySQL extends OrderDAO {
      * This method insert in the DB a new category and also the list of all
      * its product and quantity
      *
-     * @param baskets        List of all the baskets for a Consumer
-     * @param pseudoConsumer name of the consumer
+     * @param baskets         List of all the baskets for a Consumer
+     * @param pseudoConsumer  name of the consumer
+     * @param deliveryAddress the delivery address of the order (either at consumer home or at seller shop)
      * @return true if the insert order succeeded, false if it failed
      */
-    public boolean insertOrder(List<Basket> baskets, String pseudoConsumer) {
+    public boolean insertOrder(List<Basket> baskets, String pseudoConsumer, String deliveryAddress) {
 
 
         List<Pair<Integer, Integer>> listsIdProduct = new ArrayList<>();
+
         for (Basket b : baskets) {
             listsIdProduct.add(new Pair<>(b.getProduct().getIdProduct(), b.getQuantity()));
         }
 
         String requete = "INSERT INTO orderdb (dateOrder, deliveryDate, deliveryAddress, stateOrder, pseudoConsumer) VALUES (?,?,?,?,?)";
 
-        Timestamp date = new Timestamp(System.currentTimeMillis());
+        Timestamp date = new Timestamp(System.currentTimeMillis()) ;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 7);
 
-        System.out.println("DATE" + date);
         try {
 
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setTimestamp(1, date);
-            preparedStatement.setTimestamp(2, date);
-            preparedStatement.setString(3, "seller ou consumer address");
+            preparedStatement.setTimestamp(2, new Timestamp(cal.getTime().getTime()));
+            preparedStatement.setString(3, deliveryAddress);
             preparedStatement.setString(4, "start");
             preparedStatement.setString(5, pseudoConsumer);
 
@@ -60,7 +64,7 @@ public class OrderDAOMySQL extends OrderDAO {
                 deleteAlBasketAfterInsert(baskets);
             }
 
-            return res == 0;
+            return res != 0;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

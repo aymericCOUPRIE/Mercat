@@ -46,6 +46,9 @@ public class BasketController {
     @FXML
     private TableColumn<Basket, Float> priceLabel;
 
+    @FXML
+    private ToggleGroup selectedAddress;
+
     /**
      * this method allows to retrieve all the baskets of the connected consumer
      *
@@ -86,7 +89,9 @@ public class BasketController {
      * @return
      */
     public void createOrder() {
-        boolean res = orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo());
+        String deliveryAddress = ((RadioButton) selectedAddress.getSelectedToggle()).getText();
+        System.out.println(deliveryAddress);
+        boolean res = orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo(), deliveryAddress);
         if (res) {
             Router.getInstance().activate("HomePage");
         } else {
@@ -210,6 +215,10 @@ public class BasketController {
 
         labelTotPrice.setText(String.valueOf(getPrixTotalBasket(listBasket)));
 
+    }
+
+    public void homePage() {
+        Router.getInstance().activate("HomePage");
     }
 
 }

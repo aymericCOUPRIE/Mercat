@@ -14,6 +14,7 @@ import model.Category;
 
 
 import javafx.event.ActionEvent;
+import router.Router;
 
 /**
  * This class handles the category interfaces
@@ -34,7 +35,6 @@ public class CategoryController {
 
     @FXML
     private Label creationError;
-
 
     private final CategoryFacade categoryFacade = CategoryFacade.getInstance();
 
@@ -136,5 +136,12 @@ public class CategoryController {
             tableViewCategory.getItems().add(tempo);
             tableViewCategory.refresh();
         }
+    }
+
+    /**
+     * Called when the user clicks on the back button
+     */
+    public void homePage() {
+        Router.getInstance().activate("HomePage");
     }
 }
