@@ -40,7 +40,7 @@ public class UpdateConsumerProfileController {
     private String OldPassword; //pour savoir si je dois crypter le mdp lors de la modification où si il l'est déjà car pas changé
 
     /**
-     * this facade permits to get the informations about the logged-in user
+     * this facade permits to get the information about the logged-in user
      */
     private final UserFacade userFacade = new UserFacade();
 

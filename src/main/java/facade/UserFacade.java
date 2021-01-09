@@ -35,6 +35,15 @@ public class UserFacade {
         return instanceUserFacade;
     }
 
+    //TODO java doc
+    /**
+     * @param
+     * @return
+     */
+    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
+        return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
+    }
+
     //TODO javadoc
     /**
      * @param pseudo
@@ -108,14 +117,6 @@ public class UserFacade {
         return userDAO.updateConsumer(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber);
     }
 
-    //TODO java doc
-    /**
-     * @param
-     * @return
-     */
-    public boolean updateUser(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
-        return userDAO.updateSeller(pseudo, firstName, lastName, password, OldPassword, emailAdress, streetAddress, city, postalCode, phoneNumber, company);
-    }
 
     /**
      * assigns to the facade the user who has just logged in
