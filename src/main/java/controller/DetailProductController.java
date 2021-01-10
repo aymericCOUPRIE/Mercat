@@ -71,11 +71,11 @@ public class DetailProductController {
 
     public void initialize() {
         errorLabel.setText("");
-        this.productArrayList = Router.getInstance().getParametre();
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
-        nameP.setText(listProduct.get(0).getNameProduct());
-        descriptionP.setText(listProduct.get(0).getDescription());
-        priceP.setText(""+listProduct.get(0).getPriceProduct());
+         ArrayList<Product> product = Router.getInstance().getParametre();
+        ObservableList<Product> listProduct = FXCollections.observableArrayList(product);
+        nameP.setText(product.get(0).getNameProduct());
+        descriptionP.setText(product.get(0).getDescription());
+        priceP.setText(""+product.get(0).getPriceProduct());
     }
 
     public void goToSellerPage(){

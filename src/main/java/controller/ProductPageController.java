@@ -51,9 +51,9 @@ public class ProductPageController {
      * Show all the products and their buttons, which enable us to go to the product page
      */
     public void initialize() {
+        System.out.println("Initialize ProductPageController");
         ObservableList<Product> listProduct = FXCollections.observableArrayList(Router.getInstance().getParametre());
         //La colonne nameProduct aura la propriété "nameProduct" de l'objet"
-        System.out.println(Router.getInstance().getParametre().get(0).getPseudoSeller());
         nameProduct.setCellValueFactory(new PropertyValueFactory<>("nameProduct"));
 
         seller.setCellValueFactory(new PropertyValueFactory<>("pseudoSeller"));
@@ -67,7 +67,7 @@ public class ProductPageController {
         tableViewProduct.setItems(listProduct);
         //Pour chaque produit ajoute un bouton qui va vers ça page avec ses informations
 
-        System.out.println(listProduct.size());
+        System.out.println("Initialize nombre produits "+ listProduct.size());
         if(listProduct.size()!=0){
             addGoToButton();
         }
@@ -78,14 +78,11 @@ public class ProductPageController {
      * This method is used for adding a button which goes to product's description page
      */
     private void addGoToButton(){
-
+        System.out.println("add go to button PRoductPageControlelr");
         product.setCellFactory(param -> new TableCell<>(){
             private Button goToButton = new Button("DETAILS");
             {
-                ArrayList<Product> p = new ArrayList<Product>();
-                System.out.println("Produit "+param.getTableView().getItems());
-                //p.add(param.getTableView().getItems().get(getIndex()));
-                goToButton.setOnAction(event -> Router.getInstance().activate("DetailsProduct"));
+                goToButton.setOnAction(event -> goToProduct(param.getTableView().getItems().get(getIndex())));
             }
 
             @Override
@@ -103,20 +100,17 @@ public class ProductPageController {
         });
     }
 
+    private void goToProduct(Product idProduct){
+        ArrayList<Product> o = new ArrayList<Product>();
+        o.add(idProduct);
+        Router.getInstance().activate("DetailsProduct",o);
+    }
 
     @FXML
     private void goHome(ActionEvent e){
-        Router.getInstance().activate("AddProduct");
+        Router.getInstance().activate("HomePage");
     }
 
-    @FXML
-    /**
-     * This method is used by the
-     */
-    private void goToSellerPage(ActionEvent e) {
-        Object[] o = new Object[1];
-        o[0] = userFacade.getConnectedUser().getPseudo();
-        Router.getInstance().activate("SellerProfileUI",o);
-    }
+
 
 }

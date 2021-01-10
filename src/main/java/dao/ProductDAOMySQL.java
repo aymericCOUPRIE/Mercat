@@ -92,19 +92,19 @@ public class ProductDAOMySQL extends ProductDAO {
         ResultSet res = preparedStatement.executeQuery();
         Product product;
         while (res.next()) {
-            System.out.println("TEST2");
             String nomSeller = res.getString("pseudoSeller");
             String libCategorie = getCategoryLibelle(res.getInt("idCategorie"));
             product = new Product(
+                    res.getInt("idProduct"),
                     res.getString("nameProduct"),
                     res.getString("description"),
                     res.getFloat("priceProduct"),
+                    "",
                     nomSeller,
-                    getProductCity("pseudoSeller"),
+                    getProductCity(res.getString("pseudoSeller")),
+                    res.getInt("idCategorie"),
                     libCategorie
             );
-            System.out.println(product.getNameProduct());
-            System.out.println(product.getNameProduct());
             listProduct.add(product);
         }
         return listProduct;
@@ -217,7 +217,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public boolean deleteProduct(Product p) {
         int id = getProductId(p);
-        String requete = "FROM product WHERE idProduct=?";
+        String requete = "DELETE FROM product WHERE idProduct=?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, "" + id);

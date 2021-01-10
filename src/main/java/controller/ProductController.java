@@ -182,6 +182,7 @@ public class ProductController {
             display("You need to fill the field");
         }else{
             ArrayList<Product> p = productFacade.getProductsByName(productName);
+            System.out.println("ProductByName productController");
             Router.getInstance().activate("ProductUI",p);
         }
     }

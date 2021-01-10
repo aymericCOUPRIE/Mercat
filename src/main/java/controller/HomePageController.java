@@ -174,6 +174,7 @@ public class HomePageController {
             display("You need to fill the field");
         }else{
             ArrayList<Product> p = productFacade.getProductsByName(productName);
+            System.out.println("HomePageController getProductsByName");
             Router.getInstance().activate("ProductUI",p);
         }
     }

@@ -68,6 +68,19 @@ public class Product {
         this.pseudoSeller = pseudoSeller;
         this.idCategorie = idCategorie;
     }
+
+    public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, String citySeller, int idCategorie,String libelleCategorie) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.priceProduct = priceProduct;
+        this.pictureProduct = pictureProduct;
+        this.pseudoSeller = pseudoSeller;
+        this.city = citySeller;
+        this.idCategorie = idCategorie;
+        this.category = libelleCategorie;
+    }
+
     /**
      * Default constructor
      */

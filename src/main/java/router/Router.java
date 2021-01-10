@@ -24,6 +24,7 @@ public class Router {
      * si on veut passer des paramètres en changent de page
      */
     public Object[] params;
+    public int paramProduct;
 
     private static ArrayList<Product> parametre;
     private static ArrayList<Category> parametreC = CategoryFacade.getInstance().getAllCategory();
@@ -88,6 +89,14 @@ public class Router {
         }
     }
 
+    public void activate(String name, int a){
+        this.paramProduct = a;
+        try {
+            Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * changer de page en prenant des paramètres avec nous (une instance de user par exemple)
      *
@@ -102,6 +111,7 @@ public class Router {
             e.printStackTrace();
         }
     }
+
 
     /**
      * @param name
