@@ -98,7 +98,7 @@ public class ProductController {
 
     /**
      * This method is called when the seller tries to add a new Product.
-     * @return
+     * @param e called when btnProduct is clicked on
      */
     public void addProduct(ActionEvent e) {
         // TODO implement here
@@ -173,7 +173,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name
-     * @param e
+     * @param e , executed when the user clicks on btnSearchProduct
      */
     public void getProductsByName(ActionEvent e){
         productName = txtProduct1.getText();
@@ -187,7 +187,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name and the name of a city
-     * @param e
+     * @param e , executed when the user clicks on btnSearchProductCity
      */
     public void getProductsByNameAndCity(ActionEvent e){
         productName = txtProduct2.getText();
@@ -202,7 +202,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name and the category
-     * @param e
+     * @param e , executed when the user clicks on btnSearchProductCategory
      */
     public void getProductsByNameAndCategory(ActionEvent e){
         productName = txtProduct3.getText();
@@ -217,7 +217,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by name, category and city
-     * @param e
+     * @param e , executed when the user clicks on btnSearchProductNameCategory
      */
     public void getProductsByNameAndCityAndCategory(ActionEvent e){
         productName = txtProduct4.getText();
@@ -234,6 +234,10 @@ public class ProductController {
 
 
     @FXML
+    /**
+     * This method enables you to go to the homePage
+     * @param e , executed when the user clicks on homeButton
+     */
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("HomePage");
     }

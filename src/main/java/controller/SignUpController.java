@@ -11,8 +11,6 @@ import router.Router;
 import utils.CheckInfosUser;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -191,6 +189,7 @@ public class SignUpController {
     /**
      * Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
+     * @param e
      */
     @FXML
     public void consumerPage(ActionEvent e) throws IOException {
@@ -201,6 +200,7 @@ public class SignUpController {
     /**
      * Method used by btnSeller from Java FX
      * It allows to go to the page "SignUpSeller"
+     * @param e
      */
     @FXML
     public void sellerPage(ActionEvent e) throws IOException {
@@ -211,7 +211,7 @@ public class SignUpController {
     /**
      * It allows to display an error message on the user interface
      *
-     * @param msg
+     * @param msg the message we want to display
      */
     public void display(String msg) {
         errorText.setText(msg);
