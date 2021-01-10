@@ -18,7 +18,9 @@ public abstract class CommentDAO {
     private static CommentDAO instanceCommentDAO;
 
     /**
-     * Default constructor
+     * this methode permit to  connect the dao with the database
+     *
+     * @param connect is the connection for the database
      */
     protected CommentDAO(Connection connect) {
         this.connect = connect;
@@ -33,39 +35,30 @@ public abstract class CommentDAO {
 
     
     /**
-     * @param consumer
-     * @param comment
-     * @param id
-     * @return
+     * This method add a comment in the database
+     * @param consumer that add the comment
+     * @param comment a string with the content of the comment
+     * @param id of the product
      */
     public abstract void createComment(Consumer consumer, String comment, int id);
 
     /**
-     * @param consumer
-     * @param comment
-     * @param id
-     * @return
+     * This method update a comment in the database
+     * @param consumer that add the comment
+     * @param comment a string with the content of the comment
+     * @param id of the product
      */
     public abstract void updateComment(Consumer consumer, String comment, int id);
 
     /**
-     * @param product
-     * @param consumer
-     * @return
-     */
-    public abstract boolean deleteComment(Product product, Consumer consumer);
-
-    /**
-     * @param consumer
-     * @param id
-     * @return String, the comment put by the consumer
+     * This method get a comment in the database
+     * @param consumer that add the comment
+     * @param id of the product
+     * @return a string with the comment
      */
     public abstract String getComment(Consumer consumer, int id);
 
-    /**
-     * @param product
-     * @return
-     */
+
     public abstract Set<Comment> getAllComments(Product product);
 
 }

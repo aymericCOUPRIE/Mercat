@@ -24,15 +24,15 @@ public class RateDAOMySQL extends RateDAO {
     }
 
 
-    /**
-     * @param product
-     * @return
-     */
-    public Set<Rate> getAllRatesProduct(Product product) {
-        // TODO implement here
-        return null;
-    }
 
+
+
+    /**
+     * This method add a rate for a seller in the database
+     * @param seller
+     * @param consumer that add the rate
+     * @param rate an integer between 1 and 5
+     */
     @Override
     public void createRateSeller(Seller seller, Consumer consumer, int rate) {
 
@@ -56,6 +56,12 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
+    /**
+     * This method add a rate for a product in the database
+     * @param consumer that add the rate
+     * @param rate an integer between 1 and 5
+     * @param idProduct of the product
+     */
     @Override
     public void createRateProduct(Consumer consumer, int rate, int idProduct) {
 
@@ -78,6 +84,12 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
+    /**
+     * This method get a rate of a seller in the database
+     * @param seller
+     * @param consumer who add the rate
+     * @return the rate put by the consumer, if no notation return 0
+     */
     @Override
     public float rateSeller(Seller seller, Consumer consumer) {
 
@@ -103,6 +115,12 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
+    /**
+     * This method get a rate of a product in the database
+     * @param consumer who add the rate
+     * @param idProduct of the product
+     * @return the rate put by the consumer, if no notation return 0
+     */
     @Override
     public float rateProduct(Consumer consumer, int idProduct) {
 
@@ -128,7 +146,11 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
-
+    /**
+     * This method get the average rate of all rates of a seller in the database
+     * @param seller
+     * @return the average rate of a seller, if no notation return 0
+     */
     @Override
     public float averageRateSeller(Seller seller) {
 
@@ -157,6 +179,11 @@ public class RateDAOMySQL extends RateDAO {
             throwables.printStackTrace();
             return 0;
         }
+    }
+
+    public Set<Rate> getAllRatesProduct(Product product) {
+        // TODO implement here
+        return null;
     }
 
 

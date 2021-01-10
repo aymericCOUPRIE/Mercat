@@ -20,7 +20,12 @@ public class CommentDAOMySQl extends CommentDAO {
             super(connect);
     }
 
-
+    /**
+     * This method get a comment in the database
+     * @param consumer that add the comment
+     * @param idProduct of the product
+     * @return a string with the comment
+     */
     @Override
     public String getComment(Consumer consumer, int idProduct) {
 
@@ -46,6 +51,12 @@ public class CommentDAOMySQl extends CommentDAO {
         }
     }
 
+    /**
+     * This method add a comment in the database
+     * @param consumer that add the comment
+     * @param comment a string with the content of the comment
+     * @param id of the product
+     */
     @Override
     public void createComment(Consumer consumer, String comment, int id){
             String requete = "INSERT INTO comment (ContentComment, pseudoConsumer, idProduct) VALUES (?,?,?)";
@@ -66,6 +77,12 @@ public class CommentDAOMySQl extends CommentDAO {
             }
     }
 
+    /**
+     * This method update a comment in the database
+     * @param consumer that add the comment
+     * @param comment a string with the content of the comment
+     * @param id of the product
+     */
     @Override
     public void updateComment(Consumer consumer, String comment, int id){
         String requete = "UPDATE comment SET ContentComment = ? WHERE pseudoConsumer = ? AND idProduct = ?";
@@ -86,20 +103,7 @@ public class CommentDAOMySQl extends CommentDAO {
         }
     }
 
-    /**
-     * @param product 
-     * @param consumer 
-     * @return
-     */
-    public boolean deleteComment(Product product, Consumer consumer) {
-        // TODO implement here
-        return false;
-    }
 
-    /**
-     * @param product 
-     * @return
-     */
     public Set<Comment> getAllComments(Product product) {
         // TODO implement here
         return null;
