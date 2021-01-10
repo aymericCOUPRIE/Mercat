@@ -47,7 +47,7 @@ public class ProductPageController {
     public ProductPageController() {}
 
     /**
-     * Shows the result of a request (gettProductByName...)
+     * Shows the result of a request (getProductByName...)
      * Show all the products and their buttons, which enable us to go to the product page
      */
     public void initialize() {
@@ -67,7 +67,6 @@ public class ProductPageController {
         tableViewProduct.setItems(listProduct);
         //Pour chaque produit ajoute un bouton qui va vers ça page avec ses informations
 
-        System.out.println("Initialize nombre produits "+ listProduct.size());
         if(listProduct.size()!=0){
             addGoToButton();
         }
@@ -84,7 +83,6 @@ public class ProductPageController {
             {
                 goToButton.setOnAction(event -> goToProduct(param.getTableView().getItems().get(getIndex())));
             }
-
             @Override
             /**
              * Shows the button
@@ -114,6 +112,7 @@ public class ProductPageController {
     /**
      * @param actionEvent, this action is called by the button sellerPageButton
      * Enables the user to come back to the seller page
+     *
      */
     public void goSellerPage(ActionEvent actionEvent) {
         Router.getInstance().activate("SellerProfileUI");
