@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.paint.Color;
 import javafx.util.Pair;
 import javafx.util.converter.DateStringConverter;
 import model.Order;
@@ -147,7 +148,7 @@ public class ConsultHistoricController {
                 super.updateItem(item, empty);
 
                 detailsButton.setStyle("-fx-background-color: rgb(26,82,118)");
-                //detailsButton.setTextFill(Color.rgb(255, 255, 255));
+                detailsButton.setTextFill(Color.rgb(255, 255, 255));
 
                 if (empty) {
                     setGraphic(null);
@@ -174,7 +175,7 @@ public class ConsultHistoricController {
                 super.updateItem(item, empty);
 
                 rateButton.setStyle("-fx-background-color: rgb(26,82,118)");
-                //detailsButton.setTextFill(Color.rgb(255, 255, 255));
+                rateButton.setTextFill(Color.rgb(255, 255, 255));
 
                 if (empty) {
                     setGraphic(null);
@@ -211,7 +212,7 @@ public class ConsultHistoricController {
                 super.updateItem(item, empty);
 
                 commentButton.setStyle("-fx-background-color: rgb(26,82,118)");
-                //detailsButton.setTextFill(Color.rgb(255, 255, 255));
+                commentButton.setTextFill(Color.rgb(255, 255, 255));
 
                 if (empty) {
                     setGraphic(null);
