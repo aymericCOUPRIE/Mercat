@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listProductSeller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductPageController">
+<VBox fx:id="listProductSeller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SellerProductsController">
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
@@ -30,15 +30,16 @@
         <TableView fx:id="tableViewProductSeller" prefHeight="200.0" prefWidth="200.0">
             <columns>
                 <TableColumn fx:id="nameProductSeller" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="cityProductSeller" prefWidth="75.0" text="Ville" />
-                <TableColumn fx:id="goToProduct" prefWidth="75.0" text="Action" />
+                <TableColumn fx:id="descriptionProductSeller" prefWidth="75.0" text="Description" />
+                <TableColumn fx:id="modifyProduct" prefWidth="75.0" text="Modify" />
+            <TableColumn fx:id="deleteProduct" prefWidth="75.0" text="Delete" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy></TableView>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
             <children>
-                <Button fx:id="sellerPageButton" mnemonicParsing="false" onAction="#goSellerPage" text="Accueil" />
+                <Button fx:id="sellerPageButton" mnemonicParsing="false" onAction="#goSellerPage" text="Seller" />
                 <Label fx:id="creationError">
                     <HBox.margin>
                         <Insets left="50.0" />

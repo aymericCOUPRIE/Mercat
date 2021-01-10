@@ -125,26 +125,22 @@ public class ProductFacade {
 
     /**
      * @param p le Produit
-     * @return
+     * @return true if the product was created in the db
      */
     public boolean createProduct(Product p) {
         return productDAO.createProduct(p);
     }
 
     /**
-     * @param nameProduct 
-     * @param description 
-     * @param price 
-     * @param picture 
-     * @param idCategory 
-     * @return
+     * @param product
+     * @return true if the product was updated
      */
-    public void updateProduct(String nameProduct, String description, float price, String picture, int idCategory) {
-        // TODO implement here
+    public boolean updateProduct(Product product) {
+        return productDAO.updateProduct(product);
     }
 
     /**
-     * @param idProduct 
+     * @param p the product we want to delete
      * @return
      */
     public void deleteProduct(Product p) {
@@ -194,4 +190,5 @@ public class ProductFacade {
         return productDAO.getProductId(p);
     }
 
+   public int getCategoryId(String libelle){return productDAO.getCategoryId(libelle);}
 }

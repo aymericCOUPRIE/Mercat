@@ -165,13 +165,16 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param newDescription, the new description of the product
      * @return boolean, true if the product was updated into the database
      */
-    public boolean updateProduct(Product p, String newDescription) {
+    public boolean updateProduct(Product p) {
         int id = getProductId(p);
-        String requete = "UPDATE product SET description = ? WHERE idProduct = ?";
+        String requete = "UPDATE product SET nameProduct = ?, priceProduct = ?,idCategorie = ?, description = ? WHERE idProduct = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, newDescription);
-            preparedStatement.setString(2, "" + id);
+            preparedStatement.setString(1, p.getNameProduct());
+            preparedStatement.setString(2, "" + p.getPriceProduct());
+            preparedStatement.setInt(3,p.getIdCategorie());
+            preparedStatement.setString(4,p.getDescription());
+            preparedStatement.setInt(5,p.getIdProduct());
 
             return preparedStatement.executeUpdate() != 0;
 
@@ -256,7 +259,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param id of the category
      * @return the libelle of the caegory, which id is in parameterD
      */
-    private String getCategoryLibelle(int id){
+    public String getCategoryLibelle(int id){
         String requete = "SELECT LibelleCategorie FROM category WHERE idCategorie = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -278,7 +281,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param c, the category name
      * @return an int which represents the id of the category in parameter
      */
-    private int getCategoryId(String c) {
+    public int getCategoryId(String c) {
         String requete = "SELECT idCategorie FROM category WHERE LibelleCategorie = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -317,6 +320,7 @@ public class ProductDAOMySQL extends ProductDAO {
         String requete = "SELECT * FROM product WHERE pseudoSeller = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1,seller);
             return getProductList(listProduct,preparedStatement);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

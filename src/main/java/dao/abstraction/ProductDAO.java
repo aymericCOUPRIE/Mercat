@@ -82,10 +82,9 @@ public abstract class ProductDAO {
 
     /**
      * @param p, the Product we want to update
-     * @param newDescription, the new description of the product
      * @return boolean, true if the product was updated into the database
      */
-    public abstract boolean updateProduct(Product p, String newDescription);
+    public abstract boolean updateProduct(Product p);
 
     /**
      * @param p, the Product that we want to delete
@@ -107,5 +106,12 @@ public abstract class ProductDAO {
     public abstract int getProductId(Product p);
 
     public ArrayList<Product> getProductsBySeller(String seller){return null;}
+
+    /**
+     *
+     * @param id of the category we want the lielleCategorie
+     * @return LibelleCategorie
+     */
+    public int getCategoryId(String libelle){ return -1;};
 
 }

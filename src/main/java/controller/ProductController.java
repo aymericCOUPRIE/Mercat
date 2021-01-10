@@ -80,6 +80,8 @@ public class ProductController {
     private CategoryFacade categoryFacade = CategoryFacade.getInstance();
     private UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
+    private Product productToModify;
+
 
     /**
      * Default constructor
@@ -101,7 +103,6 @@ public class ProductController {
      * @param e called when btnProduct is clicked on
      */
     public void addProduct(ActionEvent e) {
-        // TODO implement here
         categoryName = txtCategory.getValue().toString();
         System.out.println("category :"+categoryName);
         productName = txtNameProduct.getText();
@@ -149,7 +150,39 @@ public class ProductController {
      *
      */
     public void updateProduct(ActionEvent e) {
-        // TODO implement here
+        categoryName = txtCategory.getValue().toString();
+        System.out.println("category :"+categoryName);
+        productName = txtNameProduct.getText();
+        description = txtDescription.getText();
+
+        priceEuros = txtPrice.getText();
+        priceCents = txtPrice2.getText();
+
+
+        if(productName.equals("")||description.equals("")||priceEuros.equals("")){
+            display("You need to fill every field");
+        }else{
+            try{
+                int i = Integer.parseInt(priceEuros);
+                try{
+                    int c = Integer.parseInt(priceCents);
+                    String price = i+"."+c;
+                    Float f = Float.parseFloat(price);
+                    String seller = userFacade.getConnectedUser().getPseudo();
+                    Product p = new Product(productToModify.getIdProduct(),productName,description,f,"",seller,productToModify.getCity(),productFacade.getCategoryId(categoryName),categoryName);
+                    System.out.println(p.getDescription());
+                    if(productFacade.updateProduct(p)){
+                        display("Produit ajouté");
+                    }
+                }catch (NumberFormatException n){
+                    display("The cent field must be an integer");
+                }
+            }catch (NumberFormatException n){
+                display("The price is not an integer");
+            }
+
+            //productFacade.createProduct(productName,description,price,);
+        }
     }
 
     @FXML
@@ -170,6 +203,16 @@ public class ProductController {
         }
         ObservableList observableList = FXCollections.observableArrayList(listNomCategory);
         txtCategory.setItems(observableList);
+        if(Router.getInstance().getParametre()!=null){//Si on vient de la page avec tous les produits du vendeurs
+            Product product = Router.getInstance().getParametre().get(0);
+            this.productToModify = product;
+            txtNameProduct.setText(product.getNameProduct());
+            txtDescription.setText(product.getDescription());
+            String prix = ""+product.getPriceProduct();
+            int i = prix.indexOf(".");
+            txtPrice.setText(prix.substring(0,i));
+            txtPrice2.setText(prix.substring(i));
+        }
     }
 
     /**
@@ -243,5 +286,6 @@ public class ProductController {
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("HomePage");
     }
+
 
 }

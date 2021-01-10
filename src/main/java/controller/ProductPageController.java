@@ -111,6 +111,12 @@ public class ProductPageController {
         Router.getInstance().activate("HomePage");
     }
 
-
+    /**
+     * @param actionEvent, this action is called by the button sellerPageButton
+     * Enables the user to come back to the seller page
+     */
+    public void goSellerPage(ActionEvent actionEvent) {
+        Router.getInstance().activate("SellerProfileUI");
+    }
 
 }

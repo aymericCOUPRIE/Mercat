@@ -117,7 +117,7 @@ public class SellerProfileController {
      */
     public void initialize() {
         if(Router.getInstance().getParametre() != null){ // On vient de la page product
-            productArrayList = Router.getInstance().getParametre();
+            this.productArrayList = Router.getInstance().getParametre();
             ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
             nameSeller = listProduct.get(0).getPseudoSeller();
             boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
@@ -153,9 +153,10 @@ public class SellerProfileController {
     }
 
     public void goToSellerProducts(ActionEvent e ){
-        Router.getInstance().activate("LoginUI");
+        Router.getInstance().activate("SellerProducts",productArrayList);
     }
 
-
-
+    public ArrayList<Product> getProductArrayList() {
+        return productArrayList;
+    }
 }

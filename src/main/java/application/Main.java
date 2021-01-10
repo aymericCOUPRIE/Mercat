@@ -55,6 +55,7 @@ public class Main extends Application {
         r.add("Comment_Product", "/Comment_Product.fxml");
         r.add("DetailsProduct", "/DetailProduct.fxml");
         r.add("UpdateCategories", "/CategoryUI.fxml");
+        r.add("SellerProducts","/SellerProducts.fxml");
     }
 
 }
