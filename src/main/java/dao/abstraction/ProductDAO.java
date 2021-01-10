@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public abstract class ProductDAO {
 
@@ -17,6 +17,7 @@ public abstract class ProductDAO {
 
     /**
      * Default constructor
+     *
      * @param connect of Connection
      */
     public ProductDAO(Connection connect) {
@@ -25,7 +26,7 @@ public abstract class ProductDAO {
 
 
     public static ProductDAO getInstance() {
-        if(instanceProductDAO == null) {
+        if (instanceProductDAO == null) {
             instanceProductDAO = AbstractFactoryDAO.getFactory().createProductDAO();
         }
         return instanceProductDAO;
@@ -52,8 +53,8 @@ public abstract class ProductDAO {
     }
 
     /**
-     * @param name of the product we want to find
-     * @param category  of the product we want to find
+     * @param name     of the product we want to find
+     * @param category of the product we want to find
      * @return ArrayList<Product>
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
@@ -62,8 +63,8 @@ public abstract class ProductDAO {
     }
 
     /**
-     * @param name of the product we want to find
-     * @param city of the product we want to find
+     * @param name     of the product we want to find
+     * @param city     of the product we want to find
      * @param category of the product we want to find
      * @return ArrayList<Product>
      */
@@ -105,13 +106,18 @@ public abstract class ProductDAO {
      */
     public abstract int getProductId(Product p);
 
-    public ArrayList<Product> getProductsBySeller(String seller){return null;}
+    public ArrayList<Product> getProductsBySeller(String seller) {
+        return null;
+    }
 
     /**
-     *
      * @param id of the category we want the lielleCategorie
      * @return LibelleCategorie
      */
-    public int getCategoryId(String libelle){ return -1;};
+    public int getCategoryId(String libelle) {
+        return -1;
+    }
+
+    ;
 
 }

@@ -8,6 +8,9 @@ import model.User;
 import java.sql.Connection;
 import java.util.*;
 
+/**
+ * Abstract class for UserDAO
+ */
 public abstract class UserDAO {
 
     /**
@@ -28,6 +31,12 @@ public abstract class UserDAO {
     }
 
 
+    /**
+     * SINGLETON
+     * This method create only one instance of the class
+     *
+     * @return the instance of UserDAO
+     */
     public static UserDAO getInstance() {
         if (instanceUserDAO == null) {
             instanceUserDAO = AbstractFactoryDAO.getFactory().createUserDAO();
@@ -36,6 +45,12 @@ public abstract class UserDAO {
     }
 
 
+    /**
+     * This method is used to delete a user
+     *
+     * @param pseudo pseudo of the user that will be delete
+     * @return true if it succeeded, false if it failed
+     */
     public abstract boolean deleteUser(String pseudo);
 
     /**
@@ -49,6 +64,7 @@ public abstract class UserDAO {
 
     /**
      * This method create a consumer in the database
+     *
      * @param user to create
      * @return True if register successful or false if error
      */
@@ -56,6 +72,7 @@ public abstract class UserDAO {
 
     /**
      * This method create a seller in the database
+     *
      * @param user to create
      * @return True if register successful or false if error
      */
@@ -108,7 +125,7 @@ public abstract class UserDAO {
     /**
      * This method return a list of users with a specific role
      *
-     * @param role        of the user
+     * @param role of the user
      * @return a Array List of String with all pseudos
      */
     public abstract ArrayList<String> getAllPseudo(String role);

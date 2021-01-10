@@ -41,7 +41,7 @@ public class CommentController {
     }
 
     /**
-     *  Method used by btnSubmitComment from Java FX
+     * Method used by btnSubmitComment from Java FX
      * It permits to add a comment to a product
      */
     @FXML
@@ -49,7 +49,7 @@ public class CommentController {
         String txt = txtComment.getText();
         System.out.println(vide);
 
-        if(vide){
+        if (vide) {
             facadeP.addComment((Consumer) facadeU.getConnectedUser(), txt, idProduct);
             display("Comment update !");
         } else {
@@ -61,19 +61,19 @@ public class CommentController {
 
     /**
      * Method used by btnBack from Java FX
-     *  It permit to return to the home page
+     * It permit to return to the home page
      */
-    public void back(){
+    public void back() {
         Router.getInstance().activate("HistoricOrder");
     }
 
     /**
      * It allows to display an error message on the user interface
+     *
      * @param msg
      */
     @FXML
-    public void display(String msg)
-    {
+    public void display(String msg) {
         errorText.setText(msg);
     }
 
@@ -86,9 +86,9 @@ public class CommentController {
         idProduct = (Integer) Router.getInstance().getParams()[0];
         String comment = facadeP.getComment((Consumer) facadeU.getConnectedUser(), idProduct);
 
-        if(comment.equals("")){
-           vide = true;
-        } else{
+        if (comment.equals("")) {
+            vide = true;
+        } else {
             vide = false;
             txtComment.setText(comment);
         }

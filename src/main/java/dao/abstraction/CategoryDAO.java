@@ -6,8 +6,14 @@ import model.Category;
 import java.sql.Connection;
 import java.util.*;
 
+/**
+ * Abstract class
+ */
 public abstract class CategoryDAO {
 
+    /**
+     * connection to the database
+     */
     protected Connection connect = null;
 
     private static CategoryDAO instanceCategoryDAO;

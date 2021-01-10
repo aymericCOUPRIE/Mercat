@@ -13,6 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * class UserDAOMySQL
+ * interacts with the DB
+ */
 public class UserDAOMySQL extends UserDAO {
 
     /**
@@ -84,7 +88,7 @@ public class UserDAOMySQL extends UserDAO {
                 return null;
             }
 
-        } catch (SQLException | NoSuchAlgorithmException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         //je n'ai pas pu executer la requête

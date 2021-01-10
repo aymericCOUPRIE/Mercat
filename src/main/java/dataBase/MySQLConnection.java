@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * This class handles the connection to the DB
+ * with the parameters given in database.properties
+ */
 public class MySQLConnection {
 
     //Objet Connection

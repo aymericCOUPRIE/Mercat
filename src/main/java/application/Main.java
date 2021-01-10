@@ -9,10 +9,18 @@ import router.Router;
 
 import java.io.IOException;
 
+/**
+ * Main class, class that launch the application
+ */
 public class Main extends Application {
 
     public static Stage primaryStage = null;
 
+    /**
+     * Method that creates the window for the graphical interfaces
+     *
+     * @param primaryStage scene for the graphic interfaces
+     */
     @Override
     public void start(Stage primaryStage) {
         Main.primaryStage = primaryStage;
@@ -30,10 +38,18 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * MAIN, it calls the creation of the window
+     *
+     * @param args eventual parameters added when launching the app
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * List of all the paths between interfaces
+     */
     public void init() {
         Router r = Router.getInstance();
         r.add("HomePage", "/HomePageUI.fxml");
@@ -48,14 +64,14 @@ public class Main extends Application {
         r.add("AddProduct", "/AddProduct.fxml");
         r.add("ModifyProduct", "/ModifyProduct.fxml");
         r.add("ProductUI", "/ProductUI.fxml");
-        r.add("Basket","/BasketUI.fxml");
+        r.add("Basket", "/BasketUI.fxml");
         r.add("HistoricOrder", "/ConsultHistoricOrderUI.fxml");
         r.add("Rate_Seller", "/Rate_Seller.fxml");
         r.add("Rate_Product", "/Rate_Product.fxml");
         r.add("Comment_Product", "/Comment_Product.fxml");
         r.add("DetailsProduct", "/DetailProduct.fxml");
         r.add("UpdateCategories", "/CategoryUI.fxml");
-        r.add("SellerProducts","/SellerProducts.fxml");
+        r.add("SellerProducts", "/SellerProducts.fxml");
     }
 
 }

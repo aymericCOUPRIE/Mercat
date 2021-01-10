@@ -225,7 +225,6 @@ public class OrderDAOMySQL extends OrderDAO {
 
 
             for (Pair<Integer, Integer> i : idProducts) {
-                System.out.println("ID PRODUCT TO BE INSERTED " + i.getKey() + " : " + i.getValue());
                 preparedStatement.setInt(2, i.getKey());
                 preparedStatement.setInt(3, i.getValue());
                 preparedStatement.executeUpdate();

@@ -10,12 +10,14 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- *
+ * Class CategoryDAOMySQL
  */
 public class CategoryDAOMySQL extends CategoryDAO {
 
     /**
      * Default constructor
+     *
+     * @param connect the connection to the database
      */
     protected CategoryDAOMySQL(Connection connect) {
         super(connect);
