@@ -62,6 +62,7 @@ public class SellerProfileController {
     private ProductFacade productFacade = new ProductFacade();
 
     private ArrayList<Product> productArrayList;
+    String nameSeller;
 
     /**
      * @param pseudo 
@@ -92,7 +93,12 @@ public class SellerProfileController {
      *  It permit to return to the home page
      */
     public void back(){
-        Router.getInstance().activate("DetailsProduct", productArrayList);
+        if(productArrayList != null){
+            Router.getInstance().activate("DetailsProduct", productArrayList);
+        } else {
+            Router.getInstance().activate("HomePage");
+        }
+
     }
 
     /**
@@ -110,16 +116,21 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-        productArrayList = Router.getInstance().getParametre();
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
-        String nameSeller = listProduct.get(0).getPseudoSeller();
-
-        boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
-        if (order){
-            btnRate.setDisable(false);
-        } else {
+        if(Router.getInstance().getParametre() != null){ // On vient de la page product
+            productArrayList = Router.getInstance().getParametre();
+            ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
+            nameSeller = listProduct.get(0).getPseudoSeller();
+            boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
+            if (order){
+                btnRate.setDisable(false);
+            } else {
+                btnRate.setDisable(true);
+            }
+        } else { // On vient de la page home
+            nameSeller = userFacade.getConnectedUser().getPseudo();
             btnRate.setDisable(true);
         }
+
 
         Float averageRate;
         Seller s = getSellerDetails(nameSeller);
