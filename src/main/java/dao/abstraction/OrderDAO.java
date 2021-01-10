@@ -21,6 +21,8 @@ public abstract class OrderDAO {
 
     /**
      * Default constructor
+     *
+     * @param connect holds the connection to the database
      */
     protected OrderDAO(Connection connect) {
         this.connect = connect;
@@ -82,7 +84,7 @@ public abstract class OrderDAO {
      *
      * @param c         the name of the consumer
      * @param idProduct the id of the product added to the order
-     * @return
+     * @return true if adding to the order succeeded, false if it failed
      */
     public abstract boolean orderProduct(String c, int idProduct);
 

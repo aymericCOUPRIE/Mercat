@@ -102,6 +102,7 @@ public class BasketController {
     /**
      * This metho calculate the total price of all the baskets
      *
+     * @param listBasket list of the basket from a consumer
      * @return the price (float)
      */
     public float getPrixTotalBasket(ObservableList<Basket> listBasket) {

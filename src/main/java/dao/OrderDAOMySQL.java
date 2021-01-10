@@ -11,12 +11,14 @@ import java.util.*;
 import java.util.Date;
 
 /**
- *
+ * Class OrderDAOMySQL
  */
 public class OrderDAOMySQL extends OrderDAO {
 
     /**
-     * Default constructor
+     * this methode permit to connect the dao with the database
+     *
+     * @param connect is the connection for the database
      */
     protected OrderDAOMySQL(Connection connect) {
         super(connect);
@@ -303,7 +305,7 @@ public class OrderDAOMySQL extends OrderDAO {
      *
      * @param nameConsumer the name of the consumer
      * @param idProduct    the id of the product added to the order
-     * @return
+     * @return true if the query succeeded, false if it failed
      */
     @Override
     public boolean orderProduct(String nameConsumer, int idProduct) {

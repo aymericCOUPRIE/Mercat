@@ -3,6 +3,10 @@ package utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class CheckInfoUser
+ * This class verifies the input from user when he is Signing-up
+ */
 public abstract class CheckInfosUser {
 
     /**
@@ -13,28 +17,29 @@ public abstract class CheckInfosUser {
 
     /**
      * This function verifies that the user has filled in all the fields as well as their format.
-     * @param pseudo of the user who registers or whose data you want to modify
-     * @param email of the user who registers or whose data you want to modify
-     * @param firstname of the user who registers or whose data you want to modify
-     * @param lastname of the user who registers or whose data you want to modify
-     * @param password of the user who registers or whose data you want to modify
+     *
+     * @param pseudo      of the user who registers or whose data you want to modify
+     * @param email       of the user who registers or whose data you want to modify
+     * @param firstname   of the user who registers or whose data you want to modify
+     * @param lastname    of the user who registers or whose data you want to modify
+     * @param password    of the user who registers or whose data you want to modify
      * @param phoneNumber of the user who registers or whose data you want to modify
-     * @param street of the user who registers or whose data you want to modify
-     * @param postal of the user who registers or whose data you want to modify
-     * @param city of the user who registers or whose data you want to modify
+     * @param street      of the user who registers or whose data you want to modify
+     * @param postal      of the user who registers or whose data you want to modify
+     * @param city        of the user who registers or whose data you want to modify
      * @return an error describing the parameter which is not in the right format or mentioning that at least one field has not been filled in or ok if everything is ok
      */
-    public static String checkInfosConsumer(String pseudo,String email,String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city){
-        if((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals("") || email.equals("")|| firstname.equals("")|| lastname.equals(""))){
+    public static String checkInfosConsumer(String pseudo, String email, String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city) {
+        if ((pseudo.equals("") || password.equals("") || phoneNumber.equals("") || street.equals("") || postal.equals("") || city.equals("") || email.equals("") || firstname.equals("") || lastname.equals(""))) {
             return "You need to provide every information";
-        }else{
-            if(passwordNotNull(password)) {
+        } else {
+            if (passwordNotNull(password)) {
                 if (phoneNumber.matches("[0-9]+") && (phoneNumber.length() == 10 || phoneNumber.length() == 12)) {
                     Matcher matcher = pattern.matcher(email);
                     if (matcher.matches()) {
-                        if(postal.matches("[0-9]+")&&(postal.length()==5)){
+                        if (postal.matches("[0-9]+") && (postal.length() == 5)) {
                             return "OK";
-                        }else{
+                        } else {
                             return "Your postal code is invalid";
                         }
                     } else {
@@ -43,13 +48,12 @@ public abstract class CheckInfosUser {
                 } else {
                     return "Your phone number is incorrect";
                 }
-            }
-            else return "Your password cannot have space in it";
+            } else return "Your password cannot have space in it";
         }
     }
     //TODO : Flo
+
     /**
-     *
      * @param pseudo
      * @param email
      * @param firstname
@@ -62,11 +66,11 @@ public abstract class CheckInfosUser {
      * @param companyName
      * @return
      */
-    public static String checkInfosSeller(String pseudo,String email,String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city, String companyName){
-        if(companyName.equals("")){
+    public static String checkInfosSeller(String pseudo, String email, String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city, String companyName) {
+        if (companyName.equals("")) {
             return "You need to provide every information";
-        }else{
-            return checkInfosConsumer(pseudo,email,firstname,lastname,password,phoneNumber,street,postal,city);
+        } else {
+            return checkInfosConsumer(pseudo, email, firstname, lastname, password, phoneNumber, street, postal, city);
         }
     }
 
@@ -74,7 +78,7 @@ public abstract class CheckInfosUser {
      * @param p the password to check
      * @return true if there is no space into the password
      */
-    private static boolean passwordNotNull(String p){
-        return p.indexOf(" ")==-1;
+    private static boolean passwordNotNull(String p) {
+        return p.indexOf(" ") == -1;
     }
 }
