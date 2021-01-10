@@ -120,6 +120,7 @@ public class HomePageController {
 
         if(!(userFacade.getConnectedUser().getRole().equals("seller"))){
             addProduct.setVisible(false);
+            mySellerAccount.setVisible(false);
         }
 
         errorText.setText("");
