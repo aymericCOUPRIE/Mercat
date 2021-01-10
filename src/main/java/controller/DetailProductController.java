@@ -71,7 +71,8 @@ public class DetailProductController {
 
     public void initialize() {
         errorLabel.setText("");
-         ArrayList<Product> product = Router.getInstance().getParametre();
+        ArrayList<Product> product = Router.getInstance().getParametre();
+        this.productArrayList = product;
         ObservableList<Product> listProduct = FXCollections.observableArrayList(product);
         nameP.setText(product.get(0).getNameProduct());
         descriptionP.setText(product.get(0).getDescription());
