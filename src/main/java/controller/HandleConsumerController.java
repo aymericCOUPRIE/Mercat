@@ -1,6 +1,7 @@
 package controller;
 
 import facade.UserFacade;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -53,8 +54,6 @@ public class HandleConsumerController {
 
     /**
      * delete the consumer selected in the listView
-     *
-     * @return
      */
     public void deleteConsumer() {
 

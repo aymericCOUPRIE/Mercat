@@ -13,7 +13,9 @@ public abstract class CategoryDAO {
     private static CategoryDAO instanceCategoryDAO;
 
     /**
-     * Default constructor
+     * Contructor with the connection to the DB
+     *
+     * @param connect connection to the DB
      */
     public CategoryDAO(Connection connect) {
         this.connect = connect;
@@ -46,7 +48,7 @@ public abstract class CategoryDAO {
     /**
      * This method gathers all the categories existing in the DB
      *
-     * @return the list of all existing categories, ArrayList<Category>
+     * @return the list of all existing categories
      * null if their is no category for the given name
      */
     public abstract ArrayList<Category> getAllCategory();

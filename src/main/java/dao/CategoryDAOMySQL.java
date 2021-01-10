@@ -116,7 +116,7 @@ public class CategoryDAOMySQL extends CategoryDAO {
      * This method is used to update the name of a specific category
      *
      * @param newNameCategory new name the category
-     * @param nameCategory    old name of hte category
+     * @param idCategory      old name of hte category
      */
     @Override
     public void updateCategory(String newNameCategory, int idCategory) {
