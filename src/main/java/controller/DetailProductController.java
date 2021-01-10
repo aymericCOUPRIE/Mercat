@@ -46,8 +46,9 @@ public class DetailProductController {
     private Button sellerProductsButton;
     //On stocke le produit de la page
     private ArrayList<Product> productArrayList;
+
     /**
-     * This methode permit to add the product of the curent page in the customer's basket
+     * This method permit to add the product of the curent page in the customer's basket
      */
     public void addToBasket() {
 

@@ -144,6 +144,7 @@ public class ProductController {
 
     /**
      * This method delete the product in parameter from the db
+     *
      * @param p the product we want to delete
      */
     public void deleteProduct(Product p) {
@@ -151,7 +152,9 @@ public class ProductController {
     }
 
     /**
+     * This method is called by btnPtoduct in ModifyProduct.fxml
      *
+     * @param e, the event called
      */
     public void updateProduct(ActionEvent e) {
         Object category = txtCategory.getValue();
@@ -192,6 +195,11 @@ public class ProductController {
     }
 
     @FXML
+    /**
+     * Displays an error message
+     *
+     * @param msg the message we want to display on the page
+     */
     public void display(String msg)
     {
         errorText.setText(msg);
@@ -199,6 +207,7 @@ public class ProductController {
 
     /**
      * Thanks to this method you don't have an error message at the beginning
+     * If needed define every text field with data of the product we want the details
      */
     public void initialize() {
         // TODO Auto-generated method stub
@@ -223,6 +232,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name
+     *
      * @param e , executed when the user clicks on btnSearchProduct
      */
     public void getProductsByName(ActionEvent e){
@@ -238,6 +248,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name and the name of a city
+     *
      * @param e , executed when the user clicks on btnSearchProductCity
      */
     public void getProductsByNameAndCity(ActionEvent e){
@@ -253,6 +264,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by his name and the category
+     *
      * @param e , executed when the user clicks on btnSearchProductCategory
      */
     public void getProductsByNameAndCategory(ActionEvent e){
@@ -268,6 +280,7 @@ public class ProductController {
 
     /**
      * This method enables you to research a product by name, category and city
+     *
      * @param e , executed when the user clicks on btnSearchProductNameCategory
      */
     public void getProductsByNameAndCityAndCategory(ActionEvent e){
@@ -287,12 +300,19 @@ public class ProductController {
     @FXML
     /**
      * This method enables you to go to the homePage
+     *
      * @param e , executed when the user clicks on homeButton
      */
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("HomePage");
     }
 
+    /**
+     * This method is called when the button called sellerPage is clicked
+     * When called this method shows the Seller profile page
+     *
+     * @param e
+     */
     public void goToSellerPage(ActionEvent e){
         ArrayList<Product> p =new ArrayList<Product>();
         p.add(this.productToModify);
