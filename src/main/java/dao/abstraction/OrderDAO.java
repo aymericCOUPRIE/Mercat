@@ -8,10 +8,13 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- *
+ * Abstract class OrderDAO
  */
 public abstract class OrderDAO {
 
+    /**
+     * connection to the database
+     */
     protected Connection connect;
 
     private static OrderDAO instanceOrderDAO;

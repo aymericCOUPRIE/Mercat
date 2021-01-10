@@ -52,7 +52,7 @@ public class BasketController {
     /**
      * this method allows to retrieve all the baskets of the connected consumer
      *
-     * @return ArrayList<Basket>
+     * @return this list of althe baskets from a consumer
      */
     public ArrayList<Basket> getAllBasket() {
         return basketFacade.getAllBasket(userFacade.getConnectedUser().getPseudo());
@@ -100,7 +100,9 @@ public class BasketController {
     }
 
     /**
-     * @return
+     * This metho calculate the total price of all the baskets
+     *
+     * @return the price (float)
      */
     public float getPrixTotalBasket(ObservableList<Basket> listBasket) {
         float priceTOT = 0;
@@ -112,8 +114,10 @@ public class BasketController {
 
 
     /**
-     * @param listBasket
-     * @return int
+     * This method to get the number of item in all baskets combined
+     *
+     * @param listBasket list of all the baskets for a consumer
+     * @return the number of product (int)
      */
     public int getNbItemBasket(ObservableList<Basket> listBasket) {
         int cpt = 0;
@@ -217,6 +221,9 @@ public class BasketController {
 
     }
 
+    /**
+     * This method is used to go on the homePage
+     */
     public void homePage() {
         Router.getInstance().activate("HomePage");
     }

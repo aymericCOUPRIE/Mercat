@@ -25,6 +25,12 @@ public abstract class ProductDAO {
     }
 
 
+    /**
+     * SINGLETON
+     * This method create only one instance of the class
+     *
+     * @return the instance of ProductDAO
+     */
     public static ProductDAO getInstance() {
         if (instanceProductDAO == null) {
             instanceProductDAO = AbstractFactoryDAO.getFactory().createProductDAO();
@@ -106,13 +112,17 @@ public abstract class ProductDAO {
      */
     public abstract int getProductId(Product p);
 
+    /**
+     * @param seller
+     * @return
+     */
     public ArrayList<Product> getProductsBySeller(String seller) {
         return null;
     }
 
     /**
-     * @param id of the category we want the lielleCategorie
-     * @return LibelleCategorie
+     * @param libelle of the category we want the lielleCategorie
+     * @return the id of the category
      */
     public int getCategoryId(String libelle) {
         return -1;

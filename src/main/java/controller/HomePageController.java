@@ -59,6 +59,8 @@ public class HomePageController {
     private String description;
     private String productName;
     private String city;
+
+
     /**
      * @return
      */
@@ -127,7 +129,7 @@ public class HomePageController {
         errorText.setText("");
         ArrayList<Category> listCategory = Router.getInstance().getParametreC();
         ArrayList<String> listNomCategory = new ArrayList<String>();
-        for(Category c : listCategory){
+        for (Category c : listCategory) {
             listNomCategory.add(c.getNameCategory());
         }
         ObservableList<String> listObservableCategory = FXCollections.observableArrayList(listNomCategory);
@@ -166,6 +168,7 @@ public class HomePageController {
 
     /**
      * Goes to UpdateCategories page
+     *
      * @param e
      */
     public void updateCategoriesPage(ActionEvent e) {
@@ -174,75 +177,79 @@ public class HomePageController {
 
     /**
      * This method enables you to research a product thanks to his name
+     *
      * @param e
      */
-    public void getProductsByName(ActionEvent e){
+    public void getProductsByName(ActionEvent e) {
         productName = txtProduct1.getText();
-        if(productName.equals("")){
+        if (productName.equals("")) {
             display("You need to fill the field");
-        }else{
+        } else {
             ArrayList<Product> p = productFacade.getProductsByName(productName);
             System.out.println("HomePageController getProductsByName");
-            Router.getInstance().activate("ProductUI",p);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
     /**
      * This method enables you to research a product by his name and the name of a city
+     *
      * @param e
      */
-    public void getProductsByNameAndCity(ActionEvent e){
+    public void getProductsByNameAndCity(ActionEvent e) {
         productName = txtProduct2.getText();
         city = txtCity1.getText();
-        if(productName.equals("")||city.equals("")){
+        if (productName.equals("") || city.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName,city);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName, city);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
     /**
      * This method enables you to research a product by his name and the category
+     *
      * @param e
      */
-    public void getProductsByNameAndCategory(ActionEvent e){
+    public void getProductsByNameAndCategory(ActionEvent e) {
         productName = txtProduct3.getText();
         categoryName = txtCategory1.getText();
-        if(productName.equals("")||categoryName.equals("")){
+        if (productName.equals("") || categoryName.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName,categoryName);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName, categoryName);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
     /**
      * This method enables you to research a product by name, category and city
+     *
      * @param e
      */
-    public void getProductsByNameAndCityAndCategory(ActionEvent e){
+    public void getProductsByNameAndCityAndCategory(ActionEvent e) {
         productName = txtProduct4.getText();
         categoryName = txtCategory2.getText();
         city = txtCity2.getText();
-        if(productName.equals("")||city.equals("")||categoryName.equals("")){
+        if (productName.equals("") || city.equals("") || categoryName.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName, city, categoryName);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
     /**
      * Show on an error message on the page, it informs the user of his mistakes
+     *
      * @param msg
      */
-    public void display(String msg)
-    {
+    public void display(String msg) {
         errorText.setText(msg);
     }
 
-    public void addProduct(){
+    public void addProduct() {
         Object[] o = new Object[1];
         o[0] = userFacade.getConnectedUser().getPseudo();
         Router.getInstance().activate("AddProduct", o);

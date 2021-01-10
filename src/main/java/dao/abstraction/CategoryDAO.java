@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- * Abstract class
+ * Abstract class CategoryDAO
  */
 public abstract class CategoryDAO {
 

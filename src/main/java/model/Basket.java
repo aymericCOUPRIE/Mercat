@@ -1,13 +1,16 @@
 package model;
 
 
-
+/**
+ * Class Basket
+ */
 public class Basket {
 
     /**
      * this method allows you to instantiate a basket
-     * @param quantity of the product in the basket
-     * @param product in the basket
+     *
+     * @param quantity       of the product in the basket
+     * @param product        in the basket
      * @param pseudoConsumer of the person who owns the basket
      */
 
@@ -23,7 +26,7 @@ public class Basket {
     private int quantity;
 
     /**
-     *product in the basket
+     * product in the basket
      */
     private final Product product;
 
@@ -33,7 +36,6 @@ public class Basket {
     private final String pseudoConsumer;
 
     /**
-     *
      * @return quantity of the product in the basket
      */
     public int getQuantity() {
@@ -41,7 +43,6 @@ public class Basket {
     }
 
     /**
-     *
      * @return the product in the basket
      */
     public Product getProduct() {
@@ -49,7 +50,6 @@ public class Basket {
     }
 
     /**
-     *
      * @return the owner of the basket
      */
     public String getPseudoConsumer() {
@@ -57,7 +57,6 @@ public class Basket {
     }
 
     /**
-     *
      * this methode permits to update the quantity in the basket
      *
      * @param quantity of product
@@ -65,7 +64,6 @@ public class Basket {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 
 
 }

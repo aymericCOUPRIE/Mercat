@@ -6,11 +6,13 @@ import dataBase.MySQLConnection;
 import java.sql.Connection;
 
 /**
- *
+ * Class DAOFactoryMySQL
  */
 public class DAOFactoryMySQL extends AbstractFactoryDAO {
 
-    //on récupère la connection avec la BDD dans cet attribut qui ne sera jamais modifié
+    /**
+     * on récupère la connection avec la BDD dans cet attribut qui ne sera jamais modifié
+     */
     protected static final Connection connect = MySQLConnection.getInstance();
 
     /**
@@ -49,7 +51,9 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     /**
      * @return
      */
-    public CommentDAO createCommentDAO() {return new CommentDAOMySQl(connect); }
+    public CommentDAO createCommentDAO() {
+        return new CommentDAOMySQl(connect);
+    }
 
     /**
      * @return

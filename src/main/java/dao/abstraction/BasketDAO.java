@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.util.*;
 
 
+/**
+ * Abtract class BasketDAO
+ */
 public abstract class BasketDAO {
 
     /**
@@ -26,6 +29,12 @@ public abstract class BasketDAO {
     }
 
 
+    /**
+     * SINGLETON
+     * This method create only one instance of the class
+     *
+     * @return the instance of BasketDAO
+     */
     public static BasketDAO getInstance() {
         if (instanceBasketDAO == null) {
             instanceBasketDAO = AbstractFactoryDAO.getFactory().createBasketDAO();
@@ -70,7 +79,6 @@ public abstract class BasketDAO {
      * @param quantity  we want to save
      * @return boolean True si le panier a bien été modifié
      */
-
     public abstract boolean updateBasket(String pseudo, int idProduct, int quantity);
 
 
