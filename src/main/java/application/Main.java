@@ -14,6 +14,9 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
+    /**
+     * primaryStage corresponds to the window of the application
+     */
     public static Stage primaryStage = null;
 
     /**

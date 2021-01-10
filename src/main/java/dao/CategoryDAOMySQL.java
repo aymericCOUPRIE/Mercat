@@ -56,7 +56,7 @@ public class CategoryDAOMySQL extends CategoryDAO {
     /**
      * This method gathers all the categories existing in the DB
      *
-     * @return the list of all existing categories, ArrayList<Category>
+     * @return the list of all existing categories
      * null if their is no category for the given name
      */
     @Override

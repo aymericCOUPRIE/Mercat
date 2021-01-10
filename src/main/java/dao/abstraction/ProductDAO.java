@@ -45,7 +45,7 @@ public abstract class ProductDAO {
     /**
      * @param name of the product we want to find
      * @param city of the product we want to find
-     * @return ArrayList<Product>
+     * @return a list of all the products from a city
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         // TODO implement here
@@ -55,7 +55,7 @@ public abstract class ProductDAO {
     /**
      * @param name     of the product we want to find
      * @param category of the product we want to find
-     * @return ArrayList<Product>
+     * @return a list of all the products from a specific category
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         // TODO implement here
@@ -66,7 +66,7 @@ public abstract class ProductDAO {
      * @param name     of the product we want to find
      * @param city     of the product we want to find
      * @param category of the product we want to find
-     * @return ArrayList<Product>
+     * @return a list a of product from a specific name, city and category
      */
     public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String category) {
         // TODO implement here

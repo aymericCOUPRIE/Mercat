@@ -43,8 +43,12 @@ public class Router {
     }
 
 
+    /**
+     * This methof is used to access the list of all the paths
+     *
+     * @return a HashMap containing the name of the path and the Inteface corresponding to the path
+     */
     public HashMap<String, String> getScreenMap() {
-
         return screenMap;
     }
 
@@ -59,6 +63,8 @@ public class Router {
     }
 
     /**
+     * This method is used to get the parameters given when changing interfaces
+     *
      * @return Object[]  the params of the new loaded view
      */
     public Object[] getParams() {
@@ -68,7 +74,8 @@ public class Router {
     /**
      * ajouter un racourci nom pour un chemin
      *
-     * @param name,path
+     * @param name name of the path
+     * @param path name of the Interface
      */
     public void add(String name, String path) {
 
@@ -78,7 +85,7 @@ public class Router {
     /**
      * se rentre sur la page dont le nom est passé en paramètres
      *
-     * @param name
+     * @param name name of the path
      */
     public void activate(String name) {
         this.params = new String[0];
@@ -89,7 +96,13 @@ public class Router {
         }
     }
 
-    public void activate(String name, int a){
+    /**
+     * se rentre sur la page dont le nom est passé en paramètres
+     *
+     * @param name name of the path
+     * @param a    parameter given from the old controller to the new one
+     */
+    public void activate(String name, int a) {
         this.paramProduct = a;
         try {
             Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
@@ -97,11 +110,12 @@ public class Router {
             e.printStackTrace();
         }
     }
+
     /**
      * changer de page en prenant des paramètres avec nous (une instance de user par exemple)
      *
-     * @param name
-     * @param params
+     * @param name   name of the path
+     * @param params parameter given from the old controller to the new one
      */
     public void activate(String name, Object[] params) {
         this.params = params;
@@ -114,7 +128,9 @@ public class Router {
 
 
     /**
-     * @param name
+     * changer de page en prenant des paramètres avec nous (une instance de user par exemple)
+     *
+     * @param name name of the path
      * @param p    Changer de page avec une ArrayList de Product
      */
     public void activate(String name, ArrayList<Product> p) {
@@ -126,10 +142,20 @@ public class Router {
         }
     }
 
+    /**
+     * This method is used to get parameters from another controller
+     *
+     * @return a list of products
+     */
     public ArrayList<Product> getParametre() {
         return parametre;
     }
 
+    /**
+     * This method is used to get parameters from another controller
+     *
+     * @return a list of categories
+     */
     public static ArrayList<Category> getParametreC() {
         return parametreC;
     }
