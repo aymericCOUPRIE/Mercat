@@ -118,7 +118,7 @@ public class RateDAOMySQL extends RateDAO {
     /**
      * This method get a rate of a product in the database
      * @param consumer who add the rate
-     * @param id of the product
+     * @param idProduct of the product
      * @return the rate put by the consumer, if no notation return 0
      */
     @Override
