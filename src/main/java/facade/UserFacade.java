@@ -235,9 +235,10 @@ public class UserFacade {
      * @param pseudo of the seller
      * @return seller and all of his information
      */
-    public Seller getSellerDetails(String pseudo) {
-        System.out.println("Pseudo seleler " +pseudo);
-        return (Seller) userDAO.findUser(pseudo);
+    public User getSellerDetails(String pseudo) {
+        //System.out.println("Pseudo seleler " +pseudo);
+        //userDAO.findUser(pseudo).getRole();
+        return userDAO.findUser(pseudo);
     }
 
 

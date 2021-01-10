@@ -68,7 +68,7 @@ public class SellerProfileController {
      * @return
      */
     public Seller getSellerDetails(String pseudo)  {
-        return  userFacade.getSellerDetails(pseudo);
+        return  (Seller) userFacade.getSellerDetails(pseudo);
     }
 
     /**
