@@ -115,16 +115,13 @@ public class HomePageController {
         } else { //je suis un admin
             myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
             ConsultHistoricOrder.setVisible(false);
-        }
-
-        if ((userFacade.getConnectedUser().getRole().equals("admin"))) {
-            myAccount.setVisible(false);
-            mySellerAccount.setVisible(false);
-        }
-        if ((userFacade.getConnectedUser().getRole().equals("consumer"))) {
             mySellerAccount.setVisible(false);
         }
 
+        if(!(userFacade.getConnectedUser().getRole().equals("seller"))){
+            addProduct.setVisible(false);
+            mySellerAccount.setVisible(false);
+        }
 
         errorText.setText("");
         ArrayList<Category> listCategory = Router.getInstance().getParametreC();

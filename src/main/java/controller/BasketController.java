@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.paint.Color;
 import javafx.util.converter.IntegerStringConverter;
 import model.Basket;
 
@@ -139,6 +140,9 @@ public class BasketController {
 
             {
                 deleteButton.setOnAction(event -> deleteBasket(param.getTableView().getItems().get(getIndex()), getIndex()));
+                deleteButton.setStyle("-fx-background-color: rgb(255, 105, 97)");
+                deleteButton.setTextFill(Color.rgb(255, 255, 255));
+
             }
 
             //supprimer la ligne du tableau qui correspond au produit qu'on a enlevé du panier
