@@ -344,7 +344,7 @@ public class UserDAOMySQL extends UserDAO {
     /**
      * Fonction qui retourne le pseudo de l'user recherché ou un message d'erreur si il n'existe pas ou que ce n'est pas un consumer
      *
-     * @param pseudo
+     * @param pseudo the pseudo we want to search in the DB
      * @return String pseudo ou errormsg
      */
     public String searchSeller(String pseudo) {

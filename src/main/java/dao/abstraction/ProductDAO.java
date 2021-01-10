@@ -7,10 +7,13 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- *
+ * Class ProductDAO
  */
 public abstract class ProductDAO {
 
+    /**
+     * connection to the database
+     */
     protected Connection connect = null;
 
     private static ProductDAO instanceProductDAO;

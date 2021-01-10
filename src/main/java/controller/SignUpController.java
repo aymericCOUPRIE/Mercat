@@ -82,7 +82,7 @@ public class SignUpController {
      * Method used by btnRegisterConsumer from Java FX
      * It register a Consumer
      */
-    public void signUpConsumer(ActionEvent e) throws IOException {
+    public void signUpConsumer(ActionEvent e) {
 
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
@@ -110,7 +110,7 @@ public class SignUpController {
      * Method used by btnRegisterSeller from Java FX
      * It register a Seller
      */
-    public void signUpSeller(ActionEvent e) throws IOException {
+    public void signUpSeller(ActionEvent e) {
         pseudo = txtPseudo.getText();
         password = txtPassword.getText();
         email = txtEmailAdress.getText();
@@ -140,7 +140,7 @@ public class SignUpController {
      *
      * @param e
      */
-    public void signUp(ActionEvent e) throws IOException {
+    public void signUp(ActionEvent e) {
         boolean noError = true;
         if (this.isAConsumer) {
             System.out.println("CREATE CONSUMER");
@@ -178,7 +178,7 @@ public class SignUpController {
      * It allows to go to the page "login"
      */
     @FXML
-    public void backLogin(ActionEvent e) throws IOException {
+    public void backLogin(ActionEvent e) {
         Router.getInstance().activate("Login");
     }
 
@@ -192,7 +192,7 @@ public class SignUpController {
      * @param e
      */
     @FXML
-    public void consumerPage(ActionEvent e) throws IOException {
+    public void consumerPage(ActionEvent e) {
         this.isAConsumer = true;
         Router.getInstance().activate("SignUpC");
     }
@@ -203,7 +203,7 @@ public class SignUpController {
      * @param e
      */
     @FXML
-    public void sellerPage(ActionEvent e) throws IOException {
+    public void sellerPage(ActionEvent e) {
         this.isAConsumer = false;
         Router.getInstance().activate("SignUpS");
     }

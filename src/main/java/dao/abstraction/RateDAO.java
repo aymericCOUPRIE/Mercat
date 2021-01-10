@@ -10,10 +10,13 @@ import java.sql.Connection;
 import java.util.*;
 
 /**
- *
+ * Class RateDAO
  */
 public abstract class RateDAO {
 
+    /**
+     * connection to the database
+     */
     protected Connection connect = null;
 
     private static RateDAO instanceRateDAO;
@@ -37,23 +40,26 @@ public abstract class RateDAO {
 
     /**
      * This method add a rate for a seller in the database
-     * @param seller
+     *
+     * @param seller   seller on which the rate is created
      * @param consumer that add the rate
-     * @param rate an integer between 1 and 5
+     * @param rate     an integer between 1 and 5
      */
     public abstract void createRateSeller(Seller seller, Consumer consumer, int rate);
 
     /**
      * This method add a rate for a product in the database
-     * @param consumer that add the rate
-     * @param rate an integer between 1 and 5
+     *
+     * @param consumer  that add the rate
+     * @param rate      an integer between 1 and 5
      * @param idProduct of the product
      */
     public abstract void createRateProduct(Consumer consumer, int rate, int idProduct);
 
     /**
      * This method get a rate of a seller in the database
-     * @param seller
+     *
+     * @param seller   seller on which the rate is attributed
      * @param consumer who add the rate
      * @return the rate put by the consumer, if no notation return 0
      */
@@ -61,20 +67,28 @@ public abstract class RateDAO {
 
     /**
      * This method get a rate of a product in the database
+     *
      * @param consumer who add the rate
-     * @param id of the product
+     * @param id       of the product
      * @return the rate put by the consumer, if no notation return 0
      */
     public abstract float rateProduct(Consumer consumer, int id);
 
     /**
      * This method get the average rate of all rates of a seller in the database
-     * @param seller
+     *
+     * @param seller seller we want to get the average note
      * @return the average rate of a seller, if no notation return 0
      */
     public abstract float averageRateSeller(Seller seller);
 
 
+    /**
+     * This method get the list of all the rates from a product
+     *
+     * @param product the product concerned
+     * @return the list of all the Rate from the product
+     */
     public Set<Rate> getAllRatesProduct(Product product) {
         // TODO implement here
         return null;

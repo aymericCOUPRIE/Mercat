@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Class HomePageController
  */
 public class HomePageController {
 
@@ -59,6 +59,9 @@ public class HomePageController {
     private String description;
     private String productName;
     private String city;
+
+    public HomePageController() {
+    }
 
 
     /**
@@ -112,7 +115,7 @@ public class HomePageController {
             handleS.setVisible(false);
             updateCategories.setVisible(false);
 
-            if(userFacade.getConnectedUser().getRole().equals("seller")){
+            if (userFacade.getConnectedUser().getRole().equals("seller")) {
                 basket.setVisible(false);
             }
 
@@ -125,8 +128,7 @@ public class HomePageController {
         }
 
 
-
-        if(!(userFacade.getConnectedUser().getRole().equals("seller"))){ //admin ou consumer
+        if (!(userFacade.getConnectedUser().getRole().equals("seller"))) { //admin ou consumer
             addProduct.setVisible(false);
             mySellerAccount.setVisible(false);
         }

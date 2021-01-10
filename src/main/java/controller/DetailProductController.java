@@ -14,7 +14,9 @@ import router.Router;
 
 import java.util.ArrayList;
 
-
+/**
+ * Clas DetailProductController
+ */
 public class DetailProductController {
 
     private OrderFacade orderFacade = OrderFacade.getInstanceOrderFacade();
@@ -52,24 +54,30 @@ public class DetailProductController {
      */
     public void addToBasket() {
 
-       if(txtQuantity.getText().isEmpty()){
-           errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
-       }else if(Integer.parseInt(txtQuantity.getText()) > 0){
-           if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
+        if (txtQuantity.getText().isEmpty()) {
+            errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
+        } else if (Integer.parseInt(txtQuantity.getText()) > 0) {
+            if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
 
-               errorLabel.setText("The product has been added into the basket!");
+                errorLabel.setText("The product has been added into the basket!");
 
-           } else {
-               errorLabel.setText("This product is already in your basket. If you want to update the quantity, please go on 'My basket' page.");
-           }
+            } else {
+                errorLabel.setText("This product is already in your basket. If you want to update the quantity, please go on 'My basket' page.");
+            }
 
-       }else{
-           errorLabel.setText("You must provide a positive quantity!");
-       }
+        } else {
+            errorLabel.setText("You must provide a positive quantity!");
+        }
 
 
     }
 
+    /**
+     * This method is called automatically when the user
+     * get on the corresponding interface
+     * <p>
+     * It displayed to the user all the details about a specific product
+     */
     public void initialize() {
         errorLabel.setText("");
         ArrayList<Product> product = Router.getInstance().getParametre();
@@ -77,11 +85,14 @@ public class DetailProductController {
         ObservableList<Product> listProduct = FXCollections.observableArrayList(product);
         nameP.setText(product.get(0).getNameProduct());
         descriptionP.setText(product.get(0).getDescription());
-        priceP.setText(""+product.get(0).getPriceProduct());
+        priceP.setText("" + product.get(0).getPriceProduct());
     }
 
-    public void goToSellerPage(){
-        Router.getInstance().activate("ProfileSeller",productArrayList);
+    /**
+     * This method is used to go to the seller's product owner profile page
+     */
+    public void goToSellerPage() {
+        Router.getInstance().activate("ProfileSeller", productArrayList);
     }
 
 
