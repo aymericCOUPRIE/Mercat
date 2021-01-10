@@ -147,8 +147,8 @@ public class ProductFacade {
      * @param idProduct 
      * @return
      */
-    public void deleteProduct(int idProduct) {
-        // TODO implement here
+    public void deleteProduct(Product p) {
+        productDAO.deleteProduct(p);
     }
 
     /**

@@ -138,10 +138,11 @@ public class ProductController {
     }
 
     /**
-     *
+     * This method delete the product in parameter from the db
+     * @param p the product we want to delete
      */
-    public void deleteProduct() {
-        // TODO implement here
+    public void deleteProduct(Product p) {
+        productFacade.deleteProduct(p);
     }
 
     /**

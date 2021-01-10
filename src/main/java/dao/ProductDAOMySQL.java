@@ -217,7 +217,7 @@ public class ProductDAOMySQL extends ProductDAO {
      */
     public boolean deleteProduct(Product p) {
         int id = getProductId(p);
-        String requete = "DELETE FROM product WHERE idProduct=?";
+        String requete = "FROM product WHERE idProduct=?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, "" + id);
