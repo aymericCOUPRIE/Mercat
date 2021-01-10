@@ -37,12 +37,13 @@ public class OrderDAOMySQL extends OrderDAO {
         List<Pair<Integer, Integer>> listsIdProduct = new ArrayList<>();
 
         for (Basket b : baskets) {
+            System.out.println("EACH BASKET" + b.getProduct());
             listsIdProduct.add(new Pair<>(b.getProduct().getIdProduct(), b.getQuantity()));
         }
 
         String requete = "INSERT INTO orderdb (dateOrder, deliveryDate, deliveryAddress, stateOrder, pseudoConsumer) VALUES (?,?,?,?,?)";
 
-        Timestamp date = new Timestamp(System.currentTimeMillis()) ;
+        Timestamp date = new Timestamp(System.currentTimeMillis());
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, 7);
@@ -59,8 +60,13 @@ public class OrderDAOMySQL extends OrderDAO {
             int res = preparedStatement.executeUpdate();
 
             if (res != 0) { //Vérifie que le INSERT order s'est bien passé
+                System.out.println("INSERT LIST PRODUCT");
+
                 Order tempo = find(pseudoConsumer, date);
+
+                System.out.println("ID ORDER" + tempo.getIdOrder());
                 insertAllProducts(tempo.getIdOrder(), listsIdProduct);
+
                 deleteAlBasketAfterInsert(baskets);
             }
 
@@ -217,9 +223,12 @@ public class OrderDAOMySQL extends OrderDAO {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, idOrder);
 
+
             for (Pair<Integer, Integer> i : idProducts) {
+                System.out.println("ID PRODUCT TO BE INSERTED " + i.getKey() + " : " + i.getValue());
                 preparedStatement.setInt(2, i.getKey());
                 preparedStatement.setInt(3, i.getValue());
+                preparedStatement.executeUpdate();
             }
 
         } catch (SQLException throwables) {
