@@ -46,6 +46,8 @@ public class ProductController {
     private Button btnSearchProductCategory;
     @FXML
     private Button btnSearchProductNameCategory;
+    @FXML
+    private Button sellerPage;
     //TextField Product
     @FXML
     private TextField txtProduct1;
@@ -103,7 +105,8 @@ public class ProductController {
      * @param e called when btnProduct is clicked on
      */
     public void addProduct(ActionEvent e) {
-        categoryName = txtCategory.getValue().toString();
+        Object category = txtCategory.getValue().toString();
+
         System.out.println("category :"+categoryName);
         productName = txtNameProduct.getText();
         description = txtDescription.getText();
@@ -112,13 +115,14 @@ public class ProductController {
         priceCents = txtPrice2.getText();
 
 
-        if(productName.equals("")||description.equals("")||priceEuros.equals("")){
+        if(productName.equals("")||description.equals("")||priceEuros.equals("")||category==null){
             display("You need to fill every field");
         }else{
             try{
                 int i = Integer.parseInt(priceEuros);
                 try{
                     int c = Integer.parseInt(priceCents);
+                    categoryName = txtCategory.getValue().toString();
                     String price = i+"."+c;
                     Float f = Float.parseFloat(price);
                     String seller = userFacade.getConnectedUser().getPseudo();
@@ -150,7 +154,8 @@ public class ProductController {
      *
      */
     public void updateProduct(ActionEvent e) {
-        categoryName = txtCategory.getValue().toString();
+        Object category = txtCategory.getValue();
+
         System.out.println("category :"+categoryName);
         productName = txtNameProduct.getText();
         description = txtDescription.getText();
@@ -159,12 +164,13 @@ public class ProductController {
         priceCents = txtPrice2.getText();
 
 
-        if(productName.equals("")||description.equals("")||priceEuros.equals("")){
+        if(productName.equals("")||description.equals("")||priceEuros.equals("")||category==null){
             display("You need to fill every field");
         }else{
             try{
                 int i = Integer.parseInt(priceEuros);
                 try{
+                    categoryName = txtCategory.getValue().toString();
                     int c = Integer.parseInt(priceCents);
                     String price = i+"."+c;
                     Float f = Float.parseFloat(price);
@@ -172,7 +178,7 @@ public class ProductController {
                     Product p = new Product(productToModify.getIdProduct(),productName,description,f,"",seller,productToModify.getCity(),productFacade.getCategoryId(categoryName),categoryName);
                     System.out.println(p.getDescription());
                     if(productFacade.updateProduct(p)){
-                        display("Produit ajouté");
+                        display("Produit modifié");
                     }
                 }catch (NumberFormatException n){
                     display("The cent field must be an integer");
@@ -211,7 +217,7 @@ public class ProductController {
             String prix = ""+product.getPriceProduct();
             int i = prix.indexOf(".");
             txtPrice.setText(prix.substring(0,i));
-            txtPrice2.setText(prix.substring(i));
+            txtPrice2.setText(prix.substring(i+1));
         }
     }
 
@@ -285,6 +291,12 @@ public class ProductController {
      */
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("HomePage");
+    }
+
+    public void goToSellerPage(ActionEvent e){
+        ArrayList<Product> p =new ArrayList<Product>();
+        p.add(this.productToModify);
+        Router.getInstance().activate("SellerProfileUI",p);
     }
 
 

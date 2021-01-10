@@ -53,6 +53,8 @@ public class SellerProductsController {
 
         tableViewProductSeller.setItems(listProduct);
 
+        addModifyButton();
+
 
     }
 
@@ -68,7 +70,19 @@ public class SellerProductsController {
                 modifyButton.setOnAction(event -> goToModifyProduct(param.getTableView().getItems().get(getIndex())));
 
             }
-        }
+                    @Override
+                    /**
+                     * Shows the button
+                     */
+                    protected void updateItem(Integer item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(modifyButton);
+                        }
+                    }
+            }
 
         );
     }

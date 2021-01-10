@@ -128,6 +128,7 @@ public class SellerProfileController {
             }
         } else { // On vient de la page home
             nameSeller = userFacade.getConnectedUser().getPseudo();
+            this.productArrayList = productFacade.getProductsBySeller(nameSeller);
             btnRate.setDisable(true);
         }
 
