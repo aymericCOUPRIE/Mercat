@@ -219,11 +219,11 @@ public class ProductDAOMySQL extends ProductDAO {
      * @return boolean, true if the product was deleted
      */
     public boolean deleteProduct(Product p) {
-        int id = getProductId(p);
+        System.out.println("id produit a detruire :"+p.getIdProduct());
         String requete = "DELETE FROM product WHERE idProduct=?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setString(1, "" + id);
+            preparedStatement.setInt(1, p.getIdProduct());
 
             return preparedStatement.executeUpdate() != 0;
 

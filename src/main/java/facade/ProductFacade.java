@@ -141,10 +141,10 @@ public class ProductFacade {
 
     /**
      * @param p the product we want to delete
-     * @return
+     * @return true if the product was deleted
      */
-    public void deleteProduct(Product p) {
-        productDAO.deleteProduct(p);
+    public boolean deleteProduct(Product p) {
+        return productDAO.deleteProduct(p);
     }
 
     /**

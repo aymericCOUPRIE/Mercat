@@ -53,7 +53,17 @@ public class SellerProductsController {
 
         tableViewProductSeller.setItems(listProduct);
 
-        addModifyButton();
+        System.out.println(productArrayList.get(0).getPseudoSeller());
+        System.out.println(userFacade.getConnectedUser().getPseudo());
+        System.out.println(productArrayList.get(0).getPseudoSeller()==userFacade.getConnectedUser().getPseudo());
+        if(productArrayList.get(0).getPseudoSeller().equals(userFacade.getConnectedUser().getPseudo())){//Si l'utilisateur connecté est le vendeur
+            addModifyButton();
+            addDeleteButton();
+        }else{//sinon
+            System.out.println("PORUQUOI ???");
+            addGoToButton();
+        }
+
 
 
     }
@@ -87,11 +97,75 @@ public class SellerProductsController {
         );
     }
     private void addDeleteButton(){
+        deleteProduct.setCellFactory(param -> new TableCell<>(){
+                    private Button deleteButton = new Button("Delete");
+                    {
+                        deleteButton.setOnAction(event -> goToDeleteProduct(event, param.getTableView().getItems().get(getIndex()), getIndex()));
 
+                    }
+                    @Override
+                    /**
+                     * Shows the button
+                     */
+                    protected void updateItem(Integer item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(deleteButton);
+                        }
+                    }
+                }
+
+        );
     }
+    private void addGoToButton(){
+        modifyProduct.setCellFactory(param -> new TableCell<>(){
+            private Button goToButton = new Button("DETAILS");
+            {
+                goToButton.setOnAction(event -> goToProduct(param.getTableView().getItems().get(getIndex())));
+            }
+
+            @Override
+            /**
+             * Shows the button
+             */
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(goToButton);
+                }
+            }
+        });
+    }
+
+    /**
+     * This method is called by modifyButton, it is called when we want to update a product into the database
+     * @param id of the product we want to modify
+     */
     private void goToModifyProduct(Product id){
         ArrayList<Product> o = new ArrayList<Product>();
         o.add(id);
         Router.getInstance().activate("ModifyProduct",o);
+    }
+
+    /**
+     *This method delegates the deletion of the product
+     * It also removes the product from the tableView
+     * @param e subject of the action
+     * @param p the product we want to delete
+     * @param index row number of the product in the tableView
+     */
+    private void goToDeleteProduct(ActionEvent e, Product p, int index){
+        System.out.println(productFacade.deleteProduct(p));
+        tableViewProductSeller.getItems().remove(index);
+    }
+
+    private void goToProduct(Product p){
+        ArrayList<Product> o = new ArrayList<Product>();
+        o.add(p);
+        Router.getInstance().activate("DetailsProduct", o);
     }
 }
