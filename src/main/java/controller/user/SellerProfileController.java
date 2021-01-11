@@ -63,6 +63,7 @@ public class SellerProfileController {
 
     private ArrayList<Product> productArrayList;
     String nameSeller;
+    boolean home;
 
     /**
      * This method return all information of a seller with only his pseudo
@@ -80,7 +81,7 @@ public class SellerProfileController {
      * It permit to return to the home page
      */
     public void back() {
-        if (productArrayList != null) {
+        if (!home) {
             Router.getInstance().activate("DetailsProduct", productArrayList);
         } else {
             Router.getInstance().activate("HomePage");
@@ -113,10 +114,12 @@ public class SellerProfileController {
             } else {
                 btnRate.setDisable(true);
             }
+            home = false;
         } else { // On vient de la page home
             nameSeller = userFacade.getConnectedUser().getPseudo();
             this.productArrayList = productFacade.getProductsBySeller(nameSeller);
             btnRate.setDisable(true);
+            home = true;
         }
 
 
