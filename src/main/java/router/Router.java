@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ * Class Router
  */
 public class Router {
 
@@ -20,11 +20,7 @@ public class Router {
      */
     public static Router instanceRouteur;
 
-    /**
-     * si on veut passer des paramètres en changent de page
-     */
-    public Object[] params;
-    public int paramProduct;
+    private Object[] params;
 
     private static ArrayList<Product> parametre;
     private static ArrayList<Category> parametreC = CategoryFacade.getInstance().getAllCategory();
@@ -103,7 +99,6 @@ public class Router {
      * @param a    parameter given from the old controller to the new one
      */
     public void activate(String name, int a) {
-        this.paramProduct = a;
         try {
             Main.primaryStage.getScene().setRoot(FXMLLoader.load(getClass().getResource(instanceRouteur.getScreenMap().get(name))));
         } catch (Exception e) {
