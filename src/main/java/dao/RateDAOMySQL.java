@@ -221,5 +221,6 @@ public class RateDAOMySQL extends RateDAO {
         return null;
     }
 
+    //TODO getAllRatesSeller
 
 }

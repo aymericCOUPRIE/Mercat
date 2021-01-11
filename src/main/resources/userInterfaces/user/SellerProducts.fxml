@@ -45,6 +45,7 @@
                         <Insets left="50.0" />
                     </HBox.margin>
                 </Label>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#goHome" style="-fx-background-color: #1A5276  #1A5276; -fx-text-fill: white;" text="Home" />
             </children>
             <opaqueInsets>
                 <Insets />
