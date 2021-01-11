@@ -25,7 +25,7 @@ public class ProductFacade {
     private final ArrayList<Product> listProduct = new ArrayList<Product>();
 
     /**
-     * @return instanceUserFacade
+     * @return an instance of the product facade
      **/
 
     public static ProductFacade getInstance() {
@@ -42,7 +42,7 @@ public class ProductFacade {
     }
 
     /**
-     * @return
+     * @return the list of product
      */
     public ArrayList<Product> getProducts() {
         return listProduct;
