@@ -33,7 +33,7 @@
       </Label>
       <TableView fx:id="tableViewCategory" prefHeight="200.0" prefWidth="200.0">
          <columns>
-            <TableColumn fx:id="nomCat" prefWidth="75.0" text="nom" />
+            <TableColumn fx:id="nomCat" prefWidth="75.0" text="name" />
             <TableColumn fx:id="deleteCat" prefWidth="75.0" text="Action" />
          </columns>
          <columnResizePolicy>
@@ -41,13 +41,13 @@
          </columnResizePolicy></TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Nouvelle Catégorie" />
+            <Label text="New category" />
             <TextField fx:id="newCategoryName">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="createNewCategory" mnemonicParsing="false" onAction="#createCategory" style="-fx-background-color: #1a5276;" text="Valider" textFill="WHITE" />
+            <Button fx:id="createNewCategory" mnemonicParsing="false" onAction="#createCategory" style="-fx-background-color: #1a5276;" text="Validate" textFill="WHITE" />
             <Label fx:id="creationError">
                <HBox.margin>
                   <Insets left="50.0" />
