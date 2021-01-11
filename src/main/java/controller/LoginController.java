@@ -28,7 +28,7 @@ public class LoginController {
 
     // Configuration
 
-    private final UserFacade userFacade = new UserFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
      * Default constructor

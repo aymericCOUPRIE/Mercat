@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Consumer;
+import model.Product;
 import router.Router;
 
 /**
@@ -29,8 +30,8 @@ public class RateController {
     private String nameSeller;
     private int idProduct;
 
-    private final ProductFacade facade = new ProductFacade();
-    private final SellerFacade facadeS = new SellerFacade();
+    private final ProductFacade facade = ProductFacade.getInstance();
+    private final SellerFacade facadeS = SellerFacade.getInstance();
     private final UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
     /**

@@ -18,6 +18,9 @@ public class UserFacade {
 
     private final UserDAO userDAO = UserDAO.getInstance();
 
+    private UserFacade() {
+
+    }
 
     /**
      * SINGLETON

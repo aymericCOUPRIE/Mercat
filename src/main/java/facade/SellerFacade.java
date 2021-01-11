@@ -10,15 +10,26 @@ import model.Seller;
 public class SellerFacade {
 
 
+    private static SellerFacade instanceSellerFacade;
     private final RateDAO rateDAO = RateDAO.getInstance();
-
 
     /**
      * Default constructor
      */
-    public SellerFacade() {
+    private SellerFacade() {
     }
 
+    /**
+     * this methode permits to get the instanceSellerFacade and make sure we have only one facade
+     *
+     * @return instanceSellerFacade
+     **/
+    public static SellerFacade getInstance() {
+        if (instanceSellerFacade == null) {
+            instanceSellerFacade = new SellerFacade();
+        }
+        return instanceSellerFacade;
+    }
 
     /**
      * This method permits to add a rate for a seller

@@ -40,7 +40,7 @@ public class UpdateSellerProfileController {
     @FXML
     private Label errorText;
 
-    private UserFacade userFacade = new UserFacade();
+    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
     private String OldPassword;
 
     /**

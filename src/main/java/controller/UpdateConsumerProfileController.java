@@ -46,7 +46,7 @@ public class UpdateConsumerProfileController {
     /**
      * this facade permits to get the information about the logged-in user
      */
-    private final UserFacade userFacade = new UserFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
      * This methode permits to get all the information about a consumer.
