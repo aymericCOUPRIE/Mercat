@@ -63,7 +63,7 @@ public class ProductFacade {
      * @param consumer 
      * @param comment
      * @param idProduct
-     * @return
+     *
      */
     public void updateComment(Consumer consumer, String comment, int idProduct) {
         commentDAO.updateComment(consumer, comment, idProduct);
