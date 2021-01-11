@@ -90,13 +90,17 @@ public class BasketController {
      *
      */
     public void createOrder() {
-        String deliveryAddress = ((RadioButton) selectedAddress.getSelectedToggle()).getText();
-        System.out.println(deliveryAddress);
-        boolean res = orderFacade.insertOrder(getAllBasket(), userFacade.getConnectedUser().getPseudo(), deliveryAddress);
-        if (res) {
-            Router.getInstance().activate("HomePage");
+        ArrayList<Basket> listBaskets = getAllBasket();
+        if (!listBaskets.isEmpty()) {
+            String deliveryAddress = ((RadioButton) selectedAddress.getSelectedToggle()).getText();
+            boolean res = orderFacade.insertOrder(listBaskets, userFacade.getConnectedUser().getPseudo(), deliveryAddress);
+            if (res) {
+                Router.getInstance().activate("HomePage");
+            } else {
+                txterror.setText("Il y a eu une erreur lors de la creation de votre panier");
+            }
         } else {
-            txterror.setText("Il y a eu une erreur lors de la creation de votre panier");
+            txterror.setText("Vous n'avez aucun produit dans votre panier");
         }
     }
 
