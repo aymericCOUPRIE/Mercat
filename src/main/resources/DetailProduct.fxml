@@ -13,7 +13,7 @@
       <Label fx:id="nameP" layoutX="105.0" layoutY="116.0" text="Nom du produit" />
       <Label fx:id="priceP" layoutX="138.0" layoutY="192.0" text="Prix" />
       <Label fx:id="descriptionP" layoutX="113.0" layoutY="256.0" text="Description" />
-      <Button fx:id="sellerPage" layoutX="485.0" layoutY="243.0" mnemonicParsing="false" onAction="#goToSellerPage" text="Seller" />
+      <Button fx:id="sellerPage" layoutX="485.0" layoutY="243.0" mnemonicParsing="false" onAction="#goToSellerPage" style="-fx-background-color: #1A5276;" text="Seller" textFill="WHITE" />
       <Button layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1A5276;" text="Home" textFill="WHITE" />
    </children>
 </AnchorPane>
