@@ -23,9 +23,6 @@ public class DetailProductController {
 
     private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
     private Product curentProduct;
-    //private Product curentProduct = new Product(5, "jupe", "dezfd", 25, "none", "ulisses", 3);
-    ; //produit qui est affiché sur la page
-    private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     //private final Product curentProduct = new Product(5, "jupe", "dezfd", 25, "none", "ulisses", 3);
      //produit qui est affiché sur la page
