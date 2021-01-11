@@ -53,9 +53,6 @@ public class HomePageController {
 
 
     private String categoryName;
-    private String priceEuros;
-    private String priceCents;
-    private String description;
     private String productName;
     private String city;
 
@@ -64,23 +61,14 @@ public class HomePageController {
 
 
     /**
-     * @return
-     */
-    public void search() {
-        // TODO implement here
-    }
-
-
-    /**
      * Method used by the menue from Java FX
      * It permits to go to the page to handle a consumer acount
      *
-     * @param e
-     * @throws IOException
+     * @param e Subject of the action
      */
 
     @FXML
-    public void handleUserAcount(ActionEvent e) throws IOException {
+    public void handleUserAcount(ActionEvent e) {
         if (userFacade.isSeller()) {
             Router.getInstance().activate("HandleSeller");
         } else { //je suis un consumer
@@ -89,7 +77,7 @@ public class HomePageController {
     }
 
     @FXML
-    public void accountSeller(ActionEvent e) throws IOException {
+    public void accountSeller(ActionEvent e) {
         Router.getInstance().activate("ProfileSeller");
     }
 
