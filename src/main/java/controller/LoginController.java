@@ -43,7 +43,7 @@ public class LoginController {
      * Method used by btnLogin from Java FX
      * It allows to log in the system
      *
-     * @param e
+     * @param e subject of the action
      * @throws IOException
      */
     @FXML

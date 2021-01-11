@@ -56,6 +56,9 @@ public class HomePageController {
     private String productName;
     private String city;
 
+    /**
+     * Default constructor
+     */
     public HomePageController() {
     }
 
@@ -66,7 +69,6 @@ public class HomePageController {
      *
      * @param e Subject of the action
      */
-
     @FXML
     public void handleUserAcount(ActionEvent e) {
         if (userFacade.isSeller()) {
@@ -76,6 +78,11 @@ public class HomePageController {
         }
     }
 
+    /**
+     * This method is used to consult the seller page
+     *
+     * @param e subject of the action
+     */
     @FXML
     public void accountSeller(ActionEvent e) {
         Router.getInstance().activate("ProfileSeller");
@@ -85,11 +92,10 @@ public class HomePageController {
      * Method used by the menue from Java FX
      * It permits to go in the handle sellers page
      *
-     * @param e
-     * @throws IOException
+     * @param e subject of the action
      */
     @FXML
-    public void handleSellers(ActionEvent e) throws IOException {
+    public void handleSellers(ActionEvent e) {
         Router.getInstance().activate("HandleSellerS");
     }
 
@@ -133,12 +139,11 @@ public class HomePageController {
      * Method used by the menue from Java FX
      * It permits to go in the handle consumers page
      *
-     * @param e
-     * @throws IOException
+     * @param e subject of the action
      */
 
     @FXML
-    public void handleConsumers(ActionEvent e) throws IOException {
+    public void handleConsumers(ActionEvent e) {
 
         //pas besoin de tester si bien admin car boutton menu affiché selement pour les admins
         Router.getInstance().activate("HandleConsumerS");
@@ -149,13 +154,17 @@ public class HomePageController {
      * Method used by the menue from Java FX
      * It permits to go in the basket page of the consumer logged
      *
-     * @param e
-     * @throws IOException
+     * @param e subject of the action
      */
-    public void basket(ActionEvent e) throws IOException {
+    public void basket(ActionEvent e) {
         Router.getInstance().activate("Basket");
     }
 
+    /**
+     * this emthod is used to go on the consult historic order page
+     *
+     * @param e subject of the action
+     */
     public void consultHistoricOrder(ActionEvent e) {
         router.activate("HistoricOrder");
     }
@@ -163,7 +172,7 @@ public class HomePageController {
     /**
      * Goes to UpdateCategories page
      *
-     * @param e
+     * @param e subject of the action
      */
     public void updateCategoriesPage(ActionEvent e) {
         router.activate("UpdateCategories");
@@ -172,7 +181,7 @@ public class HomePageController {
     /**
      * This method enables you to research a product thanks to his name
      *
-     * @param e
+     * @param e subject of the action
      */
     public void getProductsByName(ActionEvent e) {
         productName = txtProduct1.getText();
@@ -188,7 +197,7 @@ public class HomePageController {
     /**
      * This method enables you to research a product by his name and the name of a city
      *
-     * @param e
+     * @param e subject of the action
      */
     public void getProductsByNameAndCity(ActionEvent e) {
         productName = txtProduct2.getText();
@@ -204,7 +213,7 @@ public class HomePageController {
     /**
      * This method enables you to research a product by his name and the category
      *
-     * @param e
+     * @param e subject of the action
      */
     public void getProductsByNameAndCategory(ActionEvent e) {
         productName = txtProduct3.getText();
@@ -220,7 +229,7 @@ public class HomePageController {
     /**
      * This method enables you to research a product by name, category and city
      *
-     * @param e
+     * @param e subject of the action
      */
     public void getProductsByNameAndCityAndCategory(ActionEvent e) {
         productName = txtProduct4.getText();
@@ -237,12 +246,15 @@ public class HomePageController {
     /**
      * Show on an error message on the page, it informs the user of his mistakes
      *
-     * @param msg
+     * @param msg contins the error message
      */
     public void display(String msg) {
         errorText.setText(msg);
     }
 
+    /**
+     * This method is used for a seller to add a product
+     */
     public void addProduct() {
         Object[] o = new Object[1];
         o[0] = userFacade.getConnectedUser().getPseudo();
