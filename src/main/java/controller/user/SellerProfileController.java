@@ -10,13 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import model.Order;
 import model.Product;
 import model.Seller;
 import router.Router;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  *
@@ -91,6 +89,7 @@ public class SellerProfileController {
     /**
      * Method used by btnBack from Java FX
      * It permit to return to the home page
+     *
      */
     public void addRatePage() {
         Object[] params = new Object[1];
@@ -120,8 +119,6 @@ public class SellerProfileController {
             btnRate.setDisable(true);
             home = true;
         }
-
-
         Float averageRate;
         Seller s = getSellerDetails(nameSeller);
         txtPseudo.setText(s.getPseudo());

@@ -49,12 +49,13 @@ public class OrderDAOMySQL extends OrderDAO {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, 7);
+        Timestamp timestamp = new Timestamp((cal.getTime().getTime()));
 
         try {
 
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setTimestamp(1, date);
-            preparedStatement.setTimestamp(2, new Timestamp(cal.getTime().getTime()));
+            preparedStatement.setTimestamp(2, timestamp);
             preparedStatement.setString(3, deliveryAddress);
             preparedStatement.setString(4, "start");
             preparedStatement.setString(5, pseudoConsumer);
@@ -62,13 +63,8 @@ public class OrderDAOMySQL extends OrderDAO {
             int res = preparedStatement.executeUpdate();
 
             if (res != 0) { //Vérifie que le INSERT order s'est bien passé
-                System.out.println("INSERT LIST PRODUCT");
-
                 Order tempo = find(pseudoConsumer, date);
-
-                System.out.println("ID ORDER" + tempo.getIdOrder());
                 insertAllProducts(tempo.getIdOrder(), listsIdProduct);
-
                 deleteAlBasketAfterInsert(baskets);
             }
 
@@ -91,8 +87,6 @@ public class OrderDAOMySQL extends OrderDAO {
      */
     public boolean updateOrderState(Order order) {
         String requete = "UPDATE orderdb SET stateOrder = ? WHERE idOrder = ?";
-
-        System.out.println("UPDATE ORDER");
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -146,7 +140,6 @@ public class OrderDAOMySQL extends OrderDAO {
     public boolean updateOrderDeliveryDate(Order order) {
         String requete = "UPDATE orderdb SET deliveryDate = ? WHERE idOrder = ?";
 
-        System.out.println("DELIVERY DATE2" + order.getDeliveryDate());
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setDate(1, (java.sql.Date) order.getDeliveryDate());

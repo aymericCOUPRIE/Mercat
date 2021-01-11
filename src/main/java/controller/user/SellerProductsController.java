@@ -87,9 +87,15 @@ public class SellerProductsController {
      */
     public void goSellerPage() {
         System.out.println("goSellerPage " + this.productArrayList.size());
-        Router.getInstance().activate("SellerProfileUI", this.productArrayList);
+        Router.getInstance().activate("ProfileSeller", this.productArrayList);
     }
 
+    /**
+     *
+     */
+    public void goHome(){
+        Router.getInstance().activate("HomePage");
+    }
     private void addModifyButton() {
         modifyProduct.setCellFactory(param -> new TableCell<>() {
                     private Button modifyButton = new Button("Modify");
@@ -196,4 +202,5 @@ public class SellerProductsController {
         o.add(p);
         Router.getInstance().activate("DetailsProduct", o);
     }
+
 }
