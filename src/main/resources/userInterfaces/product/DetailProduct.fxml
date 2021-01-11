@@ -15,5 +15,7 @@
       <Label fx:id="descriptionP" layoutX="106.0" layoutY="227.0" text="Description" />
       <Button fx:id="sellerPage" layoutX="459.0" layoutY="351.0" mnemonicParsing="false" onAction="#goToSellerPage" style="-fx-background-color: #1A5276;" text="Seller" textFill="WHITE" />
       <Button layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1A5276;" text="Home" textFill="WHITE" />
+      <Label fx:id="descriptionP1" layoutX="106.0" layoutY="272.0" text="Average rate" />
+      <Label fx:id="txtAverageRate" layoutX="211.0" layoutY="272.0" text="/" />
    </children>
 </AnchorPane>

@@ -90,15 +90,11 @@ public abstract class RateDAO {
 
 
     /**
-     * This method get the list of all the rates from a product
-     *
-     * @param product the product concerned
-     * @return the list of all the Rate from the product
+     * This method returns the average rates of a product
+     * @param idProduct, the id of the product
+     * @return a float of the average of all rate
      */
-    public Set<Rate> getAllRatesProduct(Product product) {
-        // TODO implement here
-        return null;
-    }
+    public abstract float getAverageRateProduct(int idProduct);
 
 
 }

@@ -186,4 +186,15 @@ public class ProductFacade {
      * @return the id of the category
      */
    public int getCategoryId(String libelle){return productDAO.getCategoryId(libelle);}
+
+
+    /**
+     * This method returns the average rate of all rate of a product
+     * @param idProduct integer
+     * @return a value between 1 and 5 of the average of all rate of a product
+     */
+   public float getProductAverageRate(int idProduct){
+       return rateDAO.getAverageRateProduct(idProduct);
+   }
+
 }

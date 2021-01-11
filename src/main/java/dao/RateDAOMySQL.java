@@ -181,6 +181,41 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
+    /**
+     * This method returns the average rates of a product
+     * @param idProduct, the id of the product
+     * @return a float of the average of all rate
+     */
+    @Override
+    public float getAverageRateProduct(int idProduct) {
+
+        String requete = "SELECT AVG(rate) FROM rate where idProduct = ?";
+        System.out.println(requete);
+
+        try {
+            Object rate = new Object();
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idProduct);
+            ResultSet res = preparedStatement.executeQuery();
+
+            // Recupère résultat et conversion
+
+            res.next();
+            rate = res.getObject(1);
+            if(rate != null) {
+                String i = rate.toString();
+                return Float.parseFloat(i);
+            } else {
+                return 0;
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
+
     public Set<Rate> getAllRatesProduct(Product product) {
         // TODO implement here
         return null;

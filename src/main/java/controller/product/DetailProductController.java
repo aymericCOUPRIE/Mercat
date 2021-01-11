@@ -1,6 +1,7 @@
 package controller.product;
 
 import facade.BasketFacade;
+import facade.ProductFacade;
 import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 public class DetailProductController {
 
     private final BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
+
+    private final ProductFacade productFacade = ProductFacade.getInstance();
 
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
     private Product curentProduct;
@@ -40,6 +43,8 @@ public class DetailProductController {
     private Label descriptionP;
     @FXML
     private Label priceP;
+    @FXML
+    private Label txtAverageRate;
 
     @FXML
     private Button sellerProductsButton;
@@ -80,6 +85,16 @@ public class DetailProductController {
         nameP.setText(product.get(0).getNameProduct());
         descriptionP.setText(product.get(0).getDescription());
         priceP.setText("" + product.get(0).getPriceProduct());
+
+        Float averageRate;
+        averageRate = productFacade.getProductAverageRate(productFacade.getIdProduct(product.get(0)));
+        System.out.println(averageRate);
+        if (averageRate == 0) {
+            txtAverageRate.setText("/");
+        } else {
+            txtAverageRate.setText(averageRate.toString());
+        }
+
     }
 
     /**
