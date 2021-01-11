@@ -318,10 +318,7 @@ public class OrderDAOMySQL extends OrderDAO {
             ResultSet res = preparedStatement.executeQuery();
 
             // Tente récupérer résultat
-            if (res.next()) {
-                return true;
-            }
-            return false;
+            return res.next();
 
         } catch (SQLException throwables) {
             return false;

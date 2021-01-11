@@ -50,9 +50,24 @@ public class DetailProductController {
     private ArrayList<Product> productArrayList;
 
     /**
-     * This method permit to add the product of the curent page in the customer's basket
+     * This method permitq to add the product of the curent page in the customer's basket
      */
     public void addToBasket() {
+       if(txtQuantity.getText().isEmpty()){
+           errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
+       }else if(Integer.parseInt(txtQuantity.getText()) > 0){
+           if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
+               errorLabel.setText("The product has been added into the basket!");
+           } else {
+               errorLabel.setText("This product is already in your basket. If you want to update the quantity, please go on 'My basket' page.");
+           }
+       }else{
+           errorLabel.setText("You must provide a positive quantity!");
+       }
+    }
+
+    /**
+     *
 
         if (txtQuantity.getText().isEmpty()) {
             errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
@@ -77,6 +92,7 @@ public class DetailProductController {
      * get on the corresponding interface
      * <p>
      * It displayed to the user all the details about a specific product
+
      */
     public void initialize() {
         errorLabel.setText("");
