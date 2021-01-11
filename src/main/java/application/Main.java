@@ -29,7 +29,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
 
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("/userInterfaces/user/LoginUI.fxml"));
             Parent skillLayout = root.load();
             Scene scene = new Scene(skillLayout, 1000, 800);
 
@@ -55,26 +55,26 @@ public class Main extends Application {
      */
     public void init() {
         Router r = Router.getInstance();
-        r.add("HomePage", "/HomePageUI.fxml");
-        r.add("Login", "/LoginUI.fxml");
-        r.add("SignUpC", "/SignUpUIConsumer.fxml");
-        r.add("SignUpS", "/SignUpUISeller.fxml");
-        r.add("HandleConsumer", "/UpdateConsumerProfileUI.fxml");
-        r.add("HandleConsumerS", "/HandleConsumersUI.fxml");
-        r.add("HandleSeller", "/UpdateSellerProfileUI.fxml");
-        r.add("ProfileSeller", "/SellerProfileUI.fxml");
-        r.add("HandleSellerS", "/HandleSellersUI.fxml");
-        r.add("AddProduct", "/AddProduct.fxml");
-        r.add("ModifyProduct", "/ModifyProduct.fxml");
-        r.add("ProductUI", "/ProductUI.fxml");
-        r.add("Basket", "/BasketUI.fxml");
-        r.add("HistoricOrder", "/ConsultHistoricOrderUI.fxml");
-        r.add("Rate_Seller", "/Rate_Seller.fxml");
-        r.add("Rate_Product", "/Rate_Product.fxml");
-        r.add("Comment_Product", "/Comment_Product.fxml");
-        r.add("DetailsProduct", "/DetailProduct.fxml");
-        r.add("UpdateCategories", "/CategoryUI.fxml");
-        r.add("SellerProducts", "/SellerProducts.fxml");
+        r.add("HomePage", "/userInterfaces/HomePageUI.fxml");
+        r.add("Login", "/userInterfaces/user/LoginUI.fxml");
+        r.add("SignUpC", "/userInterfaces/user/SignUpUIConsumer.fxml");
+        r.add("SignUpS", "/userInterfaces/user/SignUpUISeller.fxml");
+        r.add("HandleConsumer", "/userInterfaces/user/UpdateConsumerProfileUI.fxml");
+        r.add("HandleConsumerS", "/userInterfaces/user/HandleConsumersUI.fxml");
+        r.add("HandleSeller", "/userInterfaces/user/UpdateSellerProfileUI.fxml");
+        r.add("ProfileSeller", "/userInterfaces/user/SellerProfileUI.fxml");
+        r.add("HandleSellerS", "/userInterfaces/user/HandleSellersUI.fxml");
+        r.add("AddProduct", "/userInterfaces/product/AddProduct.fxml");
+        r.add("ModifyProduct", "/userInterfaces/product/ModifyProduct.fxml");
+        r.add("ProductUI", "/userInterfaces/product/ProductUI.fxml");
+        r.add("Basket", "/userInterfaces/basket_order/BasketUI.fxml");
+        r.add("HistoricOrder", "/userInterfaces/basket_order/ConsultHistoricOrderUI.fxml");
+        r.add("Rate_Seller", "/userInterfaces/comment_rate/Rate_Seller.fxml");
+        r.add("Rate_Product", "/userInterfaces/comment_rate/Rate_Product.fxml");
+        r.add("Comment_Product", "/userInterfaces/comment_rate/Comment_Product.fxml");
+        r.add("DetailsProduct", "/userInterfaces/product/DetailProduct.fxml");
+        r.add("UpdateCategories", "/userInterfaces/product/CategoryUI.fxml");
+        r.add("SellerProducts", "/userInterfaces/user/SellerProducts.fxml");
     }
 
 }
