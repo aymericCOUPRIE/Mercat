@@ -33,11 +33,11 @@ public class SellerProductsController {
     @FXML
     private TableColumn<Product, Integer> deleteProduct;
 
-    private ProductFacade productFacade = ProductFacade.getInstance();
+    private final ProductFacade productFacade = ProductFacade.getInstance();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     private ArrayList<Product> productArrayList;
-    private String seller;
+
 
     /**
      * Default constructor
@@ -45,7 +45,13 @@ public class SellerProductsController {
     public SellerProductsController() {
     }
 
-
+    /**
+     * This method sets the properties of the tableView
+     * In this tableView we will find the Products of a seller
+     * If the connected user is a consumer or seller different from the seller whose products we try to access
+     * it displays button which go to the product detail page
+     * If the the user is the seller then it show the button to modify the product or to delete the product
+     */
     public void initialize() {
         this.productArrayList = Router.getInstance().getParametre();
 
@@ -75,7 +81,11 @@ public class SellerProductsController {
 
     }
 
-    public void goSellerPage(ActionEvent e) {
+    /**
+     *This method is called when sellerPageButton is clicked on
+     * It enables the user to go to the profile of the Seller whose products are shown
+     */
+    public void goSellerPage() {
         System.out.println("goSellerPage " + this.productArrayList.size());
         Router.getInstance().activate("SellerProfileUI", this.productArrayList);
     }
@@ -89,10 +99,11 @@ public class SellerProductsController {
 
                     }
 
-                    @Override
+
                     /**
                      * Shows the button
                      */
+                    @Override
                     protected void updateItem(Integer item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
@@ -115,10 +126,11 @@ public class SellerProductsController {
 
                     }
 
-                    @Override
+
                     /**
                      * Shows the button
                      */
+                    @Override
                     protected void updateItem(Integer item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
@@ -140,10 +152,10 @@ public class SellerProductsController {
                 goToButton.setOnAction(event -> goToProduct(param.getTableView().getItems().get(getIndex())));
             }
 
-            @Override
             /**
              * Shows the button
              */
+            @Override
             protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) {
