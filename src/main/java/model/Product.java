@@ -45,6 +45,8 @@ public class Product {
      * @param nameProduct the name of the product
      * @param description the description of the product
      * @param priceProduct the price of the product
+     * @param category  the category of the product
+     * @param seller the pseudo of the seller, selling this product
      *
      */
     public Product(String nameProduct, String description, float priceProduct, String seller, String category) {
@@ -61,6 +63,9 @@ public class Product {
      * @param nameProduct the name of the product
      * @param description the description of the product
      * @param priceProduct the price of the product
+     * @param category  the category of the product
+     * @param seller the pseudo of the seller, selling this product
+     * @param city the city of the seller, selling this product
      */
     public Product(String nameProduct, String description, float priceProduct, String seller, String category, String city) {
         this.nameProduct = nameProduct;
@@ -79,7 +84,6 @@ public class Product {
      * @param priceProduct the price of the product
      * @param pictureProduct the picture of the product
      * @param pseudoSeller the pseudo of the seller, selling this product
-     *
      * @param idCategorie the category's id of the product, as we put into the db
      *
      */

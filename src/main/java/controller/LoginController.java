@@ -1,7 +1,6 @@
 package controller;
 
 import facade.UserFacade;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -41,11 +40,11 @@ public class LoginController {
      * Method used by btnLogin from Java FX
      * It allows to log in the system
      *
-     * @param e subject of the action
-     * @throws IOException
+     *
+     * @throws IOException when there is an error during the login
      */
     @FXML
-    public void login(ActionEvent e) throws IOException {
+    public void login() throws IOException {
         String pseudo = txtPseudoUser.getText();
         String passWord = txtPassWord.getText();
 
@@ -65,16 +64,17 @@ public class LoginController {
     /**
      * Method used by btnLogin from Java FX
      * It permits to go to the page to sign up
+     *
      */
     @FXML
-    public void signUp(ActionEvent e) throws IOException {
+    public void signUp() {
         Router.getInstance().activate("SignUpC");
     }
 
     /**
      * It allows to display an error message on the user interface
      *
-     * @param msg
+     * @param msg the message of error, gives indication to the user
      */
     @FXML
     public void display(String msg) {

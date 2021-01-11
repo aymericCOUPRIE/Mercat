@@ -3,13 +3,11 @@ package facade;
 import dao.abstraction.CommentDAO;
 import dao.abstraction.ProductDAO;
 import dao.abstraction.RateDAO;
-import model.Comment;
 import model.Consumer;
 import model.Product;
-import model.Rate;
 
 import java.util.ArrayList;
-import java.util.Set;
+
 
 /**
  * 
