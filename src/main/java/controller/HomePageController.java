@@ -261,4 +261,13 @@ public class HomePageController {
         Router.getInstance().activate("AddProduct", o);
 
     }
+
+    /**
+     * This method is used to disconnect the user from the application
+     *
+     * @param actionEvent subject of the action
+     */
+    public void disconnectUser(ActionEvent actionEvent) {
+        router.activate("Login");
+    }
 }
