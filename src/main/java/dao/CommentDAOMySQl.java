@@ -14,7 +14,9 @@ import java.util.*;
 public class CommentDAOMySQl extends CommentDAO {
 
     /**
-     * Default constructor
+     * this methode permit to connect the dao with the database
+     *
+     * @param connect is the connection for the database
      */
     protected CommentDAOMySQl(Connection connect) {
         super(connect);

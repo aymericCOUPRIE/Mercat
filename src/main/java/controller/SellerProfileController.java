@@ -65,28 +65,14 @@ public class SellerProfileController {
     String nameSeller;
 
     /**
-     * @param pseudo 
-     * @return
+     * This method return all information of a seller with only his pseudo
+     * @param pseudo of the seller
+     * @return a seller with all information
      */
     public Seller getSellerDetails(String pseudo)  {
         return  (Seller) userFacade.getSellerDetails(pseudo);
     }
 
-    /**
-     * @param order 
-     * @return
-     */
-    public void updateOrder(Order order) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Set<Order> getAllOrder() {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * Method used by btnBack from Java FX
@@ -153,10 +139,19 @@ public class SellerProfileController {
         }
     }
 
+    /**
+     * Method used by btnBack from Java FX
+     *  It permit to go to the Seller products
+     * @param e Action Event fxml
+     */
     public void goToSellerProducts(ActionEvent e ){
         Router.getInstance().activate("SellerProducts",productArrayList);
     }
 
+    /**
+     *  It permit to get all products of a seller of the page
+     * @return productArrayList a list of all products
+     */
     public ArrayList<Product> getProductArrayList() {
         return productArrayList;
     }

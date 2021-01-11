@@ -81,6 +81,7 @@ public class SignUpController {
     /**
      * Method used by btnRegisterConsumer from Java FX
      * It register a Consumer
+     * @param e Action Event fxml
      */
     public void signUpConsumer(ActionEvent e) {
 
@@ -109,6 +110,7 @@ public class SignUpController {
     /**
      * Method used by btnRegisterSeller from Java FX
      * It register a Seller
+     * @param e Action Event fxml
      */
     public void signUpSeller(ActionEvent e) {
         pseudo = txtPseudo.getText();
@@ -137,8 +139,7 @@ public class SignUpController {
     /**
      * Method used by btnSignUp from Java FX
      * It allows to register into the system
-     *
-     * @param e
+     * @param e Action Event fxml
      */
     public void signUp(ActionEvent e) {
         boolean noError = true;
@@ -176,6 +177,7 @@ public class SignUpController {
     /**
      * Method used by btnLogin from Java FX
      * It allows to go to the page "login"
+     * @param e Action Event fxml
      */
     @FXML
     public void backLogin(ActionEvent e) {
@@ -189,7 +191,7 @@ public class SignUpController {
     /**
      * Method used by btnconsumer from Java FX
      * It allows to go to the page "SignUpconsumer"
-     * @param e
+     * @param e Action Event fxml
      */
     @FXML
     public void consumerPage(ActionEvent e) {
@@ -200,7 +202,7 @@ public class SignUpController {
     /**
      * Method used by btnSeller from Java FX
      * It allows to go to the page "SignUpSeller"
-     * @param e
+     * @param e Action Event fxml
      */
     @FXML
     public void sellerPage(ActionEvent e) {
