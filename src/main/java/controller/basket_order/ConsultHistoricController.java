@@ -71,7 +71,13 @@ public class ConsultHistoricController {
 
         displayError.setText("");
 
-        List<Order> list = orderFacade.getAllOrders(userFacade.getConnectedUser().getPseudo());
+        List<Order> list;
+        if (userFacade.isSeller()) {
+            list = orderFacade.getAllOrdersSeller(userFacade.getConnectedUser().getPseudo());
+        } else {
+            list = orderFacade.getAllOrders(userFacade.getConnectedUser().getPseudo());
+        }
+
         if (list.isEmpty()) {
             displayError.setText("Vous n'avez aucune commande");
         } else {

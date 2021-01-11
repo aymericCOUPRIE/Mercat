@@ -34,48 +34,60 @@ public class OrderDAOMySQL extends OrderDAO {
      * @return true if the insert order succeeded, false if it failed
      */
     public boolean insertOrder(List<Basket> baskets, String pseudoConsumer, String deliveryAddress) {
-
-
-        List<Pair<Integer, Integer>> listsIdProduct = new ArrayList<>();
-
+        int res = 0;
         for (Basket b : baskets) {
-            System.out.println("EACH BASKET" + b.getProduct());
-            listsIdProduct.add(new Pair<>(b.getProduct().getIdProduct(), b.getQuantity()));
+
+            String requete = "INSERT INTO orderdb (dateOrder, deliveryDate, deliveryAddress, stateOrder, pseudoConsumer, seller, idProduct) VALUES (?,?,?,?,?,?,?)";
+
+            Timestamp date = new Timestamp(System.currentTimeMillis());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            cal.add(Calendar.DATE, 7);
+            Timestamp timestamp = new Timestamp((cal.getTime().getTime()));
+
+            try {
+
+                PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+                preparedStatement.setTimestamp(1, date);
+                preparedStatement.setTimestamp(2, timestamp);
+                preparedStatement.setString(3, deliveryAddress);
+                preparedStatement.setString(4, "start");
+                preparedStatement.setString(5, pseudoConsumer);
+                preparedStatement.setString(6, b.getProduct().getPseudoSeller());
+                preparedStatement.setInt(7, b.getProduct().getIdProduct());
+
+                res = preparedStatement.executeUpdate();
+
+                System.out.println("RES" + res);
+                if (res != 0) { //Vérifie que le INSERT order s'est bien passé
+                    System.out.println("POSE PB");
+                    Order tempo = find(pseudoConsumer, date, b.getProduct().getIdProduct());
+                    insertAllProducts(tempo.getIdOrder(), new Pair<>(b.getProduct().getIdProduct(), b.getQuantity()));
+                    deleteAlBasketAfterInsert(baskets);
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
+        return res != 0;
+    }
 
-        String requete = "INSERT INTO orderdb (dateOrder, deliveryDate, deliveryAddress, stateOrder, pseudoConsumer) VALUES (?,?,?,?,?)";
-
-        Timestamp date = new Timestamp(System.currentTimeMillis());
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, 7);
-        Timestamp timestamp = new Timestamp((cal.getTime().getTime()));
+    private String getPseudoSeller(int idProduct) {
+        String requete = "SELECT pseudoSeller FROM product WHERE idProduct = ?";
 
         try {
-
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-            preparedStatement.setTimestamp(1, date);
-            preparedStatement.setTimestamp(2, timestamp);
-            preparedStatement.setString(3, deliveryAddress);
-            preparedStatement.setString(4, "start");
-            preparedStatement.setString(5, pseudoConsumer);
+            preparedStatement.setInt(1, idProduct);
+            ResultSet res = preparedStatement.executeQuery();
 
-            int res = preparedStatement.executeUpdate();
+            res.next();
 
-            if (res != 0) { //Vérifie que le INSERT order s'est bien passé
-                Order tempo = find(pseudoConsumer, date);
-                insertAllProducts(tempo.getIdOrder(), listsIdProduct);
-                deleteAlBasketAfterInsert(baskets);
-            }
-
-            return res != 0;
-
+            return res.getString("pseudo");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-        return false;
+        return null;
     }
 
     /**
@@ -107,16 +119,18 @@ public class OrderDAOMySQL extends OrderDAO {
      *
      * @param pseudoConsumer the pseudo is one elemnt for the primary key in the DB
      * @param dateOrder      the pseudo is one elemnt for the primary key in the DB
+     * @param idProduct      id of the product
      * @return the order Object
      */
-    public Order find(String pseudoConsumer, Date dateOrder) {
+    public Order find(String pseudoConsumer, Date dateOrder, int idProduct) {
 
-        String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ? AND dateOrder = ?";
+        String requete = "SELECT * FROM orderdb WHERE pseudoConsumer = ? AND dateOrder = ? AND idProduct = ?";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, pseudoConsumer);
             preparedStatement.setTimestamp(2, (Timestamp) dateOrder);
+            preparedStatement.setInt(3, idProduct);
 
             ResultSet res = preparedStatement.executeQuery();
 
@@ -184,6 +198,31 @@ public class OrderDAOMySQL extends OrderDAO {
         return null;
     }
 
+    @Override
+    public List<Order> getAllOrdersSeller(String pseudo) {
+        String requete = "SELECT * FROM orderdb WHERE Seller = ?";
+
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, pseudo);
+            ResultSet res = preparedStatement.executeQuery();
+
+            ArrayList<Order> listOrders = new ArrayList<>();
+
+            while (res.next()) {
+                listOrders.add(createOrderObject(res));
+            }
+
+            return listOrders;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * This method is used in order to have a single method that create an Object "Order"
      * from a query
@@ -200,7 +239,8 @@ public class OrderDAOMySQL extends OrderDAO {
                 res.getString("deliveryAddress"),
                 res.getDate("deliveryDate"),
                 res.getString("stateOrder"),
-                getAllProductsFromOrder(res.getInt("idOrder"))
+                getAllProductsFromOrder(res.getInt("idOrder")),
+                res.getString("Seller")
         );
     }
 
@@ -211,19 +251,16 @@ public class OrderDAOMySQL extends OrderDAO {
      * @param idOrder    used in order to add product for a spectific Order
      * @param idProducts the id of the product added to the order
      */
-    private void insertAllProducts(int idOrder, List<Pair<Integer, Integer>> idProducts) {
+    private void insertAllProducts(int idOrder, Pair<Integer, Integer> idProducts) {
         String requete = "INSERT INTO orderlistproduct (idOrder, idProduct, quantity) VALUES (?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setInt(1, idOrder);
+            preparedStatement.setInt(2, idProducts.getKey());
+            preparedStatement.setInt(3, idProducts.getValue());
+            preparedStatement.executeUpdate();
 
-
-            for (Pair<Integer, Integer> i : idProducts) {
-                preparedStatement.setInt(2, i.getKey());
-                preparedStatement.setInt(3, i.getValue());
-                preparedStatement.executeUpdate();
-            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

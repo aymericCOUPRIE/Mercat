@@ -46,9 +46,10 @@ public abstract class OrderDAO {
      *
      * @param pseudoConsumer the pseudo is one elemnt for the primary key in the DB
      * @param dateOrder      the pseudo is one elemnt for the primary key in the DB
+     * @param idProduct      id of the product
      * @return the order Object
      */
-    public abstract Order find(String pseudoConsumer, Date dateOrder);
+    public abstract Order find(String pseudoConsumer, Date dateOrder, int idProduct);
 
     /**
      * This method is used to update the orderState in the DB
@@ -90,11 +91,19 @@ public abstract class OrderDAO {
 
     /**
      * This method is used to get all the orders from a User
-     * (either a Seller or a Consumer)
+     * Consumer only
      *
      * @param pseudo name of the User that wants all its order
      * @return the the order concerning 1 consumer
      */
     public abstract ArrayList<Order> getAllOrders(String pseudo);
 
+    /**
+     * This method is used to get all the orders from a User
+     * Seller only
+     *
+     * @param pseudo name of the User that wants all its order
+     * @return the the order concerning 1 consumer
+     */
+    public abstract List<Order> getAllOrdersSeller(String pseudo);
 }

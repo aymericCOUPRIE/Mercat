@@ -46,6 +46,16 @@ public class OrderFacade {
     }
 
     /**
+     * This method is used to get all the order from a specific Seller
+     *
+     * @param pseudo unique key for the user
+     * @return the list of all the order
+     */
+    public List<Order> getAllOrdersSeller(String pseudo) {
+        return orderDAO.getAllOrdersSeller(pseudo);
+    }
+
+    /**
      * This method is used to add an Order to the DB
      *
      * @param baskets         list of all the baskets
@@ -98,10 +108,11 @@ public class OrderFacade {
      *
      * @param pseudoConsumer first key for the order
      * @param orderDate      second key for the order
+     * @param idProduct      id of the product
      * @return the order corresponding to given keys
      */
-    public Order find(String pseudoConsumer, Date orderDate) {
-        return orderDAO.find(pseudoConsumer, orderDate);
+    public Order find(String pseudoConsumer, Date orderDate, int idProduct) {
+        return orderDAO.find(pseudoConsumer, orderDate, idProduct);
     }
 
 }

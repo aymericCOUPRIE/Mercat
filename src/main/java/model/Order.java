@@ -16,6 +16,7 @@ public class Order {
     private Date deliveryDate;
     private String stateOrder;
     private List<Pair<Product, Integer>> productsQuantity;
+    private String seller;
 
     /**
      * @param idOrder          of the order
@@ -26,7 +27,7 @@ public class Order {
      * @param stateOrder       of the order
      * @param productsQuantity of the order
      */
-    public Order(int idOrder, String pseudoConsumer, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity) {
+    public Order(int idOrder, String pseudoConsumer, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity, String seller) {
         this.idOrder = idOrder;
         this.pseudoConsumer = pseudoConsumer;
         this.dateOrder = dateOrder;
@@ -34,6 +35,7 @@ public class Order {
         this.deliveryDate = deliveryDate;
         this.stateOrder = stateOrder;
         this.productsQuantity = productsQuantity;
+        this.seller = seller;
     }
 
     /**
