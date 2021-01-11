@@ -24,14 +24,12 @@ public class RateDAOMySQL extends RateDAO {
     }
 
 
-
-
-
     /**
      * This method add a rate for a seller in the database
-     * @param seller where we add a rate
+     *
+     * @param seller   where we add a rate
      * @param consumer that add the rate
-     * @param rate an integer between 1 and 5
+     * @param rate     an integer between 1 and 5
      */
     @Override
     public void createRateSeller(Seller seller, Consumer consumer, int rate) {
@@ -58,8 +56,9 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method add a rate for a product in the database
-     * @param consumer that add the rate
-     * @param rate an integer between 1 and 5
+     *
+     * @param consumer  that add the rate
+     * @param rate      an integer between 1 and 5
      * @param idProduct of the product
      */
     @Override
@@ -86,7 +85,8 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method get a rate of a seller in the database
-     * @param seller where we add a rate
+     *
+     * @param seller   where we add a rate
      * @param consumer who add the rate
      * @return the rate put by the consumer, if no notation return 0
      */
@@ -117,7 +117,8 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method get a rate of a product in the database
-     * @param consumer who add the rate
+     *
+     * @param consumer  who add the rate
      * @param idProduct of the product
      * @return the rate put by the consumer, if no notation return 0
      */
@@ -148,6 +149,7 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method get the average rate of all rates of a seller in the database
+     *
      * @param seller where we add a rate
      * @return the average rate of a seller, if no notation return 0
      */
@@ -167,7 +169,7 @@ public class RateDAOMySQL extends RateDAO {
 
             res.next();
             rate = res.getObject(1);
-            if(rate != null) {
+            if (rate != null) {
                 String i = rate.toString();
                 return Float.parseFloat(i);
             } else {
@@ -183,6 +185,7 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method returns the average rates of a product
+     *
      * @param idProduct, the id of the product
      * @return a float of the average of all rate
      */
@@ -202,7 +205,7 @@ public class RateDAOMySQL extends RateDAO {
 
             res.next();
             rate = res.getObject(1);
-            if(rate != null) {
+            if (rate != null) {
                 String i = rate.toString();
                 return Float.parseFloat(i);
             } else {
@@ -216,6 +219,12 @@ public class RateDAOMySQL extends RateDAO {
         }
     }
 
+    /**
+     * Get all hte rates from a product
+     *
+     * @param product product we are looking for
+     * @return all the rates from a product
+     */
     public Set<Rate> getAllRatesProduct(Product product) {
         // TODO implement here
         return null;

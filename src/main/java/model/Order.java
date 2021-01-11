@@ -26,6 +26,7 @@ public class Order {
      * @param deliveryDate     of the order
      * @param stateOrder       of the order
      * @param productsQuantity of the order
+     * @param seller           name of the seller for the order
      */
     public Order(int idOrder, String pseudoConsumer, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity, String seller) {
         this.idOrder = idOrder;
