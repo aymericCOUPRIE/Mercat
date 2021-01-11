@@ -197,4 +197,14 @@ public class ProductFacade {
        return rateDAO.getAverageRateProduct(idProduct);
    }
 
+    /**
+     * This methods gets all the comments from a product
+     *
+     * @param id the product we want all comments from
+     * @return the list of all the comments of the product
+     */
+    public ArrayList<String> getAllCommentProduct(int id) {
+        return commentDAO.getAllComments(id);
+    }
+
 }

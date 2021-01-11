@@ -108,10 +108,31 @@ public class CommentDAOMySQl extends CommentDAO {
         }
     }
 
+    /**
+     * This methods gets all the comments from a product
+     *
+     * @param idProduct the id product we want all comments from
+     * @return the list of all the comments of the product
+     */
+    public ArrayList<String> getAllComments(int idProduct) {
 
-    public Set<Comment> getAllComments(Product product) {
-        // TODO implement here
-        return null;
+        ArrayList<String> listRes = new ArrayList<>();
+        String requete = "SELECT ContentComment FROM comment WHERE idProduct = ? ";
+
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setInt(1, idProduct);
+            ResultSet res = preparedStatement.executeQuery();
+
+            while (res.next()) {
+                listRes.add(res.getString("ContentComment"));
+            }
+
+            return listRes;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 
 }

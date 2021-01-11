@@ -6,6 +6,7 @@ import facade.UserFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Product;
 import router.Router;
@@ -23,6 +24,9 @@ public class DetailProductController {
 
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
     private Product curentProduct;
+
+    @FXML
+    private ListView ListComment;
 
     //private final Product curentProduct = new Product(5, "jupe", "dezfd", 25, "none", "ulisses", 3);
      //produit qui est affiché sur la page
@@ -94,6 +98,9 @@ public class DetailProductController {
         } else {
             txtAverageRate.setText(averageRate.toString());
         }
+
+        ArrayList<String> comments = productFacade.getAllCommentProduct(productFacade.getIdProduct(product.get(0)));
+        ListComment.getItems().addAll(comments);
 
     }
 

@@ -75,9 +75,9 @@ public abstract class CommentDAO {
     /**
      * This methods gets all the comments from a product
      *
-     * @param product the product we want all comments from
+     * @param idProduct the product we want all comments from
      * @return the list of all the comments of the product
      */
-    public abstract Set<Comment> getAllComments(Product product);
+    public abstract ArrayList<String> getAllComments(int idProduct);
 
 }

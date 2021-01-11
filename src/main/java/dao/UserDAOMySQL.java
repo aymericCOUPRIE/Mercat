@@ -139,7 +139,12 @@ public class UserDAOMySQL extends UserDAO {
         return user;
     }
 
-    //TODO java doc
+    /**
+     * This method create a consumer in the database
+     *
+     * @param user, consumer to create
+     * @return True if register successful or false if error
+     */
     public boolean createConsumer(Consumer user) {
 
         String hashPassword = PasswordSecured.hash(user.getPassword());
@@ -167,7 +172,12 @@ public class UserDAOMySQL extends UserDAO {
         }
     }
 
-    //TODO java doc
+    /**
+     * This method create a seller in the database
+     *
+     * @param user , seller to create
+     * @return True if register successful or false if error
+     */
     public boolean createSeller(Seller user) {
         String hashPassword = PasswordSecured.hash(user.getPassword());
         String requete = "INSERT INTO user (pseudo, firstName, lastName, password, emailAddress, streetAddress, city, postalCode, pictureUser, role, phoneNumber, companyName) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -237,7 +247,22 @@ public class UserDAOMySQL extends UserDAO {
         }
     }
 
-    //TODO javadoc
+    /**
+     * Update a seller in the database
+     *
+     * @param pseudo        of the seller
+     * @param firstName     of the seller
+     * @param lastName      of the seller
+     * @param password      of the seller
+     * @param OldPassword   of the seller
+     * @param emailAdress   of the seller
+     * @param streetAddress of the seller
+     * @param city          of the seller
+     * @param postalCode    of the seller
+     * @param phoneNumber   of the seller
+     * @param company       of the seller
+     * @return true if the seller has been modified and false if not.
+     */
     public boolean updateSeller(String pseudo, String firstName, String lastName, String password, String OldPassword, String emailAdress, String streetAddress, String city, String postalCode, String phoneNumber, String company) {
 
         if (!OldPassword.equals(password)) { //j'ai changé de mdp
