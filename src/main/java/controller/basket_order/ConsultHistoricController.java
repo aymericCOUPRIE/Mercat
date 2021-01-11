@@ -73,6 +73,8 @@ public class ConsultHistoricController {
 
         List<Order> list;
         if (userFacade.isSeller()) {
+            tbv_productDetails.getColumns().remove(tbv_cl_comment);
+            tbv_productDetails.getColumns().remove(tbv_cl_rate);
             list = orderFacade.getAllOrdersSeller(userFacade.getConnectedUser().getPseudo());
         } else {
             list = orderFacade.getAllOrders(userFacade.getConnectedUser().getPseudo());
