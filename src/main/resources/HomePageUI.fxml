@@ -104,10 +104,10 @@
                         <TextField fx:id="txtCategory1" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <TextField fx:id="txtCity2" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <TextField fx:id="txtCategory2" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                        <Button fx:id="btnSearchProduct" mnemonicParsing="false" onAction="#getProductsByName" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="btnSearchProductCity" mnemonicParsing="false" onAction="#getProductsByNameAndCity" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Button fx:id="btnSearchProductCategory" mnemonicParsing="false" onAction="#getProductsByNameAndCategory" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <Button fx:id="btnSearchProductNameCategory" mnemonicParsing="false" onAction="#getProductsByNameAndCityAndCategory" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                        <Button fx:id="btnSearchProduct" mnemonicParsing="false" onAction="#getProductsByName" style="-fx-background-color: #1A5276;" text="Search" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="btnSearchProductCity" mnemonicParsing="false" onAction="#getProductsByNameAndCity" style="-fx-background-color: #1A5276;" text="Search" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Button fx:id="btnSearchProductCategory" mnemonicParsing="false" onAction="#getProductsByNameAndCategory" style="-fx-background-color: #1A5276;" text="Search" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <Button fx:id="btnSearchProductNameCategory" mnemonicParsing="false" onAction="#getProductsByNameAndCityAndCategory" style="-fx-background-color: #1A5276;" text="Search" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="10" />
             <Label fx:id="errorText" textAlignment="CENTER" GridPane.columnIndex="1" />
                     </children>
          <padding>
