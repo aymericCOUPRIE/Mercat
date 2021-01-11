@@ -47,7 +47,7 @@
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="createNewCategory" mnemonicParsing="false" onAction="#createCategory" text="Valider" />
+            <Button fx:id="createNewCategory" mnemonicParsing="false" onAction="#createCategory" style="-fx-background-color: #1a5276;" text="Valider" textFill="WHITE" />
             <Label fx:id="creationError">
                <HBox.margin>
                   <Insets left="50.0" />
@@ -75,7 +75,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="backButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#homePage" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="backButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1a5276;" text="Back" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
