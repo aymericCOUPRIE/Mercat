@@ -38,7 +38,7 @@ public class ProductFacade {
     /**
      * Default constructor
      */
-    public ProductFacade() {
+    private ProductFacade() {
     }
 
     /**

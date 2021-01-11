@@ -64,7 +64,7 @@ public class ProductController {
     private String productName;
     private String city;
 
-    private final ProductFacade productFacade = new ProductFacade();
+    private final ProductFacade productFacade = ProductFacade.getInstance();
     private final CategoryFacade categoryFacade = CategoryFacade.getInstance();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 

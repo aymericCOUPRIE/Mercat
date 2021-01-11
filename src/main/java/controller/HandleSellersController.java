@@ -23,7 +23,7 @@ public class HandleSellersController {
 
     String selectedPseudo = "nothing";
 
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     /**
      * Default constructor

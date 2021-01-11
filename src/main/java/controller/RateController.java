@@ -25,7 +25,6 @@ public class RateController {
     @FXML
     private Label section;
 
-    private String rate;
     private String page = "";
     private String nameSeller;
     private int idProduct;
@@ -47,7 +46,7 @@ public class RateController {
     @FXML
     public void addRate() {
         if (btnSubmitRate.getOpacity() > 0.5) {
-            rate = txtRate.getText();
+            String rate = txtRate.getText();
             if (rate.equals("1") || rate.equals("2") || rate.equals("3") || rate.equals("4") || rate.equals("5")) {
                 int i = Integer.parseInt(rate);
                 // Page seller

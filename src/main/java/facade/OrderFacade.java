@@ -19,7 +19,7 @@ public class OrderFacade {
     /**
      * Default constructor
      */
-    public OrderFacade() {
+    private OrderFacade() {
     }
 
     /**

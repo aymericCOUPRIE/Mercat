@@ -38,7 +38,7 @@ public class ProductPageController {
     @FXML
     private Button sellerPageButton;
 
-    private ProductFacade productFacade = ProductFacade.getInstance();
+    private final ProductFacade productFacade = ProductFacade.getInstance();
     private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
 
     /**

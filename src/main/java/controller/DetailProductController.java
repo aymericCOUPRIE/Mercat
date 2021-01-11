@@ -18,7 +18,7 @@ public class DetailProductController {
 
     private final BasketFacade basketFacade = BasketFacade.getInstanceBasketFacade();
 
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade(); //pour avoir accès à l'user connecté
     private Product curentProduct;
 
     //private final Product curentProduct = new Product(5, "jupe", "dezfd", 25, "none", "ulisses", 3);

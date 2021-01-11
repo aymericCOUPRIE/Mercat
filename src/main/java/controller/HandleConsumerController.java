@@ -24,7 +24,7 @@ public class HandleConsumerController {
     /**
      *
      */
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     @FXML
     private Label msgText;

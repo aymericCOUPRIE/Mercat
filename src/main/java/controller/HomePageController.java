@@ -21,9 +21,9 @@ import java.util.ArrayList;
  */
 public class HomePageController {
 
-    private Router router = Router.getInstance();
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
-    private ProductFacade productFacade = ProductFacade.getInstance();
+    private final Router router = Router.getInstance();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private final ProductFacade productFacade = ProductFacade.getInstance();
 
 
     @FXML

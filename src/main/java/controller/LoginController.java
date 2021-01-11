@@ -28,9 +28,7 @@ public class LoginController {
 
     // Configuration
 
-    private String pseudo, passWord;
-
-    private UserFacade userFacade = new UserFacade();
+    private final UserFacade userFacade = new UserFacade();
 
     /**
      * Default constructor
@@ -48,8 +46,8 @@ public class LoginController {
      */
     @FXML
     public void login(ActionEvent e) throws IOException {
-        pseudo = txtPseudoUser.getText();
-        passWord = txtPassWord.getText();
+        String pseudo = txtPseudoUser.getText();
+        String passWord = txtPassWord.getText();
 
         if (pseudo.equals("") || passWord.equals("")) {
             display("You need to provide your email or your password.");

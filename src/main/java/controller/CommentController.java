@@ -34,8 +34,8 @@ public class CommentController {
     private boolean vide = true;
     int idProduct;
 
-    private ProductFacade facadeP = new ProductFacade();
-    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
+    private final ProductFacade facadeP = new ProductFacade();
+    private final UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
     /**
      * Default constructor
