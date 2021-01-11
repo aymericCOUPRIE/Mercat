@@ -86,7 +86,6 @@ public class SellerProfileController {
         } else {
             Router.getInstance().activate("HomePage");
         }
-
     }
 
     /**
