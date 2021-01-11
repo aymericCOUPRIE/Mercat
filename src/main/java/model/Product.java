@@ -40,7 +40,12 @@ public class Product {
     private String city;
 
     /**
-     * Default constructor
+     * One of the constructor of the product class
+     *
+     * @param nameProduct the name of the product
+     * @param description the description of the product
+     * @param priceProduct the price of the product
+     *
      */
     public Product(String nameProduct, String description, float priceProduct, String seller, String category) {
         this.nameProduct = nameProduct;
@@ -50,6 +55,13 @@ public class Product {
         this.category = category;
     }
 
+    /**
+     * One of the constructor of the product class
+     *
+     * @param nameProduct the name of the product
+     * @param description the description of the product
+     * @param priceProduct the price of the product
+     */
     public Product(String nameProduct, String description, float priceProduct, String seller, String category, String city) {
         this.nameProduct = nameProduct;
         this.description = description;
@@ -59,6 +71,18 @@ public class Product {
         this.city = city;
     }
 
+    /**
+     * One of the constructor of the product class
+     * @param idProduct as we put it into the database
+     * @param nameProduct the name of the product
+     * @param description the description of the product
+     * @param priceProduct the price of the product
+     * @param pictureProduct the picture of the product
+     * @param pseudoSeller the pseudo of the seller, selling this product
+     *
+     * @param idCategorie the category's id of the product, as we put into the db
+     *
+     */
     public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, int idCategorie) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -69,6 +93,18 @@ public class Product {
         this.idCategorie = idCategorie;
     }
 
+    /**
+     * One of the constructor of the product class
+     * @param idProduct as we put it into the database
+     * @param nameProduct the name of the product
+     * @param description the description of the product
+     * @param priceProduct the price of the product
+     * @param pictureProduct the picture of the product
+     * @param pseudoSeller the pseudo of the seller, selling this product
+     * @param citySeller the city of the seller, selling this product
+     * @param idCategorie the category's id of the product, as we put into the db
+     * @param libelleCategorie the libelle of category, as we put into the db
+     */
     public Product(int idProduct, String nameProduct, String description, float priceProduct, String pictureProduct, String pseudoSeller, String citySeller, int idCategorie,String libelleCategorie) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -82,73 +118,53 @@ public class Product {
     }
 
     /**
-     * Default constructor
+     *Method which return the description of the product
+     * @return the description of the product
      */
-
     public String getDescription() {
         return this.description;
     }
 
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
-    }
-
+    /**
+     *
+     * @return where the product is sold
+     */
     public String getCity() {
         return city;
     }
 
     /**
-     * @return
+     * @return the id of the product
      */
     public int getIdProduct() {
         return this.idProduct;
     }
 
     /**
-     * @return
+     * @return the name of the product
      */
     public String getNameProduct() {
         return this.nameProduct;
     }
 
-    /**
-     * @param name
-     * @return
-     */
-    public void setNameProduct(String name) {
-        // TODO implement here
-    }
 
     /**
-     * @return priceProduct
+     * @return the price of the product
      */
     public float getPriceProduct() {
         return this.priceProduct;
     }
 
-    /**
-     * @param price
-     * @return
-     */
-    public void setPriceProduct(float price) {
-        // TODO implement here
-    }
+
 
     /**
-     * @return pictureProduct
+     * @return return the path to the picture of the product
      */
     public String getPictureProduct() {
         return this.pictureProduct;
     }
 
-    /**
-     * @param url
-     * @return
-     */
-    public void setPictureProduct(String url) {
-        // TODO implement here
-    }
 
     /**
      * @return the name of the seller
@@ -157,25 +173,19 @@ public class Product {
         return this.pseudoSeller;
     }
 
-    /**
-     * @param categ
-     * @return
-     */
-    public void setIdCategorie(int categ) {
-        // TODO implement here
-    }
 
 
     /**
-     * @return
+     * @return the id of the category, that the product belongs to
      */
-    //public String getCategory () {
-    //    return this.category;
-    //}
     public int getIdCategorie() {
         return this.idCategorie;
     }
 
+    /**
+     *
+     * @return the name of the category the product belongs to
+     */
     public String getCategory() {
         return category;
     }
