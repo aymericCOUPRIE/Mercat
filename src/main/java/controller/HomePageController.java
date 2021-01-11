@@ -1,5 +1,6 @@
 package controller;
 
+import controller.product.ProductController;
 import facade.ProductFacade;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
@@ -13,7 +14,6 @@ import model.Category;
 import model.Product;
 import router.Router;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**

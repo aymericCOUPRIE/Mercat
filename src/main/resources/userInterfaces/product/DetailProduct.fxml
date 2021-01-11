@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.product.DetailProductController">
+   <children>
+      <Button layoutX="492.0" layoutY="351.0" mnemonicParsing="false" onAction="#addToBasket" style="-fx-background-color: #1A5276;" text="Add to basket" textFill="WHITE" />
+      <TextField fx:id="txtQuantity" alignment="CENTER" layoutX="430.0" layoutY="315.0" promptText="quantity" />
+      <Label fx:id="errorLabel" layoutX="79.0" layoutY="33.0" text="Effacer le texte par défaut plus tard, juste pour que tu le vois et le place où tu veux" textFill="#1a5276" />
+      <Label fx:id="nameP" layoutX="105.0" layoutY="116.0" text="Nom du produit" />
+      <Label fx:id="priceP" layoutX="138.0" layoutY="192.0" text="Prix" />
+      <Label fx:id="descriptionP" layoutX="113.0" layoutY="256.0" text="Description" />
+      <Button fx:id="sellerPage" layoutX="485.0" layoutY="243.0" mnemonicParsing="false" onAction="#goToSellerPage" style="-fx-background-color: #1A5276;" text="Seller" textFill="WHITE" />
+      <Button layoutX="34.0" layoutY="351.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1A5276;" text="Home" textFill="WHITE" />
+   </children>
+</AnchorPane>
