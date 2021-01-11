@@ -24,17 +24,19 @@
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
            <rowConstraints>
+               <RowConstraints maxHeight="17.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="17.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
              <RowConstraints maxHeight="17.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-                  <Label prefHeight="47.0" prefWidth="247.0" text="Orders Historic" textFill="#1a5276" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Label prefHeight="47.0" prefWidth="247.0" text="Orders Historic" textFill="#1a5276" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Black" size="25.0" />
                   </font>
                </Label>
-                  <Label fx:id="displayError" text="DisplayError" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-               <Button mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1a5276#1a5276;" text="Back" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Label fx:id="displayError" text="DisplayError" textFill="#1a5276" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               <Button mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #1a5276#1a5276;" text="Back" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             </children>
          </GridPane>
         </HBox>
