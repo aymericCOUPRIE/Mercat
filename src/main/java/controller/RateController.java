@@ -11,8 +11,6 @@ import javafx.scene.control.TextField;
 import model.Consumer;
 import router.Router;
 
-import java.io.IOException;
-
 /**
  * Class RrateController
  */
@@ -32,9 +30,9 @@ public class RateController {
     private String nameSeller;
     private int idProduct;
 
-    private ProductFacade facade = new ProductFacade();
-    private SellerFacade facadeS = new SellerFacade();
-    private UserFacade facadeU = UserFacade.getInstanceUserFacade();
+    private final ProductFacade facade = new ProductFacade();
+    private final SellerFacade facadeS = new SellerFacade();
+    private final UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
     /**
      * Default constructor
@@ -45,11 +43,9 @@ public class RateController {
     /**
      * Method used by btnSubmitRate from Java FX
      * It permits to add a rate to a seller or a product
-     *
-     * @param e gets the subject of the action
      */
     @FXML
-    public void addRate(ActionEvent e) {
+    public void addRate() {
         if (btnSubmitRate.getOpacity() > 0.5) {
             rate = txtRate.getText();
             if (rate.equals("1") || rate.equals("2") || rate.equals("3") || rate.equals("4") || rate.equals("5")) {

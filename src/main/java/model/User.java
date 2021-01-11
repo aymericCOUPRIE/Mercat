@@ -66,17 +66,17 @@ public class User {
 
 
     /**
-     * @param pseudo
-     * @param firstName
-     * @param lastName
-     * @param password
-     * @param emailAddress
-     * @param streetAddress
-     * @param city
-     * @param postalCode
-     * @param pictureUser
-     * @param role
-     * @param phoneNumber
+     * @param pseudo of the user
+     * @param firstName of the user
+     * @param lastName of the user
+     * @param password of the user
+     * @param emailAddress of the user
+     * @param streetAddress of the user
+     * @param city of the user
+     * @param postalCode of the user
+     * @param pictureUser of the user
+     * @param role of the user
+     * @param phoneNumber of the user
      */
     public User(String pseudo, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String pictureUser, String role, String phoneNumber) {
         this.pseudo = pseudo;
