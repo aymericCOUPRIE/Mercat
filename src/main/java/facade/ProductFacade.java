@@ -50,76 +50,53 @@ public class ProductFacade {
 
 
     /**
-     * @param consumer 
-     * @param comment
-     * @param idProduct
-     *
+     * This method permits to add a comment for a product
+     * @param consumer who add the comment
+     * @param comment a string with the content
+     * @param idProduct an integer
      */
     public void addComment(Consumer consumer, String comment, int idProduct) {
         commentDAO.createComment(consumer, comment, idProduct);
     }
 
     /**
-     * @param consumer 
-     * @param comment
-     * @param idProduct
-     *
+     * This method permits to update a comment for a product
+     * @param consumer who add the comment
+     * @param comment a string with the content
+     * @param idProduct an integer
      */
     public void updateComment(Consumer consumer, String comment, int idProduct) {
         commentDAO.updateComment(consumer, comment, idProduct);
     }
 
     /**
-     * @param c
-     * @param id
-     * @return
+     * This method permits to get a rate for a product
+     * @param c consumer who add the rate
+     * @param id of the product
+     * @return the rate, a float
      */
     public float getRate(Consumer c, int id) {
         return rateDAO.rateProduct(c , id);
     }
 
     /**
-     * @param c
-     * @param id
-     * @return
+     * This method permits to get a comment for a product
+     * @param c consumer who add the comment
+     * @param id of the product
+     * @return the content of the comment, a String
      */
     public String getComment(Consumer c, int id) {
         return commentDAO.getComment(c , id);
     }
 
     /**
-     * @param consumer
-     * @param rate
-     * @param idProduct
-     * @return
+     * This method permits to add a rate for a product
+     * @param consumer who add the rate
+     * @param rate an integer between 1 and 5
+     * @param idProduct integer
      */
     public void AddRate(Consumer consumer, int rate, int idProduct) {
         rateDAO.createRateProduct(consumer, rate, idProduct);
-    }
-
-    /**
-     * @param consumer 
-     * @return
-     */
-    public boolean deleteComment(Consumer consumer) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @return
-     */
-    public Set<Comment> getAllComments() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public Set<Rate> getAllRates() {
-        // TODO implement here
-        return null;
     }
 
 
