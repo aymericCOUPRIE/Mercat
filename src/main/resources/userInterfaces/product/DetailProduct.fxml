@@ -39,7 +39,7 @@
             <Label fx:id="priceP" text="Prix" GridPane.rowIndex="1" />
             <Label fx:id="descriptionP" text="Description" GridPane.rowIndex="2" />
             <Label fx:id="descriptionP1" text="Average rate" GridPane.rowIndex="3" />
-            <Label fx:id="txtAverageRate" prefHeight="16.0" prefWidth="9.0" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="txtAverageRate" prefHeight="30.0" prefWidth="80.0" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
