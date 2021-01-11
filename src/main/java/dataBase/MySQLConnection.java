@@ -16,8 +16,11 @@ public class MySQLConnection {
     private static Connection connect;
 
     /**
-     * Méthode qui va nous retourner notre singleton connection et le créer si il n'existe pas
-     **/
+     * SINGLETON
+     * This method create only one instance of the class
+     *
+     * @return the instance of Connection
+     */
     public static Connection getInstance() {
         if (connect == null) {
             Properties p = getDatabaseProperties();

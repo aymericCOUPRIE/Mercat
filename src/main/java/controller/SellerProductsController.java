@@ -63,7 +63,7 @@ public class SellerProductsController {
 
         System.out.println(productArrayList.get(0).getPseudoSeller());
         System.out.println(userFacade.getConnectedUser().getPseudo());
-        System.out.println(productArrayList.get(0).getPseudoSeller() == userFacade.getConnectedUser().getPseudo());
+        System.out.println(productArrayList.get(0).getPseudoSeller().equals(userFacade.getConnectedUser().getPseudo()));
         if (productArrayList.get(0).getPseudoSeller().equals(userFacade.getConnectedUser().getPseudo())) {//Si l'utilisateur connecté est le vendeur
             addModifyButton();
             addDeleteButton();

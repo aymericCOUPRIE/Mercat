@@ -55,7 +55,7 @@ public class RateController {
             if (rate.equals("1") || rate.equals("2") || rate.equals("3") || rate.equals("4") || rate.equals("5")) {
                 int i = Integer.parseInt(rate);
                 // Page seller
-                if (page == "seller") {
+                if (page.equals("seller")) {
 
                     facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i, nameSeller);
                     System.out.println("OUI");
@@ -82,7 +82,7 @@ public class RateController {
      */
     private void desactivateSubmitRate() {
         // Cas page Seller
-        if (page == "seller") {
+        if (page.equals("seller")) {
             Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser(), nameSeller);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
@@ -91,7 +91,7 @@ public class RateController {
             }
         }
         // Cas page Product
-        if (page == "product") {
+        if (page.equals("product")) {
             Float rate = facade.getRate((Consumer) facadeU.getConnectedUser(), idProduct);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
@@ -106,7 +106,7 @@ public class RateController {
      * It permit to return to the seller page
      */
     public void back() {
-        if (page == "product") {
+        if (page.equals("product")) {
             Router.getInstance().activate("HistoricOrder");
         } else {
             // Quel seller ?

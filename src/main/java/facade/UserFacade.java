@@ -63,6 +63,8 @@ public class UserFacade {
     //TODO javadoc
 
     /**
+     * CONSTRUCTOR
+     *
      * @param pseudo        of the user
      * @param firstName     of the user
      * @param lastName      of the user
@@ -71,6 +73,7 @@ public class UserFacade {
      * @param streetAddress of the user
      * @param city          of the user
      * @param postalCode    of the user
+     * @param phoneNumber   of the user
      * @return true if the signUp succeeded, false if it failed
      */
     public boolean signUpConsumer(String pseudo, String firstName, String lastName, String password, String emailAddress, String streetAddress, String city, String postalCode, String phoneNumber) {

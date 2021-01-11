@@ -31,6 +31,12 @@ public abstract class RateDAO {
     }
 
 
+    /**
+     * SINGLETON
+     * This method create only one instance of the class
+     *
+     * @return the instance of RateDAO
+     */
     public static RateDAO getInstance() {
         if (instanceRateDAO == null) {
             instanceRateDAO = AbstractFactoryDAO.getFactory().createRateDAO();

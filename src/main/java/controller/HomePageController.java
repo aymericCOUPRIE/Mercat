@@ -28,7 +28,6 @@ public class HomePageController {
 
     @FXML
     private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories, addProduct, mySellerAccount, basket;
-    private ActionEvent e;
 
     private ProductController productController = new ProductController();
 
