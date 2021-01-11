@@ -1,14 +1,11 @@
 package controller;
 
-import facade.BasketFacade;
 import facade.CategoryFacade;
 import facade.ProductFacade;
 import facade.UserFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,16 +35,7 @@ public class ProductController {
 
     //Partie recherche
     //Bouton
-    @FXML
-    private Button btnSearchProduct;
-    @FXML
-    private Button btnSearchProductCity;
-    @FXML
-    private Button btnSearchProductCategory;
-    @FXML
-    private Button btnSearchProductNameCategory;
-    @FXML
-    private Button sellerPage;
+
     //TextField Product
     @FXML
     private TextField txtProduct1;
@@ -67,8 +55,6 @@ public class ProductController {
     private TextField txtCategory1;
     @FXML
     private TextField txtCategory2;
-    @FXML
-    private Button homeButton;
 
 
     private String categoryName;
@@ -78,9 +64,9 @@ public class ProductController {
     private String productName;
     private String city;
 
-    private ProductFacade productFacade = new ProductFacade();
-    private CategoryFacade categoryFacade = CategoryFacade.getInstance();
-    private UserFacade userFacade = UserFacade.getInstanceUserFacade();
+    private final ProductFacade productFacade = new ProductFacade();
+    private final CategoryFacade categoryFacade = CategoryFacade.getInstance();
+    private final UserFacade userFacade = UserFacade.getInstanceUserFacade();
 
     private Product productToModify;
 
@@ -91,16 +77,12 @@ public class ProductController {
     public ProductController() {
     }
 
-    private BasketFacade basketFacade;
-
-
     /**
-     * This method is called when the seller tries to add a new Product.
-     *
-     * @param e called when btnProduct is clicked on
+     * This method is called when the seller tries to add a new Product,
+     * when he clicks on btnProduct
      */
-    public void addProduct(ActionEvent e) {
-        Object category = txtCategory.getValue().toString();
+    public void addProduct() {
+        Object category = txtCategory.getValue();
 
         System.out.println("category :" + categoryName);
         productName = txtNameProduct.getText();
@@ -138,20 +120,11 @@ public class ProductController {
     }
 
     /**
-     * This method delete the product in parameter from the db
-     *
-     * @param p the product we want to delete
-     */
-    public void deleteProduct(Product p) {
-        productFacade.deleteProduct(p);
-    }
-
-    /**
      * This method is called by btnPtoduct in ModifyProduct.fxml
+     *It updates the products with his new values in the fields
      *
-     * @param e, the event called
      */
-    public void updateProduct(ActionEvent e) {
+    public void updateProduct() {
         Object category = txtCategory.getValue();
 
         System.out.println("category :" + categoryName);
@@ -228,9 +201,8 @@ public class ProductController {
     /**
      * This method enables you to research a product by his name
      *
-     * @param e , executed when the user clicks on btnSearchProduct
      */
-    public void getProductsByName(ActionEvent e) {
+    public void getProductsByName() {
         productName = txtProduct1.getText();
         if (productName.equals("")) {
             display("You need to fill the field");
@@ -244,9 +216,8 @@ public class ProductController {
     /**
      * This method enables you to research a product by his name and the name of a city
      *
-     * @param e , executed when the user clicks on btnSearchProductCity
      */
-    public void getProductsByNameAndCity(ActionEvent e) {
+    public void getProductsByNameAndCity() {
         productName = txtProduct2.getText();
         city = txtCity1.getText();
         if (productName.equals("") || city.equals("")) {
@@ -260,9 +231,8 @@ public class ProductController {
     /**
      * This method enables you to research a product by his name and the category
      *
-     * @param e , executed when the user clicks on btnSearchProductCategory
      */
-    public void getProductsByNameAndCategory(ActionEvent e) {
+    public void getProductsByNameAndCategory() {
         productName = txtProduct3.getText();
         categoryName = txtCategory1.getText();
         if (productName.equals("") || categoryName.equals("")) {
@@ -276,9 +246,8 @@ public class ProductController {
     /**
      * This method enables you to research a product by name, category and city
      *
-     * @param e , executed when the user clicks on btnSearchProductNameCategory
      */
-    public void getProductsByNameAndCityAndCategory(ActionEvent e) {
+    public void getProductsByNameAndCityAndCategory() {
         productName = txtProduct4.getText();
         categoryName = txtCategory2.getText();
         city = txtCity2.getText();
@@ -294,10 +263,9 @@ public class ProductController {
     /**
      * This method enables you to go to the homePage
      *
-     * @param e , executed when the user clicks on homeButton
      */
     @FXML
-    public void goHome(ActionEvent e) {
+    public void goHome() {
         Router.getInstance().activate("HomePage");
     }
 
@@ -305,9 +273,8 @@ public class ProductController {
      * This method is called when the button called sellerPage is clicked
      * When called this method shows the Seller profile page
      *
-     * @param e
      */
-    public void goToSellerPage(ActionEvent e) {
+    public void goToSellerPage() {
         ArrayList<Product> p = new ArrayList<Product>();
         p.add(this.productToModify);
         Router.getInstance().activate("SellerProfileUI", p);
