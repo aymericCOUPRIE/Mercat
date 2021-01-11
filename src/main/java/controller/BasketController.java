@@ -66,7 +66,8 @@ public class BasketController {
      * update the total quantity of product
      * update the total price
      *
-     * @param b,index
+     * @param b     basket that will be deleted
+     * @param index index of hte product in the tableView
      */
     private void deleteBasket(Basket b, int index) {
         if (!basketFacade.deleteBasket(b.getProduct().getIdProduct(), userFacade.getConnectedUser().getPseudo())) {
@@ -87,7 +88,7 @@ public class BasketController {
     }
 
     /**
-     *
+     * This method is used to create an order from all the basket
      */
     public void createOrder() {
         ArrayList<Basket> listBaskets = getAllBasket();

@@ -5,7 +5,7 @@ import javafx.util.Pair;
 import java.util.*;
 
 /**
- *
+ * Class Order
  */
 public class Order {
 
@@ -18,7 +18,13 @@ public class Order {
     private List<Pair<Product, Integer>> productsQuantity;
 
     /**
-     * Default constructor
+     * @param idOrder          of the order
+     * @param pseudoConsumer   of the order
+     * @param dateOrder        of the order
+     * @param deliveryAddress  of the order
+     * @param deliveryDate     of the order
+     * @param stateOrder       of the order
+     * @param productsQuantity of the order
      */
     public Order(int idOrder, String pseudoConsumer, Date dateOrder, String deliveryAddress, Date deliveryDate, String stateOrder, List<Pair<Product, Integer>> productsQuantity) {
         this.idOrder = idOrder;
