@@ -2,8 +2,6 @@ package controller;
 
 import facade.BasketFacade;
 import facade.UserFacade;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -96,7 +94,7 @@ public class DetailProductController {
         errorLabel.setText("");
         ArrayList<Product> product = Router.getInstance().getParametre();
         this.productArrayList = product;
-        ObservableList<Product> listProduct = FXCollections.observableArrayList(product);
+       // ObservableList<Product> listProduct = FXCollections.observableArrayList(product);
         nameP.setText(product.get(0).getNameProduct());
         descriptionP.setText(product.get(0).getDescription());
         priceP.setText("" + product.get(0).getPriceProduct());
