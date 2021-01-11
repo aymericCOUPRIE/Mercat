@@ -16,13 +16,13 @@ import java.util.Set;
  */
 public class ProductFacade {
 
-    private ProductDAO productDAO = ProductDAO.getInstance();
-    private RateDAO rateDAO = RateDAO.getInstance();
-    private CommentDAO commentDAO = CommentDAO.getInstance();
+    private final ProductDAO productDAO = ProductDAO.getInstance();
+    private final RateDAO rateDAO = RateDAO.getInstance();
+    private final CommentDAO commentDAO = CommentDAO.getInstance();
 
     private static ProductFacade instanceProductFacade;
 
-    private ArrayList<Product> listProduct = new ArrayList<Product>();
+    private final ArrayList<Product> listProduct = new ArrayList<Product>();
 
     /**
      * @return instanceUserFacade
@@ -53,7 +53,7 @@ public class ProductFacade {
      * @param consumer 
      * @param comment
      * @param idProduct
-     * @return
+     *
      */
     public void addComment(Consumer consumer, String comment, int idProduct) {
         commentDAO.createComment(consumer, comment, idProduct);
@@ -132,7 +132,7 @@ public class ProductFacade {
     }
 
     /**
-     * @param product
+     * @param product the product we want to update
      * @return true if the product was updated
      */
     public boolean updateProduct(Product product) {
@@ -148,47 +148,67 @@ public class ProductFacade {
     }
 
     /**
-     * @param name
-     * @return a collection of products
+     * This method returns all the products who have the same name
+     * @param name , the name of the product we want to find
+     * @return a list of all the products who have the same name
      */
     public ArrayList<Product> getProductsByName(String name) {
         return productDAO.getProductsByName(name);
     }
 
     /**
-     * @param name 
-     * @param city 
-     * @return
+     * This method returns all the products who have the same city and name
+     * @param name of the product we want to find
+     * @param city of the product we want to find
+     * @return a list of all the products from a city
      */
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         return productDAO.getProductsByNameAndCity(name, city);
     }
 
     /**
-     * @param name  
-     * @param category  
-     * @return
+     * This method returns all the products who have the same name and in the same category
+     * @param name     of the product we want to find
+     * @param category of the product we want to find
+     * @return a list of all the products from a specific category
      */
     public ArrayList<Product> getProductsByNameAndCategory(String name , String category ) {
         return productDAO.getProductsByNameAndCategory(name,category);
     }
 
     /**
-     * @param name
-     * @param city
-     * @param category
-     * @return
+     * This method returns all the products who have the same the name, city and category
+     * @param name     of the product we want to find
+     * @param city     of the product we want to find
+     * @param category of the product we want to find
+     * @return a list a of product from a specific name, city and category
      */
     public ArrayList<Product> getProductByNameAndCityAndCategory(String name, String city, String category) {
         return productDAO.getProductsByNameAndCityAndCategory(name,city,category);
     }
 
+    /**
+     * This method returns all the seller's product
+     * @param seller whose products we want to get
+     * @return all the products he has
+     */
     public ArrayList<Product> getProductsBySeller(String seller){
         return productDAO.getProductsBySeller(seller);
     }
+
+    /**
+     * This method returns the id of a product
+     * @param p, the product whose id we want
+     * @return the id of the product
+     */
     public int getIdProduct(Product p){
         return productDAO.getProductId(p);
     }
 
+    /**
+     * This method returns the id of category given her libelleCategorie
+     * @param libelle of the category
+     * @return the id of the category
+     */
    public int getCategoryId(String libelle){return productDAO.getCategoryId(libelle);}
 }
