@@ -136,6 +136,11 @@ public abstract class ProductDAO {
         return -1;
     }
 
+    /**
+     * @param id of the category
+     * @return the libelle of the caegory, which id is in parameterD
+     */
+    public String getCategoryLibelle(int id){ return ""; }
 
 
 }

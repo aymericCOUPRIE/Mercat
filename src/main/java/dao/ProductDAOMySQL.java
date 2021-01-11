@@ -28,9 +28,10 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param nameP , the name of the product we want to find
      * @return an ArrayList of products, all of them have the same name
      */
+    @Override
     public ArrayList<Product> getProductsByName(String nameP) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM product WHERE nameProduct = ? ORDER BY nameProduct ASC";
+        String requete = "SELECT * FROM product WHERE nameProduct = ? ";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, nameP);
@@ -42,10 +43,12 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     *  @param name of the product we want to find
-     *  @param city of the product we want to find
-     *  @return ArrayList<Product>
+     * This method returns all the products who have the same city and name
+     * @param name of the product we want to find
+     * @param city of the product we want to find
+     * @return a list of all the products from a city
      */
+    @Override
     public ArrayList<Product> getProductsByNameAndCity(String name, String city) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
         String requete = "SELECT * FROM product as p,user as u WHERE nameProduct=? AND p.pseudoSeller=u.pseudo AND u.city =?";
@@ -61,10 +64,12 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param name of the product we want to find
+     * This method returns all the products who have the same name and in the same category
+     * @param name     of the product we want to find
      * @param category of the product we want to find
-     * @return ArrayList<Product>
+     * @return a list of all the products from a specific category
      */
+    @Override
     public ArrayList<Product> getProductsByNameAndCategory(String name, String category) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
         String requete = "SELECT * FROM product WHERE nameProduct = ? AND idCategorie=? ORDER BY nameProduct ASC";
@@ -86,7 +91,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param listProduct, where we add the product found
      * @param preparedStatement the query, created to search the products
      * @return an ArrayList of Product, all the products we found with the query
-     * @throws SQLException
+     *
      */
     private ArrayList<Product> getProductList(ArrayList<Product> listProduct, PreparedStatement preparedStatement) throws SQLException {
         ResultSet res = preparedStatement.executeQuery();
@@ -111,14 +116,16 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param name
-     * @param city
-     * @param idCategory
-     * @return
+     * This method returns all the products who have the same the name, city and category
+     * @param name     of the product we want to find
+     * @param city     of the product we want to find
+     * @param idCategory of the product we want to find
+     * @return a list a of product from a specific name, city and category
      */
+    @Override
     public ArrayList<Product> getProductsByNameAndCityAndCategory(String name, String city, String idCategory) {
         ArrayList<Product> listProduct = new ArrayList<Product>();
-        String requete = "SELECT * FROM product as p,user as u WHERE nameProduct = ? AND idCategorie = ? AND p.pseudoSeller=u.pseudo AND u.city =? ORDER BY nameProduct ASC";
+        String requete = "SELECT * FROM product as p,user as u WHERE nameProduct = ? AND idCategorie = ? AND p.pseudoSeller=u.pseudo AND u.city =? ";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
             preparedStatement.setString(1, name);
@@ -132,12 +139,14 @@ public class ProductDAOMySQL extends ProductDAO {
         return null;
     }
 
-    @Override
+
     /**
-     * @param product le produit
-     * @return boolean
-     * Permet de renvoyer true ou false selon si l'on a réussit à insérer le produit dans la base de données
+     * This method enables the seller to add a product into the database
+     *
+     *@param product le produit we want to add
+     *@return true if this method succeded to add this product
      */
+    @Override
     public boolean createProduct(Product product) {
         String requete = "INSERT INTO product (nameProduct,priceProduct,pictureProduct,pseudoSeller,idCategorie,description) VALUES (?,?,?,?,?,?)";
 
@@ -159,14 +168,14 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
-    @Override
+
     /**
+     * this method updates a given product into the database
      * @param p, the Product we want to update
-     * @param newDescription, the new description of the product
-     * @return boolean, true if the product was updated into the database
+     * @return true if the product was updated into the database
      */
+    @Override
     public boolean updateProduct(Product p) {
-        int id = getProductId(p);
         String requete = "UPDATE product SET nameProduct = ?, priceProduct = ?,idCategorie = ?, description = ? WHERE idProduct = ?";
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
@@ -185,11 +194,13 @@ public class ProductDAOMySQL extends ProductDAO {
 
     }
 
-    @Override
+
     /**
+     * When called this method returns the id of a given product
      * @param p, the product whose id we want
-     * @return int, the id of the product
+     * @return the id of the product
      */
+    @Override
     public int getProductId(Product p) {
         String requete = "SELECT idProduct FROM product WHERE nameProduct=? AND description=? AND priceProduct=? AND pseudoSeller=?";
 
@@ -213,11 +224,13 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
-    @Override
+
     /**
+     * This method deletes a given product of the database
      * @param p, the Product that we want to delete
-     * @return boolean, true if the product was deleted
+     * @return true if the product was deleted
      */
+    @Override
     public boolean deleteProduct(Product p) {
         System.out.println("id produit a detruire :"+p.getIdProduct());
         String requete = "DELETE FROM product WHERE idProduct=?";
@@ -259,6 +272,7 @@ public class ProductDAOMySQL extends ProductDAO {
      * @param id of the category
      * @return the libelle of the caegory, which id is in parameterD
      */
+    @Override
     public String getCategoryLibelle(int id){
         String requete = "SELECT LibelleCategorie FROM category WHERE idCategorie = ?";
         try {
@@ -278,9 +292,11 @@ public class ProductDAOMySQL extends ProductDAO {
     }
 
     /**
-     * @param c, the category name
-     * @return an int which represents the id of the category in parameter
+     * This method returns the id of category given her libelleCategorie
+     * @param c which reprensents the libelle of the category
+     * @return the id of the category
      */
+    @Override
     public int getCategoryId(String c) {
         String requete = "SELECT idCategorie FROM category WHERE LibelleCategorie = ?";
         try {
@@ -299,10 +315,11 @@ public class ProductDAOMySQL extends ProductDAO {
         }
     }
 
-    @Override
+
     /**
      * @return une arrayList de tous les produits présents dans la db
      */
+    @Override
     public ArrayList<Product> getAllProduct(){
         ArrayList<Product> listProduct = new ArrayList<Product>();
         String requete = "SELECT * FROM product";
@@ -314,7 +331,12 @@ public class ProductDAOMySQL extends ProductDAO {
         }
         return null;
     }
-
+    /**
+     * This method returns all the seller's product
+     * @param seller whose products we want to get
+     * @return all the products he has
+     */
+    @Override
     public ArrayList<Product> getProductsBySeller(String seller){
         ArrayList<Product> listProduct = new ArrayList<Product>();
         String requete = "SELECT * FROM product WHERE pseudoSeller = ?";
