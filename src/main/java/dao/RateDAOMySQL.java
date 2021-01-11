@@ -29,7 +29,7 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method add a rate for a seller in the database
-     * @param seller
+     * @param seller where we add a rate
      * @param consumer that add the rate
      * @param rate an integer between 1 and 5
      */
@@ -86,7 +86,7 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method get a rate of a seller in the database
-     * @param seller
+     * @param seller where we add a rate
      * @param consumer who add the rate
      * @return the rate put by the consumer, if no notation return 0
      */
@@ -148,7 +148,7 @@ public class RateDAOMySQL extends RateDAO {
 
     /**
      * This method get the average rate of all rates of a seller in the database
-     * @param seller
+     * @param seller where we add a rate
      * @return the average rate of a seller, if no notation return 0
      */
     @Override
