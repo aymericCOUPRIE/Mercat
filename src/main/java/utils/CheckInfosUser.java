@@ -51,20 +51,21 @@ public abstract class CheckInfosUser {
             } else return "Your password cannot have space in it";
         }
     }
-    //TODO : Flo
 
     /**
-     * @param pseudo
-     * @param email
-     * @param firstname
-     * @param lastname
-     * @param password
-     * @param phoneNumber
-     * @param street
-     * @param postal
-     * @param city
-     * @param companyName
-     * @return
+     * This function verifies that the user has filled in all the fields as well as their format.
+     *
+     * @param pseudo      of the user who registers or whose data you want to modify
+     * @param email       of the user who registers or whose data you want to modify
+     * @param firstname   of the user who registers or whose data you want to modify
+     * @param lastname    of the user who registers or whose data you want to modify
+     * @param password    of the user who registers or whose data you want to modify
+     * @param phoneNumber of the user who registers or whose data you want to modify
+     * @param street      of the user who registers or whose data you want to modify
+     * @param postal      of the user who registers or whose data you want to modify
+     * @param city        of the user who registers or whose data you want to modify
+     * @param companyName of the user who registers or whose data you want to modify
+     * @return an error describing the parameter which is not in the right format or mentioning that at least one field has not been filled in or ok if everything is ok
      */
     public static String checkInfosSeller(String pseudo, String email, String firstname, String lastname, String password, String phoneNumber, String street, String postal, String city, String companyName) {
         if (companyName.equals("")) {
