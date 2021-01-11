@@ -11,7 +11,7 @@ import router.Router;
 import java.io.IOException;
 
 /**
- *
+ * Class LoginController
  */
 public class LoginController {
 
@@ -30,10 +30,6 @@ public class LoginController {
 
     private String pseudo, passWord;
 
-
-    /**
-     *
-     */
     private UserFacade userFacade = new UserFacade();
 
     /**

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 /**
- * 
+ *
  */
 public class SellerProfileController {
     @FXML
@@ -51,7 +51,7 @@ public class SellerProfileController {
     }
 
     /**
-     * 
+     *
      */
     private UserFacade userFacade = new UserFacade();
 
@@ -65,15 +65,15 @@ public class SellerProfileController {
     String nameSeller;
 
     /**
-     * @param pseudo 
+     * @param pseudo
      * @return
      */
-    public Seller getSellerDetails(String pseudo)  {
-        return  (Seller) userFacade.getSellerDetails(pseudo);
+    public Seller getSellerDetails(String pseudo) {
+        return (Seller) userFacade.getSellerDetails(pseudo);
     }
 
     /**
-     * @param order 
+     * @param order
      * @return
      */
     public void updateOrder(Order order) {
@@ -90,10 +90,10 @@ public class SellerProfileController {
 
     /**
      * Method used by btnBack from Java FX
-     *  It permit to return to the home page
+     * It permit to return to the home page
      */
-    public void back(){
-        if(productArrayList != null){
+    public void back() {
+        if (productArrayList != null) {
             Router.getInstance().activate("DetailsProduct", productArrayList);
         } else {
             Router.getInstance().activate("HomePage");
@@ -103,9 +103,9 @@ public class SellerProfileController {
 
     /**
      * Method used by btnBack from Java FX
-     *  It permit to return to the home page
+     * It permit to return to the home page
      */
-    public void addRatePage(){
+    public void addRatePage() {
         Object[] params = new Object[1];
         params[0] = txtPseudo.getText();
         Router.getInstance().activate("Rate_Seller", params);
@@ -116,12 +116,12 @@ public class SellerProfileController {
      * To initialize the variable with the information in the data base
      */
     public void initialize() {
-        if(Router.getInstance().getParametre() != null){ // On vient de la page product
+        if (Router.getInstance().getParametre() != null) { // On vient de la page product
             this.productArrayList = Router.getInstance().getParametre();
             ObservableList<Product> listProduct = FXCollections.observableArrayList(productArrayList);
             nameSeller = listProduct.get(0).getPseudoSeller();
             boolean order = orderFacade.orderProduct(userFacade.getConnectedUser().getPseudo(), productFacade.getIdProduct(listProduct.get(0)));
-            if (order){
+            if (order) {
                 btnRate.setDisable(false);
             } else {
                 btnRate.setDisable(true);
@@ -145,16 +145,15 @@ public class SellerProfileController {
 
         averageRate = sellerFacade.getSellerAverageRate(s);
         System.out.println(averageRate);
-        if(averageRate == 0){
+        if (averageRate == 0) {
             txtAverageRate.setText("/");
-        }
-        else {
+        } else {
             txtAverageRate.setText(averageRate.toString());
         }
     }
 
-    public void goToSellerProducts(ActionEvent e ){
-        Router.getInstance().activate("SellerProducts",productArrayList);
+    public void goToSellerProducts(ActionEvent e) {
+        Router.getInstance().activate("SellerProducts", productArrayList);
     }
 
     public ArrayList<Product> getProductArrayList() {
