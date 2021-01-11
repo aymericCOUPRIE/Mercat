@@ -2,9 +2,6 @@ package controller;
 
 import facade.BasketFacade;
 import facade.UserFacade;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,29 +63,12 @@ public class DetailProductController {
         }
     }
 
-    /**
-     * if (txtQuantity.getText().isEmpty()) {
-     * errorLabel.setText("You must provide the quantity of product you want to add in your basket!");
-     * } else if (Integer.parseInt(txtQuantity.getText()) > 0) {
-     * if (basketFacade.addToBasket(curentProduct.getIdProduct(), Integer.parseInt(txtQuantity.getText()), userFacade.getConnectedUser().getPseudo())) {
-     * <p>
-     * errorLabel.setText("The product has been added into the basket!");
-     * <p>
-     * } else {
-     * errorLabel.setText("This product is already in your basket. If you want to update the quantity, please go on 'My basket' page.");
-     * }
-     * <p>
-     * } else {
-     * errorLabel.setText("You must provide a positive quantity!");
-     * }
-     * <p>
-     * <p>
-     * }
-     * <p>
-     * /**
+
+
+     /**
      * This method is called automatically when the user
      * get on the corresponding interface
-     * <p>
+     *
      * It displayed to the user all the details about a specific product
      */
     public void initialize() {
@@ -113,9 +93,8 @@ public class DetailProductController {
     /**
      * This method is used to return to the homePage
      *
-     * @param actionEvent
      */
-    public void homePage(ActionEvent actionEvent) {
+    public void homePage() {
         Router.getInstance().activate("HomePage");
     }
 }
