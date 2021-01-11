@@ -262,7 +262,7 @@ public class ConsultHistoricController {
         tbv_cl_productName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getKey().getNameProduct()));
         tbv_cl_productName.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        tbv_cl_prix.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getKey().getPriceProduct())));
+        tbv_cl_prix.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getKey().getPriceProduct() * data.getValue().getValue()) + " \u20ac"));
         tbv_cl_prix.setCellFactory(TextFieldTableCell.forTableColumn());
 
         tbv_cl_quantite.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getValue())));
