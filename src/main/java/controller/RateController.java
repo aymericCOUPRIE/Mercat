@@ -10,8 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Consumer;
 import router.Router;
+
 import java.io.IOException;
 
+/**
+ * Class RrateController
+ */
 public class RateController {
 
     @FXML
@@ -29,25 +33,29 @@ public class RateController {
     private int idProduct;
 
     private ProductFacade facade = new ProductFacade();
-    private SellerFacade facadeS  = new SellerFacade();
+    private SellerFacade facadeS = new SellerFacade();
     private UserFacade facadeU = UserFacade.getInstanceUserFacade();
 
-
+    /**
+     * Default constructor
+     */
     public RateController() {
     }
 
     /**
-     *  Method used by btnSubmitRate from Java FX
+     * Method used by btnSubmitRate from Java FX
      * It permits to add a rate to a seller or a product
+     *
+     * @param e gets the subject of the action
      */
     @FXML
-    public void addRate(ActionEvent e) throws IOException {
-        if(btnSubmitRate.getOpacity()>0.5) {
+    public void addRate(ActionEvent e) {
+        if (btnSubmitRate.getOpacity() > 0.5) {
             rate = txtRate.getText();
             if (rate.equals("1") || rate.equals("2") || rate.equals("3") || rate.equals("4") || rate.equals("5")) {
                 int i = Integer.parseInt(rate);
                 // Page seller
-                if(page == "seller") {
+                if (page.equals("seller")) {
 
                     facadeS.AddRate((Consumer) facadeU.getConnectedUser(), i, nameSeller);
                     System.out.println("OUI");
@@ -55,8 +63,7 @@ public class RateController {
                     params[0] = nameSeller;
                     Router.getInstance().activate("Rate_Seller", params);
                     //Router.getInstance().activate("Rate_Seller");
-                }
-                else {
+                } else {
                     facade.AddRate((Consumer) facadeU.getConnectedUser(), i, idProduct);
                     System.out.println("OUI");
                     Object[] params = new Object[1];
@@ -71,11 +78,11 @@ public class RateController {
     }
 
     /**
-     *  Method for the deactivation of the button submit rate
+     * Method for the deactivation of the button submit rate
      */
-    private void desactivateSubmitRate(){
+    private void desactivateSubmitRate() {
         // Cas page Seller
-        if(page == "seller") {
+        if (page.equals("seller")) {
             Float rate = facadeS.getRate((Consumer) facadeU.getConnectedUser(), nameSeller);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
@@ -84,7 +91,7 @@ public class RateController {
             }
         }
         // Cas page Product
-        if(page == "product") {
+        if (page.equals("product")) {
             Float rate = facade.getRate((Consumer) facadeU.getConnectedUser(), idProduct);
             if (rate != 0) {
                 btnSubmitRate.setOpacity(0.4);
@@ -99,7 +106,7 @@ public class RateController {
      * It permit to return to the seller page
      */
     public void back() {
-        if(page == "product") {
+        if (page.equals("product")) {
             Router.getInstance().activate("HistoricOrder");
         } else {
             // Quel seller ?
@@ -115,10 +122,10 @@ public class RateController {
 
         errorText.setText("");
 
-        if(section.getText().equals("Seller")){
+        if (section.getText().equals("Seller")) {
             page = "seller";
             nameSeller = (String) Router.getInstance().getParams()[0];
-        } else{
+        } else {
             page = "product";
             idProduct = (Integer) Router.getInstance().getParams()[0];
         }

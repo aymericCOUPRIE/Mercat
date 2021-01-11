@@ -19,7 +19,7 @@ import router.Router;
 import java.util.ArrayList;
 
 /**
- * 
+ * Class ProductController
  */
 public class ProductController {
 
@@ -91,23 +91,18 @@ public class ProductController {
     public ProductController() {
     }
 
-    /**
-     * 
-     */
     private BasketFacade basketFacade;
-
-
-
 
 
     /**
      * This method is called when the seller tries to add a new Product.
+     *
      * @param e called when btnProduct is clicked on
      */
     public void addProduct(ActionEvent e) {
         Object category = txtCategory.getValue().toString();
 
-        System.out.println("category :"+categoryName);
+        System.out.println("category :" + categoryName);
         productName = txtNameProduct.getText();
         description = txtDescription.getText();
 
@@ -115,26 +110,26 @@ public class ProductController {
         priceCents = txtPrice2.getText();
 
 
-        if(productName.equals("")||description.equals("")||priceEuros.equals("")||category==null){
+        if (productName.equals("") || description.equals("") || priceEuros.equals("") || category == null) {
             display("You need to fill every field");
-        }else{
-            try{
+        } else {
+            try {
                 int i = Integer.parseInt(priceEuros);
-                try{
+                try {
                     int c = Integer.parseInt(priceCents);
                     categoryName = txtCategory.getValue().toString();
-                    String price = i+"."+c;
+                    String price = i + "." + c;
                     Float f = Float.parseFloat(price);
                     String seller = userFacade.getConnectedUser().getPseudo();
-                    Product p = new Product(productName,description,f,seller,categoryName);
+                    Product p = new Product(productName, description, f, seller, categoryName);
                     System.out.println(p.getDescription());
-                    if(productFacade.createProduct(p)){
+                    if (productFacade.createProduct(p)) {
                         display("Produit ajouté");
                     }
-                }catch (NumberFormatException n){
+                } catch (NumberFormatException n) {
                     display("The cent field must be an integer");
                 }
-            }catch (NumberFormatException n){
+            } catch (NumberFormatException n) {
                 display("The price is not an integer");
             }
 
@@ -159,7 +154,7 @@ public class ProductController {
     public void updateProduct(ActionEvent e) {
         Object category = txtCategory.getValue();
 
-        System.out.println("category :"+categoryName);
+        System.out.println("category :" + categoryName);
         productName = txtNameProduct.getText();
         description = txtDescription.getText();
 
@@ -167,26 +162,26 @@ public class ProductController {
         priceCents = txtPrice2.getText();
 
 
-        if(productName.equals("")||description.equals("")||priceEuros.equals("")||category==null){
+        if (productName.equals("") || description.equals("") || priceEuros.equals("") || category == null) {
             display("You need to fill every field");
-        }else{
-            try{
+        } else {
+            try {
                 int i = Integer.parseInt(priceEuros);
-                try{
+                try {
                     categoryName = txtCategory.getValue().toString();
                     int c = Integer.parseInt(priceCents);
-                    String price = i+"."+c;
+                    String price = i + "." + c;
                     Float f = Float.parseFloat(price);
                     String seller = userFacade.getConnectedUser().getPseudo();
-                    Product p = new Product(productToModify.getIdProduct(),productName,description,f,"",seller,productToModify.getCity(),productFacade.getCategoryId(categoryName),categoryName);
+                    Product p = new Product(productToModify.getIdProduct(), productName, description, f, "", seller, productToModify.getCity(), productFacade.getCategoryId(categoryName), categoryName);
                     System.out.println(p.getDescription());
-                    if(productFacade.updateProduct(p)){
+                    if (productFacade.updateProduct(p)) {
                         display("Produit modifié");
                     }
-                }catch (NumberFormatException n){
+                } catch (NumberFormatException n) {
                     display("The cent field must be an integer");
                 }
-            }catch (NumberFormatException n){
+            } catch (NumberFormatException n) {
                 display("The price is not an integer");
             }
 
@@ -194,14 +189,14 @@ public class ProductController {
         }
     }
 
-    @FXML
+
     /**
      * Displays an error message
      *
      * @param msg the message we want to display on the page
      */
-    public void display(String msg)
-    {
+    @FXML
+    public void display(String msg) {
         errorText.setText(msg);
     }
 
@@ -213,20 +208,20 @@ public class ProductController {
         // TODO Auto-generated method stub
         errorText.setText("");
         ArrayList<String> listNomCategory = new ArrayList<String>();
-        for (Category c : categoryFacade.getAllCategory()){
+        for (Category c : categoryFacade.getAllCategory()) {
             listNomCategory.add(c.getNameCategory());
         }
         ObservableList observableList = FXCollections.observableArrayList(listNomCategory);
         txtCategory.setItems(observableList);
-        if(Router.getInstance().getParametre()!=null){//Si on vient de la page avec tous les produits du vendeurs
+        if (Router.getInstance().getParametre() != null) {//Si on vient de la page avec tous les produits du vendeurs
             Product product = Router.getInstance().getParametre().get(0);
             this.productToModify = product;
             txtNameProduct.setText(product.getNameProduct());
             txtDescription.setText(product.getDescription());
-            String prix = ""+product.getPriceProduct();
+            String prix = "" + product.getPriceProduct();
             int i = prix.indexOf(".");
-            txtPrice.setText(prix.substring(0,i));
-            txtPrice2.setText(prix.substring(i+1));
+            txtPrice.setText(prix.substring(0, i));
+            txtPrice2.setText(prix.substring(i + 1));
         }
     }
 
@@ -235,14 +230,14 @@ public class ProductController {
      *
      * @param e , executed when the user clicks on btnSearchProduct
      */
-    public void getProductsByName(ActionEvent e){
+    public void getProductsByName(ActionEvent e) {
         productName = txtProduct1.getText();
-        if(productName.equals("")){
+        if (productName.equals("")) {
             display("You need to fill the field");
-        }else{
+        } else {
             ArrayList<Product> p = productFacade.getProductsByName(productName);
             System.out.println("ProductByName productController");
-            Router.getInstance().activate("ProductUI",p);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
@@ -251,14 +246,14 @@ public class ProductController {
      *
      * @param e , executed when the user clicks on btnSearchProductCity
      */
-    public void getProductsByNameAndCity(ActionEvent e){
+    public void getProductsByNameAndCity(ActionEvent e) {
         productName = txtProduct2.getText();
         city = txtCity1.getText();
-        if(productName.equals("")||city.equals("")){
+        if (productName.equals("") || city.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName,city);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductsByNameAndCity(productName, city);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
@@ -267,14 +262,14 @@ public class ProductController {
      *
      * @param e , executed when the user clicks on btnSearchProductCategory
      */
-    public void getProductsByNameAndCategory(ActionEvent e){
+    public void getProductsByNameAndCategory(ActionEvent e) {
         productName = txtProduct3.getText();
         categoryName = txtCategory1.getText();
-        if(productName.equals("")||categoryName.equals("")){
+        if (productName.equals("") || categoryName.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName,categoryName);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductsByNameAndCategory(productName, categoryName);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
@@ -283,26 +278,25 @@ public class ProductController {
      *
      * @param e , executed when the user clicks on btnSearchProductNameCategory
      */
-    public void getProductsByNameAndCityAndCategory(ActionEvent e){
+    public void getProductsByNameAndCityAndCategory(ActionEvent e) {
         productName = txtProduct4.getText();
         categoryName = txtCategory2.getText();
         city = txtCity2.getText();
-        if(productName.equals("")||city.equals("")||categoryName.equals("")){
+        if (productName.equals("") || city.equals("") || categoryName.equals("")) {
             display("You need to fill every field");
-        }else{
-            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName,city,categoryName);
-            Router.getInstance().activate("ProductUI",p);
+        } else {
+            ArrayList<Product> p = productFacade.getProductByNameAndCityAndCategory(productName, city, categoryName);
+            Router.getInstance().activate("ProductUI", p);
         }
     }
 
 
-
-    @FXML
     /**
      * This method enables you to go to the homePage
      *
      * @param e , executed when the user clicks on homeButton
      */
+    @FXML
     public void goHome(ActionEvent e) {
         Router.getInstance().activate("HomePage");
     }
@@ -313,10 +307,10 @@ public class ProductController {
      *
      * @param e
      */
-    public void goToSellerPage(ActionEvent e){
-        ArrayList<Product> p =new ArrayList<Product>();
+    public void goToSellerPage(ActionEvent e) {
+        ArrayList<Product> p = new ArrayList<Product>();
         p.add(this.productToModify);
-        Router.getInstance().activate("SellerProfileUI",p);
+        Router.getInstance().activate("SellerProfileUI", p);
     }
 
 

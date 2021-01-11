@@ -17,6 +17,9 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class Comment (comments are only on products)
+ */
 public class CommentController {
 
     @FXML
@@ -70,7 +73,7 @@ public class CommentController {
     /**
      * It allows to display an error message on the user interface
      *
-     * @param msg
+     * @param msg contains the error displayed to the user
      */
     @FXML
     public void display(String msg) {

@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class CommentDAOMySQl extends CommentDAO {
 
@@ -17,12 +17,13 @@ public class CommentDAOMySQl extends CommentDAO {
      * Default constructor
      */
     protected CommentDAOMySQl(Connection connect) {
-            super(connect);
+        super(connect);
     }
 
     /**
      * This method get a comment in the database
-     * @param consumer that add the comment
+     *
+     * @param consumer  that add the comment
      * @param idProduct of the product
      * @return a string with the comment
      */
@@ -53,38 +54,40 @@ public class CommentDAOMySQl extends CommentDAO {
 
     /**
      * This method add a comment in the database
+     *
      * @param consumer that add the comment
-     * @param comment a string with the content of the comment
-     * @param id of the product
+     * @param comment  a string with the content of the comment
+     * @param id       of the product
      */
     @Override
-    public void createComment(Consumer consumer, String comment, int id){
-            String requete = "INSERT INTO comment (ContentComment, pseudoConsumer, idProduct) VALUES (?,?,?)";
-            System.out.println(requete);
-            //String requete = "INSERT INTO rate VALUES (2, "stephanie", "azer", 0)";
-            try {
-                PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
-                preparedStatement.setString(1, comment);
-                preparedStatement.setString(2, consumer.getPseudo());
-                preparedStatement.setInt(3, id);
+    public void createComment(Consumer consumer, String comment, int id) {
+        String requete = "INSERT INTO comment (ContentComment, pseudoConsumer, idProduct) VALUES (?,?,?)";
+        System.out.println(requete);
+        //String requete = "INSERT INTO rate VALUES (2, "stephanie", "azer", 0)";
+        try {
+            PreparedStatement preparedStatement = this.connect.prepareStatement(requete);
+            preparedStatement.setString(1, comment);
+            preparedStatement.setString(2, consumer.getPseudo());
+            preparedStatement.setInt(3, id);
 
-                preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
 
-            } catch (SQLIntegrityConstraintViolationException throwables) {
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        } catch (SQLIntegrityConstraintViolationException throwables) {
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     /**
      * This method update a comment in the database
+     *
      * @param consumer that add the comment
-     * @param comment a string with the content of the comment
-     * @param id of the product
+     * @param comment  a string with the content of the comment
+     * @param id       of the product
      */
     @Override
-    public void updateComment(Consumer consumer, String comment, int id){
+    public void updateComment(Consumer consumer, String comment, int id) {
         String requete = "UPDATE comment SET ContentComment = ? WHERE pseudoConsumer = ? AND idProduct = ?";
         System.out.println(requete);
         //String requete = "INSERT INTO rate VALUES (2, "stephanie", "azer", 0)";

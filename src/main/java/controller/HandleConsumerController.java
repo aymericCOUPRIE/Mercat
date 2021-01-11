@@ -84,7 +84,7 @@ public class HandleConsumerController {
     /**
      * It allows to display a message on the user interface
      *
-     * @param msg
+     * @param msg error message
      */
     @FXML
     public void display(String msg) {

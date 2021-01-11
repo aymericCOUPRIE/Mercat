@@ -9,11 +9,12 @@ import model.Seller;
 import model.User;
 import router.Router;
 import utils.CheckInfosUser;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 
+ *
  */
 public class UpdateSellerProfileController {
     @FXML
@@ -50,74 +51,74 @@ public class UpdateSellerProfileController {
 
     /**
      * This method permits to get all the information about a user.
-     * @return User
      *
+     * @return User
      */
     public User getConsumerDetails() {
-        return  userFacade.getConsumerDetails();
+        return userFacade.getConsumerDetails();
     }
 
 
     /**
-     *  Method used by btnDeleteSeller from Java FX
-     *  It permit to delete the seller account from the dataBase
+     * Method used by btnDeleteSeller from Java FX
+     * It permit to delete the seller account from the dataBase
      */
     public void deleteSeller() {
-        if(userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())){
+        if (userFacade.getInstanceUserFacade().deleteUser(txtPseudo.getText())) {
 
-            if(!(userFacade.getInstanceUserFacade().isAdmin())){
+            if (!(userFacade.getInstanceUserFacade().isAdmin())) {
                 display("Your account has been deleted");
 
                 CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
                     Router.getInstance().activate("Login");
                 });
-            }else{
+            } else {
                 display(Router.getInstance().getParams()[0].toString() + " account has been deleted");
                 CompletableFuture.delayedExecutor(3, TimeUnit.SECONDS).execute(() -> {
                     Router.getInstance().activate("HandleConsumerS");
                 });
             }
-        }else{
+        } else {
             display("Your account hasn't been deleted ...");
         }
     }
 
     /**
-     *  Method used by btnUpdateSeller from Java FX
-     *  It permits to update some information about the seller in the dataBase
+     * Method used by btnUpdateSeller from Java FX
+     * It permits to update some information about the seller in the dataBase
      */
     @FXML
     public void updateSeller() {
 
-        String check = CheckInfosUser.checkInfosSeller(txtPseudo.getText(),txtEmailAdress.getText(),txtFirstname.getText(),txtLastname.getText(),txtPassword.getText(),txtPhoneNumber.getText(),txtStreetAdress.getText(),txtPostal.getText(),txtCity.getText(),txtCompanyName.getText());
+        String check = CheckInfosUser.checkInfosSeller(txtPseudo.getText(), txtEmailAdress.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText(), txtPhoneNumber.getText(), txtStreetAdress.getText(), txtPostal.getText(), txtCity.getText(), txtCompanyName.getText());
 
-        if(check.equals("OK")){
-        if(userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText() ,OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(),txtCity.getText(),txtPostal.getText(),txtPhoneNumber.getText(),txtCompanyName.getText())){
-            display("Your profil has been updated !");
+        if (check.equals("OK")) {
+            if (userFacade.updateUser(txtPseudo.getText(), txtFirstname.getText(), txtLastname.getText(), txtPassword.getText(), OldPassword, txtEmailAdress.getText(), txtStreetAdress.getText(), txtCity.getText(), txtPostal.getText(), txtPhoneNumber.getText(), txtCompanyName.getText())) {
+                display("Your profil has been updated !");
+            } else {
+                display("Error during update !");
+            }
         } else {
-            display("Error during update !");
-        }
-        }else{
 
-        display(check);
-    }
+            display(check);
+        }
     }
 
     /**
      * Method used by btnBack from Java FX
-     *  It permits to return to the home page
+     * It permits to return to the home page
      */
-    public void back(){
+    public void back() {
         Router.getInstance().activate("HomePage");
     }
 
     /**
      * It allows to display an error message on the user interface
-     * @param msg
+     *
+     * @param msg error message
      */
     @FXML
-    public void display(String msg)
-    {
+    public void display(String msg) {
         errorText.setText(msg);
     }
 

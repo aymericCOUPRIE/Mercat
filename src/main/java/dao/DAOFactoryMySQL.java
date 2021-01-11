@@ -32,7 +32,7 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
     }
 
     /**
-     * * Retourne un objet classe interagissant avec la BDD au niveau des baskets
+     * Retourne un objet classe interagissant avec la BDD au niveau des baskets
      *
      * @return BasketDAO
      */
@@ -42,35 +42,45 @@ public class DAOFactoryMySQL extends AbstractFactoryDAO {
 
 
     /**
-     * @return
+     * Return an object interacting with the DB for the Rates
+     *
+     * @return RateDAO
      */
     public RateDAO createRateDAO() {
         return new RateDAOMySQL(connect);
     }
 
     /**
-     * @return
+     * Return an object interacting with the DB for the Comments
+     *
+     * @return CommentDAO
      */
     public CommentDAO createCommentDAO() {
         return new CommentDAOMySQl(connect);
     }
 
     /**
-     * @return
+     * Return an object interacting with the DB for the Orders
+     *
+     * @return OrderDAO
      */
     public OrderDAO createOrderDAO() {
         return new OrderDAOMySQL(connect);
     }
 
     /**
-     * @return
+     * Return an object interacting with the DB for the Products
+     *
+     * @return ProductDAO
      */
     public ProductDAO createProductDAO() {
         return new ProductDAOMySQL(connect);
     }
 
     /**
-     * @return
+     * Return an object interacting with the DB for the Categories
+     *
+     * @return CategoryDAO
      */
     public CategoryDAO createCategoryDAO() {
         return new CategoryDAOMySQL(connect);

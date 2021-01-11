@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Class HomePageController
  */
 public class HomePageController {
 
@@ -27,8 +27,7 @@ public class HomePageController {
 
 
     @FXML
-    private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories, addProduct, mySellerAccount;
-    private ActionEvent e;
+    private MenuItem handleC, myAccount, handleS, ConsultHistoricOrder, updateCategories, addProduct, mySellerAccount, basket;
 
     private ProductController productController = new ProductController();
 
@@ -59,6 +58,9 @@ public class HomePageController {
     private String description;
     private String productName;
     private String city;
+
+    public HomePageController() {
+    }
 
 
     /**
@@ -107,18 +109,25 @@ public class HomePageController {
      * This method allows to manage the display of the menu according to the user's role.
      */
     public void initialize() {
-        if (!(userFacade.getConnectedUser().getRole().equals("admin"))) {
+        if (!(userFacade.getConnectedUser().getRole().equals("admin"))) { //consumer ou seller
             handleC.setVisible(false);
             handleS.setVisible(false);
             updateCategories.setVisible(false);
+
+            if (userFacade.getConnectedUser().getRole().equals("seller")) {
+                basket.setVisible(false);
+            }
 
         } else { //je suis un admin
             myAccount.setVisible(false); //je modifie pas mes infos quand je suis un admin donc cache cette page
             ConsultHistoricOrder.setVisible(false);
             mySellerAccount.setVisible(false);
+            basket.setVisible(false);
+
         }
 
-        if(!(userFacade.getConnectedUser().getRole().equals("seller"))){
+
+        if (!(userFacade.getConnectedUser().getRole().equals("seller"))) { //admin ou consumer
             addProduct.setVisible(false);
             mySellerAccount.setVisible(false);
         }

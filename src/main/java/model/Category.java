@@ -1,9 +1,7 @@
 package model;
 
-import java.util.*;
-
 /**
- *
+ * Class Category
  */
 public class Category {
 
@@ -11,7 +9,10 @@ public class Category {
     private String nameCategory;
 
     /**
-     * Default constructor
+     * CONSTRUCTOR
+     *
+     * @param idCategorie  of the category
+     * @param nameCategory of the category
      */
     public Category(int idCategorie, String nameCategory) {
         this.idCategorie = idCategorie;
