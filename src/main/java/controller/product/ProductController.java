@@ -277,7 +277,7 @@ public class ProductController {
     public void goToSellerPage() {
         ArrayList<Product> p = new ArrayList<Product>();
         p.add(this.productToModify);
-        Router.getInstance().activate("SellerProfileUI", p);
+        Router.getInstance().activate("ProfileSeller", p);
     }
 
 
